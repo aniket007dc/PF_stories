@@ -1,0 +1,143 @@
+{
+ "inputs": "b58e0e0886453636",
+ "voiced": true,
+ "length": 83.119,
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 3.257,
+   "handwritten": []
+  },
+  {
+   "id": "S02",
+   "start": 3.257,
+   "end": 5.433,
+   "handwritten": []
+  },
+  {
+   "id": "S03",
+   "start": 5.433,
+   "end": 9.029,
+   "handwritten": [
+    "har mahine kat-ta hai"
+   ]
+  },
+  {
+   "id": "S04",
+   "start": 9.029,
+   "end": 11.981,
+   "handwritten": []
+  },
+  {
+   "id": "S05",
+   "start": 11.981,
+   "end": 16.046,
+   "handwritten": []
+  },
+  {
+   "id": "S06",
+   "start": 16.046,
+   "end": 20.334,
+   "handwritten": []
+  },
+  {
+   "id": "S07",
+   "start": 20.334,
+   "end": 23.802,
+   "handwritten": [
+    "dono bante hain"
+   ]
+  },
+  {
+   "id": "S08",
+   "start": 23.802,
+   "end": 28.431,
+   "handwritten": []
+  },
+  {
+   "id": "S09",
+   "start": 28.431,
+   "end": 33.418,
+   "handwritten": []
+  },
+  {
+   "id": "S10",
+   "start": 33.418,
+   "end": 37.835,
+   "handwritten": []
+  },
+  {
+   "id": "S11",
+   "start": 37.835,
+   "end": 43.553,
+   "handwritten": []
+  },
+  {
+   "id": "S12",
+   "start": 43.553,
+   "end": 49.049,
+   "handwritten": [
+    "usse upar nahi"
+   ]
+  },
+  {
+   "id": "S13",
+   "start": 49.049,
+   "end": 51.97,
+   "handwritten": []
+  },
+  {
+   "id": "S14",
+   "start": 51.97,
+   "end": 54.37,
+   "handwritten": []
+  },
+  {
+   "id": "S15",
+   "start": 54.37,
+   "end": 58.534,
+   "handwritten": []
+  },
+  {
+   "id": "S16",
+   "start": 58.534,
+   "end": 63.034,
+   "handwritten": []
+  },
+  {
+   "id": "S17",
+   "start": 63.034,
+   "end": 67.766,
+   "handwritten": [
+    "\u20b93,000 dikhega"
+   ]
+  },
+  {
+   "id": "S18",
+   "start": 67.766,
+   "end": 70.624,
+   "handwritten": [
+    "dobara dekho"
+   ]
+  },
+  {
+   "id": "S19",
+   "start": 70.624,
+   "end": 74.424,
+   "handwritten": [
+    "pehli salary wale ko"
+   ]
+  },
+  {
+   "id": "S20",
+   "start": 74.424,
+   "end": 83.119,
+   "handwritten": [
+    "PF samjho, claim pao.",
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?"
+   ]
+  }
+ ]
+}

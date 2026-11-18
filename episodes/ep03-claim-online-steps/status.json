@@ -1,0 +1,403 @@
+{
+  "schema": "dc-status/1",
+  "episode": "ep03-claim-online-steps",
+  "steps": {
+    "01-brief": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Approve the topic: a first-time filer's walk-through on the member portal, screen by screen, before anything goes wrong. Closest reel: ep01 (why a claim comes back)."
+    },
+    "02-data": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Every fact and rule needs a person to open its source and check it (tools/approve.py fact). The portal's menu and button names come from EPFO's April 2020 claim instructions, the newest official wording the research found (epfo.gov.in refused automated requests, and EPFO upgraded its systems in June 2026): check them on your own login while taking the screenshots. GitHub reads the screenshots too and fails any that don't show the names the voice says."
+    },
+    "03-script": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Read it aloud: 173 words in 19 lines. The 7 screenshot steps stay on screen at least 4.6 s each."
+    },
+    "04-shots": {
+      "state": "drafted",
+      "approval": null,
+      "notes": "Drafted with 7 screenshots a person takes on their own login (prompts.md → 1 · Screenshots), every personal detail covered. Once they're uploaded, the report gives each crop and ring box for Muse to copy."
+    },
+    "05-keyframes": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "06-motion": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "07-voice": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "08-assembly": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "09-final-qa": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "10-publish": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "11-measure": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    }
+  },
+  "shots": {
+    "S01": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S02": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S03": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S04": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S05": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S06": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S07": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S08": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S09": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S10": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S11": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S12": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S13": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S14": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S15": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S16": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S17": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S18": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S19": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    }
+  },
+  "post": {
+    "url": null,
+    "posted_at": null
+  },
+  "metrics": {
+    "24h": null,
+    "72h": null,
+    "7d": null
+  },
+  "log": [
+    {
+      "at": "2026-11-14T03:54:51",
+      "by": "new_episode.py",
+      "event": "episode created"
+    },
+    {
+      "at": "2026-11-14T03:59:59",
+      "by": "new_episode.py --prepare",
+      "event": "added shots S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S13, S14, S15, S16, S17, S18, S19"
+    },
+    {
+      "at": "2026-11-14T12:00:00",
+      "by": "Claude",
+      "event": "drafted brief, data with sources, script, shots and reel.json with 8 screenshots for a person to take; every fact and rule waits for a person"
+    },
+    {
+      "at": "2026-11-14T12:00:00",
+      "by": "Claude",
+      "event": "drafted brief, data with sources, script, shots and reel.json with 8 screenshots for a person to take; every fact and rule waits for a person"
+    },
+    {
+      "at": "2026-11-14T12:00:00",
+      "by": "Claude",
+      "event": "drafted brief, data with sources, script, shots and reel.json with 7 screenshots for a person to take; every fact and rule waits for a person"
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "schema": "dc-episode/1",
+  "id": "ep01",
+  "slug": "claim-reject",
+  "series": "PF Guru Ji",
+  "title": "PF claim reject ho gaya? Wajah aur fix.",
+  "tag": "PF GURU JI #01 · CLAIM REJECT",
+  "created": "2026-11-13",
+  "route": "build",
+  "brief": {
+    "topic": "PF claim reject kyun hota hai, aur kaise theek karein?",
+    "repeat_check": {
+      "closest": "",
+      "different_because": ""
+    },
+    "viewer": "Someone who left a job, filed for their PF online, and saw the claim come back rejected.",
+    "hook": "PF claim reject ho gaya? Paisa atka hai?",
+    "problem": "The claim comes back rejected and the money stays stuck, often because of a rule the member didn't know or a mismatch in their records.",
+    "why": [
+      "Filed before 12 months without a job: the rule since the EPF Scheme 2026",
+      "The name or date of birth doesn't match Aadhaar",
+      "The date of exit isn't in EPFO's records"
+    ],
+    "steps": [
+      "Read the reason in the claim status",
+      "Correct the name or date of birth under Manage, then Modify Basic Details (no document if the UAN is Aadhaar-verified)",
+      "Mark the date of exit, 60 days after leaving",
+      "File Form 19 again once 12 months are done"
+    ],
+    "check": "Before filing again: 12 months done, details matching Aadhaar, date of exit marked.",
+    "help": "If a complete claim isn't settled in 20 days, file a grievance on EPFiGMS. EPFO's services are free.",
+    "share_target": "A friend whose PF is stuck",
+    "why_now": "Evergreen: the first thing people ask after a job change, and the pilot of the channel."
+  },
+  "data": [
+    {
+      "id": "emp_share",
+      "label": "Your share in the passbook (example)",
+      "kind": "assumption",
+      "value": 150000,
+      "unit": "INR",
+      "note": "Example. The member's own passbook shows their real numbers."
+    },
+    {
+      "id": "er_share",
+      "label": "The company's share in the passbook (example)",
+      "kind": "assumption",
+      "value": 50000,
+      "unit": "INR",
+      "note": "Example. The member's own passbook shows their real numbers."
+    },
+    {
+      "id": "total_pf",
+      "label": "The PF that's stuck (example)",
+      "kind": "derived",
+      "value": 200000,
+      "unit": "INR",
+      "formula": "emp_share + er_share"
+    },
+    {
+      "id": "reason_in_status",
+      "label": "EPFO says why a claim came back",
+      "kind": "rule",
+      "statement": "EPFO tells members why a claim came back, in remarks written for them: 'return' for an incomplete claim, 'rejection' for one the member isn't eligible for.",
+      "source": "PIB, Ministry of Labour and Employment, 14 June 2024: EPFO rationalised claim remarks",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2025221",
+      "check_note": "Quote: 'reduced and rationalised the remarks for easy comprehension of the members for return of incomplete cases and rejection of ineligible cases.' Also open a claim's status on the member portal and confirm the remark shows there.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "reject_ineligible",
+      "label": "A claim filed too early is rejected",
+      "kind": "rule",
+      "statement": "A claim the member isn't eligible for yet is rejected; the member portal now checks eligibility before a claim is filed.",
+      "source": "PIB, Ministry of Labour and Employment, 17 March 2025: upfront validations on claims",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2111756",
+      "check_note": "Quote: 'upfront validations have been developed to guide members about eligibility /admissibility of claims so as to ensure that members do not file ineligible claims'. PIB 2025221 (14 June 2024) separates return of incomplete cases from rejection of ineligible ones.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "final_wait_months",
+      "label": "Months without a job before the whole PF can be withdrawn",
+      "kind": "fact",
+      "value": 12,
+      "unit": "months",
+      "source": "EPF Scheme, 2026, paragraph 49(2), first proviso (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette pp. 90–91: a member isn't eligible 'unless the member has not been employed ... for a continuous period of not less than twelve months immediately preceding the date of application'. The old 1952 Scheme said 2 months. Exceptions in para 49(1) and the second proviso (marriage) don't change the reel's case.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "reject_details",
+      "label": "Mismatched details get claims rejected",
+      "kind": "rule",
+      "statement": "A mismatch in date of birth, date of exit, Aadhaar or bank details is one of the usual reasons EPFO gives for rejecting a claim.",
+      "source": "Lok Sabha, Unstarred Question 2680, answered 9 March 2026 (reasons for rejection of claims)",
+      "source_url": "https://www.outlookmoney.com/retirement/pension/epf-claim-settlement-why-epfo-rejects-the-claims-and-what-subscribers-can-do",
+      "check_note": "The link reproduces the official reply (it lists mismatches in date of birth, exit date, service details, Aadhaar or bank details). Find the reply on sansad.in, check it says this, and put that official link here instead. The reply is about pension claims; confirm it applies to PF claims too, or say so.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "exit_date_upload",
+      "label": "Who puts the date of exit in",
+      "kind": "rule",
+      "statement": "The employer must upload who left within fifteen days of each month's end; the member can also record their own date of exit.",
+      "source": "EPF Scheme, 2026, paragraph 24(2)(v) (G.S.R. 525(E)); PIB, 8 January 2021 (members record their date of exit)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Para 24(2)(v): 'Every employer shall, within fifteen days of the close of each month, upload ... details of the employees leaving the service'. For the member's own entry: PIB https://www.pib.gov.in/PressReleasePage.aspx?PRID=1687113 ('record their date of exit themselves').",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "portal_login",
+      "label": "Members log in to the member portal with their UAN",
+      "kind": "rule",
+      "statement": "Members log in to the EPFO member portal with their UAN and password.",
+      "source": "EPFO member portal, login page",
+      "source_url": "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
+      "check_note": "Open the page: the login box asks for the UAN and the password. (UAN activation has moved to the UMANG app; logging in hasn't.)",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "correct_details_path",
+      "label": "Where a wrong name or date of birth is corrected",
+      "kind": "rule",
+      "statement": "On the member portal, a wrong name or date of birth is corrected under Manage, then Modify Basic Details.",
+      "source": "PIB, Ministry of Labour and Employment, 19 January 2025: members correct their own profile",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094229",
+      "check_note": "PIB describes the facility; the menu name Manage → Modify Basic Details comes from news reports only. Log in to the member portal and confirm the menu is still called that after the July 2026 upgrade.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "self_correction",
+      "label": "Aadhaar-verified UANs need no document to correct details",
+      "kind": "rule",
+      "statement": "A member whose UAN is verified with Aadhaar can correct their name, date of birth and other details themselves, without uploading any document (some UANs issued before 1 October 2017 also need the employer's certification).",
+      "source": "PIB, Ministry of Labour and Employment, 19 January 2025: members correct their own profile",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094229",
+      "check_note": "Quote: 'members whose Universal Account Number (UAN) has already been validated through Aadhaar can update their profile like name, date of birth ... themselves without the requirement of uploading any document. Only, in certain cases where UAN was obtained prior to 1-10-2017, the updation would require certification of employer only.'",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "mark_exit_days",
+      "label": "Days after leaving before the member can mark their own date of exit",
+      "kind": "fact",
+      "value": 60,
+      "unit": "days",
+      "source": "EPFO FAQ, member portal (official, undated)",
+      "source_url": "https://www.epfindia.gov.in/site_en/FAQ.php",
+      "check_note": "Find: 'After 60 days from the date of leaving of services, the member can him self submit / update Date of Exit online through Member Portal.' The research couldn't open the page (seen in a search snippet only), and the menu (Manage → Mark Exit) may have changed after the July 2026 upgrade: confirm both on the portal.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "settle_days",
+      "label": "Days EPFO has to settle a complete claim",
+      "kind": "fact",
+      "value": 20,
+      "unit": "days",
+      "source": "EPF Scheme, 2026, paragraph 54(7) (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette p. 94: a claim complete in all respects 'shall be settled and the benefit amount paid to the beneficiaries within twenty days from the date of receipt by the Commissioner.' (It was paragraph 72(7) in the 1952 Scheme.)",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "grievance_epfigms",
+      "label": "EPFO's grievance portal",
+      "kind": "rule",
+      "statement": "EPFO takes grievances online on its EPFiGMS portal, epfigms.gov.in, which is also inside the UMANG app.",
+      "source": "EPFiGMS, EPFO's grievance portal",
+      "source_url": "https://epfigms.gov.in/",
+      "check_note": "Open it: 'Register Grievance', for PF members, pensioners and employers; the site says 'EPFiGMS is available in UMANG.'",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    },
+    {
+      "id": "services_free",
+      "label": "EPFO's services are free",
+      "kind": "rule",
+      "statement": "EPFO's services are free: members shouldn't pay any fee to agents or cyber cafes.",
+      "source": "PIB, Ministry of Labour and Employment, 16 June 2025",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2136592",
+      "check_note": "Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services.",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13",
+      "check_result": "Checked against the new CITES portal and its source, 13 Nov 2026"
+    }
+  ],
+  "script": [
+    {
+      "shot": "S01",
+      "chapter": "hook",
+      "vo": "PF claim reject ho gaya? Paisa atka hai?",
+      "tts": "पीएफ क्लेम रिजेक्ट हो गया? पैसा अटका है?",
+      "highlights": [
+        "reject ho gaya?"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S02",
+      "chapter": "hook",
+      "vo": "Ghabrao mat. Pehle wajah samjho, phir aaram se theek karo.",
+      "tts": "घबराओ मत। पहले वजह समझो, फिर आराम से ठीक करो।",
+      "highlights": [
+        "wajah samjho"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S03",
+      "chapter": "problem",
+      "vo": "Maan lo, passbook mein aapka hissa ₹1,50,000, company ka ₹50,000.",
+      "tts": "मान लो, पासबुक में आपका हिस्सा डेढ़ लाख रुपये, कंपनी का पचास हज़ार।",
+      "highlights": [
+        "₹1,50,000",
+        "₹50,000"
+      ],
+      "uses": [
+        "emp_share",
+        "er_share"
+      ]
+    },
+    {
+      "shot": "S04",
+      "chapter": "problem",
+      "vo": "Kul ₹2,00,000 atke, aur claim seedha wapas aa gaya.",
+      "tts": "कुल दो लाख रुपये अटके, और क्लेम सीधा वापस आ गया।",
+      "highlights": [
+        "₹2,00,000"
+      ],
+      "uses": [
+        "total_pf"
+      ]
+    },
+    {
+      "shot": "S05",
+      "chapter": "why",
+      "vo": "Wajah claim status mein likhi hoti hai. Pehle wahi dhyan se padho.",
+      "tts": "वजह क्लेम स्टेटस में लिखी होती है। पहले वही ध्यान से पढ़ो।",
+      "highlights": [
+        "claim status"
+      ],
+      "uses": [
+        "reason_in_status"
+      ]
+    },
+    {
+      "shot": "S06",
+      "chapter": "why",
+      "vo": "Ek: naukri chhode 12 mahine nahi hue. Do: naam ya janam tithi Aadhaar se alag. Teen: exit date daali nahi.",
+      "tts": "एक: नौकरी छोड़े बारह महीने नहीं हुए। दो: नाम या जन्म तिथि आधार से अलग। तीन: एग्ज़िट डेट डाली नहीं।",
+      "highlights": [
+        "12 mahine",
+        "Aadhaar se alag",
+        "exit date"
+      ],
+      "uses": [
+        "reject_ineligible",
+        "final_wait_months",
+        "reject_details",
+        "exit_date_upload"
+      ]
+    },
+    {
+      "shot": "S07",
+      "chapter": "steps",
+      "vo": "Ab theek karo. Member portal pe apne UAN se login karo.",
+      "tts": "अब ठीक करो। मेंबर पोर्टल पे अपने यूएएन से लॉगिन करो।",
+      "highlights": [
+        "UAN se login"
+      ],
+      "uses": [
+        "portal_login"
+      ]
+    },
+    {
+      "shot": "S08",
+      "chapter": "steps",
+      "vo": "Naam ya janam tithi galat? Manage, phir Modify Basic Details.",
+      "tts": "नाम या जन्म तिथि गलत? मैनेज, फिर मॉडिफ़ाई बेसिक डिटेल्स।",
+      "highlights": [
+        "Modify Basic Details."
+      ],
+      "uses": [
+        "correct_details_path"
+      ]
+    },
+    {
+      "shot": "S09",
+      "chapter": "steps",
+      "vo": "UAN Aadhaar se verified hai, toh koi document nahi chahiye.",
+      "tts": "यूएएन आधार से वेरिफ़ाइड है, तो कोई डॉक्यूमेंट नहीं चाहिए।",
+      "highlights": [
+        "koi document nahi"
+      ],
+      "uses": [
+        "self_correction"
+      ]
+    },
+    {
+      "shot": "S10",
+      "chapter": "steps",
+      "vo": "Exit date nahi? 60 din baad aap khud Mark Exit kar sakte ho.",
+      "tts": "एग्ज़िट डेट नहीं? साठ दिन बाद आप ख़ुद मार्क एग्ज़िट कर सकते हो।",
+      "highlights": [
+        "Mark Exit"
+      ],
+      "uses": [
+        "mark_exit_days",
+        "exit_date_upload"
+      ]
+    },
+    {
+      "shot": "S11",
+      "chapter": "check",
+      "vo": "Dobara file karne se pehle check karo. 12 mahine pure, exit date marked.",
+      "tts": "दोबारा फ़ाइल करने से पहले चेक करो। बारह महीने पूरे, एग्ज़िट डेट मार्क्ड।",
+      "highlights": [
+        "12 mahine pure"
+      ],
+      "uses": [
+        "final_wait_months"
+      ]
+    },
+    {
+      "shot": "S12",
+      "chapter": "check",
+      "vo": "Teeno theek? Tabhi Form 19 se claim dobara bharo.",
+      "tts": "तीनों ठीक? तभी फ़ॉर्म नाइनटीन से क्लेम दोबारा भरो।",
+      "highlights": [
+        "Form 19"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S13",
+      "chapter": "help",
+      "vo": "20 din mein bhi na aaye? EPFiGMS pe shikayat karo.",
+      "tts": "बीस दिन में भी ना आए? ईपीएफ़आईजीएमएस पे शिकायत करो।",
+      "highlights": [
+        "EPFiGMS"
+      ],
+      "uses": [
+        "settle_days",
+        "grievance_epfigms",
+        "services_free"
+      ]
+    },
+    {
+      "shot": "S14",
+      "chapter": "share",
+      "vo": "Jiska PF atka hai, us dost ko abhi yeh bhejo.",
+      "tts": "जिसका पीएफ अटका है, उस दोस्त को अभी ये भेजो।",
+      "highlights": [
+        "abhi yeh bhejo"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S15",
+      "chapter": "signoff",
+      "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+      "tts": "पीएफ समझो, क्लेम पाओ। ईपीएफओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ गुरु जी।",
+      "highlights": [
+        "PF Guru Ji"
+      ],
+      "uses": []
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "start": 0.0,
+      "end": 4.5,
+      "chapter": "hook",
+      "on_screen": "Photo tab: CLAIM STATUS · Stamp: REJECTED · Black card: AAPKA PF / ATKA?",
+      "card_text": [
+        "CLAIM STATUS",
+        "REJECTED",
+        "AAPKA PF",
+        "ATKA?"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S02",
+      "start": 4.5,
+      "end": 10.0,
+      "chapter": "hook",
+      "on_screen": "Headline: PEHLE / WAJAH, with a yellow underline",
+      "card_text": [
+        "PEHLE",
+        "WAJAH"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S03",
+      "start": 10.0,
+      "end": 15.5,
+      "chapter": "problem",
+      "on_screen": "Row cards: ₹1,50,000 AAPKA HISSA (MAAN LO) · + ₹50,000 COMPANY KA HISSA",
+      "card_text": [
+        "₹1,50,000",
+        "AAPKA HISSA (MAAN LO)",
+        "+ ₹50,000",
+        "COMPANY KA HISSA"
+      ],
+      "motion_text": [],
+      "uses": [
+        "emp_share",
+        "er_share"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S04",
+      "start": 15.5,
+      "end": 20.5,
+      "chapter": "problem",
+      "on_screen": "Yellow card: ATKA HUA PF / ₹2,00,000 / EXAMPLE · Stamp: WAPAS!",
+      "card_text": [
+        "ATKA HUA PF",
+        "₹2,00,000",
+        "EXAMPLE",
+        "WAPAS!"
+      ],
+      "motion_text": [],
+      "uses": [
+        "total_pf"
+      ],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S05",
+      "start": 20.5,
+      "end": 27.0,
+      "chapter": "why",
+      "on_screen": "Black card: MEMBER PORTAL / CLAIM STATUS · Note: wajah yahin likhi hai",
+      "card_text": [
+        "MEMBER PORTAL",
+        "CLAIM STATUS",
+        "wajah yahin likhi hai"
+      ],
+      "motion_text": [],
+      "uses": [
+        "reason_in_status"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S06",
+      "start": 27.0,
+      "end": 38.0,
+      "chapter": "why",
+      "on_screen": "Three arrow cards: 12 MAHINE / PURE NAHI · NAAM / DOB / AADHAAR SE ALAG (yellow) · EXIT DATE / DAALI NAHI",
+      "card_text": [
+        "→",
+        "12 MAHINE",
+        "PURE NAHI",
+        "↘",
+        "NAAM / DOB",
+        "AADHAAR SE ALAG",
+        "↗",
+        "EXIT DATE",
+        "DAALI NAHI"
+      ],
+      "motion_text": [],
+      "uses": [
+        "reject_ineligible",
+        "final_wait_months",
+        "reject_details",
+        "exit_date_upload"
+      ],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S07",
+      "start": 38.0,
+      "end": 44.0,
+      "chapter": "steps",
+      "on_screen": "Headline: AB / THEEK KARO · Black card: MEMBER PORTAL / UAN SE LOGIN",
+      "card_text": [
+        "AB",
+        "THEEK KARO",
+        "MEMBER PORTAL",
+        "UAN SE LOGIN"
+      ],
+      "motion_text": [],
+      "uses": [
+        "portal_login"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S08",
+      "start": 44.0,
+      "end": 49.5,
+      "chapter": "steps",
+      "on_screen": "Stamp: NAAM / DOB GALAT? · Yellow arrow card: MODIFY BASIC DETAILS / MANAGE MENU MEIN",
+      "card_text": [
+        "NAAM / DOB GALAT?",
+        "→",
+        "MODIFY BASIC DETAILS",
+        "MANAGE MENU MEIN"
+      ],
+      "motion_text": [],
+      "uses": [
+        "correct_details_path"
+      ],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S09",
+      "start": 49.5,
+      "end": 55.0,
+      "chapter": "steps",
+      "on_screen": "Black card: AADHAAR VERIFIED UAN / NO DOCUMENT · Note: khud theek karo",
+      "card_text": [
+        "AADHAAR VERIFIED UAN",
+        "NO DOCUMENT",
+        "khud theek karo"
+      ],
+      "motion_text": [],
+      "uses": [
+        "self_correction"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S10",
+      "start": 55.0,
+      "end": 62.5,
+      "chapter": "steps",
+      "on_screen": "Arrow card: MARK EXIT / MANAGE MENU MEIN · Ink stamp: 60 DIN BAAD",
+      "card_text": [
+        "→",
+        "MARK EXIT",
+        "MANAGE MENU MEIN",
+        "60 DIN BAAD"
+      ],
+      "motion_text": [],
+      "uses": [
+        "mark_exit_days",
+        "exit_date_upload"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S11",
+      "start": 62.5,
+      "end": 70.0,
+      "chapter": "check",
+      "on_screen": "Typewriter checklist: CLAIM SE PEHLE / 12 mahine pure. / Naam Aadhaar jaisa. / Exit date marked.",
+      "card_text": [
+        "CLAIM SE PEHLE",
+        "12 mahine pure.",
+        "Naam Aadhaar jaisa.",
+        "Exit date marked."
+      ],
+      "motion_text": [],
+      "uses": [
+        "final_wait_months"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S12",
+      "start": 70.0,
+      "end": 75.0,
+      "chapter": "check",
+      "on_screen": "White card: PF FINAL SETTLEMENT / FORM 19 · Ink stamp: TABHI DOBARA",
+      "card_text": [
+        "PF FINAL SETTLEMENT",
+        "FORM 19",
+        "TABHI DOBARA"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S13",
+      "start": 75.0,
+      "end": 80.5,
+      "chapter": "help",
+      "on_screen": "White card: CLAIM KA NIYAM / 20 DIN · Black card: SHIKAYAT / EPFIGMS.GOV.IN · Ink stamp: FREE HAI",
+      "card_text": [
+        "CLAIM KA NIYAM",
+        "20 DIN",
+        "SHIKAYAT",
+        "EPFIGMS.GOV.IN",
+        "FREE HAI"
+      ],
+      "motion_text": [],
+      "uses": [
+        "settle_days",
+        "grievance_epfigms",
+        "services_free"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S14",
+      "start": 80.5,
+      "end": 86.0,
+      "chapter": "share",
+      "on_screen": "Photo: a hand holding a phone · Yellow tag: SHARE ↗ · Note: us dost ko",
+      "card_text": [
+        "SHARE ↗",
+        "us dost ko"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S15",
+      "start": 86.0,
+      "end": 95.0,
+      "chapter": "signoff",
+      "on_screen": "Note: PF samjho, claim pao. · End card: the PF Guru Ji logo, the tagline, \"EPFO ki har jankari chahiye?\", a FOLLOW @PFGURUJI button that pops in on \"Follow\", and the small print",
+      "card_text": [
+        "PF samjho, claim pao.",
+        "EPFO ki har jankari chahiye?",
+        "FOLLOW @PFGURUJI",
+        "NIYAM: EPFO.GOV.IN",
+        "EXAMPLE NUMBERS · APNA PASSBOOK DEKHO",
+        "EPFO KA OFFICIAL CHANNEL NAHI"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    }
+  ],
+  "breaks": [
+    {
+      "after": "S06",
+      "at": 38.0,
+      "type": "tear-lemon",
+      "asset": "A08"
+    },
+    {
+      "after": "S12",
+      "at": 75.0,
+      "type": "tear-paper",
+      "asset": "A09"
+    }
+  ],
+  "post": {
+    "caption": "PF claim reject ho gaya? Ghabrao mat.\n\nClaim status mein wajah padho. Aam wajah: naukri chhode 12 mahine nahi hue (naya niyam), naam ya date of birth Aadhaar se alag, ya exit date nahi. Sab member portal pe theek hota hai, aur shikayat EPFiGMS pe. EPFO ki services free hain.\n\nYeh us dost ko bhejo jiska PF atka hai.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#pfguruji #epfo #pfclaim #pfwithdrawal #uan",
+    "hashtags": [
+      "#pfguruji",
+      "#epfo",
+      "#pfclaim",
+      "#pfwithdrawal",
+      "#uan"
+    ],
+    "pinned_comment": "Aapke claim status mein reject ki kya wajah likhi hai? Comment karo. UAN, OTP ya bank details kabhi mat likhna.",
+    "cover": {
+      "lines": [
+        "CLAIM",
+        "REJECT?"
+      ],
+      "stamp": "WAJAH + FIX",
+      "asset": "A07"
+    },
+    "trial_hook": "Claim wapas aaya? Pehle yeh 3 cheezein dekho."
+  }
+}

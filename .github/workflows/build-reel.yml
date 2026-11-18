@@ -1,0 +1,147 @@
+name: Build reel
+
+# Prepares an episode folder (status.json, media folders, prompt files), builds its reel with
+# tools/build_reel.py, checks everything with tools/check_episode.py and commits the reel and the report
+# (episodes/<episode>/checks/report.md: RESULT FIX, WAITING, PASS or POSTED, with every fix spelled out), then
+# rewrites TOPICS.md, the register of every reel. Runs by itself when Muse uploads an episode.json, a reel.json,
+# photos, voice lines, music, a script approval or posted.json, or by hand from the Actions tab (Build reel → Run
+# workflow → episode folder). A posted reel is never rebuilt, and a new reel isn't built until a person has approved
+# its script (episodes/<episode>/script.md, tools/script_review.py).
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Episode folder, for example episodes/ep01-claim-reject"
+        required: true
+  push:
+    branches: [main]
+    paths:
+      - "episodes/*/episode.json"
+      - "episodes/*/reel.json"
+      - "episodes/*/media/photos/**"
+      - "episodes/*/media/screens/**"
+      - "episodes/*/media/audio/lines/**"
+      - "episodes/*/media/audio/music.*"
+      - "episodes/*/posted.json"
+      - "episodes/*/script-approved.json"
+      - "brand/topics-done.json"
+
+# Muse uploads one file per commit: only the newest push needs a build.
+concurrency:
+  group: build-reel-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg, the builder's libraries, the OCR engine and the speech recogniser
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install -q -r requirements-build.txt -r requirements-media.txt -r requirements-voice.txt
+
+      - name: Keep the speech model between runs
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: whisper-medium-1
+
+      - name: Which episodes
+        id: eps
+        env:
+          INPUT_EPISODE: ${{ github.event.inputs.episode }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$INPUT_EPISODE" ]; then
+            list="${INPUT_EPISODE%/}"
+          elif git cat-file -e "$BEFORE" 2>/dev/null; then
+            list=$(git diff --name-only "$BEFORE" HEAD | grep -oE '^episodes/[^/]+' | sort -u | tr '\n' ' ' || true)
+          else
+            list=$(git diff --name-only HEAD~1 HEAD | grep -oE '^episodes/[^/]+' | sort -u | tr '\n' ' ' || true)
+          fi
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+          echo "Episodes to build: $list"
+
+      - name: Prepare the episode folder
+        env:
+          LIST: ${{ steps.eps.outputs.list }}
+        run: |
+          for ep in $LIST; do
+            if [ -f "$ep/episode.json" ]; then
+              python3 tools/new_episode.py --prepare "$ep" | tee -a "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+
+      - name: Build
+        env:
+          LIST: ${{ steps.eps.outputs.list }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          for ep in $LIST; do
+            if [ ! -f "$ep/reel.json" ]; then
+              continue
+            fi
+            if python3 tools/topics.py --is-posted "$ep"; then
+              echo "$ep is posted: a live reel isn't rebuilt." | tee -a "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            # nothing is made from a script a person hasn't approved (its page: $ep/script.md)
+            if ! python3 tools/script_review.py "$ep" --cleared | tee -a "$GITHUB_STEP_SUMMARY"; then
+              echo "$ep isn't built: its script waits for a person's approval." | tee -a "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            # an upload rebuilds only when something the reel is made from changed; Run workflow always rebuilds
+            if [ "$EVENT" = "push" ]; then
+              python3 tools/build_reel.py "$ep" --if-changed | tee -a "$GITHUB_STEP_SUMMARY"
+            else
+              python3 tools/build_reel.py "$ep" | tee -a "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+
+      - name: Check everything and write the report (checks/report.md)
+        env:
+          LIST: ${{ steps.eps.outputs.list }}
+        run: |
+          for ep in $LIST; do
+            if [ -f "$ep/episode.json" ]; then
+              python3 tools/check_episode.py "$ep" --write | tee -a "$GITHUB_STEP_SUMMARY" || true
+            fi
+          done
+
+      - name: Rewrite the register of every reel (TOPICS.md)
+        run: python3 tools/topics.py --write
+
+      - name: Commit the reel, the report and the register
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add episodes/*/media/final/ episodes/*/build/timeline.json episodes/*/status.json \
+                  episodes/*/prompts.md episodes/*/prompts-writing.md episodes/*/checks episodes/*/media TOPICS.md 2>/dev/null || true
+          # on its own: a pattern that matches nothing makes git add add nothing at all, and only new reels have a script page
+          git add episodes/*/script.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+            exit 0
+          fi
+          git commit -m "Build reel: prepare, build and check (see checks/report.md)"
+          for i in 1 2 3; do
+            git pull --rebase --autostash -q origin main && git push -q origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          echo "Could not push the reel" && exit 1

@@ -1,0 +1,42 @@
+{
+  "schema": "dc-episode/1",
+  "id": "",
+  "slug": "",
+  "series": "PF Guru Ji",
+  "title": "",
+  "tag": "",
+  "created": "",
+  "route": "build",
+  "brief": {
+    "topic": "",
+    "repeat_check": {
+      "closest": "",
+      "different_because": ""
+    },
+    "viewer": "",
+    "hook": "",
+    "problem": "",
+    "why": [],
+    "steps": [],
+    "check": "",
+    "help": "",
+    "share_target": "",
+    "why_now": ""
+  },
+  "data": [],
+  "script": [],
+  "hook_options": [],
+  "shots": [],
+  "breaks": [],
+  "post": {
+    "caption": "",
+    "hashtags": [],
+    "pinned_comment": "",
+    "cover": {
+      "lines": [],
+      "stamp": "",
+      "asset": "A07"
+    },
+    "trial_hook": ""
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "schema": "dc-status/1",
+  "episode": "ep01-claim-reject",
+  "steps": {
+    "01-brief": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "The pilot. Approve the topic and angle."
+    },
+    "02-data": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Every rule and fact needs a person to open its source and check it (tools/approve.py fact); each check_note says what to look for, and which ones the research could only see in a search snippet. The two passbook amounts are examples, labelled MAAN LO / EXAMPLE."
+    },
+    "03-script": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Read it aloud and time it. Target 85–95 s including the 3 s tail."
+    },
+    "04-shots": {
+      "state": "drafted",
+      "approval": null,
+      "notes": ""
+    },
+    "05-keyframes": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "06-motion": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "07-voice": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "08-assembly": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "09-final-qa": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "10-publish": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "11-measure": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    }
+  },
+  "shots": {
+    "S01": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S02": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S03": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S04": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S05": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S06": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S07": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S08": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S09": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S10": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S11": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S12": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S13": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S14": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S15": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    }
+  },
+  "post": {
+    "url": null,
+    "posted_at": null
+  },
+  "metrics": {
+    "24h": null,
+    "72h": null,
+    "7d": null
+  },
+  "log": [
+    {
+      "at": "2026-11-13T12:00:00",
+      "by": "Claude",
+      "event": "pilot drafted (brief, data with sources, script, shots, reel.json); every fact and rule waits for a person"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule reason_in_status"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule reject_ineligible"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact final_wait_months"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule reject_details"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule exit_date_upload"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule portal_login"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule correct_details_path"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule self_correction"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact mark_exit_days"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact settle_days"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule grievance_epfigms"
+    },
+    {
+      "at": "2026-11-13T06:16:40",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule services_free"
+    }
+  ]
+}

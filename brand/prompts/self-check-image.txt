@@ -1,0 +1,7 @@
+Check the image you just made. Do not regenerate yet.
+1. List every piece of text in the image exactly as it appears, one per line, including symbols like ₹, %, ÷, ×, → and the Indian commas.
+2. Compare it with this list of required text:
+{{CARD_TEXT}}
+   For each required item write MATCH or MISMATCH, and for a mismatch write exactly what you see instead.
+3. Answer yes or no: Is the paper the same as the attached background? Is anything placed in the top 17% or the bottom 35% of the frame? Is there any extra word, logo, watermark or colour outside ink, lemon yellow, stamp red and paper?
+4. End with one word: PASS if every item matches, the paper is the same, nothing sits in the top or bottom zones, and nothing extra appears. Otherwise FAIL.

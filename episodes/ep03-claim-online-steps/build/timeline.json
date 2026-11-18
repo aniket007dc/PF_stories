@@ -1,0 +1,204 @@
+{
+ "inputs": "dcd58f6848562ab6",
+ "voiced": true,
+ "length": 87.789,
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 2.856,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S02",
+   "start": 2.856,
+   "end": 5.616,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S03",
+   "start": 5.616,
+   "end": 9.798,
+   "handwritten": [
+    "agent ko fees"
+   ],
+   "screens": []
+  },
+  {
+   "id": "S04",
+   "start": 9.798,
+   "end": 12.973,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S05",
+   "start": 12.973,
+   "end": 15.373,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S06",
+   "start": 15.373,
+   "end": 24.15,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S07",
+   "start": 24.15,
+   "end": 28.75,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     845
+    ]
+   ]
+  },
+  {
+   "id": "S08",
+   "start": 28.75,
+   "end": 33.35,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     708
+    ]
+   ]
+  },
+  {
+   "id": "S09",
+   "start": 33.35,
+   "end": 37.95,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     644
+    ]
+   ]
+  },
+  {
+   "id": "S10",
+   "start": 37.95,
+   "end": 42.55,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     669
+    ]
+   ]
+  },
+  {
+   "id": "S11",
+   "start": 42.55,
+   "end": 47.15,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     722
+    ]
+   ]
+  },
+  {
+   "id": "S12",
+   "start": 47.15,
+   "end": 51.75,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     749
+    ]
+   ]
+  },
+  {
+   "id": "S13",
+   "start": 51.75,
+   "end": 56.35,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     681
+    ]
+   ]
+  },
+  {
+   "id": "S14",
+   "start": 56.35,
+   "end": 58.45,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S15",
+   "start": 58.45,
+   "end": 66.579,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S16",
+   "start": 66.579,
+   "end": 71.179,
+   "handwritten": [],
+   "screens": [
+    [
+     90,
+     452,
+     990,
+     708
+    ]
+   ]
+  },
+  {
+   "id": "S17",
+   "start": 71.179,
+   "end": 75.412,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S18",
+   "start": 75.412,
+   "end": 78.808,
+   "handwritten": [
+    "agent se pehle"
+   ],
+   "screens": []
+  },
+  {
+   "id": "S19",
+   "start": 78.808,
+   "end": 87.789,
+   "handwritten": [
+    "PF samjho, claim pao.",
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?"
+   ],
+   "screens": []
+  }
+ ]
+}

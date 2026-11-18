@@ -1,0 +1,74 @@
+{
+  "about": "Copy the shape you need into episode.json → data. Every number on screen or in the voice must be one of these, and every EPFO rule or step the reel relies on is a rule item.",
+  "examples": [
+    {
+      "id": "years_worked",
+      "label": "Years at the last job",
+      "kind": "input",
+      "value": 3,
+      "unit": "years",
+      "note": "The episode's premise."
+    },
+    {
+      "id": "final_wait_months",
+      "label": "Months without a job before the whole PF can be withdrawn",
+      "kind": "fact",
+      "value": 12,
+      "unit": "months",
+      "source": "EPF Scheme, 2026, paragraph 49(2), first proviso (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette pp. 90–91: a member isn't eligible 'unless the member has not been employed ... for a continuous period of not less than twelve months immediately preceding the date of application'. The old 1952 Scheme said 2 months. Exceptions in para 49(1) and the second proviso (marriage) don't change the reel's case.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "services_free",
+      "label": "EPFO's services are free",
+      "kind": "rule",
+      "statement": "EPFO's services are free: members shouldn't pay any fee to agents or cyber cafes.",
+      "source": "PIB, Ministry of Labour and Employment, 16 June 2025",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2136592",
+      "check_note": "Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "emp_share",
+      "label": "Your share in the passbook (example)",
+      "kind": "assumption",
+      "value": 150000,
+      "unit": "INR",
+      "note": "Example. The member's own passbook shows their real numbers."
+    },
+    {
+      "id": "total_pf",
+      "label": "The PF that's stuck (example)",
+      "kind": "derived",
+      "value": 200000,
+      "unit": "INR",
+      "formula": "emp_share + er_share"
+    },
+    {
+      "id": "status_check_days",
+      "label": "Look at the claim status again after",
+      "kind": "advice",
+      "value": 7,
+      "unit": "days",
+      "reason": "Why we recommend it."
+    }
+  ],
+  "units": [
+    "INR",
+    "%",
+    "count",
+    "days",
+    "months",
+    "years",
+    "minutes",
+    "seconds",
+    "x"
+  ],
+  "percent_note": "Store percentages as fractions: 10% is 0.10.",
+  "fact_note": "Only a person checks a fact or a rule: checked_by is a person's name, set with tools/approve.py fact. Muse finds and links the official source, and never signs it off.",
+  "rule_note": "A rule has a statement instead of a value and a unit. Sources are EPFO's own pages, circulars and the Gazette, never news or videos."
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "dc-capabilities/1",
+  "tool": "Meta Muse",
+  "tested_on": null,
+  "tested_by": null,
+  "results": {
+    "background_look": "unknown",
+    "image_text_exact": "unknown",
+    "image_edit_keeps_background": "unknown",
+    "image_to_video": "unknown",
+    "motion_keeps_text": "unknown",
+    "text_to_video_scene": "unknown",
+    "voice_consistent": "unknown",
+    "reads_website": "unknown",
+    "no_invented_numbers": "unknown",
+    "code_render": "unknown"
+  },
+  "specs": {
+    "max_clip_seconds": null,
+    "resolution": null,
+    "vertical_9_16": "unknown"
+  },
+  "notes": "Fill this in from the MUSE-TEST-KIT.md scorecard. Use yes, no or unknown. Unknown means the pipeline takes the safe route. code_render=yes switches steps 05 and 06 to the code route (brand/prompts/code-build.txt)."
+}

@@ -1,0 +1,546 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "ep03-claim-online-steps",
+ "brand_label": "PF GURU JI",
+ "photos": {
+  "self_file": {
+   "id": "P1",
+   "file": "episodes/ep03-claim-online-steps/media/photos/self_file.webp",
+   "alt": "a young woman at home looking at her phone, calm and focused",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. A young woman in her late twenties in a plain cotton kurta sits cross-legged on a bed in a small Indian rented room in the morning, holding a smartphone in both hands and looking at it with calm focus, a steel water bottle and a folded towel beside her, a barred window behind her. Soft morning light from the window, high contrast, fine film grain, eye-level camera, the woman in the middle of the frame. No text, no readable labels, no documents, no logos, no watermark; the phone screen faces away from the camera."
+  },
+  "share_counter": {
+   "id": "P2",
+   "file": "episodes/ep03-claim-online-steps/media/photos/share_counter.webp",
+   "alt": "an older man's hand holding out a phone with a blank screen at a shop counter",
+   "prompt": "Black-and-white photograph, landscape 4:3. Across the wooden counter of a small Indian grocery shop, an older man's hand with a wristwatch holds out a smartphone towards the camera, the screen completely blank white, glass jars of lentils and biscuits soft and out of focus behind it. Daylight from the shop front, high contrast, fine film grain, the phone in the middle of the frame. No text, no logos, no readable labels on the jars, no reflections with writing, no watermark."
+  }
+ },
+ "screens": {
+  "login": {
+   "id": "SC1",
+   "file": "episodes/ep03-claim-online-steps/media/screens/login.png",
+   "shows": "the member portal login box (UAN Number, Password, captcha), empty, before signing in",
+   "must_show": [
+    "UAN Number",
+    "Password",
+    "Sign in"
+   ]
+  },
+  "menu": {
+   "id": "SC2",
+   "file": "episodes/ep03-claim-online-steps/media/screens/menu.png",
+   "shows": "after signing in, the Online Services menu open, with Claim and Track Claim Status in it",
+   "must_show": [
+    "Online Services",
+    "Claim (Form-31, 19, 10C & 10D)",
+    "Track Claim Status"
+   ]
+  },
+  "bank": {
+   "id": "SC3",
+   "file": "episodes/ep03-claim-online-steps/media/screens/bank.png",
+   "shows": "the claim page's bank account box, before typing anything, with the Verify button",
+   "must_show": [
+    "Verify"
+   ]
+  },
+  "proceed": {
+   "id": "SC4",
+   "file": "episodes/ep03-claim-online-steps/media/screens/proceed.png",
+   "shows": "the Proceed for Online Claim button, after the bank account is verified",
+   "must_show": [
+    "Proceed for Online Claim"
+   ]
+  },
+  "choose": {
+   "id": "SC5",
+   "file": "episodes/ep03-claim-online-steps/media/screens/choose.png",
+   "shows": "the list of claims open: the PF advance (Form 31) and the final settlement (Form 19)",
+   "must_show": [
+    "Form 31",
+    "Form 19"
+   ]
+  },
+  "advance": {
+   "id": "SC6",
+   "file": "episodes/ep03-claim-online-steps/media/screens/advance.png",
+   "shows": "the PF advance (Form 31) fields for the purpose and the amount, empty",
+   "must_show": [
+    "Purpose",
+    "Amount"
+   ]
+  },
+  "otp": {
+   "id": "SC7",
+   "file": "episodes/ep03-claim-online-steps/media/screens/otp.png",
+   "shows": "the end of the claim form with the Get Aadhaar OTP button (don't press it, and don't submit anything)",
+   "must_show": [
+    "Get Aadhaar OTP"
+   ]
+  }
+ },
+ "shots": {
+  "S01": [
+   {
+    "type": "photo",
+    "src": "self_file",
+    "tab": "PF NIKALNA HAI?",
+    "y": 400,
+    "w": 960,
+    "h": 600,
+    "rot": -1.2,
+    "at": 0,
+    "in": "none",
+    "focus": [
+     0.5,
+     0.45
+    ]
+   },
+   {
+    "type": "stamp",
+    "text": "AGENT? NAHI!",
+    "x": 560,
+    "y": 1060,
+    "rot": -6,
+    "size": 92,
+    "on": "Agent"
+   }
+  ],
+  "S02": [
+   {
+    "type": "headline",
+    "lines": [
+     "PHONE SE",
+     "KHUD CLAIM"
+    ],
+    "x": 80,
+    "y": 520,
+    "size": 230,
+    "on": "Phone",
+    "stagger": 0.4,
+    "underline": {
+     "line": 1,
+     "on": "step",
+     "dur": 0.5
+    }
+   }
+  ],
+  "S03": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "AAM GALTI",
+    "big": "GALAT FORM",
+    "size": 150,
+    "y": 470,
+    "w": 900,
+    "rot": -1,
+    "on": "galat"
+   },
+   {
+    "type": "note",
+    "text": "agent ko fees",
+    "x": 330,
+    "y": 860,
+    "size": 90,
+    "rot": -4,
+    "on": "agent"
+   }
+  ],
+  "S04": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "NATEEJA",
+    "big": "CLAIM WAPAS",
+    "size": 150,
+    "y": 470,
+    "w": 900,
+    "rot": 1,
+    "on": "wapas"
+   },
+   {
+    "type": "stamp",
+    "text": "ATKA!",
+    "x": 760,
+    "y": 880,
+    "rot": 7,
+    "size": 120,
+    "on": "atka"
+   }
+  ],
+  "S05": [
+   {
+    "type": "headline",
+    "lines": [
+     "3 CHEEZEIN",
+     "PEHLE"
+    ],
+    "x": 80,
+    "y": 560,
+    "size": 240,
+    "on": "teen",
+    "stagger": 0.35
+   }
+  ],
+  "S06": [
+   {
+    "type": "arrow_card",
+    "arrow": "→",
+    "title": "UAN + AADHAAR",
+    "sub": "JUDA HO",
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Ek:",
+    "in": "slide_left"
+   },
+   {
+    "type": "arrow_card",
+    "arrow": "↘",
+    "title": "BANK KYC",
+    "sub": "VERIFIED",
+    "y": 600,
+    "w": 900,
+    "rot": 0.6,
+    "on": "Do:",
+    "in": "slide_left"
+   },
+   {
+    "type": "arrow_card",
+    "arrow": "↗",
+    "title": "EXIT DATE",
+    "sub": "MARKED",
+    "style": "yellow",
+    "y": 780,
+    "w": 900,
+    "rot": -0.5,
+    "on": "Teen:",
+    "in": "slide_left"
+   }
+  ],
+  "S07": [
+   {
+    "type": "screen",
+    "src": "login",
+    "tab": "PORTAL · LOGIN",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.81,
+       0.51,
+       0.85,
+       0.55
+      ],
+      "text": "Sign in",
+      "on": "login"
+     }
+    ]
+   }
+  ],
+  "S08": [
+   {
+    "type": "screen",
+    "src": "menu",
+    "tab": "PORTAL · CLAIM",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.36,
+       0.21,
+       0.53,
+       0.26
+      ],
+      "text": "Claim (Form-31, 19, 10C & 10D)",
+      "on": "Claim"
+     },
+     {
+      "box": [
+       0.36,
+       0.07,
+       0.46,
+       0.11
+      ],
+      "text": "Online Services",
+      "on": "Online",
+      "style": "lemon"
+     }
+    ]
+   }
+  ],
+  "S09": [
+   {
+    "type": "screen",
+    "src": "bank",
+    "tab": "PORTAL · BANK",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.5,
+       0.52,
+       0.53,
+       0.59
+      ],
+      "text": "Verify",
+      "on": "Verify"
+     }
+    ]
+   }
+  ],
+  "S10": [
+   {
+    "type": "screen",
+    "src": "proceed",
+    "tab": "PORTAL · PROCEED",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.46,
+       0.81,
+       0.56,
+       0.84
+      ],
+      "text": "Proceed for Online Claim",
+      "on": "Proceed"
+     }
+    ]
+   }
+  ],
+  "S11": [
+   {
+    "type": "screen",
+    "src": "choose",
+    "tab": "PORTAL · FORM",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.51,
+       0.84,
+       0.64,
+       0.87
+      ],
+      "text": "Form 19",
+      "on": "form"
+     }
+    ]
+   }
+  ],
+  "S12": [
+   {
+    "type": "screen",
+    "src": "advance",
+    "tab": "PORTAL · ADVANCE",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.12,
+       0.19,
+       0.48,
+       0.24
+      ],
+      "text": "Purpose",
+      "on": "wajah"
+     }
+    ]
+   }
+  ],
+  "S13": [
+   {
+    "type": "screen",
+    "src": "otp",
+    "tab": "PORTAL · OTP",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.47,
+       0.66,
+       0.53,
+       0.69
+      ],
+      "text": "Get Aadhaar OTP",
+      "on": "OTP"
+     }
+    ]
+   }
+  ],
+  "S14": [
+   {
+    "type": "headline",
+    "lines": [
+     "FORM",
+     "SAHI?"
+    ],
+    "x": 80,
+    "y": 560,
+    "size": 280,
+    "on": "Form",
+    "stagger": 0.35,
+    "underline": {
+     "line": 1,
+     "on": "dekho",
+     "dur": 0.5
+    }
+   }
+  ],
+  "S15": [
+   {
+    "type": "card",
+    "style": "white",
+    "tab": "NAUKRI CHHODE 12 MAHINE",
+    "big": "FORM 19",
+    "size": 150,
+    "y": 430,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Form",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "NAUKRI CHALU",
+    "big": "FORM 31",
+    "size": 150,
+    "y": 760,
+    "w": 900,
+    "rot": 0.8,
+    "on": "Advance",
+    "in": "drop"
+   }
+  ],
+  "S16": [
+   {
+    "type": "screen",
+    "src": "menu",
+    "tab": "PORTAL · STATUS",
+    "y": 420,
+    "w": 900,
+    "h": 780,
+    "at": 0.1,
+    "marks": [
+     {
+      "box": [
+       0.05,
+       0.4,
+       0.95,
+       0.5
+      ],
+      "text": "Track Claim Status",
+      "on": "Track"
+     }
+    ]
+   }
+  ],
+  "S17": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "20 DIN MEIN NAHI?",
+    "big": "EPFIGMS.GOV.IN",
+    "size": 110,
+    "y": 480,
+    "w": 920,
+    "rot": -1,
+    "on": "EPFiGMS"
+   },
+   {
+    "type": "stamp",
+    "text": "FREE HAI",
+    "color": "ink",
+    "x": 780,
+    "y": 860,
+    "rot": 8,
+    "size": 96,
+    "on": "shikayat"
+   }
+  ],
+  "S18": [
+   {
+    "type": "photo",
+    "src": "share_counter",
+    "y": 410,
+    "w": 960,
+    "h": 620,
+    "rot": 1.5,
+    "at": 0.1,
+    "in": "drop"
+   },
+   {
+    "type": "tag",
+    "text": "SHARE ↗",
+    "x": 770,
+    "y": 905,
+    "rot": -4,
+    "size": 100,
+    "on": "abhi"
+   },
+   {
+    "type": "note",
+    "text": "agent se pehle",
+    "x": 330,
+    "y": 1110,
+    "size": 90,
+    "rot": -3,
+    "on": "agent"
+   }
+  ],
+  "S19": [
+   {
+    "type": "note",
+    "text": "PF samjho, claim pao.",
+    "color": "ink",
+    "x": 540,
+    "y": 760,
+    "size": 124,
+    "rot": -2,
+    "at": 0.1,
+    "dur": 1.0,
+    "out": {
+     "on": "EPFO"
+    }
+   },
+   {
+    "type": "endcard",
+    "tagline": "PF samjho, claim pao.",
+    "small": [
+     "NIYAM: EPFO.GOV.IN",
+     "SCREENSHOTS: MEMBER PORTAL",
+     "EPFO KA OFFICIAL CHANNEL NAHI"
+    ],
+    "y": 430,
+    "on": "EPFO",
+    "lead": -0.2,
+    "cta_on": "Follow"
+   }
+  ]
+ }
+}

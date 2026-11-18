@@ -1,0 +1,44 @@
+Write the voiceover for one Instagram Reel for PF Guru Ji, a channel that explains EPFO in plain Hinglish: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help.
+Topic: {{TOPIC}}
+Viewer: {{VIEWER}}
+Language: Hinglish in Roman script. Sound like a patient friend who has filed PF claims many times: not an ad, and not a government notice.
+
+Use ONLY the numbers and rules in this data sheet. Each line is: id = value (kind).
+{{DATA_SHEET}}
+If you need a number, a limit, a waiting time or a rule that is not in the sheet, write [NEED DATA: what to find] instead. Never invent a statistic, a limit, a time or a rule.
+
+The forms a reel may name, and what each one is for:
+{{FORMS}}
+
+Rules:
+1. 150–175 words in total (about 60–70 seconds at a brisk pace). Sentences of 3–9 words.
+2. One line per shot, 14–18 shots, in this chapter order: hook, problem, why, steps, check, help, share, signoff.
+   - hook (max 7 s): the viewer's exact situation or the message they saw, in their words ("Claim reject ho gaya?").
+   - problem (max 10 s): what went wrong and what it costs them: money stuck, time lost.
+   - why (max 20 s): the reasons, most common first, as "Ek: … Do: … Teen: …", one short sentence each. Only reasons EPFO itself gives.
+   - steps (max 25 s): the fix, in the order they do it, naming the real screens and menus ("Member portal, Manage, phir KYC").
+   - check (max 12 s): the one thing to check before filing (again), and what skipping it costs.
+   - help (max 10 s): where to go if it's still stuck: an official channel from the data sheet.
+   - share: one line that ends "… abhi bhejo.", aimed at one kind of friend.
+   - signoff: exactly "{{SIGNOFF}}"
+3. The first time an assumption from the sheet is used, that line must say "maan lo".
+4. EPFO rules:
+   - Say only what EPFO's own pages, circulars and forms say, through the data sheet. Name a form only from the list above, and only for what it's for.
+   - Never ask viewers for their UAN, password, OTP, Aadhaar, PAN or bank details: not in the reel, the caption or the pinned comment. The pinned comment may ask what went wrong, never for personal details.
+   - Never promise an outcome or a date. A time limit is EPFO's rule from the data sheet, not a guarantee.
+   - Send people only to official channels named in the data sheet: the member portal, the UMANG app, their EPFO office, the grievance portal. Never to an agent, a paid service, or a phone number that isn't in the sheet.
+   - A phone number goes on a card, never in the voice line.
+5. In "vo" (shown on screen as the captions), write Roman-script Hinglish, with numbers as digits, the ₹ sign and Indian commas (₹50,000, 1,00,000). Write forms as "Form 19", "Form 10C".
+   In "tts" (read by the voice), write the same words in Devanagari, the script a Hindi voice reads correctly: every number said in English, the way people say numbers in Hinglish, and spelled in Devanagari (एट पॉइंट टू फ़ाइव परसेंट for 8.25%, वन लाख रुपीज़ for ₹1,00,000, एट थाउज़ेंड टू हंड्रेड फ़िफ़्टी for ₹8,250, ट्वेल्व महीने for 12 mahine; keep लाख and करोड़), and every English word spelled the way people in India say it (पीएफ, ईपीएफओ, क्लेम, फ़ॉर्म, केवाईसी, यूएएन, पोर्टल, फ़ॉलो, पीएफ गुरु जी). Say form names in English: Form 19 is फ़ॉर्म नाइनटीन, Form 10C is फ़ॉर्म टेन सी, Form 31 is फ़ॉर्म थर्टी वन. No digits, and no words that aren't in "vo". Use । for full stops, and let the punctuation carry the feeling: … for a held breath before a reveal, ! for a punch, ? for a real question.
+6. "highlights" lists 1–3 words or numbers from the line to highlight in yellow, copied exactly from the line.
+7. "uses" lists the data ids whose numbers appear in the line.
+8. "delivery" says how the voice says the line: one mood (curious, surprised, excited, serious, concerned, warm, proud or playful), then " · " and one short cue: what to stress, where the energy goes up. Keep the pace brisk: the feeling comes from the voice, not from slowing down, so never write "slow down"; one held beat (…) at the big reveal at most. Change the mood from line to line, the way a friend telling a story would: a curious hook, a concerned problem, a proud answer, a warm share line. Never the same mood for every line.
+9. Every line is new. TOPICS.md in the repo lists every reel we've made: never reuse a line, the hook or the cover from one of them, even with other numbers. Only the series formats repeat: "Ek: … Do: … Teen: …", the shape of the share line and the sign-off.
+10. The caption ends with "{{FOLLOW_NOTE}} Follow karo {{INSTAGRAM}}.", then "PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in", then the hashtags.
+11. Write two more hooks in "hook_options": other first lines for this reel, each from a different angle (a sharp question, the most surprising number in the sheet, the mistake the viewer is about to make), under the same rules as the hook. A person reads the script before anything is made, and picks one of the three or keeps yours.
+
+Reply with JSON only, in this shape:
+{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "curious · ...", "highlights": ["..."], "uses": ["..."]}],
+ "hook_options": ["...", "..."],
+ "post": {"caption": "...", "hashtags": ["#..."], "pinned_comment": "...", "cover": {"lines": ["...", "..."], "stamp": "..."}, "trial_hook": "..."}}
+After the JSON, list every number you used and the data id it came from, and every form you named.

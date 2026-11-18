@@ -1,0 +1,680 @@
+{
+ "schema": "dc-episode/1",
+ "id": "ep04",
+ "slug": "epf-interest-vs-fd",
+ "series": "PF Guru Ji",
+ "title": "EPF ka byaaj FD se zyada? Safe options ki tulna.",
+ "tag": "PF GURU JI #04 · EPF VS FD",
+ "created": "2026-11-14",
+ "route": "build",
+ "brief": {
+  "topic": "EPF ka byaaj FD, post office, PPF aur LIC se zyada kyun? Safe options ki seedhi tulna.",
+  "repeat_check": {
+   "closest": "ep02-what-is-pf",
+   "different_because": "ep02 explains what PF is and how it's cut from the salary; this reel compares EPF's interest with the safe options savers pick (bank FD, PPF, post office NSC, LIC), adds the tax, and says why not to withdraw it early."
+  },
+  "viewer": "A salaried person who keeps savings in FDs, the post office or an LIC policy, and is thinking of taking their PF out after changing jobs.",
+  "hook": "PF nikaal ke FD karne ki soch rahe ho? Ruko!",
+  "problem": "People take their PF out and put it in an FD: safe, but on every ₹1,00,000 they lose about ₹1,850 of interest a year.",
+  "why": [
+   "EPF's 2025-26 rate is higher than SBI's best FD rate, PPF's and NSC's this quarter",
+   "An LIC endowment policy has no fixed interest rate: its return comes from bonuses",
+   "EPF interest is tax-free on up to ₹2,50,000 of one's own contribution a year; FD interest is taxed"
+  ],
+  "steps": [
+   "See what the difference means on one sum (an example ₹1,00,000 for a year, simple interest)",
+   "On changing jobs, transfer the PF instead of withdrawing it",
+   "Know how EPF interest builds up: on the monthly balance, credited at the year's end"
+  ],
+  "check": "EPF's rate is fixed every year (8.25% is 2025-26's), and the post office's 8.2% is only for senior citizens and girls.",
+  "help": "The member's passbook on the member portal shows the interest credited.",
+  "share_target": "A friend about to take out their PF and put it in an FD",
+  "why_now": "Small savings rates for October–December 2026 were just kept unchanged, and the 2025-26 EPF interest is in passbooks."
+ },
+ "data": [
+  {
+   "id": "example_amount",
+   "label": "The example sum kept for a year",
+   "kind": "assumption",
+   "value": 100000,
+   "unit": "INR",
+   "note": "An example, to compare the rates on one sum. A member's own passbook shows their balance."
+  },
+  {
+   "id": "fd_rate",
+   "label": "SBI's highest FD rate for the public (2 to under 3 years)",
+   "kind": "fact",
+   "value": 0.064,
+   "unit": "%",
+   "source": "State Bank of India, retail domestic term deposits below ₹3 crore: rates for the public w.e.f. 15 December 2025 (page last updated 19 October 2026)",
+   "source_url": "https://sbi.co.in/web/interest-rates/deposit-rates/retail-domestic-term-deposits",
+   "check_note": "Row '2 years to less than 3 years': 6.40% for the public, SBI's highest card rate for the general public (1 to under 2 years: 6.25%; 5 to 10 years: 6.05%). Banks change FD rates often: open the page the day before posting; if it changed, the number in the script changes.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on SBI retail domestic term deposits page, 14 Nov 2026: 2 years to less than 3 years 6.40%, highest standard card rate."
+  },
+  {
+   "id": "ppf_rate",
+   "label": "PPF interest rate, October–December 2026",
+   "kind": "fact",
+   "value": 0.071,
+   "unit": "%",
+   "source": "Ministry of Finance (Department of Economic Affairs), Office Memorandum F.No.1/4/2019-NS, 30 September 2026: small savings rates for 1 October–31 December 2026 unchanged; the rates from the National Savings Institute's table",
+   "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=132",
+   "check_note": "The OM (https://dea.gov.in/files/budget_division_documents/R.pdf): rates for the third quarter of 2026-27 'shall remain unchanged from those notified for the second quarter (1st July, 2026 to 30th September, 2026)'. NSI's table (w.e.f. 1 April 2025): PPF 7.1% per year. Its October–December 2026 column was still blank on 14 November, so also see India Post's page (https://www.indiapost.gov.in/banking-services/savings). The rates are reset every quarter (next: 1 January 2027): check again just before posting.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on India Post savings page, 14 Nov 2026: PPF 7.1% p.a.; DEA OM 30 Sep 2026 keeps Q3 2026-27 rates unchanged from Q2."
+  },
+  {
+   "id": "nsc_rate",
+   "label": "NSC interest rate, October–December 2026",
+   "kind": "fact",
+   "value": 0.077,
+   "unit": "%",
+   "source": "Ministry of Finance (Department of Economic Affairs), Office Memorandum F.No.1/4/2019-NS, 30 September 2026: small savings rates for 1 October–31 December 2026 unchanged; the rates from the National Savings Institute's table",
+   "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=132",
+   "check_note": "The OM (https://dea.gov.in/files/budget_division_documents/R.pdf): rates for the third quarter of 2026-27 'shall remain unchanged from those notified for the second quarter (1st July, 2026 to 30th September, 2026)'. NSI's table (w.e.f. 1 April 2025): National Savings Certificate 7.7% per year. Its October–December 2026 column was still blank on 14 November, so also see India Post's page (https://www.indiapost.gov.in/banking-services/savings). The rates are reset every quarter (next: 1 January 2027): check again just before posting.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on India Post savings page, 14 Nov 2026: NSC 7.7%."
+  },
+  {
+   "id": "scss_rate",
+   "label": "Senior Citizens' Savings Scheme rate, October–December 2026",
+   "kind": "fact",
+   "value": 0.082,
+   "unit": "%",
+   "source": "Ministry of Finance (Department of Economic Affairs), Office Memorandum F.No.1/4/2019-NS, 30 September 2026: small savings rates for 1 October–31 December 2026 unchanged; the rates from the National Savings Institute's table",
+   "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=132",
+   "check_note": "The OM (https://dea.gov.in/files/budget_division_documents/R.pdf): rates for the third quarter of 2026-27 'shall remain unchanged from those notified for the second quarter (1st July, 2026 to 30th September, 2026)'. NSI's table (w.e.f. 1 April 2025): Senior Citizens' Savings Scheme 8.2% per year. Its October–December 2026 column was still blank on 14 November, so also see India Post's page (https://www.indiapost.gov.in/banking-services/savings). The rates are reset every quarter (next: 1 January 2027): check again just before posting.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on India Post savings page, 14 Nov 2026: SCSS 8.2% p.a."
+  },
+  {
+   "id": "ssy_rate",
+   "label": "Sukanya Samriddhi rate, October–December 2026",
+   "kind": "fact",
+   "value": 0.082,
+   "unit": "%",
+   "source": "Ministry of Finance (Department of Economic Affairs), Office Memorandum F.No.1/4/2019-NS, 30 September 2026: small savings rates for 1 October–31 December 2026 unchanged; the rates from the National Savings Institute's table",
+   "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=132",
+   "check_note": "The OM (https://dea.gov.in/files/budget_division_documents/R.pdf): rates for the third quarter of 2026-27 'shall remain unchanged from those notified for the second quarter (1st July, 2026 to 30th September, 2026)'. NSI's table (w.e.f. 1 April 2025): Sukanya Samriddhi Account 8.2% per year. Its October–December 2026 column was still blank on 14 November, so also see India Post's page (https://www.indiapost.gov.in/banking-services/savings). The rates are reset every quarter (next: 1 January 2027): check again just before posting.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on India Post savings page, 14 Nov 2026: Sukanya Samriddhi 8.2% p.a."
+  },
+  {
+   "id": "epf_rate",
+   "label": "EPF interest rate for 2025-26",
+   "kind": "fact",
+   "value": 0.0825,
+   "unit": "%",
+   "source": "PIB, Ministry of Labour and Employment, 2 March 2026: 239th meeting of the CBT, EPF",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2234502",
+   "check_note": "Quote: 'CBT recommended 8.25 % annual rate of interest to be credited on EPF accumulations in members' accounts for the financial year 2025-26.' 2024-25 was 8.25% too (PIB 28 Feb 2025). The government's notification and the credit (reported as EPFO's circular of 1 July 2026, credited by 15 July) weren't on an official page the research could open: check epfo.gov.in → Circulars, or your own passbook.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on PIB PRID 2234502, 2 Mar 2026: CBT recommended 8.25% for FY 2025-26; EPFO circular 1 Jul 2026 notified it."
+  },
+  {
+   "id": "fd_interest",
+   "label": "A year's interest on the example sum in the FD (simple)",
+   "kind": "derived",
+   "value": 6400.0,
+   "unit": "INR",
+   "formula": "example_amount * fd_rate"
+  },
+  {
+   "id": "epf_interest",
+   "label": "A year's interest on the example sum in EPF (simple)",
+   "kind": "derived",
+   "value": 8250.0,
+   "unit": "INR",
+   "formula": "example_amount * epf_rate"
+  },
+  {
+   "id": "extra_vs_fd",
+   "label": "How much more EPF gives than the FD on the example sum in a year",
+   "kind": "derived",
+   "value": 1850.0,
+   "unit": "INR",
+   "formula": "epf_interest - fd_interest"
+  },
+  {
+   "id": "tax_free_limit",
+   "label": "Yearly own contribution on which EPF interest stays tax-free (with an employer)",
+   "kind": "fact",
+   "value": 250000,
+   "unit": "INR",
+   "source": "Income-tax Act, 2025 (in force 1 April 2026), Schedule II, entry 4",
+   "source_url": "https://egazette.gov.in/WriteReadData/2025/265620.pdf",
+   "check_note": "p. 500: interest 'shall not be eligible for exclusion from total income where ... it is attributable to contribution ... made by that person on or after the 1st April, 2021; and such contribution exceeds ... ₹ 5,00,000 in a financial year in such fund where no contribution is made by the employer ... or ₹ 2,50,000 in other cases'. So with an employer paying in, interest is tax-free on up to ₹2,50,000 of the member's own contribution a year.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen in Income-tax Act 2025, Schedule II entry 4 (p. 500), 14 Nov 2026: Rs 2,50,000 with employer, Rs 5,00,000 without."
+  },
+  {
+   "id": "lic_no_fixed_rate",
+   "label": "An LIC endowment policy has no fixed interest rate",
+   "kind": "rule",
+   "statement": "An LIC endowment policy pays the sum assured plus bonuses that LIC declares each year from its experience; it has no fixed interest rate.",
+   "source": "LIC's New Endowment Plan (Plan 714, UIN 512N277V03), sales brochure, from 22 September 2025",
+   "source_url": "https://licindia.in/web/guest/lic-s-new-endowment-plan-714-512n277v03",
+   "check_note": "Brochure p. 3: at maturity, 'Sum Assured on Maturity along with vested Simple Reversionary Bonuses and Final Additional Bonus, if any'; p. 4: bonuses are 'declared as per the experience of the Corporation' each year; p. 22: 'Some benefits are guaranteed and some benefits are variable with returns based on the future performance of your insurer'. A bonus is guaranteed once declared; future bonuses aren't.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen in LIC New Endowment Plan 714 brochure, 14 Nov 2026: bonuses declared as per the Corporation's experience; no fixed rate."
+  },
+  {
+   "id": "epf_interest_credit",
+   "label": "How EPF interest is worked out and credited",
+   "kind": "rule",
+   "statement": "EPF interest is fixed every year by the Central Government with the CBT, worked out on the monthly running balance and credited at the end of the year.",
+   "source": "EPF Scheme, 2026, paragraph 42 (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "pp. 84–85: 'The Commissioner shall credit to the account of each member interest at such rate as may be determined by the Central Government in consultation with the Central Board ... interest shall be credited to the member's account on monthly running balance basis with effect from the last day in each year'. (The correction notice of 4 August 2026 changes only 42(3).)",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen in EPF Scheme 2026 para 42 (G.S.R. 525(E)) via verbatim gazette reproduction, 14 Nov 2026: monthly running balance, credited at year-end; gazette PDF itself unreachable."
+  },
+  {
+   "id": "epf_tax_free",
+   "label": "EPF interest is tax-free; FD interest is taxed",
+   "kind": "rule",
+   "statement": "EPF interest is tax-free, except on a member's own contribution above ₹2,50,000 a year (₹5,00,000 with no employer contribution); bank FD interest is taxed as income from other sources.",
+   "source": "Income-tax Act, 2025, Schedule II, entry 4 (EPF interest) and section 92 (income from other sources)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2025/265620.pdf",
+   "check_note": "Schedule II, entry 4 (p. 500): the accumulated balance in a recognised provident fund, EPF included (section 2(91), p. 19), is excluded from total income, with the interest limit above. Section 92 (p. 137): 'Income of every kind which is not to be excluded from the total income ... shall be chargeable to income-tax under the head Income from other sources', which is where bank FD interest falls. The Finance Act, 2026 didn't change these.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen in Income-tax Act 2025, Schedule II entry 4 (p. 500) and section 92 (p. 137), 14 Nov 2026."
+  },
+  {
+   "id": "transfer_on_job_change",
+   "label": "On a new job, move the PF, don't withdraw it",
+   "kind": "rule",
+   "statement": "On changing jobs, a member can move the old PF account to the new one (Form 13), so the money keeps earning EPF interest.",
+   "source": "EPFO, 'Which claim form' (Form 13: moving an old PF account to the new one); brand/epfo-forms.json",
+   "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+   "check_note": "Form 13 moves the PF from an old employer's account to the new one, so it keeps earning EPF interest; the forms list (brand/epfo-forms.json) has it, checked on 13 November 2026.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on EPFO WhichClaimForm page, 14 Nov 2026: Form 13 for transfer of account."
+  },
+  {
+   "id": "passbook",
+   "label": "The passbook shows the interest",
+   "kind": "rule",
+   "statement": "The member's passbook on the member portal shows the contributions, the interest and the balance.",
+   "source": "PIB, Ministry of Labour and Employment, 18 September 2025: Passbook Lite on the member portal",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2168059",
+   "check_note": "PIB: 'Passbook Lite' in the member portal gives a 'summarised view of the contributions, withdrawals and balance'. Open your own passbook to see the interest line for 2025-26.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on PIB PRID 2168059, 18 Sep 2025: Passbook Lite on the member portal shows contributions, withdrawals and balance."
+  },
+  {
+   "id": "scss_ssy_who",
+   "label": "Who the 8.2% schemes are for",
+   "kind": "rule",
+   "statement": "The post office's 8.2% schemes are the Senior Citizens' Savings Scheme (people aged 60 or more) and Sukanya Samriddhi (an account for a girl child).",
+   "source": "India Post, savings schemes (Senior Citizens' Savings Scheme; Sukanya Samriddhi Account)",
+   "source_url": "https://www.indiapost.gov.in/banking-services/savings",
+   "check_note": "Check who can open each: SCSS is for people aged 60 or more (and some retirees from 55); Sukanya Samriddhi is an account for a girl child under 10, opened by a parent or guardian. The research quoted only the rates, not these rules: open the scheme pages.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-14",
+   "check_result": "Seen on government/PSU scheme pages, 14 Nov 2026: SCSS 60+ (retirees 55+), Sukanya for a girl child under 10."
+  }
+ ],
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "PF nikaal ke FD karne ki soch rahe ho? Ruko!",
+   "tts": "पीएफ निकाल के एफ़डी करने की सोच रहे हो? रुको!",
+   "delivery": "surprised · urgent and quick, a sharp stop on Ruko!",
+   "highlights": [
+    "Ruko!"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "hook",
+   "vo": "Har ₹1,00,000 pe, har saal ₹1,850 ka nuksaan hoga.",
+   "tts": "हर वन लाख रुपये पे, हर साल वन थाउज़ेंड एट हंड्रेड फ़िफ़्टी रुपये का नुकसान होगा।",
+   "delivery": "serious · punchy, hit ₹1,850 and nuksaan hard",
+   "highlights": [
+    "₹1,850 ka nuksaan"
+   ],
+   "uses": [
+    "example_amount",
+    "extra_vs_fd"
+   ]
+  },
+  {
+   "shot": "S03",
+   "chapter": "problem",
+   "vo": "FD safe toh hai, haan. Par byaaj sabse kam deta hai.",
+   "tts": "एफ़डी सेफ़ तो है, हाँ। पर ब्याज सबसे कम देता है।",
+   "delivery": "concerned · a quick shrug on haan, stress sabse kam",
+   "highlights": [
+    "sabse kam"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S04",
+   "chapter": "why",
+   "vo": "Dekho: SBI FD 6.4%. PPF 7.1%. Post office NSC 7.7%.",
+   "tts": "देखो: एसबीआई एफ़डी सिक्स पॉइंट फ़ोर परसेंट। पीपीएफ़ सेवन पॉइंट वन परसेंट। पोस्ट ऑफ़िस एनएससी सेवन पॉइंट सेवन परसेंट।",
+   "delivery": "curious · a quick countdown, each rate a notch higher",
+   "highlights": [
+    "6.4%.",
+    "7.1%.",
+    "7.7%."
+   ],
+   "uses": [
+    "fd_rate",
+    "ppf_rate",
+    "nsc_rate"
+   ]
+  },
+  {
+   "shot": "S05",
+   "chapter": "why",
+   "vo": "Aur LIC policy? Usmein fixed byaaj hi nahi. Bonus pe chalta hai.",
+   "tts": "और एलआईसी पॉलिसी? उसमें फ़िक्स्ड ब्याज ही नहीं। बोनस पे चलता है।",
+   "delivery": "surprised · a quick twist, eyebrows up on fixed byaaj hi nahi",
+   "highlights": [
+    "fixed byaaj",
+    "Bonus"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S06",
+   "chapter": "why",
+   "vo": "Aur aapka EPF? Poore 8.25%. Sabse upar!",
+   "tts": "और आपका ईपीएफ़? पूरे एट पॉइंट टू फ़ाइव परसेंट। सबसे ऊपर!",
+   "delivery": "proud · one quick beat after EPF?, then bright and punchy",
+   "highlights": [
+    "8.25%.",
+    "Sabse upar!"
+   ],
+   "uses": [
+    "epf_rate"
+   ]
+  },
+  {
+   "shot": "S07",
+   "chapter": "steps",
+   "vo": "Upar se, EPF ka byaaj tax-free, FD ka taxable. Shart: ₹2,50,000 saalana contribution tak.",
+   "tts": "ऊपर से, ई पी एफ़ का ब्याज टैक्स-फ़्री, एफ़डी का टैक्सेबल। शर्त: टू लाख फ़िफ़्टी थाउज़ेंड सालाना कंट्रीब्यूशन तक।",
+   "delivery": "proud · bright on tax-free, quick and clear on the shart",
+   "highlights": [
+    "tax-free,",
+    "taxable."
+   ],
+   "uses": [
+    "tax_free_limit"
+   ]
+  },
+  {
+   "shot": "S08",
+   "chapter": "steps",
+   "vo": "Isliye naukri badli, toh PF transfer karo. Bilkul nikaalo mat.",
+   "tts": "इसलिए नौकरी बदली, तो पीएफ ट्रांसफ़र करो। बिलकुल निकालो मत।",
+   "delivery": "warm · firm like a big brother, punch bilkul",
+   "highlights": [
+    "PF transfer karo.",
+    "nikaalo mat."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S09",
+   "chapter": "steps",
+   "vo": "Byaaj har mahine ke balance pe judta hai. Saal ke end mein credit.",
+   "tts": "ब्याज हर महीने के बैलेंस पे जुड़ता है। साल के एंड में क्रेडिट।",
+   "delivery": "warm · easy and quick, a smile on credit",
+   "highlights": [
+    "har mahine",
+    "credit."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S10",
+   "chapter": "check",
+   "vo": "Bas yaad rakho: rate har saal tay hota hai. 8.25% pichhle saal ka hai.",
+   "tts": "बस याद रखो: रेट हर साल तय होता है। एट पॉइंट टू फ़ाइव परसेंट पिछले साल का है।",
+   "delivery": "serious · honest and steady, stress har saal",
+   "highlights": [
+    "har saal tay"
+   ],
+   "uses": [
+    "epf_rate"
+   ]
+  },
+  {
+   "shot": "S11",
+   "chapter": "check",
+   "vo": "Aur post office ka 8.2%? Sirf senior citizens aur betiyon ke liye.",
+   "tts": "और पोस्ट ऑफ़िस का एट पॉइंट टू परसेंट? सिर्फ़ सीनियर सिटिज़न्स और बेटियों के लिए।",
+   "delivery": "curious · a raised eyebrow on the rate, then matter-of-fact",
+   "highlights": [
+    "8.2%?",
+    "Sirf"
+   ],
+   "uses": [
+    "scss_rate",
+    "ssy_rate"
+   ]
+  },
+  {
+   "shot": "S12",
+   "chapter": "help",
+   "vo": "Apna byaaj dekhna hai? Member portal pe apni passbook kholo.",
+   "tts": "अपना ब्याज देखना है? मेंबर पोर्टल पे अपनी पासबुक खोलो।",
+   "delivery": "warm · helpful and quick, a lift on passbook kholo",
+   "highlights": [
+    "passbook kholo."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S13",
+   "chapter": "share",
+   "vo": "PF nikaalne wale dost ko abhi yeh bhejo.",
+   "tts": "पीएफ निकालने वाले दोस्त को अभी ये भेजो।",
+   "delivery": "playful · a quick, knowing nudge",
+   "highlights": [
+    "abhi yeh bhejo."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S14",
+   "chapter": "signoff",
+   "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+   "tts": "पीएफ समझो, क्लेम पाओ। ईपीएफओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ गुरु जी।",
+   "delivery": "proud · warm and bright, a smile on Follow karo PF Guru Ji",
+   "highlights": [
+    "PF Guru Ji."
+   ],
+   "uses": []
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 4.0,
+   "chapter": "hook",
+   "on_screen": "Photo P1 with the tab PF NIKAAL KE FD? · a big red stamp RUKO!",
+   "card_text": [
+    "PF NIKAAL KE FD?",
+    "RUKO!"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S02",
+   "start": 4.0,
+   "end": 8.0,
+   "chapter": "hook",
+   "on_screen": "Black card MAAN LO · HAR ₹1,00,000 PE / ₹1,850 / HAR SAAL KA NUKSAAN · red stamp NUKSAAN!",
+   "card_text": [
+    "MAAN LO · HAR ₹1,00,000 PE",
+    "₹1,850",
+    "HAR SAAL",
+    "NUKSAAN!"
+   ],
+   "motion_text": [],
+   "uses": [
+    "example_amount",
+    "extra_vs_fd"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S03",
+   "start": 8.0,
+   "end": 12.5,
+   "chapter": "problem",
+   "on_screen": "Yellow card FD / SAFE, PAR… · red note: byaaj sabse kam",
+   "card_text": [
+    "FD",
+    "SAFE, PAR…",
+    "byaaj sabse kam"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S04",
+   "start": 12.5,
+   "end": 16.5,
+   "chapter": "why",
+   "on_screen": "Bar chart SAAL KA BYAAJ: SBI FD, PPF and NSC bars growing on their words, true to the rates",
+   "card_text": [
+    "SAAL KA BYAAJ",
+    "SBI FD · 6.4%",
+    "PPF · 7.1%",
+    "NSC · 7.7%"
+   ],
+   "motion_text": [],
+   "uses": [
+    "fd_rate",
+    "ppf_rate",
+    "nsc_rate"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S05",
+   "start": 16.5,
+   "end": 21.5,
+   "chapter": "why",
+   "on_screen": "Black card LIC POLICY / FIXED BYAAJ NAHI · red stamp BONUS PE",
+   "card_text": [
+    "LIC POLICY",
+    "FIXED BYAAJ NAHI",
+    "BONUS PE"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S06",
+   "start": 21.5,
+   "end": 24.5,
+   "chapter": "why",
+   "on_screen": "Huge yellow card AAPKA EPF / 8.25% · red stamp NO. 1",
+   "card_text": [
+    "AAPKA EPF",
+    "8.25%",
+    "NO. 1"
+   ],
+   "motion_text": [],
+   "uses": [
+    "epf_rate"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S07",
+   "start": 24.5,
+   "end": 30.0,
+   "chapter": "steps",
+   "on_screen": "Yellow card EPF KA BYAAJ / TAX-FREE (foot: ₹2,50,000 SAALANA CONTRIBUTION TAK) · white card FD KA BYAAJ / TAXABLE",
+   "card_text": [
+    "EPF KA BYAAJ",
+    "TAX-FREE",
+    "₹2,50,000 SAALANA CONTRIBUTION TAK",
+    "FD KA BYAAJ",
+    "TAXABLE"
+   ],
+   "motion_text": [],
+   "uses": [
+    "tax_free_limit"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S08",
+   "start": 30.0,
+   "end": 34.0,
+   "chapter": "steps",
+   "on_screen": "Black card NAUKRI BADLI? / TRANSFER KARO · red stamp NIKAALO MAT!",
+   "card_text": [
+    "NAUKRI BADLI?",
+    "TRANSFER KARO",
+    "NIKAALO MAT!"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S09",
+   "start": 34.0,
+   "end": 39.5,
+   "chapter": "steps",
+   "on_screen": "Typewriter card BYAAJ KAISE JUDTA HAI: Har mahine ka balance. / Saal ke end mein credit.",
+   "card_text": [
+    "BYAAJ KAISE JUDTA HAI",
+    "Har mahine ka balance.",
+    "Saal ke end mein credit."
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S10",
+   "start": 39.5,
+   "end": 45.0,
+   "chapter": "check",
+   "on_screen": "White card EPF RATE / HAR SAAL TAY · black card PICHHLE SAAL / 8.25%",
+   "card_text": [
+    "EPF RATE",
+    "HAR SAAL TAY",
+    "PICHHLE SAAL",
+    "8.25%"
+   ],
+   "motion_text": [],
+   "uses": [
+    "epf_rate"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S11",
+   "start": 45.0,
+   "end": 50.0,
+   "chapter": "check",
+   "on_screen": "White card SCSS · SUKANYA / 8.2% · red note: sirf unke liye",
+   "card_text": [
+    "SCSS · SUKANYA",
+    "8.2%",
+    "sirf unke liye"
+   ],
+   "motion_text": [],
+   "uses": [
+    "scss_rate",
+    "ssy_rate"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S12",
+   "start": 50.0,
+   "end": 54.0,
+   "chapter": "help",
+   "on_screen": "Black card APNA BYAAJ / PASSBOOK (foot: MEMBER PORTAL) · ink stamp FREE HAI",
+   "card_text": [
+    "APNA BYAAJ",
+    "PASSBOOK",
+    "MEMBER PORTAL",
+    "FREE HAI"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S13",
+   "start": 54.0,
+   "end": 57.5,
+   "chapter": "share",
+   "on_screen": "Photo P2 (a phone held out on a bus) · yellow tag SHARE ↗ · red note: nikaalne se pehle",
+   "card_text": [
+    "SHARE ↗",
+    "nikaalne se pehle"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S14",
+   "start": 57.5,
+   "end": 66.0,
+   "chapter": "signoff",
+   "on_screen": "Note: PF samjho, claim pao. · End card: logo, tagline, EPFO ki har jankari chahiye?, FOLLOW @PFGURUJI, small print",
+   "card_text": [
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?",
+    "FOLLOW @PFGURUJI",
+    "RATES: EPFO · FINANCE MINISTRY · SBI · LIC",
+    "MAAN LO NUMBERS · SEEDHA HISAAB",
+    "EPFO KA OFFICIAL CHANNEL NAHI"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  }
+ ],
+ "breaks": [
+  {
+   "after": "S06",
+   "at": 24.5,
+   "type": "tear-lemon",
+   "asset": "A08"
+  },
+  {
+   "after": "S11",
+   "at": 50.0,
+   "type": "tear-paper",
+   "asset": "A09"
+  }
+ ],
+ "post": {
+  "caption": "PF nikaal ke FD karne ki soch rahe ho? Ruko!\n\nHar ₹1,00,000 pe, har saal ₹1,850 ka nuksaan. Dekho: SBI FD (2-3 saal, sabse zyada wala) 6.4%. PPF 7.1%. Post office NSC 7.7%. LIC policy: fixed byaaj nahi, bonus pe chalta hai. EPF: 8.25%. Upar se EPF ka byaaj tax-free (₹2,50,000 saalana contribution tak), FD ka taxable.\n\nYaad rakho: EPF rate har saal tay hota hai (8.25% pichhle saal ka), aur post office ka 8.2% sirf senior citizens aur betiyon (Sukanya) ke liye hai. FD aur post office ke rate badalte rehte hain: invest karne se pehle bank aur India Post pe dekho.\n\nNaukri badli? PF transfer karo, nikaalo mat. Apna byaaj member portal ki passbook mein dekho.\n\nYeh us dost ko bhejo jo PF nikaalne wala hai.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#pfguruji #epfo #pfinterest #fd #ppf",
+  "hashtags": [
+   "#pfguruji",
+   "#epfo",
+   "#pfinterest",
+   "#fd",
+   "#ppf"
+  ],
+  "pinned_comment": "Aapki savings abhi kahan hai: FD, post office, PPF ya LIC? Comment karo. UAN, OTP ya bank details kabhi mat likhna.",
+  "cover": {
+   "lines": [
+    "PF NIKAAL KE",
+    "FD? RUKO!"
+   ],
+   "stamp": "₹1,850 / SAAL",
+   "asset": "A07"
+  },
+  "trial_hook": "Bank FD 6.4%. Aapka PF 8.25%. Phir bhi PF nikaaloge?"
+ }
+}

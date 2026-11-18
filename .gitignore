@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+node_modules/
+package.json
+package-lock.json
+.DS_Store
+
+# Media is committed on purpose: Muse writes through the GitHub API (which ignores this file),
+# and GitHub re-checks every keyframe, clip, voice track and final reel saved under media/.
+
+# Preview frames from tools/build_reel.py --frame
+episodes/*/build/frame-*.png

@@ -1,0 +1,115 @@
+{
+ "inputs": "524569f2be8bc553",
+ "voiced": true,
+ "length": 74.227,
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 3.035,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S02",
+   "start": 3.035,
+   "end": 10.241,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S03",
+   "start": 10.241,
+   "end": 13.722,
+   "handwritten": [
+    "byaaj sabse kam"
+   ],
+   "screens": []
+  },
+  {
+   "id": "S04",
+   "start": 13.722,
+   "end": 22.443,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S05",
+   "start": 22.443,
+   "end": 26.826,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S06",
+   "start": 26.826,
+   "end": 32.442,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S07",
+   "start": 32.442,
+   "end": 40.602,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S08",
+   "start": 40.602,
+   "end": 44.743,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S09",
+   "start": 44.743,
+   "end": 48.748,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S10",
+   "start": 48.748,
+   "end": 53.721,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S11",
+   "start": 53.721,
+   "end": 58.911,
+   "handwritten": [
+    "sirf unke liye"
+   ],
+   "screens": []
+  },
+  {
+   "id": "S12",
+   "start": 58.911,
+   "end": 62.383,
+   "handwritten": [],
+   "screens": []
+  },
+  {
+   "id": "S13",
+   "start": 62.383,
+   "end": 64.926,
+   "handwritten": [
+    "nikaalne se pehle"
+   ],
+   "screens": []
+  },
+  {
+   "id": "S14",
+   "start": 64.926,
+   "end": 74.227,
+   "handwritten": [
+    "PF samjho, claim pao.",
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?"
+   ],
+   "screens": []
+  }
+ ]
+}

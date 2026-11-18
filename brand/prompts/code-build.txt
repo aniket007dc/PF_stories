@@ -1,0 +1,24 @@
+CODE BUILD RULES (PF GURU JI PAPER STYLE). First choice: describe the shot in the episode's reel.json and let tools/build_reel.py build it (see MUSE.md). These rules are for building one shot by hand when that isn't possible. Build it frame by frame in Python (Pillow + ffmpeg). Do not draw text with the image or video model.
+
+Inputs
+- Paper: brand/assets/plates/paper-a01.webp, scaled to 1080×1920. Use this same file for every frame of every shot. Never regenerate it, and never use an AI-edited copy of it.
+- Fonts, from brand/fonts/ only: Anton-Regular.ttf for numbers and headlines; IBMPlexMono-Bold.ttf and IBMPlexMono-Medium.ttf for labels, tabs and small print; Caveat-Variable.ttf for handwritten notes. All of them have ₹ ≈ ÷ × and · (Caveat has no →).
+- Text: copy each string from the shot's "Text that must appear exactly" list, character for character. Put no other words or numbers on the cards.
+- Pictures: ask the image model only for pieces without any writing, such as a halftone photo. If a piece comes back with letters or numbers in it, make it again.
+- Layout: follow the shot's keyframe prompt; sizes and positions are given as a share of the frame. Timing: follow the shot's motion prompt to the frame.
+
+Look
+- Colours: ink #1A1A1A, lemon #F5EE30, stamp red #C8443A, card white #F3F0EA, black paper #121212, and greys. Nothing else.
+- Cards: soft shadow (about 12 px right, 16 px down, 16 px blur, 25% black) and a 1–3° tilt. Stamps: rounded red border, tilted 4–8°, slightly worn. Halftone photos: black and white with visible dots and torn top and bottom edges.
+- Keep the top 17% and the bottom 35% of the frame plain paper. The header and captions go there in step 08.
+
+Motion
+- The camera never moves. Elements move like flat paper: they drop or slide in over 0.4–0.6 s with a small overshoot, then stop dead. Stamps slam from 150% to 100% size in 0.25 s.
+- Draw each element once and move it as a whole. Text is never retyped, warped or blurred between frames.
+- Build every frame on the same paper plate, so the paper never flickers or shifts.
+
+Output
+- 1080×1920, 30 fps, H.264 (yuv420p), no audio track, exactly the shot's length (end minus start).
+- Save the clip as episodes/EP/media/clips/SNN.mp4, the last frame as episodes/EP/media/keyframes/SNN.png, and the script as episodes/EP/build/SNN.py.
+- The script uses only paths relative to the repo root, so a person can run it again with: python3 episodes/EP/build/SNN.py
+- Before saving, open the last frame and read every string back against the list. Then reply: "SNN built: <length> s, <width>×<height>, text checked: <each string>".

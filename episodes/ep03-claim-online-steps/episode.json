@@ -1,0 +1,698 @@
+{
+  "schema": "dc-episode/1",
+  "id": "ep03",
+  "slug": "claim-online-steps",
+  "series": "PF Guru Ji",
+  "title": "PF claim online kaise bharein? Step by step.",
+  "tag": "PF GURU JI #03 · CLAIM ONLINE",
+  "created": "2026-11-14",
+  "route": "build",
+  "brief": {
+    "topic": "PF claim online kaise bharein? Member portal pe step by step.",
+    "repeat_check": {
+      "closest": "ep01-claim-reject",
+      "different_because": "ep01 explains why a claim comes back rejected and how to fix the reason; this reel walks a first-time filer through filing the claim on the member portal, screen by screen, before anything goes wrong."
+    },
+    "viewer": "Someone who wants their PF (they left a job, or need an advance while working) and has never filed a claim themselves, and is about to pay an agent to do it.",
+    "hook": "PF nikalna hai? Agent ki zaroorat nahi.",
+    "problem": "People pay agents or pick the wrong form, and the claim comes back while the money stays stuck.",
+    "why": [
+      "The UAN isn't linked to Aadhaar, so the OTP that submits the claim can't be sent",
+      "The bank account isn't verified in KYC",
+      "For a final settlement, the date of exit isn't marked"
+    ],
+    "steps": [
+      "Log in to the member portal with the UAN, password and captcha",
+      "Online Services, then Claim (Form-31, 19, 10C & 10D); verify the bank account number",
+      "Proceed for Online Claim, then pick the claim from the list (an advance also needs its purpose and amount)",
+      "Submit with the OTP sent to the Aadhaar-linked mobile; follow it under Track Claim Status"
+    ],
+    "check": "The right form: Form 19 only after 12 months without a job; while working, an advance on Form 31.",
+    "help": "Track Claim Status on the member portal; after 20 days, a grievance on EPFiGMS. EPFO's services are free.",
+    "share_target": "A friend who is about to pay an agent to withdraw their PF",
+    "why_now": "After ep01 (why claims come back), the step-by-step that stops them coming back."
+  },
+  "data": [
+    {
+      "id": "final_wait_months",
+      "label": "Months without a job before the whole PF can be taken",
+      "kind": "fact",
+      "value": 12,
+      "unit": "months",
+      "source": "EPF Scheme, 2026, paragraph 49(2), first proviso (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette pp. 90–91: a member isn't eligible 'unless the member has not been employed ... for a continuous period of not less than twelve months immediately preceding the date of application'. The old 1952 Scheme said 2 months. Exceptions in para 49(1) and the second proviso (marriage) don't change the reel's case. No wait at all on retirement after 55, permanent incapacity, migration abroad, retrenchment or voluntary retirement (para 49(1)), or for a woman resigning to marry (second proviso).",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "settle_days",
+      "label": "Days EPFO has to settle a complete claim",
+      "kind": "fact",
+      "value": 20,
+      "unit": "days",
+      "source": "EPF Scheme, 2026, paragraph 54(7) (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette p. 94: a claim complete in all respects 'shall be settled and the benefit amount paid to the beneficiaries within twenty days from the date of receipt by the Commissioner.' (It was paragraph 72(7) in the 1952 Scheme.)",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "services_free",
+      "label": "EPFO's services are free; no agents",
+      "kind": "rule",
+      "statement": "Filing a claim with EPFO is free: members shouldn't pay any fee to agents or cyber cafes.",
+      "source": "PIB, Ministry of Labour and Employment, 16 June 2025",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2136592",
+      "check_note": "Quote: 'All EPFO services including claim filing, transfers, KYC updation, and grievance process are entirely free of cost and members should not pay any fees to third party agents or cyber cafes for services that can be easily accessed online.'",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "grievance_epfigms",
+      "label": "Where to complain: EPFiGMS",
+      "kind": "rule",
+      "statement": "EPFO takes grievances online on its EPFiGMS portal, epfigms.gov.in, which is also inside the UMANG app.",
+      "source": "EPFiGMS, EPFO's grievance portal",
+      "source_url": "https://epfigms.gov.in/",
+      "check_note": "Open it: 'Register Grievance', for PF members, pensioners and employers; the site says 'EPFiGMS is available in UMANG.'",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "portal_login",
+      "label": "Logging in to the member portal",
+      "kind": "rule",
+      "statement": "Members log in to the EPFO member portal with their UAN, password and the captcha, then press Sign in.",
+      "source": "EPFO member portal, login page (read 14 November 2026; footer 'Wed 4, November 2026 (CPV 1.0.51)')",
+      "source_url": "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
+      "check_note": "Open the page: the box asks for 'UAN Number', 'Password' and a captcha, and the button says 'Sign in'. The page also says 'Do not share passwords.' Whether an OTP follows 'Sign in' isn't on an official page: see it on your own login.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "online_claim_kyc",
+      "label": "What a member needs before claiming online",
+      "kind": "rule",
+      "statement": "To claim online, the UAN must be activated and linked to Aadhaar, with the bank account and PAN seeded with EPFO.",
+      "source": "EPF Scheme, 2026, paragraph 25(1) (Gazette of India, G.S.R. 525(E), 29 June 2026); PIB, 1 May 2017 (online claims from the UAN)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette p. 80, para 25(1): the member furnishes 'Aadhaar Number ..., an Aadhaar seeded Bank account number ..., the Permanent account Number ... and the Universal Account Number.' PIB 1 May 2017 (https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=161420): members 'who have activated their UAN and seeded their KYC (Aadhaar) with EPFO will be able to apply for PF final settlement (form19), Pension withdrawal benefit (Form10-C) and PF part withdrawal (Form31)'.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "bank_verified",
+      "label": "The bank account is verified in KYC, without the employer",
+      "kind": "rule",
+      "statement": "The claim is paid into the bank account seeded and verified in the member's KYC; since April 2025 the employer doesn't approve it, and no cheque or passbook is uploaded.",
+      "source": "PIB, Ministry of Labour and Employment, 3 April 2025",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2118168",
+      "check_note": "Quote: 'the role of Employer to approve the verification of bank account has now been dispensed with in the seeding process of the member's Bank Account.' The same release: EPFO 'has completely dispensed with the requirement of uploading an image of a cheque leaf or attested bank passbook while filing online claims.' (EPFO's 2017 FAQ, seen only in a search snippet: payment goes 'only into the Bank Account registered with EPFO'.)",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "exit_needed",
+      "label": "The date of exit, for a final settlement",
+      "kind": "rule",
+      "statement": "For a final settlement the date of exit must be on record: the employer uploads it, and a member whose UAN is Aadhaar-verified can enter it themselves.",
+      "source": "EPF Scheme, 2026, paragraph 24 (G.S.R. 525(E)); PIB, 19 January 2025 (members correct their own details)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+      "check_note": "Gazette p. 79, para 24 (clause (v), renumbered (5) by the correction notice of 4 August 2026): 'Every employer shall, within fifteen days of the close of each month, upload electronically on the designated portal details of the employees leaving the service'. PIB 19 Jan 2025 (https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094229): members whose UAN is validated through Aadhaar 'can update their profile like ... date of joining and date of leaving themselves without the requirement of uploading any document'.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "claim_menu",
+      "label": "Where the claim is on the member portal",
+      "kind": "rule",
+      "statement": "On the member portal the claim is under Online Services, then Claim (Form-31, 19, 10C & 10D): the member verifies their bank account number and clicks Proceed for Online Claim.",
+      "source": "EPFO, instructions for online COVID-19 advance claims, April 2020 (the newest official wording found)",
+      "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/Circulars/Y2019-2020/claim_covid19.pdf",
+      "check_note": "Quote: 'a. Login to Member Interface of Unified Portal. b. Go to Online Services>>Claim (Form-31,19,10C & 10D). c. Enter last 4 digits of your Bank Account and verify d. Click on \"Proceed for Online Claim\"'. The research saw this only in a search snippet (epfo.gov.in refused automated requests) and found nothing newer, and EPFO upgraded its systems in June 2026: check every name on your own login while taking the screenshots. GitHub also reads the screenshots and fails one that doesn't show these names.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "claim_choice",
+      "label": "Picking the claim; an advance needs a purpose and an amount",
+      "kind": "rule",
+      "statement": "After Proceed for Online Claim the member picks the claim from a list (PF advance, Form 31; PF final settlement, Form 19; pension withdrawal, Form 10C); an advance also needs its purpose and the amount.",
+      "source": "PIB, 1 May 2017 (the three online claims); EPFO COVID-19 claim FAQ, April 2020; EPF Scheme, 2026, paragraph 46 (purposes of an advance)",
+      "source_url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=161420",
+      "check_note": "PIB 2017 names the online claims: 'PF final settlement (form19), Pension withdrawal benefit (Form10-C) and PF part withdrawal (Form31)', and 'They are not required to give any supporting document'. EPFO's April 2020 FAQ (https://www.epfindia.gov.in/site_docs/PDFs/Updates/covid_faq_claim_04042020.pdf, seen in a search snippet) has the member pick 'PF Advance (Form 31)' from a list, then give the purpose, amount and address. Gazette pp. 87–88, para 46: an advance is for illness, education, marriage, housing or special circumstances. Check the list's wording on your own login.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "aadhaar_otp",
+      "label": "The claim is submitted with an Aadhaar OTP",
+      "kind": "rule",
+      "statement": "The claim is submitted with an OTP sent to the mobile number linked to the member's Aadhaar.",
+      "source": "EPFO, online claim FAQ (October 2017); EPFO, UAN and KYC FAQ (2020–21)",
+      "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/MiscPDFs/OCS_FAQ_Eligibility_102017.pdf",
+      "check_note": "Quote: 'Members applying online are required to authenticate their claim submission using OTP sent to their UIDAI registered Mobile number'. The 2020–21 FAQ (https://www.epfindia.gov.in/site_docs/PDFs/Circulars/Y2020-2021/FAQUANKYC.pdf): 'At the time of claim submission, OTP is sent to Aadhaar linked mobile only.' Both seen in search snippets: check the button ('Get Aadhaar OTP' in 2020) on your own login.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "track_status",
+      "label": "Following the claim",
+      "kind": "rule",
+      "statement": "A member follows a claim under Online Services, then Track Claim Status.",
+      "source": "EPFO, transfer claim FAQ for members; PIB, 21 November 2024 (track claims in real time)",
+      "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/OTCP_PDFs/MembersFAQ.pdf",
+      "check_note": "Quote: 'track the status of the transfer claim submitted by going to 'Online Services' tab and then to 'Track Claim Status'.' (seen in a search snippet). PIB 21 Nov 2024 (https://www.pib.gov.in/PressReleasePage.aspx?PRID=2075422): an activated UAN lets members 'submit online claims ... and track claims in real time.' Check the menu name on your own login.",
+      "checked_by": null,
+      "checked_on": null
+    },
+    {
+      "id": "ineligible_claims",
+      "label": "A claim on the wrong form comes back",
+      "kind": "rule",
+      "statement": "EPFO checks a claim's eligibility up front and returns or rejects a claim the member isn't eligible for.",
+      "source": "PIB, Ministry of Labour and Employment, 17 March 2025",
+      "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2111756",
+      "check_note": "Quote: 'Certain upfront validations have been developed to guide members about eligibility /admissibility of claims so as to ensure that members do not file ineligible claims'. ep01's sources (PIB 14 June 2024, PRID 2025221) say EPFO returns incomplete claims and rejects ineligible ones.",
+      "checked_by": null,
+      "checked_on": null
+    }
+  ],
+  "script": [
+    {
+      "shot": "S01",
+      "chapter": "hook",
+      "vo": "PF nikalna hai? Agent ki zaroorat nahi.",
+      "tts": "पीएफ निकालना है? एजेंट की ज़रूरत नहीं।",
+      "highlights": [
+        "zaroorat nahi."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S02",
+      "chapter": "hook",
+      "vo": "Phone se khud claim karo, step by step.",
+      "tts": "फ़ोन से ख़ुद क्लेम करो, स्टेप बाय स्टेप।",
+      "highlights": [
+        "khud claim karo,"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S03",
+      "chapter": "problem",
+      "vo": "Log agent ko fees dete hain. Ya galat form chunte hain.",
+      "tts": "लोग एजेंट को फ़ीस देते हैं। या गलत फ़ॉर्म चुनते हैं।",
+      "highlights": [
+        "galat form"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S04",
+      "chapter": "problem",
+      "vo": "Phir claim wapas aata hai, paisa atka rehta hai.",
+      "tts": "फिर क्लेम वापस आता है, पैसा अटका रहता है।",
+      "highlights": [
+        "atka rehta hai."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S05",
+      "chapter": "why",
+      "vo": "Claim se pehle teen cheezein ready rakho.",
+      "tts": "क्लेम से पहले तीन चीज़ें रेडी रखो।",
+      "highlights": [
+        "teen cheezein"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S06",
+      "chapter": "why",
+      "vo": "Ek: UAN Aadhaar se juda. Do: bank account KYC mein verified. Teen: naukri chhodi, toh exit date marked.",
+      "tts": "एक: यूएएन आधार से जुड़ा। दो: बैंक अकाउंट केवाईसी में वेरिफ़ाइड। तीन: नौकरी छोड़ी, तो एग्ज़िट डेट मार्क्ड।",
+      "highlights": [
+        "Aadhaar se juda.",
+        "verified.",
+        "exit date"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S07",
+      "chapter": "steps",
+      "vo": "Member portal pe UAN aur password se login karo.",
+      "tts": "मेंबर पोर्टल पे यूएएन और पासवर्ड से लॉगिन करो।",
+      "highlights": [
+        "login karo."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S08",
+      "chapter": "steps",
+      "vo": "Online Services mein Claim wala option chuno.",
+      "tts": "ऑनलाइन सर्विसेज़ में क्लेम वाला ऑप्शन चुनो।",
+      "highlights": [
+        "Online Services"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S09",
+      "chapter": "steps",
+      "vo": "Bank account ka number daalo, aur Verify dabao.",
+      "tts": "बैंक अकाउंट का नंबर डालो, और वेरिफ़ाई दबाओ।",
+      "highlights": [
+        "Verify"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S10",
+      "chapter": "steps",
+      "vo": "Phir Proceed for Online Claim dabao.",
+      "tts": "फिर प्रोसीड फ़ॉर ऑनलाइन क्लेम दबाओ।",
+      "highlights": [
+        "Online Claim"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S11",
+      "chapter": "steps",
+      "vo": "List mein apna claim form chuno.",
+      "tts": "लिस्ट में अपना क्लेम फ़ॉर्म चुनो।",
+      "highlights": [
+        "claim form"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S12",
+      "chapter": "steps",
+      "vo": "Advance hai, toh wajah aur amount bharo.",
+      "tts": "एडवांस है, तो वजह और अमाउंट भरो।",
+      "highlights": [
+        "wajah",
+        "amount"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S13",
+      "chapter": "steps",
+      "vo": "Aadhaar wale mobile pe OTP aayega, daalo aur submit.",
+      "tts": "आधार वाले मोबाइल पे ओटीपी आएगा, डालो और सबमिट।",
+      "highlights": [
+        "Aadhaar wale mobile"
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S14",
+      "chapter": "check",
+      "vo": "Form chunne se pehle yeh dekho.",
+      "tts": "फ़ॉर्म चुनने से पहले ये देखो।",
+      "highlights": [
+        "yeh dekho."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S15",
+      "chapter": "check",
+      "vo": "Naukri chhode 12 mahine hue? Poora PF: Form 19. Naukri chalu hai? Advance: Form 31.",
+      "tts": "नौकरी छोड़े बारह महीने हुए? पूरा पीएफ: फ़ॉर्म नाइनटीन। नौकरी चालू है? एडवांस: फ़ॉर्म थर्टी वन।",
+      "highlights": [
+        "12 mahine",
+        "Form 19.",
+        "Form 31."
+      ],
+      "uses": [
+        "final_wait_months"
+      ]
+    },
+    {
+      "shot": "S16",
+      "chapter": "help",
+      "vo": "Status: Online Services, phir Track Claim Status.",
+      "tts": "स्टेटस: ऑनलाइन सर्विसेज़, फिर ट्रैक क्लेम स्टेटस।",
+      "highlights": [
+        "Track Claim Status."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S17",
+      "chapter": "help",
+      "vo": "20 din mein paisa na aaye? EPFiGMS pe shikayat karo.",
+      "tts": "बीस दिन में पैसा ना आए? ईपीएफ़आईजीएमएस पे शिकायत करो।",
+      "highlights": [
+        "20 din",
+        "EPFiGMS"
+      ],
+      "uses": [
+        "settle_days"
+      ]
+    },
+    {
+      "shot": "S18",
+      "chapter": "share",
+      "vo": "Jo dost agent dhoondh raha hai, use abhi yeh bhejo.",
+      "tts": "जो दोस्त एजेंट ढूँढ रहा है, उसे अभी ये भेजो।",
+      "highlights": [
+        "abhi yeh bhejo."
+      ],
+      "uses": []
+    },
+    {
+      "shot": "S19",
+      "chapter": "signoff",
+      "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+      "tts": "पीएफ समझो, क्लेम पाओ। ईपीएफओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ गुरु जी।",
+      "highlights": [
+        "PF Guru Ji."
+      ],
+      "uses": []
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "start": 0.0,
+      "end": 4.0,
+      "chapter": "hook",
+      "on_screen": "Photo P1 with the tab PF NIKALNA HAI? · red stamp AGENT? NAHI!",
+      "card_text": [
+        "PF NIKALNA HAI?",
+        "AGENT? NAHI!"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S02",
+      "start": 4.0,
+      "end": 8.0,
+      "chapter": "hook",
+      "on_screen": "Headline PHONE SE / KHUD CLAIM, underlined",
+      "card_text": [
+        "PHONE SE",
+        "KHUD CLAIM"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S03",
+      "start": 8.0,
+      "end": 13.5,
+      "chapter": "problem",
+      "on_screen": "Yellow card AAM GALTI / GALAT FORM · red note: agent ko fees",
+      "card_text": [
+        "AAM GALTI",
+        "GALAT FORM",
+        "agent ko fees"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S04",
+      "start": 13.5,
+      "end": 18.0,
+      "chapter": "problem",
+      "on_screen": "Black card NATEEJA / CLAIM WAPAS · red stamp ATKA!",
+      "card_text": [
+        "NATEEJA",
+        "CLAIM WAPAS",
+        "ATKA!"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S05",
+      "start": 18.0,
+      "end": 22.0,
+      "chapter": "why",
+      "on_screen": "Headline 3 CHEEZEIN / PEHLE",
+      "card_text": [
+        "3 CHEEZEIN",
+        "PEHLE"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S06",
+      "start": 22.0,
+      "end": 31.0,
+      "chapter": "why",
+      "on_screen": "Three arrow cards: UAN + AADHAAR (JUDA HO), BANK KYC (VERIFIED), EXIT DATE (yellow, MARKED)",
+      "card_text": [
+        "→",
+        "UAN + AADHAAR",
+        "JUDA HO",
+        "↘",
+        "BANK KYC",
+        "VERIFIED",
+        "↗",
+        "EXIT DATE",
+        "MARKED"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S07",
+      "start": 31.0,
+      "end": 35.5,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC1: the member portal login box, a ring on Sign In",
+      "card_text": [
+        "PORTAL · LOGIN"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S08",
+      "start": 35.5,
+      "end": 39.5,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC2: the Online Services menu open, a yellow highlight on Online Services, a ring on the Claim item",
+      "card_text": [
+        "PORTAL · CLAIM"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S09",
+      "start": 39.5,
+      "end": 43.5,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC3: the bank account box, a ring on Verify",
+      "card_text": [
+        "PORTAL · BANK"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S10",
+      "start": 43.5,
+      "end": 47.0,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC4: a ring on Proceed for Online Claim",
+      "card_text": [
+        "PORTAL · PROCEED"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S11",
+      "start": 47.0,
+      "end": 50.5,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC5: the list of claims open, a ring on Form 19",
+      "card_text": [
+        "PORTAL · FORM"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S12",
+      "start": 50.5,
+      "end": 54.5,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC6: the advance (Form 31) details, a ring on the purpose",
+      "card_text": [
+        "PORTAL · ADVANCE"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S13",
+      "start": 54.5,
+      "end": 59.0,
+      "chapter": "steps",
+      "on_screen": "Screenshot SC7: the Aadhaar OTP button, a ring on it",
+      "card_text": [
+        "PORTAL · OTP"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S14",
+      "start": 59.0,
+      "end": 62.5,
+      "chapter": "check",
+      "on_screen": "Headline FORM / SAHI?",
+      "card_text": [
+        "FORM",
+        "SAHI?"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S15",
+      "start": 62.5,
+      "end": 70.0,
+      "chapter": "check",
+      "on_screen": "White card NAUKRI CHHODE 12 MAHINE / FORM 19 · yellow card NAUKRI CHALU / FORM 31",
+      "card_text": [
+        "NAUKRI CHHODE 12 MAHINE",
+        "FORM 19",
+        "NAUKRI CHALU",
+        "FORM 31"
+      ],
+      "motion_text": [],
+      "uses": [
+        "final_wait_months"
+      ],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S16",
+      "start": 70.0,
+      "end": 74.0,
+      "chapter": "help",
+      "on_screen": "Screenshot SC2 again (the Online Services menu): a ring on Track Claim Status",
+      "card_text": [
+        "PORTAL · STATUS"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S17",
+      "start": 74.0,
+      "end": 79.0,
+      "chapter": "help",
+      "on_screen": "Black card 20 DIN MEIN NAHI? / EPFIGMS.GOV.IN · ink stamp FREE HAI",
+      "card_text": [
+        "20 DIN MEIN NAHI?",
+        "EPFIGMS.GOV.IN",
+        "FREE HAI"
+      ],
+      "motion_text": [],
+      "uses": [
+        "settle_days"
+      ],
+      "yellow_elements": 0
+    },
+    {
+      "id": "S18",
+      "start": 79.0,
+      "end": 84.0,
+      "chapter": "share",
+      "on_screen": "Photo P2 (a hand holding out a blank phone) · yellow tag SHARE ↗ · red note: agent se pehle",
+      "card_text": [
+        "SHARE ↗",
+        "agent se pehle"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 1
+    },
+    {
+      "id": "S19",
+      "start": 84.0,
+      "end": 94.0,
+      "chapter": "signoff",
+      "on_screen": "Note: PF samjho, claim pao. · End card: the logo, the tagline, EPFO ki har jankari chahiye?, the FOLLOW @PFGURUJI button and the small print",
+      "card_text": [
+        "PF samjho, claim pao.",
+        "EPFO ki har jankari chahiye?",
+        "FOLLOW @PFGURUJI",
+        "NIYAM: EPFO.GOV.IN",
+        "SCREENSHOTS: MEMBER PORTAL",
+        "EPFO KA OFFICIAL CHANNEL NAHI"
+      ],
+      "motion_text": [],
+      "uses": [],
+      "yellow_elements": 0
+    }
+  ],
+  "breaks": [
+    {
+      "after": "S06",
+      "at": 31.0,
+      "type": "tear-lemon",
+      "asset": "A08"
+    },
+    {
+      "after": "S15",
+      "at": 70.0,
+      "type": "tear-paper",
+      "asset": "A09"
+    }
+  ],
+  "post": {
+    "caption": "PF nikalna hai? Agent ki zaroorat nahi.\n\nPehle 3 cheezein: UAN Aadhaar se juda, bank account KYC mein verified, aur naukri chhodi hai toh exit date marked. Phir member portal pe: Online Services, Claim, bank account Verify, Proceed for Online Claim, form chuno, Aadhaar OTP se submit. Status: Track Claim Status. 20 din mein na aaye toh EPFiGMS pe shikayat. EPFO ki services free hain.\n\nYeh us dost ko bhejo jo agent dhoondh raha hai.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#pfguruji #epfo #pfclaim #pfwithdrawal #uan",
+    "hashtags": [
+      "#pfguruji",
+      "#epfo",
+      "#pfclaim",
+      "#pfwithdrawal",
+      "#uan"
+    ],
+    "pinned_comment": "Aap kaunsa claim bharne wale ho: Form 19 ya Form 31? Comment karo. UAN, OTP ya bank details kabhi mat likhna.",
+    "cover": {
+      "lines": [
+        "CLAIM",
+        "KHUD BHARO"
+      ],
+      "stamp": "STEP BY STEP",
+      "asset": "A07"
+    },
+    "trial_hook": "Agent ko paise mat do. PF claim khud bharo."
+  }
+}

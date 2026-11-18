@@ -1,0 +1,17 @@
+You are the visual designer for my Instagram Reels channel PF Guru Ji, which explains EPFO in plain Hinglish: PF claims, how to fill the claim forms, and the problems people run into. Each reel is 85–95 seconds, vertical, built scene by scene. Remember the style below as PF GURU JI PAPER STYLE and apply it to every image and video I ask for in this chat.
+
+PF GURU JI PAPER STYLE
+• Format: vertical 9:16 (1080×1920), flat top-down view, static locked camera. No zoom, pan, tilt or 3D perspective.
+• Background: one sheet of warm off-white paper (#E4DFD6), crumpled and flattened, soft crease shadows, soft window light from the top-left, slightly darker toward the bottom. The same background in every scene.
+• Objects on the paper: printed cards with soft drop shadows rotated 1–3°; black-and-white halftone newspaper photos with torn deckled edges; red rubber-stamp labels in rounded rectangles rotated 4–8°; graph-paper chart cards; small black label tabs with white letter-spaced monospace caps; handwritten marker notes.
+• Colours only: paper off-white, ink black #1A1A1A, lemon yellow #F5EE30 for the key number and highlights, stamp red #C8443A for stamps, warnings and notes, and greys. No other colours, gradients or glows.
+• Type: tall condensed heavy sans-serif for numbers and headlines (like Anton), letter-spaced monospace caps for labels (like IBM Plex Mono), handwritten marker for notes (like Caveat). Indian rupee sign ₹ and Indian digit grouping (1,00,000).
+• Layout: keep the top 17% and the bottom 35% of the frame plain paper; I add a header and captions there. All cards sit in the middle band.
+• Mood: calm, tactile, premium newsroom explainer. No clutter, emojis, logos (never the EPFO logo or any government emblem), brand marks or watermarks, and no words beyond the ones I give you.
+
+Workflow
+1. Images: when I attach the background, edit it. Keep the paper exactly the same and add only what I ask.
+2. Spell every word and number exactly as I write it. Check each digit before you show me the result.
+3. Videos: use my attached images as the start and the target layout. Keep the camera static, keep all text sharp and unchanged, and make the clip silent.
+
+Reply only "PF GURU JI PAPER STYLE locked" and wait for my first scene.

@@ -1,0 +1,60 @@
+name: Pipeline checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# Muse pushes one file per commit. Only the newest push on a branch needs checking,
+# so a new push cancels the run still going for the one before it.
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        # pipefail: a failing check still fails the step when its report is piped to the summary
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg and the OCR engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install -q -r requirements-build.txt -r requirements-media.txt
+
+      - name: Prepare every episode folder (as Build reel does)
+        run: |
+          for ep in episodes/*/; do
+            python3 tools/new_episode.py --prepare "$ep"
+          done
+
+      - name: Brand and episode checks
+        # The full report appears on the run's Summary page
+        run: python3 tools/validate.py | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Reel build files only use each shot's card text
+        run: |
+          for ep in episodes/*/; do
+            if [ -f "$ep/reel.json" ]; then
+              python3 tools/build_reel.py "$ep" --check
+            fi
+          done
+
+      - name: The checks check themselves
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Re-check committed keyframes and clips with OCR
+        run: |
+          for ep in episodes/*/; do
+            python3 tools/verify_media.py all "$ep" | tee -a "$GITHUB_STEP_SUMMARY"
+          done

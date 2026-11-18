@@ -1,0 +1,842 @@
+{
+ "schema": "dc-episode/1",
+ "id": "ep02",
+ "slug": "what-is-pf",
+ "series": "PF Guru Ji",
+ "title": "PF kya hai? Salary se kaise kat-ta hai?",
+ "tag": "PF GURU JI #02 · PF KYA HAI",
+ "created": "2026-11-13",
+ "route": "build",
+ "brief": {
+  "topic": "PF kya hai, employee par iska kya asar hota hai, aur salary se PF kaise kat-ta hai?",
+  "repeat_check": {
+   "closest": "ep01-claim-reject",
+   "different_because": "Ep01 claim reject ki wajah aur fix batata hai; yeh reel PF ki basic samajh, employee par asar aur salary se deduction kaise hoti hai, batata hai — claim ka sawaal hi nahi."
+  },
+  "viewer": "Koi bhi salaried employee, khaas taur par pehli naukri wala, jiski salary se PF kat-ta hai aur use samajh nahi aata yeh paisa kya hai, kahan jata hai, aur kab milega.",
+  "hook": "Salary aayi, PF kat gaya — yeh paisa kahan gaya?",
+  "problem": "PF katne se in-hand salary kam milti hai, aur member ko samajh nahi aata yeh paisa kahan gaya, company bhi kuch deti hai ya nahi, aur yeh kab milega.",
+  "why": [
+   "PF retirement ke liye bachat hai — EPF Scheme ke tahat employee aur employer dono har mahine contribute karte hain",
+   "Contribution Basic + DA par 12% hai, isliye salary slip mein har mahine deduction dikhta hai",
+   "Employer ke hisse ka 8.33% pension (EPS) mein jata hai, isliye passbook mein employer ka EPF hissa chhota dikhta hai"
+  ],
+  "steps": [
+   "Salary slip mein Basic + DA dekho — PF usi par 12% kat-ta hai",
+   "Apna 12% aur company ka 12% passbook mein dekho — maan lo Basic + DA Rs 25,000 hai to dono taraf se Rs 3,000 jama hota hai",
+   "Samjho company ka hissa salary se nahi kat-ta — woh alag se jata hai, usme se 8.33% pension mein aur 3.67% PF mein",
+   "Interest har saal judta hai — passbook mein balance badhta dekho, aur poora PF naukri chhodne ke 12 mahine baad milega"
+  ],
+  "check": "Passbook mein apna share, company ka share aur pension wala hissa alag-alag dekho — teeno ka jod har mahine Rs 6,000 hona chahiye is example mein.",
+  "help": "Passbook ya balance dekhne mein dikkat ho to EPFO member portal par passbook dekho, ya EPFiGMS par shikayat karo. EPFO ki services free hain.",
+  "share_target": "Us dost ko abhi bhejo jiski pehli salary se PF kata hai",
+  "why_now": "Evergreen: har naye employee ka pehla sawaal — salary se PF kyun kata? Aur wage ceiling 17 September 2026 se Rs 25,000 hui hai, isliye ab zyada logo par PF lagta hai."
+ },
+ "data": [
+  {
+   "id": "pf_meaning",
+   "label": "PF kya hai",
+   "kind": "rule",
+   "statement": "PF retirement ke liye bachat hai — employee aur employer dono har mahine contribute karte hain, aur paisa member ke PF account mein jama hota hai.",
+   "source": "Employees' Provident Funds Scheme, 2026 (G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Scheme ke tahat PF post-retirement benefit hai; person Gazette mein scheme ke objective/coverage paras se confirm karein."
+  },
+  {
+   "id": "emp_rate",
+   "label": "Employee ka PF rate",
+   "kind": "fact",
+   "value": 0.12,
+   "unit": "%",
+   "source": "EPF Scheme, 2026, paragraph 18 (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 18: employee 12% of wages; notified class of establishments 10%. Person Gazette mein para 18 khol kar rate aur 'wages' ki definition confirm karein."
+  },
+  {
+   "id": "er_rate",
+   "label": "Employer ka PF rate",
+   "kind": "fact",
+   "value": 0.12,
+   "unit": "%",
+   "source": "EPF Scheme, 2026, paragraph 18 (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 18: employer bhi 12% of wages. Person Gazette mein para 18 confirm karein."
+  },
+  {
+   "id": "eps_share",
+   "label": "Employer ke hisse mein pension wala hissa",
+   "kind": "fact",
+   "value": 0.0833,
+   "unit": "%",
+   "source": "Employees' Pension Scheme, 2026, paragraph 4 (G.S.R. 527(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273951.pdf",
+   "check_note": "EPS 2026 para 4: employer ke 12% mein se 8.33% pension fund mein jata hai. Person Gazette mein para 4 confirm karein."
+  },
+  {
+   "id": "er_epf_share",
+   "label": "Employer ke hisse mein PF account wala hissa",
+   "kind": "derived",
+   "value": 0.0367,
+   "unit": "%",
+   "formula": "er_rate - eps_share"
+  },
+  {
+   "id": "wage_ceiling",
+   "label": "PF wage ceiling (monthly)",
+   "kind": "fact",
+   "value": 25000,
+   "unit": "INR",
+   "source": "PIB, Ministry of Labour and Employment, 23 September 2026: EPFO Raises Wage Ceiling from Rs. 15,000 to Rs. 25,000",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2313829",
+   "check_note": "Cabinet ne 16 September 2026 ko ceiling Rs 15,000 se Rs 25,000 karne ko approve kiya; 17 September 2026 se lagu (S.O. 5109(E)). Person PIB release aur gazette notification se date aur rakam confirm karein — purane pages abhi bhi Rs 15,000 dikhate hain."
+  },
+  {
+   "id": "interest_rate",
+   "label": "EPF interest rate FY 2025-26",
+   "kind": "fact",
+   "value": 0.0825,
+   "unit": "%",
+   "source": "PIB, Ministry of Labour and Employment, 2 March 2026: 239th CBT meeting",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2234502&reg=3&lang=2",
+   "check_note": "Quote: 'CBT recommended 8.25% annual rate of interest to be credited on EPF accumulations in members' accounts for the financial year 2025-26.' Rate har saal declare hota hai; FY 2024-25 bhi 8.25% tha."
+  },
+  {
+   "id": "example_basic",
+   "label": "Example: Basic + DA",
+   "kind": "assumption",
+   "value": 25000,
+   "unit": "INR",
+   "note": "Example. Maan lo Basic + DA Rs 25,000 hai — yeh wage ceiling ke barabar hai, isliye isse zyada par mandatory contribution nahi badhta. Member ki apni salary slip mein asli Basic + DA hota hai."
+  },
+  {
+   "id": "emp_contrib",
+   "label": "Example: employee ka monthly PF",
+   "kind": "derived",
+   "value": 3000,
+   "unit": "INR",
+   "formula": "example_basic * emp_rate"
+  },
+  {
+   "id": "er_contrib",
+   "label": "Example: employer ka monthly PF",
+   "kind": "derived",
+   "value": 3000,
+   "unit": "INR",
+   "formula": "example_basic * er_rate"
+  },
+  {
+   "id": "eps_contrib",
+   "label": "Example: employer ke hisse mein pension",
+   "kind": "derived",
+   "value": 2082.5,
+   "unit": "INR",
+   "formula": "example_basic * eps_share"
+  },
+  {
+   "id": "er_epf_contrib",
+   "label": "Example: employer ke hisse mein PF account",
+   "kind": "derived",
+   "value": 917.5,
+   "unit": "INR",
+   "formula": "example_basic * er_epf_share"
+  },
+  {
+   "id": "total_monthly",
+   "label": "Example: har mahine kul jama",
+   "kind": "derived",
+   "value": 6000,
+   "unit": "INR",
+   "formula": "emp_contrib + er_contrib"
+  },
+  {
+   "id": "employer_not_deducted",
+   "label": "Employer ka hissa salary se nahi kat-ta",
+   "kind": "rule",
+   "statement": "Employer apna 12% hissa employee ki salary se nahi kaat sakta — woh company ki taraf se alag se jama hota hai.",
+   "source": "EPF Scheme, 2026, paragraph 21 (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 21: employer contribution employer ki taraf se hai, member ki wages se deduct nahi hoti. Person Gazette mein para 21 confirm karein."
+  },
+  {
+   "id": "final_wait_months",
+   "label": "Naukri chhodne ke baad poora PF kab milega",
+   "kind": "fact",
+   "value": 12,
+   "unit": "months",
+   "source": "EPF Scheme, 2026, paragraph 49(2), first proviso (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Gazette pp. 90-91: member eligible nahi 'unless the member has not been employed ... for a continuous period of not less than twelve months'. Ep01 mein bhi yahi fact use hua tha."
+  },
+  {
+   "id": "passbook_portal",
+   "label": "Passbook member portal par dekho",
+   "kind": "rule",
+   "statement": "Member apna PF passbook member portal par dekh sakta hai.",
+   "source": "EPFO member portal, unifiedportal-mem.epfindia.gov.in",
+   "source_url": "https://unifiedportal-mem.epfindia.gov.in/memberinterface/",
+   "check_note": "Person member portal khol kar passbook link confirm karein."
+  },
+  {
+   "id": "example_basic_2",
+   "label": "Example 2: Basic + DA",
+   "kind": "assumption",
+   "value": 20000,
+   "unit": "INR",
+   "note": "Example. Maan lo Basic + DA Rs 20,000 hai — Rs 25,000 ceiling se neeche, isliye poori Basic + DA par 12% kat-ta hai. Member ki apni salary slip mein asli Basic + DA hota hai."
+  },
+  {
+   "id": "emp_contrib_2",
+   "label": "Example 2: employee ka monthly PF",
+   "kind": "derived",
+   "value": 2400,
+   "unit": "INR",
+   "formula": "example_basic_2 * emp_rate"
+  },
+  {
+   "id": "er_contrib_2",
+   "label": "Example 2: employer ka monthly PF",
+   "kind": "derived",
+   "value": 2400,
+   "unit": "INR",
+   "formula": "example_basic_2 * er_rate"
+  },
+  {
+   "id": "total_monthly_2",
+   "label": "Example 2: har mahine kul jama",
+   "kind": "derived",
+   "value": 4800,
+   "unit": "INR",
+   "formula": "emp_contrib_2 + er_contrib_2"
+  }
+ ],
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "Salary aayi, PF kat gaya. Yeh paisa kahan gaya?",
+   "tts": "सैलरी आई, पीएफ कट गया। ये पैसा कहाँ गया?",
+   "highlights": [
+    "PF kat gaya",
+    "kahan gaya?"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "hook",
+   "vo": "Ghabrao mat. Yeh bacha hai.",
+   "tts": "घबराओ मत। ये बचा है।",
+   "highlights": [
+    "bacha hai"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S03",
+   "chapter": "problem",
+   "vo": "PF retirement ke liye bachat hai. Har mahine kat-ta hai.",
+   "tts": "पीएफ रिटायरमेंट के लिए बचत है। हर महीने कटता है।",
+   "highlights": [
+    "retirement ke liye bachat"
+   ],
+   "uses": [
+    "pf_meaning"
+   ]
+  },
+  {
+   "shot": "S04",
+   "chapter": "problem",
+   "vo": "In-hand kam milta hai. Paisa kahan gaya?",
+   "tts": "इन-हैंड कम मिलता है। पैसा कहाँ गया?",
+   "highlights": [
+    "In-hand kam"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S05",
+   "chapter": "why",
+   "vo": "Ek: aap 12% dete ho, Basic plus DA par.",
+   "tts": "एक: आप बारह प्रतिशत देते हो, बेसिक प्लस डीए पर।",
+   "highlights": [
+    "12%"
+   ],
+   "uses": [
+    "emp_rate"
+   ]
+  },
+  {
+   "shot": "S06",
+   "chapter": "why",
+   "vo": "Do: company bhi 12% deti hai, aapki salary se nahi.",
+   "tts": "दो: कंपनी भी बारह प्रतिशत देती है, आपकी सैलरी से नहीं।",
+   "highlights": [
+    "12%",
+    "salary se nahi"
+   ],
+   "uses": [
+    "er_rate",
+    "employer_not_deducted"
+   ]
+  },
+  {
+   "shot": "S07",
+   "chapter": "why",
+   "vo": "Teen: pension banti hai, PF bhi badhta hai.",
+   "tts": "तीन: पेंशन बनती है, पीएफ भी बढ़ता है।",
+   "highlights": [
+    "pension banti hai"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S08",
+   "chapter": "steps",
+   "vo": "Maan lo, Basic plus DA ₹25,000 hai, yahi ceiling hai.",
+   "tts": "मान लो, बेसिक प्लस डीए पच्चीस हज़ार रुपये है, यही सीलिंग है।",
+   "highlights": [
+    "₹25,000",
+    "ceiling"
+   ],
+   "uses": [
+    "example_basic",
+    "wage_ceiling"
+   ]
+  },
+  {
+   "shot": "S09",
+   "chapter": "steps",
+   "vo": "Company bhi ₹3,000 deti hai. Kul ₹6,000 har mahine jama.",
+   "tts": "कंपनी भी तीन हज़ार रुपये देती है। कुल छह हज़ार रुपये हर महीने जमा।",
+   "highlights": [
+    "₹6,000"
+   ],
+   "uses": [
+    "emp_contrib",
+    "er_contrib",
+    "total_monthly"
+   ]
+  },
+  {
+   "shot": "S10",
+   "chapter": "steps",
+   "vo": "Basic ₹20,000 ho to, aap ₹2,400 dete ho.",
+   "tts": "बेसिक बीस हज़ार रुपये हो तो, आप दो हज़ार चार सौ रुपये देते हो।",
+   "highlights": [
+    "₹20,000",
+    "₹2,400"
+   ],
+   "uses": [
+    "example_basic_2",
+    "emp_contrib_2"
+   ]
+  },
+  {
+   "shot": "S11",
+   "chapter": "steps",
+   "vo": "Company bhi ₹2,400 deti hai. Kul ₹4,800 har mahine.",
+   "tts": "कंपनी भी दो हज़ार चार सौ रुपये देती है। कुल चार हज़ार आठ सौ रुपये हर महीने।",
+   "highlights": [
+    "₹2,400",
+    "₹4,800"
+   ],
+   "uses": [
+    "er_contrib_2",
+    "total_monthly_2"
+   ]
+  },
+  {
+   "shot": "S12",
+   "chapter": "steps",
+   "vo": "Salary ₹25,000 se zyada? PF sirf ₹25,000 par kat-ta hai.",
+   "tts": "सैलरी पच्चीस हज़ार रुपये से ज़्यादा? पीएफ सिर्फ़ पच्चीस हज़ार रुपये पर कटता है।",
+   "highlights": [
+    "₹25,000",
+    "sirf ₹25,000"
+   ],
+   "uses": [
+    "wage_ceiling"
+   ]
+  },
+  {
+   "shot": "S13",
+   "chapter": "steps",
+   "vo": "Ek hissa PF mein, baaki pension mein.",
+   "tts": "एक हिस्सा पीएफ़ में, बाक़ी पेंशन में।",
+   "highlights": [
+    "Ek hissa",
+    "pension mein"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S14",
+   "chapter": "steps",
+   "vo": "Har saal interest judta hai.",
+   "tts": "हर साल इंटरेस्ट जुड़ता है।",
+   "highlights": [
+    "interest judta hai"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S15",
+   "chapter": "steps",
+   "vo": "Poora PF kab milega? Naukri chhodne ke 12 mahine baad.",
+   "tts": "पूरा पीएफ कब मिलेगा? नौकरी छोड़ने के बारह महीने बाद।",
+   "highlights": [
+    "12 mahine"
+   ],
+   "uses": [
+    "final_wait_months"
+   ]
+  },
+  {
+   "shot": "S16",
+   "chapter": "check",
+   "vo": "Passbook mein teeno hissa dekho.",
+   "tts": "पासबुक में तीनों हिस्सा देखो।",
+   "highlights": [
+    "Passbook"
+   ],
+   "uses": [
+    "passbook_portal"
+   ]
+  },
+  {
+   "shot": "S17",
+   "chapter": "check",
+   "vo": "Salary slip mein dekho. PF wali line mein ₹3,000 dikhega.",
+   "tts": "सैलरी स्लिप में देखो। पीएफ वाली लाइन में तीन हज़ार रुपये दिखेगा।",
+   "highlights": [
+    "₹3,000",
+    "Salary slip"
+   ],
+   "uses": [
+    "emp_contrib"
+   ]
+  },
+  {
+   "shot": "S18",
+   "chapter": "help",
+   "vo": "Passbook na dikhe? Portal par dobara dekho.",
+   "tts": "पासबुक न दिखे? पोर्टल पर दोबारा देखो।",
+   "highlights": [
+    "Portal"
+   ],
+   "uses": [
+    "passbook_portal"
+   ]
+  },
+  {
+   "shot": "S19",
+   "chapter": "share",
+   "vo": "Jiski pehli salary se PF kata, us dost ko abhi bhejo.",
+   "tts": "जिसकी पहली सैलरी से पीएफ कटा, उस दोस्त को अभी भेजो।",
+   "highlights": [
+    "abhi bhejo"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S20",
+   "chapter": "signoff",
+   "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+   "tts": "पीएफ समझो, क्लेम पाओ। ईपीएफओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ गुरु जी।",
+   "highlights": [
+    "PF Guru Ji"
+   ],
+   "uses": []
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 4.0,
+   "chapter": "hook",
+   "on_screen": "Photo: young office worker puzzled at phone, tab PEHLI SALARY · Stamp: KAT GAYA! · Black card: AAPKA PF / KAT GAYA?",
+   "card_text": [
+    "PEHLI SALARY",
+    "KAT GAYA!",
+    "AAPKA PF",
+    "KAT GAYA?"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S02",
+   "start": 4.0,
+   "end": 7.0,
+   "chapter": "hook",
+   "on_screen": "Headline: BACHA / HAI, with a yellow underline",
+   "card_text": [
+    "BACHA",
+    "HAI"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S03",
+   "start": 7.0,
+   "end": 12.5,
+   "chapter": "problem",
+   "on_screen": "Black card: PF KYA HAI / RETIREMENT BACHAT · Note: har mahine kat-ta hai",
+   "card_text": [
+    "PF KYA HAI",
+    "RETIREMENT BACHAT",
+    "har mahine kat-ta hai"
+   ],
+   "motion_text": [],
+   "uses": [
+    "pf_meaning"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S04",
+   "start": 12.5,
+   "end": 17.0,
+   "chapter": "problem",
+   "on_screen": "Headline: PAISA / KAHAN GAYA?",
+   "card_text": [
+    "PAISA",
+    "KAHAN GAYA?"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S05",
+   "start": 17.0,
+   "end": 21.0,
+   "chapter": "why",
+   "on_screen": "Arrow card: 12% / AAP DETE HO",
+   "card_text": [
+    "→",
+    "12%",
+    "AAP DETE HO"
+   ],
+   "motion_text": [],
+   "uses": [
+    "emp_rate"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S06",
+   "start": 21.0,
+   "end": 25.0,
+   "chapter": "why",
+   "on_screen": "Yellow arrow card: 12% / COMPANY DETI HAI",
+   "card_text": [
+    "↘",
+    "12%",
+    "COMPANY DETI HAI"
+   ],
+   "motion_text": [],
+   "uses": [
+    "er_rate",
+    "employer_not_deducted"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S07",
+   "start": 25.0,
+   "end": 30.0,
+   "chapter": "why",
+   "on_screen": "Row cards: 8.33% PENSION MEIN · 3.67% PF MEIN · Note: dono bante hain",
+   "card_text": [
+    "8.33%",
+    "PENSION MEIN",
+    "3.67%",
+    "PF MEIN",
+    "dono bante hain"
+   ],
+   "motion_text": [],
+   "uses": [
+    "eps_share",
+    "er_epf_share"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S08",
+   "start": 30.0,
+   "end": 34.0,
+   "chapter": "steps",
+   "on_screen": "Row cards: ₹25,000 BASIC + DA (MAAN LO) · × 12% PF RATE",
+   "card_text": [
+    "₹25,000",
+    "BASIC + DA (MAAN LO)",
+    "× 12%",
+    "PF RATE"
+   ],
+   "motion_text": [],
+   "uses": [
+    "example_basic",
+    "wage_ceiling",
+    "emp_rate"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S09",
+   "start": 34.0,
+   "end": 38.0,
+   "chapter": "steps",
+   "on_screen": "Row cards: ₹3,000 AAPKA PF · + ₹3,000 COMPANY KA PF · ₹6,000 KUL HAR MAHINE (yellow)",
+   "card_text": [
+    "₹3,000",
+    "AAPKA PF",
+    "+ ₹3,000",
+    "COMPANY KA PF",
+    "₹6,000",
+    "KUL HAR MAHINE"
+   ],
+   "motion_text": [],
+   "uses": [
+    "emp_contrib",
+    "er_contrib",
+    "total_monthly"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S10",
+   "start": 38.0,
+   "end": 42.5,
+   "chapter": "steps",
+   "on_screen": "Row cards: ₹2,400 AAPKA PF · ₹20,000 BASIC + DA (MAAN LO)",
+   "card_text": [
+    "₹2,400",
+    "AAPKA PF",
+    "₹20,000",
+    "BASIC + DA (MAAN LO)"
+   ],
+   "motion_text": [],
+   "uses": [
+    "example_basic_2",
+    "emp_contrib_2"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S11",
+   "start": 42.5,
+   "end": 47.5,
+   "chapter": "steps",
+   "on_screen": "Row cards: + ₹2,400 COMPANY KA PF · ₹4,800 KUL HAR MAHINE (yellow)",
+   "card_text": [
+    "+ ₹2,400",
+    "COMPANY KA PF",
+    "₹4,800",
+    "KUL HAR MAHINE"
+   ],
+   "motion_text": [],
+   "uses": [
+    "er_contrib_2",
+    "total_monthly_2"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S12",
+   "start": 47.5,
+   "end": 52.5,
+   "chapter": "steps",
+   "on_screen": "Black card: CEILING / ₹25,000 · Note: usse upar nahi",
+   "card_text": [
+    "CEILING",
+    "₹25,000",
+    "usse upar nahi"
+   ],
+   "motion_text": [],
+   "uses": [
+    "wage_ceiling"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S13",
+   "start": 52.5,
+   "end": 56.5,
+   "chapter": "steps",
+   "on_screen": "Row cards: ₹917.50 PF MEIN · + ₹2,082.50 PENSION MEIN",
+   "card_text": [
+    "₹917.50",
+    "PF MEIN",
+    "+ ₹2,082.50",
+    "PENSION MEIN"
+   ],
+   "motion_text": [],
+   "uses": [
+    "er_epf_contrib",
+    "eps_contrib"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S14",
+   "start": 56.5,
+   "end": 60.5,
+   "chapter": "steps",
+   "on_screen": "Yellow card: HAR SAAL / 8.25% INTEREST",
+   "card_text": [
+    "HAR SAAL",
+    "8.25%",
+    "INTEREST",
+    "HAR SAAL JUDTA HAI"
+   ],
+   "motion_text": [],
+   "uses": [
+    "interest_rate"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S15",
+   "start": 60.5,
+   "end": 64.5,
+   "chapter": "steps",
+   "on_screen": "Timeline: NAUKRI CHHODNE KE BAAD, 12 mahine wait",
+   "card_text": [
+    "NAUKRI CHHODNE KE BAAD",
+    "NAUKRI CHHODI",
+    "12 MAHINE",
+    "12",
+    "POORA PF 12 MAHINE BAAD"
+   ],
+   "motion_text": [],
+   "uses": [
+    "final_wait_months"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S16",
+   "start": 64.5,
+   "end": 72.0,
+   "chapter": "check",
+   "on_screen": "Photo: young man at home in the evening checking his phone · Typewriter checklist: PASSBOOK MEIN DEKHO / Aapka hissa. / Company ka hissa. / Pension ka hissa.",
+   "card_text": [
+    "PASSBOOK MEIN DEKHO",
+    "Aapka hissa.",
+    "Company ka hissa.",
+    "Pension ka hissa."
+   ],
+   "motion_text": [],
+   "uses": [
+    "passbook_portal"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S17",
+   "start": 72.0,
+   "end": 77.5,
+   "chapter": "check",
+   "on_screen": "Black card: SALARY SLIP / PF WALI LINE · Note: ₹3,000 dikhega",
+   "card_text": [
+    "SALARY SLIP",
+    "PF WALI LINE",
+    "₹3,000 dikhega"
+   ],
+   "motion_text": [],
+   "uses": [
+    "emp_contrib"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S18",
+   "start": 77.5,
+   "end": 81.0,
+   "chapter": "help",
+   "on_screen": "Black card: MEMBER PORTAL / PASSBOOK DEKHO · Ink stamp: OFFICIAL · Note: dobara dekho",
+   "card_text": [
+    "MEMBER PORTAL",
+    "PASSBOOK DEKHO",
+    "OFFICIAL",
+    "dobara dekho"
+   ],
+   "motion_text": [],
+   "uses": [
+    "passbook_portal"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S19",
+   "start": 81.0,
+   "end": 85.5,
+   "chapter": "share",
+   "on_screen": "Photo: two young friends looking at a phone together · Yellow tag: SHARE ↗ · Note: pehli salary wale ko",
+   "card_text": [
+    "SHARE ↗",
+    "pehli salary wale ko"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S20",
+   "start": 85.5,
+   "end": 94.5,
+   "chapter": "signoff",
+   "on_screen": "Note: PF samjho, claim pao. · End card: logo, tagline, FOLLOW @PFGURUJI button, small print",
+   "card_text": [
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?",
+    "FOLLOW @PFGURUJI",
+    "NIYAM: EPFO.GOV.IN",
+    "EXAMPLE NUMBERS · APNA PASSBOOK DEKHO",
+    "EPFO KA OFFICIAL CHANNEL NAHI"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  }
+ ],
+ "breaks": [
+  {
+   "after": "S07",
+   "at": 30.0,
+   "type": "tear-lemon",
+   "asset": "A08"
+  },
+  {
+   "after": "S17",
+   "at": 77.5,
+   "type": "tear-paper",
+   "asset": "A09"
+  }
+ ],
+ "post": {
+  "caption": "Salary aayi, PF kat gaya? Ghabrao mat. Yeh kata nahi, bacha hai.\n\nPF retirement ke liye bachat hai. Aap Basic + DA par 12% dete ho, company bhi 12% deti hai. Maan lo Basic + DA ₹25,000 hai, to har mahine ₹6,000 jama hota hai, aur 8.25% interest judta hai. Poora PF naukri chhodne ke 12 mahine baad milega.\n\nPassbook mein apna, company ka aur pension ka hissa alag-alag dekho.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#pfguruji #epfo #pf #salary #uan",
+  "hashtags": [
+   "#pfguruji",
+   "#epfo",
+   "#pf",
+   "#salary",
+   "#uan"
+  ],
+  "pinned_comment": "Aapko pehli baar PF kab kata tha? Comment karo. UAN, OTP ya bank details kabhi mat likhna.",
+  "cover": {
+   "lines": [
+    "PF",
+    "KYA HAI?"
+   ],
+   "stamp": "12% + 12%",
+   "asset": "A07"
+  },
+  "trial_hook": "Salary se PF kata? Yeh paisa kahan gaya?"
+ }
+}

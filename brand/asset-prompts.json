@@ -1,0 +1,105 @@
+{
+  "schema": "dc-asset-prompts/1",
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Background plate",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Make once and reuse in every episode. Every shot edits this exact image.",
+      "prompt": "Top-down photograph that fills a vertical 9:16 frame: one sheet of warm off-white paper (#E4DFD6) that was crumpled into a ball and flattened out again. Soft, irregular creases with gentle shadows, matte fibrous texture, soft window light from the top-left, and a slightly darker vignette toward the bottom edge. Nothing on the paper: no objects, no marks, no text. Even exposure, sharp detail, realistic.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A02",
+      "name": "Black paper plate (end card)",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Make once. The end card sits on this.",
+      "prompt": "Top-down photograph that fills a vertical 9:16 frame: one sheet of matte black paper (#121212) that was crumpled and flattened again. The creases catch faint grey highlights from soft light at the top-left; the edges are slightly darker. Nothing on the paper: no objects, no marks, no text.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A03",
+      "name": "Paper props kit (blank cut-outs)",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Make once. Cut each prop out with Canva’s Background Remover, then add a soft shadow back in Canva.",
+      "prompt": "Flat-lay, top-down, on a plain light grey (#D9D9D9) background: nine separate paper props in a 3×3 grid, evenly spaced, not touching, each with a soft shadow. (1) Lemon-yellow (#F5EE30) printed card, 3:1. (2) Black (#1A1A1A) card, 2:1. (3) Off-white card, 4:1. (4) Square graph-paper card with a light grey 5 mm grid. (5) Off-white strip with torn, deckled top and bottom edges, 6:1. (6) Small black label tab, 5:1. (7) Empty red (#C8443A) rubber-stamp frame: a rounded-rectangle outline with slightly uneven ink. (8) Lemon-yellow tag with one torn end, 3:1. (9) Off-white typewriter index card with faint ruled lines. All props completely blank: no text, numbers or symbols.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A04",
+      "name": "Rubber stamp maker",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Change the words for each stamp: short verdicts like REJECT! · PEHLE YEH · FREE HAI · OFFICIAL. For the good side of a comparison change red to ink black (#1A1A1A). Cut out with Background Remover.",
+      "prompt": "A red (#C8443A) rubber-stamp impression on plain white paper, top-down: a rounded-rectangle border around the words \"REJECT!\" in tall condensed bold capitals, slightly uneven ink with tiny gaps, rotated −5°. Only these words, spelled exactly. Nothing else in the image.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A05",
+      "name": "Halftone photo maker",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Swap the subject for each photo, from the episode's reel.json. Never a document, form, ID card or passbook with readable text, and never the EPFO logo. The share shot: “a hand holding a smartphone with a completely blank white screen against a plain grey background”.",
+      "prompt": "A black-and-white newspaper photograph printed with coarse, clearly visible halftone dots, high contrast with slightly faded blacks. Subject: a factory worker in his thirties sitting on a bench outside a small Indian workshop, looking down at a smartphone in his hand. The print has torn, deckled top and bottom edges and clean left and right edges, landscape 4:3, lying flat on a plain light grey background with a soft shadow. No readable text, no logos, no brand names; the face is not the focus.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A06",
+      "name": "Crosshair corner mark",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "A printer's registration crosshair, the same mark tools/build_reel.py draws. Use at 26 px, 60% opacity, in two corners.",
+      "prompt": "A tiny black ink mark on plain white paper, top-down: a printer's registration crosshair, a thin circle with a thin cross through it that reaches just past the circle, drawn in clean pen strokes. Centred, lots of empty space around it, nothing else.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A07",
+      "name": "Reel cover",
+      "tool": "Muse Image",
+      "kind": "image",
+      "when": "Or use the S01 frame. Words must stay inside the middle 3:4 of the frame.",
+      "prompt": "Edit the attached background and keep the paper exactly as it is. In the centre of the frame, huge black tall-condensed capitals on two lines: the cover lines from the episode's post.cover, with a lemon-yellow (#F5EE30) highlighter swipe behind the key word. Below them, a red rubber stamp with the cover stamp, rotated −6°. Keep all text inside the central 3:4 area of the frame so it survives the profile-grid crop. Nothing else.",
+      "add_style_lock": true,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A08",
+      "name": "Torn-paper wipe: black",
+      "tool": "Muse Video",
+      "kind": "motion",
+      "when": "Goes over the cut at the first chapter break (between why and steps). Key out the green in VN Editor, Premiere Pro or DaVinci Resolve. No chroma key? Use Canva’s Color wipe in black.",
+      "prompt": "Solid chroma-green (#00B140) vertical 9:16 frame. A sheet of matte black paper with a rough, torn vertical leading edge sweeps in from the right and covers the whole frame in 0.35 seconds, holds for 2 frames, then keeps moving and exits to the left in 0.35 seconds, leaving pure green again. Flat top-down view, no camera movement, no shadow on the green. 1.5 seconds. Silent.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A09",
+      "name": "Torn-paper wipe: paper",
+      "tool": "Muse Video",
+      "kind": "motion",
+      "when": "Goes over the cut at the second chapter break (between check and help). Same keying as A08.",
+      "prompt": "Solid chroma-green (#00B140) vertical 9:16 frame. A sheet of warm off-white crumpled paper (#E4DFD6) with soft crease shadows and a rough, torn vertical leading edge sweeps in from the right and covers the whole frame in 0.35 seconds, holds for 2 frames, then keeps moving and exits to the left in 0.35 seconds, leaving pure green again. Flat top-down view, no camera movement. 1.5 seconds. Silent.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    },
+    {
+      "id": "A10",
+      "name": "Living paper loop (optional)",
+      "tool": "Muse Video",
+      "kind": "motion",
+      "when": "Optional. Put it under the cards for a little life. The reference keeps its background still.",
+      "prompt": "Use the attached background as the exact first frame. The paper stays perfectly still. Only the light changes: a very soft shadow, like a passing cloud, drifts slowly across the creases from left to right over 10 seconds. No camera movement, no new objects. Silent.",
+      "add_style_lock": false,
+      "add_motion_lock": false
+    }
+  ]
+}

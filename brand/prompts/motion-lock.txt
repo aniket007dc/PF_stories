@@ -1,0 +1,1 @@
+Motion rules: camera locked (no zoom, pan, tilt or shake unless asked). Objects move as solid flat paper: quick move, small overshoot, then hold still. Every letter and number stays sharp and identical once it lands; no morphing, no new text, no new objects. The final frame must match the attached keyframe. Vertical 9:16. Silent: no music, no voice.

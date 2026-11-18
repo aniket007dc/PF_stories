@@ -1,0 +1,406 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "ep05-transfer-out-rejected",
+ "brand_label": "PF GURU JI",
+ "photos": {
+  "first_day": {
+   "id": "P1",
+   "file": "episodes/ep05-transfer-out-rejected/media/photos/first_day.webp",
+   "alt": "a young man on his first day at a new office desk, staring at his phone with a worried frown",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. In a small office in India, a young man in his late twenties in a plain shirt sits at a desk on his first day at a new job, holding a smartphone and staring at it with a worried frown, a cardboard box of his belongings beside him. Flat fluorescent light, high contrast, fine film grain, eye-level camera, the subject in the middle of the frame. No text, no readable labels, no logos, no watermark."
+  },
+  "phone_share": {
+   "id": "P2",
+   "file": "episodes/ep05-transfer-out-rejected/media/photos/phone_share.webp",
+   "alt": "a hand holding out a phone with a blank screen towards a friend",
+   "prompt": "Black-and-white photograph, landscape 4:3. On a quiet residential street in India in the evening, a young woman's hand holds a smartphone out towards a friend, the screen completely blank white, the friend reaching for it, soft street light. High contrast, fine film grain, the phone in the middle of the frame. No text, no logos, no readable signs, no watermark."
+  }
+ },
+ "shots": {
+  "S01": [
+   {
+    "type": "photo",
+    "src": "first_day",
+    "y": 400,
+    "w": 960,
+    "h": 560,
+    "rot": -1.2,
+    "at": 0,
+    "in": "none"
+   },
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "ATKA KYUN?",
+    "big": "PURANA PF",
+    "size": 150,
+    "y": 860,
+    "w": 760,
+    "rot": -1,
+    "on": "PF"
+   },
+   {
+    "type": "stamp",
+    "text": "AAYA NAHI?",
+    "color": "red",
+    "x": 720,
+    "y": 1180,
+    "rot": 7,
+    "size": 120,
+    "on": "nahi?"
+   }
+  ],
+  "S02": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "FORM 13",
+    "big": "BHAR DIYA",
+    "size": 170,
+    "y": 480,
+    "w": 900,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "PHIR BHI PF ATKA HAI"
+   },
+   {
+    "type": "note",
+    "text": "phir bhi atka hai",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "atka"
+   }
+  ],
+  "S03": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "EPFO",
+    "big": "94%",
+    "size": 210,
+    "y": 430,
+    "w": 900,
+    "h": 470,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "CLAIMS SEEDHA JAATE HAIN"
+   },
+   {
+    "type": "note",
+    "text": "tumhara atka kyun?",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "jaate"
+   }
+  ],
+  "S04": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "SHIKAYATON MEIN",
+    "big": "17%",
+    "label": "TRANSFER KI",
+    "size": 210,
+    "y": 470,
+    "w": 760,
+    "rot": -1,
+    "at": 0.1
+   },
+   {
+    "type": "stamp",
+    "text": "ATKA HAI",
+    "color": "red",
+    "x": 700,
+    "y": 930,
+    "rot": 7,
+    "size": 120,
+    "on": "hoti"
+   }
+  ],
+  "S05": [
+   {
+    "type": "arrow_card",
+    "arrow": "→",
+    "title": "OVERLAP",
+    "sub": "EXIT DATE × JOINING DATE",
+    "style": "yellow",
+    "y": 420,
+    "w": 900,
+    "in": "slide_left",
+    "at": 0.1
+   },
+   {
+    "type": "stamp",
+    "text": "AAKSAR!",
+    "color": "red",
+    "x": 700,
+    "y": 930,
+    "rot": 7,
+    "size": 120,
+    "on": "overlap"
+   }
+  ],
+  "S06": [
+   {
+    "type": "arrow_card",
+    "arrow": "↘",
+    "title": "IDENTITY",
+    "sub": "ONLINE CONFIRM NAHI HUI",
+    "style": "white",
+    "y": 420,
+    "w": 900,
+    "in": "slide_left",
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "employer ke paas gaya",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "gaya."
+   }
+  ],
+  "S07": [
+   {
+    "type": "arrow_card",
+    "arrow": "↗",
+    "title": "PENSION KA PAISA",
+    "sub": "TRANSFER NAHI HOTA",
+    "style": "white",
+    "y": 420,
+    "w": 900,
+    "in": "slide_left",
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "sirf service history",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "history"
+   }
+  ],
+  "S08": [
+   {
+    "type": "typewriter",
+    "tab": "MEMBER PORTAL",
+    "lines": [
+     "Exit date check karo.",
+     "Joining date check karo."
+    ],
+    "highlight": "check",
+    "highlight_on": "check",
+    "type_at": 0.5,
+    "line_every": 1.15,
+    "at": 0.1
+   }
+  ],
+  "S09": [
+   {
+    "type": "arrow_card",
+    "arrow": "→",
+    "title": "MARK EXIT",
+    "sub": "MANAGE TAB MEIN",
+    "style": "white",
+    "y": 420,
+    "w": 900,
+    "in": "slide_left",
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "exit date theek karo",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "karo."
+   }
+  ],
+  "S10": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "SCHEME KE ACCORDING",
+    "big": "EMPLOYER",
+    "size": 190,
+    "y": 480,
+    "w": 900,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "FORWARD KAREGA"
+   },
+   {
+    "type": "note",
+    "text": "identity confirm karwao",
+    "color": "red",
+    "x": 420,
+    "y": 950,
+    "size": 96,
+    "rot": -4,
+    "on": "karwao."
+   }
+  ],
+  "S11": [
+   {
+    "type": "funnel",
+    "tab": "ATTEST KA SAFAR",
+    "y": 420,
+    "w": 920,
+    "rows": [
+     {
+      "text": "EMPLOYER ATTEST",
+      "width": 1.0,
+      "on": "Employer"
+     },
+     {
+      "text": "BANK ATTEST",
+      "width": 0.76,
+      "on": "bank"
+     },
+     {
+      "text": "RPFC KO DO",
+      "width": 0.58,
+      "style": "yellow",
+      "on": "RPFC"
+     }
+    ],
+    "at": 0.1
+   }
+  ],
+  "S12": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "ANNEXURE K",
+    "big": "CHECK KARO",
+    "size": 150,
+    "y": 480,
+    "w": 900,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "TRANSFER CERTIFICATE"
+   }
+  ],
+  "S13": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "DOBARA FILE KARNE SE PEHLE",
+    "big": "OVERLAP?",
+    "size": 190,
+    "y": 480,
+    "w": 900,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "EXIT DATE × JOINING DATE"
+   },
+   {
+    "type": "stamp",
+    "text": "PHIR ATKEGA!",
+    "color": "red",
+    "x": 700,
+    "y": 930,
+    "rot": 7,
+    "size": 120,
+    "on": "nahi?"
+   }
+  ],
+  "S14": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "RPFC",
+    "big": "BAAT KAREGA",
+    "size": 120,
+    "y": 470,
+    "w": 760,
+    "rot": -1,
+    "at": 0.1,
+    "foot": "EMPLOYER SE"
+   },
+   {
+    "type": "stamp",
+    "text": "OFFICIAL",
+    "color": "ink",
+    "x": 700,
+    "y": 930,
+    "rot": 7,
+    "size": 120,
+    "on": "jao."
+   }
+  ],
+  "S15": [
+   {
+    "type": "photo",
+    "src": "phone_share",
+    "y": 400,
+    "w": 960,
+    "h": 560,
+    "rot": -1.2,
+    "at": 0.1,
+    "in": "none"
+   },
+   {
+    "type": "tag",
+    "text": "SHARE ↗",
+    "x": 760,
+    "y": 905,
+    "rot": -4,
+    "size": 96,
+    "on": "bhejo."
+   },
+   {
+    "type": "note",
+    "text": "naukri badalne wale dost ko",
+    "color": "red",
+    "x": 540,
+    "y": 1110,
+    "size": 74,
+    "rot": -3,
+    "on": "dost"
+   }
+  ],
+  "S16": [
+   {
+    "type": "note",
+    "text": "PF samjho, claim pao.",
+    "color": "ink",
+    "x": 540,
+    "y": 760,
+    "size": 124,
+    "rot": -2,
+    "at": 0.1,
+    "dur": 1.0,
+    "out": {
+     "on": "EPFO"
+    }
+   },
+   {
+    "type": "endcard",
+    "tagline": "PF samjho, claim pao.",
+    "small": [
+     "NIYAM: EPFO.GOV.IN",
+     "EPFO KA OFFICIAL CHANNEL NAHI"
+    ],
+    "y": 430,
+    "on": "EPFO",
+    "lead": -0.2,
+    "cta_on": "Follow"
+   }
+  ]
+ }
+}

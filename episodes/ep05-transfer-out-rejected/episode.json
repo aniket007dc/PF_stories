@@ -1,0 +1,700 @@
+{
+ "schema": "dc-episode/1",
+ "id": "ep05",
+ "slug": "transfer-out-rejected",
+ "series": "PF Guru Ji",
+ "title": "Transfer out form reject kyun hota hai?",
+ "tag": "PF GURU JI #05 · TRANSFER REJECT",
+ "created": "2026-11-15",
+ "route": "build",
+ "brief": {
+  "topic": "Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein?",
+  "repeat_check": {
+   "closest": "ep01-claim-reject",
+   "different_because": "ep01 is about withdrawal claims (Form 19) getting rejected; this reel is about transfer claims (Form 13) getting rejected when changing jobs — different form, different reasons (exit date, Annexure K, two UANs, exempted trust)."
+  },
+  "viewer": "Someone who changed jobs, filed a transfer claim (Form 13) for the old PF, and whose money still hasn't moved to the new account.",
+  "hook": "Nayi naukri join kar li — purana PF aaya nahi?",
+  "problem": "The transfer claim comes back or sits for months, so the old PF stays in the old account and the old service doesn't join the new one.",
+  "why": [
+   "The two jobs' service periods overlap in EPFO's records — EPFO itself says regional offices have been rejecting transfer claims for this.",
+   "The member's identity or account ownership couldn't be confirmed online, so the claim goes to the employer to forward after confirming identity.",
+   "The pension amount never moves with a transfer — only the past service history does — so a passbook without the pension amount looks like a failed transfer."
+  ],
+  "steps": [
+   "Check the service dates: the old exit date against the new joining date — if they overlap, that is what EPFO's offices have been rejecting claims for.",
+   "If the identity couldn't be confirmed online, ask the employer to confirm the identity and forward the application — the Scheme says the employer shall do that.",
+   "If the employer won't attest or isn't available, get the form attested by the bank manager and submit it to the Regional PF Commissioner.",
+   "Check the transfer with Annexure K — the transfer certificate with the full details."
+  ],
+  "check": "Before filing again, check one thing: do the old exit date and the new joining date overlap in EPFO's records?",
+  "help": "The Regional PF Commissioner — EPFO's FAQ says the RPFC pursues the matter with the employer where attestation is disputed.",
+  "share_target": "A friend who changed jobs and whose old PF hasn't moved yet.",
+  "why_now": "Since January 2025 most transfer claims no longer need the employer at all, and since April 2025 the destination office's approval is gone too — so if yours is still stuck, it is one of these reasons."
+ },
+ "data": [
+  {
+   "id": "direct_share",
+   "label": "Transfer claims expected to go direct to EPFO without employer intervention",
+   "kind": "fact",
+   "value": 0.94,
+   "unit": "%",
+   "source": "PIB, Ministry of Labour and Employment, 19 January 2025: EPFO simplifies PF transfer process",
+   "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2094230",
+   "check_note": "Quote: 'it is expected that in future over 1.20 crore out of 1.30 crore total transfer claims i.e. 94% of the total claims would be directly forwarded to EPFO without requiring the employer's intervention.' Same release: the requirement to route online transfer claims through either employer 'has been removed in majority of cases'.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "grievance_share",
+   "label": "Share of total grievances that are transfer-related",
+   "kind": "fact",
+   "value": 0.17,
+   "unit": "%",
+   "source": "PIB, Ministry of Labour and Employment, 19 January 2025: EPFO simplifies PF transfer process",
+   "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2094230",
+   "check_note": "Quote: '(presently 17% of the total grievances pertain to transfer related issues) along with the corresponding rejections.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "transfer_form13",
+   "label": "Transfer on changing jobs goes through the designated portal",
+   "kind": "rule",
+   "statement": "On changing jobs, a member may apply on the designated portal to transfer the PF balance from the old account to the new one.",
+   "source": "Employees' Provident Funds Scheme, 2026, paragraph 43(1) (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 43, 'Transfer of membership', pp. 85-86: where a member relinquishes employment and secures employment in another establishment to which the Scheme applies, an exempted establishment, or an establishment with its own PF scheme, 'the member may apply on the designated portal, for the purpose for transfer of balance of the provident fund from the existing account to the new account.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "identity_employer_forward",
+   "label": "If identity can't be confirmed online, the employer forwards the transfer application",
+   "kind": "rule",
+   "statement": "If the member's identity or account ownership can't be confirmed online, the employer shall forward the transfer application after confirming the identity of the member.",
+   "source": "Employees' Provident Funds Scheme, 2026, paragraph 43(3), proviso (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 43(3), pp. 85-86: 'Provided that in case of non-confirmation of the identity of the member of the provident fund account through online mode, the employer shall forward the application for transfer after confirming the identity of the member to the Commissioner.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "employer_upload_leavers",
+   "label": "Employer must upload leavers' details within 15 days of month close",
+   "kind": "rule",
+   "statement": "Every employer shall, within fifteen days of the close of each month, upload on the designated portal the details of the employees leaving service during the preceding month.",
+   "source": "Employees' Provident Funds Scheme, 2026, paragraph 24(2)(v) (Gazette of India, G.S.R. 525(E), 29 June 2026)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 24(2), 'Duties of employers', pp. 78-79: 'Every employer shall, within fifteen days of the close of each month, upload electronically on the designated portal details of the employees leaving the service of the employer during the preceding month.' Sub-para (ii) covers joiners on transfer 'by way of linkage of UANs'.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "overlap_not_disqualification",
+   "label": "Overlap in service periods is not a disqualification for transfer",
+   "kind": "rule",
+   "statement": "Transfer claims have been rejected for overlap in service periods, but overlap can occur for genuine reasons and is not a disqualification per se; the source office must process the claim even with overlapping services, clarifying only where genuinely needed.",
+   "source": "EPFO circular No. WSU/TransferClaim/E-52972/2025-26/07 dated 20/05/2025, 'Simplification of Transfer Claim Process — Handling of Overlapping Service Period during processing of Transfer Claim requests'",
+   "source_url": "https://pmvbry-cdn.epfindia.gov.in/wp-content/uploads/2025/09/41.pdf",
+   "check_note": "Quote: 'It has been observed that Transfer Claim requests are being rejected due to the issue of Overlap in Service Periods by the Regional Offices. However, overlapping in services can occur due to genuine reasons and therefore the same should not be considered to be a disqualification per-se in effecting transfers.' And: 'the Transfer Claim requests are required to be processed by the Transferor (Source) Office even though there may be overlapping services without returning or rejecting the same. Only in cases where a genuine need is felt to clarify the overlapping of service, would the claims be processed after obtaining the requisite clarification.' One-page circular, signed G.R. Suchindranath, ACC (WSU), with CPFC approval.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "attestation_duty",
+   "label": "Attestation is the employer's duty; bank attestation is the fallback",
+   "kind": "rule",
+   "statement": "It is the employer's duty to attest the application form; if the employer won't, the member may get attestation from the bank where they hold their account and submit to the Regional PF Commissioner, who will pursue the matter with the employer.",
+   "source": "EPFO FAQ, Employer category (epfo.gov.in/faq-epfo/, last updated 6 November 2026)",
+   "source_url": "https://www.epfo.gov.in/faq-epfo/",
+   "check_note": "FAQ: 'It is the duty of the employer to attest the application form. In case of any dispute, the member may attain attestation preferably from the bank in which he has maintained his account and thereafter submit the same to Regional PF Commissioner, explaining the reasons for not obtaining the signature of the employer. The Regional P.F. Commissioner will pursue the matter with the employer wherever necessary.' A second FAQ adds the bank manager route where the employer is not available or the establishment has closed.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "no_attestation_forms",
+   "label": "Only Form 19, 10C and 31 can be filed without employer attestation",
+   "kind": "rule",
+   "statement": "Currently a member can submit only three types of claims without attestation of the employer — Form 19, Form 10C and Form 31. Transfer (Form 13) is not among them.",
+   "source": "EPFO FAQ, Employer category (epfo.gov.in/faq-epfo/, last updated 6 November 2026)",
+   "source_url": "https://www.epfo.gov.in/faq-epfo/",
+   "check_note": "FAQ: 'Currently the member can submit 3 types of claims without attestation of Employer namely, Form-19, 10C and 31. However, the member must ensure that his UAN is activated and at least the bank account and Aadhaar KYC's in respect of his account are approved by the Employer using his Digital Signature Certificate.' Transfer is not listed.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "pension_not_transferred",
+   "label": "Pension amount is not transferred; only service history moves",
+   "kind": "rule",
+   "statement": "The pension amount is not transferred when employment changes; only the past service history moves, which makes the member eligible for pension benefits.",
+   "source": "EPFO FAQ, Pensioner category (epfo.gov.in/faq-epfo/, last updated 6 November 2026)",
+   "source_url": "https://www.epfo.gov.in/faq-epfo/",
+   "check_note": "FAQ: 'The pensionary benefits are dependent on the length of service and the average of last wages drawn. It does not depend on the actual amount lying in the Pension Fund Account. Hence this amount is not transferred during change of employment and a mere transfer of past service history makes the member eligible for pension related benefits.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "annexure_k",
+   "label": "Annexure K is the transfer certificate with full details",
+   "kind": "rule",
+   "statement": "Annexure-K is the transfer certificate giving full details of the transfer, issued to the transferee Regional PF Commissioner or PF Trust; a copy can be requested from the EPF office.",
+   "source": "EPFO FAQ, Employee category (epfo.gov.in/faq-epfo/, last updated 6 November 2026)",
+   "source_url": "https://www.epfo.gov.in/faq-epfo/",
+   "check_note": "FAQ: 'A copy of Transfer Certificate Annexure-K issued to the transferee Regional P.F. Commissioner/P.F. Trust giving full details of the transfer can be requested from the EPF office.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "mark_exit_doe",
+   "label": "Different dates of exit can be entered for EPF and EPS",
+   "kind": "rule",
+   "statement": "Different dates of exit can be entered for EPF and EPS using Mark Exit; the EPS exit date cannot be later than the EPF exit date, and for an EPS member under 58 both must be the same.",
+   "source": "EPFO FAQ, Pensioner category (epfo.gov.in/faq-epfo/, last updated 6 November 2026)",
+   "source_url": "https://www.epfo.gov.in/faq-epfo/",
+   "check_note": "FAQ: 'It is possible to different Date of Exist for EPF and EPS, Please note that the date of exit form EPS may be blank if member is not an EPS member. It can be also earlier that date of exit PF only when the member has completed 58 years age. But it cannot be later than the exit form PF. For an EPS member not completed 58 years the date of exit in both has to be same.' Typos as on the page.",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  },
+  {
+   "id": "destination_approval_removed",
+   "label": "Destination office approval removed under revamped Form 13",
+   "kind": "rule",
+   "statement": "EPFO removed the requirement of approval of transfer claims at the destination office under the revamped Form 13; once the claim is approved at the source office, the previous account transfers automatically to the present account.",
+   "source": "PIB, Ministry of Labour and Employment, 25 April 2025: Simplification of Transfer Claim Process through Revamped Form 13 functionality",
+   "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2124244",
+   "check_note": "Quote: 'EPFO has removed the requirement of approval of all transfer claims at the Destination Office by launching a Revamped Form 13 software functionality.' And: 'once the transfer claim gets approved at the Transferor (Source) Office the previous account will automatically get transferred to the present account of the member at the Transferee (Destination) Office instantly.'",
+   "checked_by": "Divyank Sharma",
+   "checked_on": "2026-11-16",
+   "check_result": "Checked by Divyank on EPFO/PIB source"
+  }
+ ],
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "Nayi naukri join kar li — purana PF aaya nahi?",
+   "tts": "नई नौकरी जॉइन कर ली — पुराना पीएफ़, आया नहीं?",
+   "delivery": "curious · the question hangs, like asking a friend",
+   "highlights": [
+    "purana PF"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "problem",
+   "vo": "Form 13 bhar diya. Phir bhi PF atka hai.",
+   "tts": "फ़ॉर्म थर्टीन भर दिया। फिर भी पीएफ़, अटका है।",
+   "delivery": "concerned · flat and direct, the stuck money lands",
+   "highlights": [
+    "Form 13"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S03",
+   "chapter": "problem",
+   "vo": "EPFO kehta hai, 94% claims seedha jaate hain.",
+   "tts": "ईपीएफ़ओ कहता है, नाइंटी फ़ोर परसेंट क्लेम्स सीधा जाते हैं।",
+   "delivery": "surprised · lift on 94%, the contrast lands",
+   "highlights": [
+    "94%"
+   ],
+   "uses": [
+    "direct_share"
+   ]
+  },
+  {
+   "shot": "S04",
+   "chapter": "problem",
+   "vo": "Shikayaton mein 17% shikayatein transfer ki hoti hain.",
+   "tts": "शिकायतों में सेवेनटीन परसेंट शिकायतें ट्रांसफ़र की होती हैं।",
+   "delivery": "serious · steady, the scale of the problem",
+   "highlights": [
+    "17%"
+   ],
+   "uses": [
+    "grievance_share"
+   ]
+  },
+  {
+   "shot": "S05",
+   "chapter": "why",
+   "vo": "Ek: exit date aur joining date overlap kar gayi.",
+   "tts": "एक: एग्ज़िट डेट और जॉइनिंग डेट ओवरलैप कर गई।",
+   "delivery": "serious · stress overlap, the first reason",
+   "highlights": [
+    "overlap"
+   ],
+   "uses": [
+    "overlap_not_disqualification"
+   ]
+  },
+  {
+   "shot": "S06",
+   "chapter": "why",
+   "vo": "Do: online identity confirm nahi hui. Claim employer ke paas gaya.",
+   "tts": "दो: ऑनलाइन आइडेंटिटी कन्फ़र्म नहीं हुई। क्लेम एम्प्लॉयर के पास गया।",
+   "delivery": "concerned · stress employer, the claim moved away",
+   "highlights": [
+    "employer"
+   ],
+   "uses": [
+    "identity_employer_forward"
+   ]
+  },
+  {
+   "shot": "S07",
+   "chapter": "why",
+   "vo": "Teen: pension ka paisa transfer nahi hota. Sirf service history judti hai.",
+   "tts": "तीन: पेंशन का पैसा ट्रांसफ़र नहीं होता। सिर्फ़ सर्विस हिस्ट्री जुड़ती है।",
+   "delivery": "warm · gentle correction, the pension isn't lost",
+   "highlights": [
+    "pension"
+   ],
+   "uses": [
+    "pension_not_transferred"
+   ]
+  },
+  {
+   "shot": "S08",
+   "chapter": "steps",
+   "vo": "member portal par dates check karo. Exit date, joining date.",
+   "tts": "मेंबर पोर्टल पर डेट्स चेक करो। एग्ज़िट डेट, जॉइनिंग डेट।",
+   "delivery": "excited · brisk, the fix starts now",
+   "highlights": [
+    "member portal"
+   ],
+   "uses": [
+    "overlap_not_disqualification"
+   ]
+  },
+  {
+   "shot": "S09",
+   "chapter": "steps",
+   "vo": "Manage tab mein Mark Exit se exit date theek karo.",
+   "tts": "मैनेज टैब में मार्क एग्ज़िट से एग्ज़िट डेट ठीक, करो।",
+   "delivery": "proud · confident, the exact menu",
+   "highlights": [
+    "Mark Exit"
+   ],
+   "uses": [
+    "mark_exit_doe"
+   ]
+  },
+  {
+   "shot": "S10",
+   "chapter": "steps",
+   "vo": "Identity confirm nahi hui to employer se karwao. Scheme ke according employer forward karega.",
+   "tts": "आइडेंटिटी कन्फ़र्म नहीं हुई तो एम्प्लॉयर से करवाओ। स्कीम के अकॉर्डिंग, एम्प्लॉयर फ़ॉरवर्ड करेगा।",
+   "delivery": "serious · stress Scheme, the rule backs you",
+   "highlights": [
+    "employer"
+   ],
+   "uses": [
+    "identity_employer_forward"
+   ]
+  },
+  {
+   "shot": "S11",
+   "chapter": "steps",
+   "vo": "Employer attest na kare to bank se attest karwao. Phir RPFC ko do.",
+   "tts": "एम्प्लॉयर अटेस्ट ना करे तो बैंक से अटेस्ट करवाओ। फिर आर पी एफ़ सी को दो।",
+   "delivery": "warm · reassuring, there is a fallback",
+   "highlights": [
+    "RPFC"
+   ],
+   "uses": [
+    "attestation_duty"
+   ]
+  },
+  {
+   "shot": "S12",
+   "chapter": "steps",
+   "vo": "Annexure K se transfer check karo.",
+   "tts": "अनेक्सचर के से ट्रांसफ़र चेक करो।",
+   "delivery": "curious · light, the certificate check",
+   "highlights": [
+    "Annexure K"
+   ],
+   "uses": [
+    "annexure_k"
+   ]
+  },
+  {
+   "shot": "S13",
+   "chapter": "check",
+   "vo": "Dobara file karne se pehle. Exit date aur joining date overlap to nahi?",
+   "tts": "दोबारा फ़ाइल करने से पहले। एग्ज़िट डेट और जॉइनिंग डेट ओवरलैप तो नहीं?",
+   "delivery": "serious · pause before the question, the one check",
+   "highlights": [
+    "overlap"
+   ],
+   "uses": [
+    "overlap_not_disqualification"
+   ]
+  },
+  {
+   "shot": "S14",
+   "chapter": "help",
+   "vo": "Phir bhi atka hai to RPFC ke paas jao. Woh employer se baat karega.",
+   "tts": "फिर भी अटका है तो आर पी एफ़ सी के पास जाओ। वो एम्प्लॉयर से बात करेगा।",
+   "delivery": "warm · steady, help is official",
+   "highlights": [
+    "RPFC"
+   ],
+   "uses": [
+    "attestation_duty"
+   ]
+  },
+  {
+   "shot": "S15",
+   "chapter": "share",
+   "vo": "Naukri badalne wale dost ko ye reel abhi bhejo.",
+   "tts": "नौकरी बदलने वाले दोस्त को ये रील अभी भेजो।",
+   "delivery": "playful · quick nudge to share",
+   "highlights": [
+    "dost"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S16",
+   "chapter": "signoff",
+   "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+   "tts": "पीएफ़ समझो, क्लेम पाओ। ईपीएफ़ओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ़ गुरु जी।",
+   "delivery": "proud · the sign-off lands clean",
+   "highlights": [
+    "PF Guru Ji"
+   ],
+   "uses": []
+  }
+ ],
+ "hook_options": [
+  "Naukri badli, PF purana hi reh gaya?",
+  "94% claims seedha EPFO ko jaate hain — tumhara kyun nahi?"
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 4.5,
+   "chapter": "hook",
+   "on_screen": "Photo P1 (first day at a new office desk, phone in hand) · black card ATKA KYUN? / PURANA PF · red stamp AAYA NAHI?",
+   "card_text": [
+    "ATKA KYUN?",
+    "PURANA PF",
+    "AAYA NAHI?"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S02",
+   "start": 4.5,
+   "end": 8.5,
+   "chapter": "problem",
+   "on_screen": "Yellow card FORM 13 / BHAR DIYA / PHIR BHI PF ATKA HAI · red note: phir bhi atka hai",
+   "card_text": [
+    "FORM 13",
+    "BHAR DIYA",
+    "PHIR BHI PF ATKA HAI",
+    "phir bhi atka hai"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S03",
+   "start": 8.5,
+   "end": 12.0,
+   "chapter": "problem",
+   "on_screen": "Yellow card EPFO / 94% / CLAIMS SEEDHA JAATE HAIN · red note: tumhara atka kyun?",
+   "card_text": [
+    "EPFO",
+    "94%",
+    "CLAIMS SEEDHA JAATE HAIN",
+    "tumhara atka kyun?"
+   ],
+   "motion_text": [],
+   "uses": [
+    "direct_share"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S04",
+   "start": 12.0,
+   "end": 15.5,
+   "chapter": "problem",
+   "on_screen": "Black card SHIKAYATON MEIN / 17% / TRANSFER KI · red stamp ATKA HAI",
+   "card_text": [
+    "SHIKAYATON MEIN",
+    "17%",
+    "TRANSFER KI",
+    "ATKA HAI"
+   ],
+   "motion_text": [],
+   "uses": [
+    "grievance_share"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S05",
+   "start": 15.5,
+   "end": 19.5,
+   "chapter": "why",
+   "on_screen": "Yellow arrow card → OVERLAP / EXIT DATE × JOINING DATE · red stamp AAKSAR!",
+   "card_text": [
+    "→",
+    "OVERLAP",
+    "EXIT DATE × JOINING DATE",
+    "AAKSAR!"
+   ],
+   "motion_text": [],
+   "uses": [
+    "overlap_not_disqualification"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S06",
+   "start": 19.5,
+   "end": 24.0,
+   "chapter": "why",
+   "on_screen": "White arrow card ↘ IDENTITY / ONLINE CONFIRM NAHI HUI · red note: employer ke paas gaya",
+   "card_text": [
+    "↘",
+    "IDENTITY",
+    "ONLINE CONFIRM NAHI HUI",
+    "employer ke paas gaya"
+   ],
+   "motion_text": [],
+   "uses": [
+    "identity_employer_forward"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S07",
+   "start": 24.0,
+   "end": 29.0,
+   "chapter": "why",
+   "on_screen": "White arrow card ↗ PENSION KA PAISA / TRANSFER NAHI HOTA · red note: sirf service history",
+   "card_text": [
+    "↗",
+    "PENSION KA PAISA",
+    "TRANSFER NAHI HOTA",
+    "sirf service history"
+   ],
+   "motion_text": [],
+   "uses": [
+    "pension_not_transferred"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S08",
+   "start": 29.0,
+   "end": 33.5,
+   "chapter": "steps",
+   "on_screen": "Typewriter card MEMBER PORTAL: Exit date check karo. / Joining date check karo.",
+   "card_text": [
+    "MEMBER PORTAL",
+    "Exit date check karo.",
+    "Joining date check karo."
+   ],
+   "motion_text": [],
+   "uses": [
+    "overlap_not_disqualification"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S09",
+   "start": 33.5,
+   "end": 38.0,
+   "chapter": "steps",
+   "on_screen": "White arrow card → MARK EXIT / MANAGE TAB MEIN · red note: exit date theek karo",
+   "card_text": [
+    "→",
+    "MARK EXIT",
+    "MANAGE TAB MEIN",
+    "exit date theek karo"
+   ],
+   "motion_text": [],
+   "uses": [
+    "mark_exit_doe"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S10",
+   "start": 38.0,
+   "end": 44.0,
+   "chapter": "steps",
+   "on_screen": "Yellow card SCHEME KE ACCORDING / EMPLOYER / FORWARD KAREGA · red note: identity confirm karwao",
+   "card_text": [
+    "SCHEME KE ACCORDING",
+    "EMPLOYER",
+    "FORWARD KAREGA",
+    "identity confirm karwao"
+   ],
+   "motion_text": [],
+   "uses": [
+    "identity_employer_forward"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S11",
+   "start": 44.0,
+   "end": 49.5,
+   "chapter": "steps",
+   "on_screen": "Funnel ATTEST KA SAFAR: EMPLOYER ATTEST → BANK ATTEST → RPFC KO DO",
+   "card_text": [
+    "ATTEST KA SAFAR",
+    "EMPLOYER ATTEST",
+    "BANK ATTEST",
+    "RPFC KO DO"
+   ],
+   "motion_text": [],
+   "uses": [
+    "attestation_duty"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S12",
+   "start": 49.5,
+   "end": 52.5,
+   "chapter": "steps",
+   "on_screen": "Yellow card ANNEXURE K / CHECK KARO / TRANSFER CERTIFICATE",
+   "card_text": [
+    "ANNEXURE K",
+    "CHECK KARO",
+    "TRANSFER CERTIFICATE"
+   ],
+   "motion_text": [],
+   "uses": [
+    "annexure_k"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S13",
+   "start": 52.5,
+   "end": 58.0,
+   "chapter": "check",
+   "on_screen": "Yellow card DOBARA FILE KARNE SE PEHLE / OVERLAP? / EXIT DATE × JOINING DATE · red stamp PHIR ATKEGA!",
+   "card_text": [
+    "DOBARA FILE KARNE SE PEHLE",
+    "OVERLAP?",
+    "EXIT DATE × JOINING DATE",
+    "PHIR ATKEGA!"
+   ],
+   "motion_text": [],
+   "uses": [
+    "overlap_not_disqualification"
+   ],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S14",
+   "start": 58.0,
+   "end": 64.0,
+   "chapter": "help",
+   "on_screen": "Black card RPFC / BAAT KAREGA / EMPLOYER SE · ink stamp OFFICIAL",
+   "card_text": [
+    "RPFC",
+    "BAAT KAREGA",
+    "EMPLOYER SE",
+    "OFFICIAL"
+   ],
+   "motion_text": [],
+   "uses": [
+    "attestation_duty"
+   ],
+   "yellow_elements": 0
+  },
+  {
+   "id": "S15",
+   "start": 64.0,
+   "end": 68.0,
+   "chapter": "share",
+   "on_screen": "Photo P2 (hand holding out a phone, blank screen) · yellow tag SHARE ↗ · red note: naukri badalne wale dost ko",
+   "card_text": [
+    "SHARE ↗",
+    "naukri badalne wale dost ko"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 1
+  },
+  {
+   "id": "S16",
+   "start": 68.0,
+   "end": 77.0,
+   "chapter": "signoff",
+   "on_screen": "Note: PF samjho, claim pao. · End card: logo, tagline, EPFO ki har jankari chahiye?, FOLLOW @PFGURUJI, small print",
+   "card_text": [
+    "PF samjho, claim pao.",
+    "EPFO ki har jankari chahiye?",
+    "FOLLOW @PFGURUJI",
+    "NIYAM: EPFO.GOV.IN",
+    "EPFO KA OFFICIAL CHANNEL NAHI"
+   ],
+   "motion_text": [],
+   "uses": [],
+   "yellow_elements": 0
+  }
+ ],
+ "breaks": [
+  {
+   "after": "S07",
+   "at": 29.0,
+   "type": "tear-lemon",
+   "asset": "A08"
+  },
+  {
+   "after": "S13",
+   "at": 58.0,
+   "type": "tear-paper",
+   "asset": "A09"
+  }
+ ],
+ "post": {
+  "caption": "Naukri badli aur purana PF abhi tak naye account mein nahi aaya? Transfer claim (Form 13) aksar service period overlap ya online identity confirm na hone se atakta hai — aur pension ka paisa to transfer hota hi nahi. Reel mein EPFO ke rules se aaye steps hain. Apni exit date aur joining date pehle check karo, phir dobara file karo. EPFO ki har jankari chahiye? Follow karo @pfguruji. PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#PFGuruJi #EPFO #PFTransfer #Form13 #PFClaim",
+  "hashtags": [
+   "#PFGuruJi",
+   "#EPFO",
+   "#PFTransfer",
+   "#Form13",
+   "#PFClaim"
+  ],
+  "pinned_comment": "Tumhara transfer kahan atka? Comment mein batao — overlap, employer, ya pension confusion? Personal details mat likhna.",
+  "cover": {
+   "lines": [
+    "PURANA PF",
+    "ATKA KYUN?"
+   ],
+   "stamp": "FORM 13"
+  },
+  "trial_hook": "Nayi naukri join kar li — purana PF aaya nahi?"
+ }
+}

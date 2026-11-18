@@ -1,0 +1,106 @@
+{
+  "schema": "dc-brand/1",
+  "brand": "PF Guru Ji",
+  "website": "",
+  "instagram": "@pfguruji",
+  "city": "",
+  "series": "PF Guru Ji",
+  "tagline": "PF samjho, claim pao.",
+  "signoff": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+  "follow": {
+    "note": "EPFO ki har jankari chahiye?",
+    "button": "FOLLOW @PFGURUJI"
+  },
+  "logo_file": "brand/assets/logo/pfguruji-logo.png",
+  "language": "Hinglish in Roman script",
+  "about": "Short Hinglish reels on EPFO: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help.",
+  "approvers": [
+    "Divyank Sharma"
+  ],
+  "colors": {
+    "paper": "#E4DFD6",
+    "card": "#F3F0EA",
+    "caption_strip": "#ECE9E2",
+    "ink": "#1A1A1A",
+    "lemon": "#F5EE30",
+    "stamp_red": "#C8443A",
+    "pencil": "#A39E95",
+    "black_paper": "#121212"
+  },
+  "fonts": {
+    "numbers_and_headlines": "Anton",
+    "labels_and_sources": "IBM Plex Mono SemiBold",
+    "captions": "Archivo ExtraBold",
+    "handwritten_notes": "Caveat Bold",
+    "typewriter": "Courier Prime"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "safe_zones_px": {
+    "instagram_top_bar": [
+      0,
+      220
+    ],
+    "header": [
+      220,
+      330
+    ],
+    "content": [
+      380,
+      1240
+    ],
+    "caption_strip": [
+      1265,
+      1520
+    ],
+    "keep_clear_from_y": 1560,
+    "right_button_rail": {
+      "x_from": 960,
+      "y_from": 1100
+    }
+  },
+  "chapters": [
+    "hook",
+    "problem",
+    "why",
+    "steps",
+    "check",
+    "help",
+    "share",
+    "signoff"
+  ],
+  "rules": {
+    "script_words": [
+      150,
+      175
+    ],
+    "words_per_second": 2.6,
+    "sentence_words_warn": 10,
+    "duration_seconds": [
+      60,
+      95
+    ],
+    "max_hashtags": 5,
+    "caption_max_chars": 2200,
+    "always_allowed_numbers": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "assumption_labels": [
+      "maan lo",
+      "example"
+    ],
+    "max_tries_per_shot": 2,
+    "loudness_lufs": [
+      -16.0,
+      -12.0
+    ],
+    "tail_seconds": 3,
+    "script_review_from": "ep05"
+  }
+}

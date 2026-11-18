@@ -1,0 +1,548 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "ep02-what-is-pf",
+ "brand_label": "PF GURU JI",
+ "photos": {
+  "salary_desk": {
+   "id": "P1",
+   "file": "episodes/ep02-what-is-pf/media/photos/salary_desk.webp",
+   "alt": "a young office worker looking puzzled at his phone",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. A young man in his twenties in a plain shirt sits at a small desk in a modest Indian office, looking at the smartphone in his hand with a puzzled frown, a ceiling fan and a plain wall behind him. Soft daylight from a window, high contrast, fine film grain, eye-level camera, the man in the middle of the frame. No text, no readable labels, no documents, no logos, no watermark; the phone screen faces away from the camera."
+  },
+  "share_hand2": {
+   "id": "P2",
+   "file": "episodes/ep02-what-is-pf/media/photos/share_hand2.webp",
+   "alt": "two young friends looking at a phone together",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. Two young men in plain shirts sit side by side on a worn sofa in a modest Indian living room in the evening, one of them holding a smartphone up so his friend can see it, the screen completely blank white, both men looking at the phone, a plain wall and a ceiling fan behind them. Soft warm lamp light, high contrast, fine film grain, eye-level camera. No text, no readable labels, no logos, no watermark; no reflections with writing."
+  },
+  "passbook_home": {
+   "id": "P3",
+   "file": "episodes/ep02-what-is-pf/media/photos/passbook_home.webp",
+   "alt": "a young man checking his phone at home in the evening",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. A young man in his twenties in a plain t-shirt sits on the edge of a bed in a modest Indian home in the evening, looking at the smartphone in his hand with a focused expression, a small bedside lamp glowing beside him, plain wall behind him. Soft warm light, high contrast, fine film grain, eye-level camera, the man in the middle of the frame. No text, no readable labels, no documents, no logos, no watermark; the phone screen faces away from the camera."
+  }
+ },
+ "shots": {
+  "S01": [
+   {
+    "type": "photo",
+    "src": "salary_desk",
+    "tab": "PEHLI SALARY",
+    "y": 400,
+    "w": 960,
+    "h": 560,
+    "rot": -1.2,
+    "at": 0,
+    "in": "none",
+    "focus": [
+     0.5,
+     0.42
+    ]
+   },
+   {
+    "type": "stamp",
+    "text": "KAT GAYA!",
+    "x": 520,
+    "y": 560,
+    "rot": -5,
+    "size": 92,
+    "on": "kat"
+   },
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "AAPKA PF",
+    "big": "KAT GAYA?",
+    "size": 170,
+    "x": 590,
+    "y": 905,
+    "w": 620,
+    "rot": 1.5,
+    "on": "gaya?"
+   }
+  ],
+  "S02": [
+   {
+    "type": "headline",
+    "lines": [
+     "BACHA",
+     "HAI"
+    ],
+    "x": 80,
+    "y": 520,
+    "size": 270,
+    "on": "bacha",
+    "stagger": 0.4,
+    "underline": {
+     "line": 1,
+     "at": 1.0,
+     "dur": 0.5
+    }
+   }
+  ],
+  "S03": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "PF KYA HAI",
+    "big": "RETIREMENT BACHAT",
+    "size": 110,
+    "x": 540,
+    "y": 470,
+    "w": 900,
+    "rot": -1,
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "har mahine kat-ta hai",
+    "x": 560,
+    "y": 900,
+    "size": 80,
+    "rot": -3,
+    "on": "kat-ta"
+   }
+  ],
+  "S04": [
+   {
+    "type": "headline",
+    "lines": [
+     "PAISA",
+     "KAHAN GAYA?"
+    ],
+    "x": 80,
+    "y": 520,
+    "size": 240,
+    "on": "Paisa",
+    "stagger": 0.4
+   }
+  ],
+  "S05": [
+   {
+    "type": "arrow_card",
+    "arrow": "→",
+    "title": "12%",
+    "sub": "AAP DETE HO",
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Ek:",
+    "in": "slide_left"
+   }
+  ],
+  "S06": [
+   {
+    "type": "arrow_card",
+    "arrow": "↘",
+    "title": "12%",
+    "sub": "COMPANY DETI HAI",
+    "style": "white",
+    "y": 420,
+    "w": 900,
+    "rot": 0.6,
+    "on": "Do:",
+    "in": "slide_left",
+    "size": 170
+   }
+  ],
+  "S07": [
+   {
+    "type": "card",
+    "style": "white",
+    "big": "8.33%",
+    "label": "PENSION MEIN",
+    "size": 170,
+    "y": 400,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Teen:",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "yellow",
+    "big": "3.67%",
+    "label": "PF MEIN",
+    "size": 170,
+    "y": 630,
+    "w": 900,
+    "rot": 0.6,
+    "on": "pension",
+    "in": "drop"
+   },
+   {
+    "type": "note",
+    "text": "dono bante hain",
+    "x": 560,
+    "y": 900,
+    "size": 80,
+    "rot": -3,
+    "on": "badhta"
+   }
+  ],
+  "S08": [
+   {
+    "type": "card",
+    "style": "white",
+    "big": "₹25,000",
+    "label": "BASIC + DA\n(MAAN LO)",
+    "size": 120,
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Basic",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "white",
+    "prefix": "×",
+    "big": "12%",
+    "label": "PF RATE",
+    "size": 120,
+    "y": 640,
+    "w": 900,
+    "rot": 0.6,
+    "on": "hai,",
+    "in": "drop"
+   }
+  ],
+  "S09": [
+   {
+    "type": "card",
+    "style": "white",
+    "big": "₹3,000",
+    "label": "AAPKA PF",
+    "size": 120,
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "₹3,000",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "white",
+    "prefix": "+",
+    "big": "₹3,000",
+    "label": "COMPANY KA PF",
+    "size": 120,
+    "y": 600,
+    "w": 900,
+    "rot": 0.6,
+    "on": "Company",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "yellow",
+    "big": "₹6,000",
+    "label": "KUL HAR MAHINE",
+    "size": 120,
+    "y": 780,
+    "w": 900,
+    "rot": -0.5,
+    "on": "Kul",
+    "in": "drop"
+   }
+  ],
+  "S10": [
+   {
+    "type": "card",
+    "style": "white",
+    "big": "₹2,400",
+    "label": "AAPKA PF",
+    "size": 120,
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "₹2,400",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "white",
+    "big": "₹20,000",
+    "label": "BASIC + DA\n(MAAN LO)",
+    "size": 120,
+    "y": 640,
+    "w": 900,
+    "rot": 0.6,
+    "on": "Basic",
+    "in": "drop"
+   }
+  ],
+  "S11": [
+   {
+    "type": "card",
+    "style": "white",
+    "prefix": "+",
+    "big": "₹2,400",
+    "label": "COMPANY KA PF",
+    "size": 120,
+    "y": 420,
+    "w": 900,
+    "rot": -0.8,
+    "on": "Company",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "yellow",
+    "big": "₹4,800",
+    "label": "KUL HAR MAHINE",
+    "size": 120,
+    "y": 640,
+    "w": 900,
+    "rot": 0.6,
+    "on": "Kul",
+    "in": "drop"
+   }
+  ],
+  "S12": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "CEILING",
+    "big": "₹25,000",
+    "size": 110,
+    "x": 560,
+    "y": 470,
+    "w": 900,
+    "rot": 1,
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "usse upar nahi",
+    "x": 560,
+    "y": 900,
+    "size": 80,
+    "rot": -3,
+    "on": "kat-ta"
+   }
+  ],
+  "S13": [
+   {
+    "type": "card",
+    "style": "white",
+    "big": "₹917.50",
+    "label": "PF MEIN",
+    "size": 120,
+    "y": 430,
+    "w": 900,
+    "rot": -0.8,
+    "in": "drop",
+    "at": 0.1
+   },
+   {
+    "type": "card",
+    "style": "white",
+    "prefix": "+",
+    "big": "₹2,082.50",
+    "label": "PENSION MEIN",
+    "size": 120,
+    "y": 605,
+    "w": 900,
+    "rot": 0.6,
+    "on": "pension",
+    "in": "drop"
+   }
+  ],
+  "S14": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "HAR SAAL",
+    "big": "8.25%",
+    "label": "INTEREST",
+    "foot": "HAR SAAL JUDTA HAI",
+    "size": 210,
+    "y": 430,
+    "w": 940,
+    "h": 470,
+    "rot": -1,
+    "at": 0.1
+   }
+  ],
+  "S15": [
+   {
+    "type": "timeline",
+    "tab": "NAUKRI CHHODNE KE BAAD",
+    "segments": [
+     {
+      "from": 0,
+      "to": 0.5,
+      "style": "white",
+      "label": "NAUKRI CHHODI",
+      "on": "Naukri"
+     },
+     {
+      "from": 0.5,
+      "to": 1.0,
+      "style": "yellow",
+      "label": "12 MAHINE",
+      "on": "12"
+     }
+    ],
+    "ticks": [
+     {
+      "text": "12",
+      "pos": 1.0
+     }
+    ],
+    "foot": "POORA PF 12 MAHINE BAAD",
+    "y": 430,
+    "w": 920
+   }
+  ],
+  "S16": [
+   {
+    "type": "photo",
+    "src": "passbook_home",
+    "y": 400,
+    "w": 960,
+    "h": 420,
+    "rot": -1.2,
+    "at": 0.1,
+    "in": "drop",
+    "focus": [
+     0.5,
+     0.4
+    ]
+   },
+   {
+    "type": "typewriter",
+    "tab": "PASSBOOK MEIN DEKHO",
+    "lines": [
+     "Aapka hissa.",
+     "Company ka hissa.",
+     "Pension ka hissa."
+    ],
+    "highlight": "hissa",
+    "highlight_on": "hissa.",
+    "y": 860,
+    "w": 920,
+    "rot": -0.6,
+    "type_at": 0.4,
+    "line_every": 1.2,
+    "on": "Passbook"
+   }
+  ],
+  "S17": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "SALARY SLIP",
+    "big": "PF WALI LINE",
+    "size": 110,
+    "x": 560,
+    "y": 470,
+    "w": 900,
+    "rot": 1,
+    "at": 0.1
+   },
+   {
+    "type": "note",
+    "text": "₹3,000 dikhega",
+    "x": 560,
+    "y": 900,
+    "size": 80,
+    "rot": -3,
+    "on": "dikhega,"
+   }
+  ],
+  "S18": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "MEMBER PORTAL",
+    "big": "PASSBOOK DEKHO",
+    "size": 110,
+    "x": 560,
+    "y": 470,
+    "w": 900,
+    "rot": 1,
+    "at": 0.1
+   },
+   {
+    "type": "stamp",
+    "text": "OFFICIAL",
+    "color": "ink",
+    "x": 820,
+    "y": 1100,
+    "rot": 6,
+    "size": 70,
+    "on": "portal"
+   },
+   {
+    "type": "note",
+    "text": "dobara dekho",
+    "x": 560,
+    "y": 900,
+    "size": 80,
+    "rot": -3,
+    "on": "dekho."
+   }
+  ],
+  "S19": [
+   {
+    "type": "photo",
+    "src": "share_hand2",
+    "y": 410,
+    "w": 960,
+    "h": 620,
+    "rot": -1.5,
+    "at": 0.1,
+    "in": "drop"
+   },
+   {
+    "type": "tag",
+    "text": "SHARE ↗",
+    "x": 770,
+    "y": 905,
+    "rot": -4,
+    "size": 100,
+    "on": "abhi"
+   },
+   {
+    "type": "note",
+    "text": "pehli salary wale ko",
+    "x": 320,
+    "y": 1110,
+    "size": 90,
+    "rot": -3,
+    "on": "dost"
+   }
+  ],
+  "S20": [
+   {
+    "type": "note",
+    "text": "PF samjho, claim pao.",
+    "color": "ink",
+    "x": 540,
+    "y": 760,
+    "size": 124,
+    "rot": -2,
+    "at": 0.1,
+    "dur": 1.0,
+    "out": {
+     "on": "EPFO"
+    }
+   },
+   {
+    "type": "endcard",
+    "tagline": "PF samjho, claim pao.",
+    "small": [
+     "NIYAM: EPFO.GOV.IN",
+     "EXAMPLE NUMBERS · APNA PASSBOOK DEKHO",
+     "EPFO KA OFFICIAL CHANNEL NAHI"
+    ],
+    "y": 430,
+    "on": "EPFO",
+    "lead": -0.2,
+    "cta_on": "Follow"
+   }
+  ]
+ }
+}

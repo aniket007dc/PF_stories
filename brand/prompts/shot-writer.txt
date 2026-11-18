@@ -1,0 +1,28 @@
+Turn this script into shots for the PF Guru Ji reel pipeline, in PF GURU JI PAPER STYLE (below).
+For every script line write one shot, as JSON:
+{"id": "S01", "start": 0, "end": 4, "chapter": "...", "on_screen": "a short description for people",
+ "card_text": ["every word or number printed on screen, exactly"],
+ "uses": ["data ids whose numbers appear in the line or on the cards"], "yellow_elements": 1,
+ "assets": ["A01", "A05: photo subject", "A04: STAMP WORDS"],
+ "keyframe_prompt": "Edit the attached background and keep the paper exactly as it is. …",
+ "motion_prompt": "Build the attached layout on the empty paper. 0.1 s: …",
+ "motion_text": ["words that only appear during the motion"],
+ "sfx": "0.1 s paper slide · 1.2 s stamp thud", "canva": "Photo Rise · stamp Stomp at 1.2 s"}
+
+Rules:
+- Every string in card_text must appear inside double quotes, exactly, in keyframe_prompt.
+- Shots follow each other with no gaps, starting at 0. Size each shot to its line at about 2.6 words per second; give the last shot 3 extra seconds for music.
+- Use only these elements: halftone photo, red stamp, black card, yellow card, off-white card stack, graph-paper bar/line/funnel chart, kinetic headline, arrow option cards, timeline bar, typewriter card, handwritten note, yellow tag.
+- At most one yellow element per shot. Red only for stamps, warnings and notes.
+- The first card that shows an assumption carries MAAN LO or EXAMPLE.
+- Keyframe prompts give each element's size as a % of the frame width, its top edge as a % of the frame height, its rotation and its colour. All cards sit between 20% and 65% of the frame height.
+- Motion prompts give each element's entrance time in seconds, timed to the word that names it.
+- Use asset ids from this list: A01 background, A02 black paper, A03 props kit, A04 stamp, A05 halftone photo, A06 crosshair mark, A07 cover, A08 black tear, A09 paper tear.
+Also return "breaks": two torn-paper wipes, one at the start of the steps chapter (type "tear-black", asset "A08") and one at the start of the help chapter (type "tear-paper", asset "A09"), each as {"after": "<last shot before it>", "at": <seconds>, "type": "...", "asset": "..."}.
+Reply with JSON only: {"shots": [...], "breaks": [...]}.
+
+PF GURU JI PAPER STYLE:
+{{STYLE_LOCK}}
+
+Script:
+{{SCRIPT_JSON}}

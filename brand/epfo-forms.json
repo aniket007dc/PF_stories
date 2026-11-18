@@ -1,0 +1,61 @@
+{
+  "about": "The EPFO forms a PF Guru Ji reel may name (validate.py checks E3.14, E4.11 and E10.3), what each one is for, and where EPFO says so. A person checks each form on EPFO's page and records checked_by and checked_on, as for a fact. EPFO's 2026 Schemes don't name forms (claims go through the 'designated portal'), so the claim-form page is the source. Add a form only from EPFO's own page; forms 15G and 15H are gone (the Income-tax Act 2025 replaced them with Form 121, which isn't EPFO's).",
+  "forms": [
+    {
+      "id": "19",
+      "name": "Form 19",
+      "for": "PF final settlement, by the member",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "10C",
+      "name": "Form 10C",
+      "for": "Pension (EPS) withdrawal benefit or scheme certificate",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "10D",
+      "name": "Form 10D",
+      "for": "Monthly pension",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "31",
+      "name": "Form 31",
+      "for": "PF advance (partial withdrawal)",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "13",
+      "name": "Form 13",
+      "for": "Moving an old PF account to the new one",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "20",
+      "name": "Form 20",
+      "for": "PF settlement for the nominee or heir of a member who has died",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    },
+    {
+      "id": "5IF",
+      "name": "Form 5IF",
+      "for": "EDLI insurance claim when a member dies in service",
+      "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+      "checked_by": "Divyank Sharma",
+      "checked_on": "2026-11-13"
+    }
+  ]
+}

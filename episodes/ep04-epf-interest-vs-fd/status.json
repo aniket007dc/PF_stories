@@ -1,0 +1,431 @@
+{
+  "schema": "dc-status/1",
+  "episode": "ep04-epf-interest-vs-fd",
+  "steps": {
+    "01-brief": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Approve the angle: a curious countdown of the safe options (SBI FD, PPF, NSC, LIC), EPF revealed last, with the tax and the honest catches (the rate changes every year; 8.2% at the post office is only for seniors and girls). Closest reel: ep02 (what PF is)."
+    },
+    "02-data": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Every rate and rule needs a person to open its source (tools/approve.py fact). Rates move: the FD rate (SBI) and the small savings rates (reset every quarter, next on 1 January 2027) must be checked again just before posting."
+    },
+    "03-script": {
+      "state": "needs_human",
+      "approval": null,
+      "notes": "Rewritten: a loss-first hook (PF nikaal ke FD? Ruko! ₹1,850 a year on every lakh) and a brisk voice. Read it aloud fast, with feeling; numbers in English."
+    },
+    "04-shots": {
+      "state": "drafted",
+      "approval": null,
+      "notes": "Drafted: photos P1 and P2 to make; the rates are on a bar chart true to scale, then EPF's 8.25% on its own card."
+    },
+    "05-keyframes": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "06-motion": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "07-voice": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "08-assembly": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "09-final-qa": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "10-publish": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "11-measure": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    }
+  },
+  "shots": {
+    "S01": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S02": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S03": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S04": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S05": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S06": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S07": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S08": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S09": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S10": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S11": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S12": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S13": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S14": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S15": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S16": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S17": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    }
+  },
+  "post": {
+    "url": null,
+    "posted_at": null
+  },
+  "metrics": {
+    "24h": null,
+    "72h": null,
+    "7d": null
+  },
+  "log": [
+    {
+      "at": "2026-11-14T09:48:56",
+      "by": "new_episode.py",
+      "event": "episode created"
+    },
+    {
+      "at": "2026-11-14T09:48:56",
+      "by": "new_episode.py --prepare",
+      "event": "added shots S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S13, S14, S15, S16, S17"
+    },
+    {
+      "at": "2026-11-14T12:00:00",
+      "by": "Claude",
+      "event": "drafted brief, data with official sources, script with a voice direction per line and numbers in English, shots and reel.json; every fact and rule waits for a person"
+    },
+    {
+      "at": "2026-11-14T11:23:43",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact fd_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:51",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact ppf_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:51",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact nsc_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:52",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact scss_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:52",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact ssy_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:53",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact epf_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:53",
+      "by": "Divyank Sharma",
+      "event": "checked the source of fact tax_free_limit"
+    },
+    {
+      "at": "2026-11-14T11:23:54",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule lic_no_fixed_rate"
+    },
+    {
+      "at": "2026-11-14T11:23:54",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule epf_interest_credit"
+    },
+    {
+      "at": "2026-11-14T11:23:54",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule epf_tax_free"
+    },
+    {
+      "at": "2026-11-14T11:23:55",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule transfer_on_job_change"
+    },
+    {
+      "at": "2026-11-14T11:23:55",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule passbook"
+    },
+    {
+      "at": "2026-11-14T11:23:56",
+      "by": "Divyank Sharma",
+      "event": "checked the source of rule scss_ssy_who"
+    },
+    {
+      "at": "2026-11-14T18:00:00",
+      "by": "Claude",
+      "event": "rewrote the script (new hook, 14 lines, brisk directions) and the shots; the old voice lines were removed so every line is made again, faster; data and its checks unchanged"
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "ep04-epf-interest-vs-fd",
+ "brand_label": "PF GURU JI",
+ "photos": {
+  "father_son": {
+   "id": "P1",
+   "file": "episodes/ep04-epf-interest-vs-fd/media/photos/father_son.webp",
+   "alt": "a father and his grown-up son at a kitchen table, the father leaning in, curious",
+   "prompt": "Black-and-white documentary photograph, landscape 4:3. In a small Indian kitchen in the evening, a man in his fifties in a cotton shirt sits at a steel-topped table beside his son in his late twenties; the son holds a smartphone between them and the father leans in with raised eyebrows, curious and a little surprised, steel tumblers of tea on the table. Warm light from a single bulb, high contrast, fine film grain, eye-level camera, the two of them in the middle of the frame. No text, no readable labels, no documents, no logos, no watermark; the phone screen faces away from the camera."
+  },
+  "bus_share": {
+   "id": "P2",
+   "file": "episodes/ep04-epf-interest-vs-fd/media/photos/bus_share.webp",
+   "alt": "a young man on a city bus holding out a phone with a blank screen",
+   "prompt": "Black-and-white photograph, landscape 4:3. On a crowded city bus in India, a young man in a checked shirt holds the overhead rail with one hand and with the other holds a smartphone out towards the camera, the screen completely blank white, other passengers soft and out of focus behind him, window light. High contrast, fine film grain, the phone in the middle of the frame. No text, no logos, no readable signs or route numbers, no reflections with writing, no watermark."
+  }
+ },
+ "shots": {
+  "S01": [
+   {
+    "type": "photo",
+    "src": "father_son",
+    "tab": "PF NIKAAL KE FD?",
+    "y": 400,
+    "w": 960,
+    "h": 600,
+    "rot": -1.2,
+    "at": 0,
+    "in": "none",
+    "focus": [
+     0.5,
+     0.45
+    ]
+   },
+   {
+    "type": "stamp",
+    "text": "RUKO!",
+    "x": 700,
+    "y": 1080,
+    "rot": -8,
+    "size": 170,
+    "on": "Ruko"
+   }
+  ],
+  "S02": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "MAAN LO · HAR ₹1,00,000 PE",
+    "big": "₹1,850",
+    "label": "HAR SAAL",
+    "size": 210,
+    "y": 470,
+    "w": 920,
+    "rot": -1,
+    "on": "saal",
+    "tab_size": 36
+   },
+   {
+    "type": "stamp",
+    "text": "NUKSAAN!",
+    "x": 700,
+    "y": 930,
+    "rot": 7,
+    "size": 120,
+    "on": "nuksaan"
+   }
+  ],
+  "S03": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "FD",
+    "big": "SAFE, PAR…",
+    "size": 190,
+    "y": 480,
+    "w": 900,
+    "rot": -1,
+    "on": "safe"
+   },
+   {
+    "type": "note",
+    "text": "byaaj sabse kam",
+    "x": 420,
+    "y": 900,
+    "size": 96,
+    "rot": -4,
+    "on": "kam"
+   }
+  ],
+  "S04": [
+   {
+    "type": "funnel",
+    "tab": "SAAL KA BYAAJ",
+    "y": 440,
+    "w": 920,
+    "rows": [
+     {
+      "text": "SBI FD · 6.4%",
+      "width": 0.776,
+      "on": "FD",
+      "size": 56
+     },
+     {
+      "text": "PPF · 7.1%",
+      "width": 0.861,
+      "on": "PPF",
+      "size": 56
+     },
+     {
+      "text": "NSC · 7.7%",
+      "width": 0.933,
+      "on": "NSC",
+      "size": 56
+     }
+    ]
+   }
+  ],
+  "S05": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "LIC POLICY",
+    "big": "FIXED BYAAJ NAHI",
+    "size": 120,
+    "y": 520,
+    "w": 920,
+    "rot": -1,
+    "on": "fixed"
+   },
+   {
+    "type": "stamp",
+    "text": "BONUS PE",
+    "x": 740,
+    "y": 900,
+    "rot": 6,
+    "size": 110,
+    "on": "Bonus"
+   }
+  ],
+  "S06": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "AAPKA EPF",
+    "big": "8.25%",
+    "size": 300,
+    "y": 470,
+    "w": 920,
+    "rot": -1.2,
+    "on": "Poore",
+    "in": "drop"
+   },
+   {
+    "type": "stamp",
+    "text": "NO. 1",
+    "x": 800,
+    "y": 960,
+    "rot": 8,
+    "size": 130,
+    "on": "Sabse"
+   }
+  ],
+  "S07": [
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "EPF KA BYAAJ",
+    "big": "TAX-FREE",
+    "size": 170,
+    "foot": "₹2,50,000 SAALANA CONTRIBUTION TAK",
+    "y": 440,
+    "w": 920,
+    "rot": -1,
+    "on": "tax"
+   },
+   {
+    "type": "card",
+    "style": "white",
+    "tab": "FD KA BYAAJ",
+    "big": "TAXABLE",
+    "size": 150,
+    "y": 820,
+    "w": 760,
+    "x": 600,
+    "rot": 1.2,
+    "on": "FD",
+    "in": "drop"
+   }
+  ],
+  "S08": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "NAUKRI BADLI?",
+    "big": "TRANSFER KARO",
+    "size": 140,
+    "y": 500,
+    "w": 920,
+    "rot": -1,
+    "on": "transfer"
+   },
+   {
+    "type": "stamp",
+    "text": "NIKAALO MAT!",
+    "x": 640,
+    "y": 900,
+    "rot": -6,
+    "size": 110,
+    "on": "nikaalo"
+   }
+  ],
+  "S09": [
+   {
+    "type": "typewriter",
+    "tab": "BYAAJ KAISE JUDTA HAI",
+    "lines": [
+     "Har mahine ka balance.",
+     "Saal ke end mein credit."
+    ],
+    "highlight": "credit",
+    "highlight_on": "credit",
+    "type_at": 0.3,
+    "line_every": 1.0
+   }
+  ],
+  "S10": [
+   {
+    "type": "card",
+    "style": "white",
+    "tab": "EPF RATE",
+    "big": "HAR SAAL TAY",
+    "size": 140,
+    "y": 460,
+    "w": 920,
+    "rot": -1,
+    "on": "rate"
+   },
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "PICHHLE SAAL",
+    "big": "8.25%",
+    "size": 170,
+    "x": 600,
+    "y": 760,
+    "w": 700,
+    "rot": 1.2,
+    "on": "pichhle",
+    "in": "drop"
+   }
+  ],
+  "S11": [
+   {
+    "type": "card",
+    "style": "white",
+    "tab": "SCSS · SUKANYA",
+    "big": "8.2%",
+    "size": 240,
+    "y": 480,
+    "w": 760,
+    "rot": 1,
+    "on": "post"
+   },
+   {
+    "type": "note",
+    "text": "sirf unke liye",
+    "x": 520,
+    "y": 960,
+    "size": 90,
+    "rot": -3,
+    "on": "Sirf"
+   }
+  ],
+  "S12": [
+   {
+    "type": "card",
+    "style": "black",
+    "tab": "APNA BYAAJ",
+    "big": "PASSBOOK",
+    "size": 170,
+    "foot": "MEMBER PORTAL",
+    "y": 500,
+    "w": 920,
+    "rot": -1,
+    "on": "passbook"
+   },
+   {
+    "type": "stamp",
+    "text": "FREE HAI",
+    "color": "ink",
+    "x": 780,
+    "y": 930,
+    "rot": 8,
+    "size": 96,
+    "on": "kholo"
+   }
+  ],
+  "S13": [
+   {
+    "type": "photo",
+    "src": "bus_share",
+    "y": 410,
+    "w": 960,
+    "h": 620,
+    "rot": 1.5,
+    "at": 0.1,
+    "in": "drop"
+   },
+   {
+    "type": "tag",
+    "text": "SHARE ↗",
+    "x": 770,
+    "y": 905,
+    "rot": -4,
+    "size": 100,
+    "on": "abhi"
+   },
+   {
+    "type": "note",
+    "text": "nikaalne se pehle",
+    "x": 360,
+    "y": 1110,
+    "size": 88,
+    "rot": -3,
+    "on": "dost"
+   }
+  ],
+  "S14": [
+   {
+    "type": "note",
+    "text": "PF samjho, claim pao.",
+    "color": "ink",
+    "x": 540,
+    "y": 760,
+    "size": 124,
+    "rot": -2,
+    "at": 0.1,
+    "dur": 1.0,
+    "out": {
+     "on": "EPFO"
+    }
+   },
+   {
+    "type": "endcard",
+    "tagline": "PF samjho, claim pao.",
+    "small": [
+     "RATES: EPFO · FINANCE MINISTRY · SBI · LIC",
+     "MAAN LO NUMBERS · SEEDHA HISAAB",
+     "EPFO KA OFFICIAL CHANNEL NAHI"
+    ],
+    "y": 430,
+    "on": "EPFO",
+    "lead": -0.2,
+    "cta_on": "Follow"
+   }
+  ]
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "about": "Reels PF Guru Ji posted before this repo, so a new reel doesn't repeat them. Add one entry per reel at the end and never reorder: each one's id is old-<its place in the list>, starting at old-01. Only 'topic' is needed; 'hook', 'covers', 'posted' (YYYY-MM-DD) and 'link' help.",
+  "example": {
+    "topic": "UAN activate kaise karein?",
+    "hook": "UAN mila, par login nahi hota?",
+    "covers": "activating a UAN on the member portal",
+    "posted": "2026-06-01",
+    "link": "https://www.instagram.com/reel/ABC123/"
+  },
+  "topics": []
+}
