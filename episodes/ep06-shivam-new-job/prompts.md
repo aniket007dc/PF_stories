@@ -51,6 +51,132 @@ Don't trim, cut, speed up, slow down, normalise or join the files: save each one
 
 For checking only: the build makes all of this from `reel.json`. Planned times; with the voice files, each shot follows its line's length.
 
+### S01 · 0:00–0:04 · hook
+
+**Voice:** Shivam ki nayi naukri! Pehla din, aur HR ka pehla sawaal.
+
+**On screen, exactly:** 
+
+**Built from:** ground · prop · puppet
+
+### S02 · 0:04–0:08 · hook
+
+**Voice:** "Purana UAN hai?" Shivam bola: "Naya bana do na!"
+
+**On screen, exactly:** `PURANA UAN HAI?` · `NAYA BANA DO!`
+
+**Built from:** ground · prop · prop · puppet · puppet · bubble · bubble
+
+### S03 · 0:08–0:12 · problem
+
+**Voice:** Ruko! Yahin sabse badi galti hoti hai.
+
+**On screen, exactly:** `GALTI!`
+
+**Built from:** ground · prop · puppet · stamp
+
+### S04 · 0:12–0:16 · problem
+
+**Voice:** Naya UAN, matlab purana PF purane UAN mein atka.
+
+**On screen, exactly:** 
+
+**Built from:** ground · prop · prop · puppet
+
+### S05 · 0:16–0:20 · why
+
+**Voice:** Priya ne samjhaya: "UAN ek hi hota hai. Poori zindagi ke liye."
+
+**On screen, exactly:** `EK HI UAN!`
+
+**Built from:** ground · prop · prop · puppet · puppet · bubble
+
+### S06 · 0:20–0:24 · why
+
+**Voice:** "Naukri badlo, company badlo, UAN wahi rehta hai."
+
+**On screen, exactly:** `UAN WAHI`
+
+**Built from:** ground · prop · prop · puppet · puppet · card (yellow)
+
+> **chapter break:** yellow torn-paper sheet sweeps across.
+
+### S07 · 0:24–0:28 · steps
+
+**Voice:** Toh Shivam ne joining form mein purana UAN hi diya.
+
+**On screen, exactly:** 
+
+**Built from:** ground · prop · puppet · prop
+
+### S08 · 0:28–0:32 · steps
+
+**Voice:** Phir member portal pe KYC: Aadhaar, bank aur PAN.
+
+**On screen, exactly:** `KYC` · `AADHAAR + BANK + PAN`
+
+**Built from:** ground · card (yellow) · puppet · prop
+
+### S09 · 0:32–0:38 · steps
+
+**Voice:** Naam aur janam tithi bilkul Aadhaar jaise. Galat ho, toh khud theek karo.
+
+**On screen, exactly:** 
+
+**Built from:** ground · prop · puppet
+
+### S10 · 0:38–0:42 · steps
+
+**Voice:** Aur purana PF? Form 13 se naye khaate mein transfer.
+
+**On screen, exactly:** `FORM 13`
+
+**Built from:** ground · prop · prop · prop · prop · card (yellow) · puppet
+
+### S11 · 0:42–0:47 · check
+
+**Voice:** Bas ek check: purani company ne exit date daali hai?
+
+**On screen, exactly:** `EXIT DATE?`
+
+**Built from:** ground · prop · puppet · bubble
+
+### S12 · 0:47–0:52 · check
+
+**Voice:** Nahi daali? 60 din baad Shivam khud Mark Exit kar sakta hai.
+
+**Data it uses:** mark_exit_days = 60 days
+
+**On screen, exactly:** `MARK EXIT` · `60 DIN BAAD`
+
+**Built from:** ground · prop · puppet · prop · card (yellow)
+
+> **chapter break:** paper-coloured torn-paper sheet sweeps across.
+
+### S13 · 0:52–0:56 · help
+
+**Voice:** Phir bhi atka? EPFiGMS pe shikayat karo. Bilkul free.
+
+**On screen, exactly:** `PF OFFICE` · `FREE HAI`
+
+**Built from:** ground · prop · puppet · prop · stamp
+
+### S14 · 0:56–1:00 · share
+
+**Voice:** Nayi naukri join karne wale dost ko abhi bhejo.
+
+**On screen, exactly:** `SHARE ↗` · `naye naukri wale dost`
+
+**Built from:** ground · prop · puppet · puppet · prop · tag · handwritten note
+
+### S15 · 1:00–1:09 · signoff
+
+**Voice:** PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.
+
+**On screen, exactly:** `PF samjho, claim pao.` · `EPFO ki har jankari chahiye?` · `FOLLOW @PFGURUJI` · `NIYAM: EPFO.GOV.IN` · `EPFO KA OFFICIAL CHANNEL NAHI`
+
+**Built from:** ground · handwritten note · end card · puppet
+
 ## 4 · Build
 
 Upload the photos and voice files: GitHub builds the reel by itself (**Actions → Build reel**, about 5 minutes) and saves `episodes/ep06-shivam-new-job/media/final/ep06-shivam-new-job.mp4` and `cover.jpg`. Or build it yourself from the top folder of the repo:

@@ -58,7 +58,248 @@
       "notes": ""
     }
   },
-  "shots": {},
+  "shots": {
+    "S01": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S02": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S03": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S04": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S05": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S06": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S07": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S08": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S09": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S10": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S11": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S12": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S13": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S14": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    },
+    "S15": {
+      "keyframe": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      },
+      "motion": {
+        "state": "todo",
+        "tries": 0,
+        "mode": null,
+        "file": null,
+        "approval": null
+      }
+    }
+  },
   "post": {
     "url": null,
     "posted_at": null
@@ -73,6 +314,11 @@
       "at": "2026-11-18T17:07:24",
       "by": "new_episode.py --prepare",
       "event": "episode folder prepared"
+    },
+    {
+      "at": "2026-11-18T18:14:41",
+      "by": "new_episode.py --prepare",
+      "event": "added shots S01, S02, S03, S04, S05, S06, S07, S08, S09, S10, S11, S12, S13, S14, S15"
     }
   ]
 }
