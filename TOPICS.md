@@ -2,18 +2,29 @@
 
 Every PF Guru Ji reel. A new reel needs its own topic, hook, script and photos, and no reel is ever posted twice.
 
-- **Next episode number: ep06**
+- **Next episode number: ep07**
 - **Muse:** read this before choosing a topic (MUSE.md → N1). In the new episode's `brief.repeat_check`, name the reel here that's closest to yours and say how yours is different.
 - **The checks** compare every new episode with all of these (check report → Not a repeat).
 - GitHub rewrites this file after every upload (`tools/topics.py`). Don't edit it. To add a reel posted before this repo (or made in another one), add it to `brand/topics-done.json`.
 
 | Reel | Topic | Hook | Posted |
 |---|---|---|---|
+| ep06-shivam-new-job | Nayi naukri ke pehle din kya karein, taaki aage PF claim reject na ho? Shivam ki kahani. | Nayi naukri ka pehla din: HR poochta hai, purana UAN hai? | not yet |
 | ep04-epf-interest-vs-fd | EPF ka byaaj FD, post office, PPF aur LIC se zyada kyun? Safe options ki seedhi tulna. | PF nikaal ke FD karne ki soch rahe ho? Ruko! | [2026-11-14](https://www.instagram.com/reel/Dfud73RPQHp/) |
 | ep03-claim-online-steps | PF claim online kaise bharein? Member portal pe step by step. | PF nikalna hai? Agent ki zaroorat nahi. | [2026-11-14](https://www.instagram.com/reel/DfttMyBvNKx/) |
 | ep02-what-is-pf | PF kya hai, employee par iska kya asar hota hai, aur salary se PF kaise kat-ta hai? | Salary aayi, PF kat gaya — yeh paisa kahan gaya? | [2026-11-14](https://www.instagram.com/reel/DfsSecYvJW2/) |
 | ep01-claim-reject | PF claim reject kyun hota hai, aur kaise theek karein? | PF claim reject ho gaya? Paisa atka hai? | [2026-11-13](https://www.instagram.com/reel/DfrokvGvHfC/) |
 | ep05-transfer-out-rejected (made in another repo) | Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein? | Nayi naukri join kar li — purana PF aaya nahi? | not yet |
+
+## ep06-shivam-new-job
+
+- **Title:** Nayi naukri ke pehle din kya karein, taaki claim reject na ho?
+- **Topic:** Nayi naukri ke pehle din kya karein, taaki aage PF claim reject na ho? Shivam ki kahani.
+- **Hook:** Nayi naukri ka pehla din: HR poochta hai, purana UAN hai?
+- **Covers:** Why: A member keeps one UAN for life; a job change doesn't need a new one · A mismatch in name, date of birth, Aadhaar or bank details is one of the usual reasons claims come back. Steps: Give the new employer the UAN you already have, on the joining form · Finish KYC on the member portal: Aadhaar, bank and PAN · Make the name and date of birth match Aadhaar; correct them yourself if they don't · Move the old PF to the new account with Form 13
+- **Cover:** NAYI NAUKRI? PURANA UAN DO! SHIVAM KI KAHANI
+- **Photos:** —
+- **Posted:** not yet
 
 ## ep04-epf-interest-vs-fd
 

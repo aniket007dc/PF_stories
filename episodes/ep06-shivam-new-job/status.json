@@ -1,0 +1,78 @@
+{
+  "schema": "dc-status/1",
+  "episode": "ep06-shivam-new-job",
+  "steps": {
+    "01-brief": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "02-data": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "03-script": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "04-shots": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "05-keyframes": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "06-motion": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "07-voice": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "08-assembly": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "09-final-qa": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "10-publish": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    },
+    "11-measure": {
+      "state": "todo",
+      "approval": null,
+      "notes": ""
+    }
+  },
+  "shots": {},
+  "post": {
+    "url": null,
+    "posted_at": null
+  },
+  "metrics": {
+    "24h": null,
+    "72h": null,
+    "7d": null
+  },
+  "log": [
+    {
+      "at": "2026-11-18T17:07:24",
+      "by": "new_episode.py --prepare",
+      "event": "episode folder prepared"
+    }
+  ]
+}

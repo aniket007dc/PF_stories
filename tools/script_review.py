@@ -278,8 +278,7 @@ def render(ep_dir, ep=None):
 
     if st["state"] != "posted":
         out += ["## How to reply", "",
-                "- **To change a line:** write its number and the new words, for example \"S03: FD safe hai, par byaaj "
-                "sabse kam.\"",
+                "- **To change a line:** write its number and the line as you want it, for example \"S03: …\".",
                 "- **To use another hook:** write \"Hook A\" (or B)." if options else
                 "- **To change the hook:** write \"S01:\" and the new words.",
                 "- **When it's right:** write \"script OK\".", "",

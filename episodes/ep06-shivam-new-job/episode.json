@@ -1,0 +1,368 @@
+{
+ "schema": "dc-episode/1",
+ "id": "ep06",
+ "slug": "shivam-new-job",
+ "series": "PF Guru Ji",
+ "title": "Nayi naukri ke pehle din kya karein, taaki claim reject na ho?",
+ "tag": "PF GURU JI #06 · SHIVAM KI NAYI NAUKRI",
+ "created": "2026-11-18",
+ "route": "build",
+ "brief": {
+  "topic": "Nayi naukri ke pehle din kya karein, taaki aage PF claim reject na ho? Shivam ki kahani.",
+  "repeat_check": {
+   "closest": "ep05-transfer-out-rejected",
+   "different_because": "ep05 is about a Form 13 transfer that has already come back rejected; this story is about the first day at a new job: giving HR the old UAN instead of taking a new one, finishing KYC and matching details, so later claims and transfers don't get stuck."
+  },
+  "viewer": "Someone joining a new job (often their second or third) who already has a UAN from the last one and doesn't know what to tell HR.",
+  "hook": "Nayi naukri ka pehla din: HR poochta hai, purana UAN hai?",
+  "problem": "Taking a new UAN leaves the old PF under the old one, and details that don't match Aadhaar get claims returned later.",
+  "why": [
+   "A member keeps one UAN for life; a job change doesn't need a new one",
+   "A mismatch in name, date of birth, Aadhaar or bank details is one of the usual reasons claims come back"
+  ],
+  "steps": [
+   "Give the new employer the UAN you already have, on the joining form",
+   "Finish KYC on the member portal: Aadhaar, bank and PAN",
+   "Make the name and date of birth match Aadhaar; correct them yourself if they don't",
+   "Move the old PF to the new account with Form 13"
+  ],
+  "check": "The old company has put the date of exit; if it hasn't, after 60 days the member can mark it himself.",
+  "help": "EPFiGMS, EPFO's grievance portal, free.",
+  "share_target": "A friend who is joining a new job",
+  "why_now": "Every job change asks the UAN question on day one, and that's when the mistake gets made."
+ },
+ "data": [
+  {
+   "id": "uan_for_life",
+   "label": "One UAN for life",
+   "kind": "rule",
+   "statement": "A member's UAN stays the same for life: it doesn't change with a new job, and a member doesn't get a new UAN when changing jobs.",
+   "source": "EPFO, Frequently Asked Questions for members on UAN (Ver 1.1)",
+   "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/UAN_PDFs/UAN_ForMembers/FAQ-Member-Ver1.1.pdf",
+   "check_note": "Find the answer saying the UAN 'remains valid throughout the life of a member and does not change with the change of employment', and that a member doesn't need to obtain a UAN again on a job change. The research couldn't open these pages on 18 November 2026 (EPFO's and PIB's sites refused automated reading); the wording above is from search results only, so open each one and confirm it.",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "declare_uan_on_joining",
+   "label": "On joining, give the UAN you already have",
+   "kind": "rule",
+   "statement": "On joining a new employer, the member gives the UAN they already have (on the joining declaration, Form 11), and the employer links the new member ID to it instead of a new UAN being made.",
+   "source": "EPFO, FAQ on UAN and KYC (circular, 2020-21); PIB, 'Mission Consolidation: One Employee-One Account' (1 May 2016)",
+   "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/Circulars/Y2020-2021/FAQUANKYC.pdf",
+   "check_note": "Find: a member declares the UAN to later employers in Form-11 (the Declaration Form), and the employer links the new member ID with the existing UAN. The PIB release (https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=143612) asks establishments to take from a new joiner any UAN allotted earlier. Form 11 isn't in brand/epfo-forms.json, so the reel says 'joining form' and doesn't name it. The research couldn't open these pages on 18 November 2026 (EPFO's and PIB's sites refused automated reading); the wording above is from search results only, so open each one and confirm it.",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "two_uans",
+   "label": "If a second UAN gets made",
+   "kind": "rule",
+   "statement": "A member who ends up with a second UAN has the old PF left under the old UAN: they report both UANs to the employer and to uanepf@epfindia.gov.in, EPFO blocks the older one after checking, and the old PF is moved with a transfer claim.",
+   "source": "EPFO, Frequently Asked Questions for members on UAN (Ver 1.1); EPFO, Information booklet for EPF members",
+   "source_url": "https://www.epfindia.gov.in/site_docs/PDFs/UAN_PDFs/UAN_ForMembers/FAQ-Member-Ver1.1.pdf",
+   "check_note": "Find: with more than one UAN, the member tells the employer and emails uanepf@epfindia.gov.in with both UANs; after verification the previous UAN is blocked and the current one kept; the booklet (https://www.epfindia.gov.in/site_docs/PDFs/MiscPDFs/Employees_Information_Booklet.pdf) says to merge older accounts into the latest UAN by filing transfer applications. The research couldn't open these pages on 18 November 2026 (EPFO's and PIB's sites refused automated reading); the wording above is from search results only, so open each one and confirm it.",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "online_claim_kyc",
+   "label": "What a member needs before claiming online",
+   "kind": "rule",
+   "statement": "To claim online, the UAN must be activated and linked to Aadhaar, with the bank account and PAN seeded with EPFO.",
+   "source": "EPF Scheme, 2026, paragraph 25(1) (Gazette of India, G.S.R. 525(E), 29 June 2026); PIB, 1 May 2017 (online claims from the UAN)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Gazette p. 80, para 25(1): the member furnishes 'Aadhaar Number ..., an Aadhaar seeded Bank account number ..., the Permanent account Number ... and the Universal Account Number.' PIB 1 May 2017 (https://www.pib.gov.in/newsite/PrintRelease.aspx?relid=161420): members 'who have activated their UAN and seeded their KYC (Aadhaar) with EPFO will be able to apply for PF final settlement (form19), Pension withdrawal benefit (Form10-C) and PF part withdrawal (Form31)'.",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "reject_details",
+   "label": "Mismatched details get claims rejected",
+   "kind": "rule",
+   "statement": "A mismatch in date of birth, date of exit, Aadhaar or bank details is one of the usual reasons EPFO gives for rejecting a claim.",
+   "source": "Lok Sabha, Unstarred Question 2680, answered 9 March 2026 (reasons for rejection of claims)",
+   "source_url": "https://www.outlookmoney.com/retirement/pension/epf-claim-settlement-why-epfo-rejects-the-claims-and-what-subscribers-can-do",
+   "check_note": "The link reproduces the official reply (it lists mismatches in date of birth, exit date, service details, Aadhaar or bank details). Find the reply on sansad.in, check it says this, and put that official link here instead. The reply is about pension claims; confirm it applies to PF claims too, or say so. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "self_correction",
+   "label": "Aadhaar-verified UANs need no document to correct details",
+   "kind": "rule",
+   "statement": "A member whose UAN is verified with Aadhaar can correct their name, date of birth and other details themselves, without uploading any document (some UANs issued before 1 October 2017 also need the employer's certification).",
+   "source": "PIB, Ministry of Labour and Employment, 19 January 2025: members correct their own profile",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2094229",
+   "check_note": "Quote: 'members whose Universal Account Number (UAN) has already been validated through Aadhaar can update their profile like name, date of birth ... themselves without the requirement of uploading any document. Only, in certain cases where UAN was obtained prior to 1-10-2017, the updation would require certification of employer only.' (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "transfer_on_job_change",
+   "label": "On a new job, move the PF, don't withdraw it",
+   "kind": "rule",
+   "statement": "On changing jobs, a member can move the old PF account to the new one (Form 13), so the money keeps earning EPF interest.",
+   "source": "EPFO, 'Which claim form' (Form 13: moving an old PF account to the new one); brand/epfo-forms.json",
+   "source_url": "https://www.epfindia.gov.in/site_en/WhichClaimForm.php",
+   "check_note": "Form 13 moves the PF from an old employer's account to the new one, so it keeps earning EPF interest; the forms list (brand/epfo-forms.json) has it, checked on 13 November 2026. (Checked by Divyank Sharma for ep04 on 2026-11-14: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "exit_date_upload",
+   "label": "Who puts the date of exit in",
+   "kind": "rule",
+   "statement": "The employer must upload who left within fifteen days of each month's end; the member can also record their own date of exit.",
+   "source": "EPF Scheme, 2026, paragraph 24(2)(v) (G.S.R. 525(E)); PIB, 8 January 2021 (members record their date of exit)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 24(2)(v): 'Every employer shall, within fifteen days of the close of each month, upload ... details of the employees leaving the service'. For the member's own entry: PIB https://www.pib.gov.in/PressReleasePage.aspx?PRID=1687113 ('record their date of exit themselves'). (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "mark_exit_days",
+   "label": "Days after leaving before the member can mark their own date of exit",
+   "kind": "fact",
+   "value": 60,
+   "unit": "days",
+   "source": "EPFO FAQ, member portal (official, undated)",
+   "source_url": "https://www.epfindia.gov.in/site_en/FAQ.php",
+   "check_note": "Find: 'After 60 days from the date of leaving of services, the member can him self submit / update Date of Exit online through Member Portal.' The research couldn't open the page (seen in a search snippet only), and the menu (Manage → Mark Exit) may have changed after the July 2026 upgrade: confirm both on the portal. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "grievance_epfigms",
+   "label": "EPFO's grievance portal",
+   "kind": "rule",
+   "statement": "EPFO takes grievances online on its EPFiGMS portal, epfigms.gov.in, which is also inside the UMANG app.",
+   "source": "EPFiGMS, EPFO's grievance portal",
+   "source_url": "https://epfigms.gov.in/",
+   "check_note": "Open it: 'Register Grievance', for PF members, pensioners and employers; the site says 'EPFiGMS is available in UMANG.' (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "services_free",
+   "label": "EPFO's services are free",
+   "kind": "rule",
+   "statement": "EPFO's services are free: members shouldn't pay any fee to agents or cyber cafes.",
+   "source": "PIB, Ministry of Labour and Employment, 16 June 2025",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2136592",
+   "check_note": "Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  }
+ ],
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "Shivam ki nayi naukri! Pehla din, aur HR ka pehla sawaal.",
+   "tts": "शिवम की नई नौकरी! पहला दिन, और एचआर का पहला सवाल।",
+   "delivery": "excited · bright and quick, a little suspense on pehla sawaal",
+   "scene": "Shivam walks up to the mill on his first day, smiling, and waves",
+   "highlights": [
+    "nayi naukri!"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "hook",
+   "vo": "\"Purana UAN hai?\" Shivam bola: \"Naya bana do na!\"",
+   "tts": "\"पुराना यूएएन है?\" शिवम बोला: \"नया बना दो ना!\"",
+   "delivery": "playful · Priya asks crisply, Shivam answers carelessly",
+   "scene": "At HR's desk Priya asks, in a bubble PURANA UAN HAI?; Shivam shrugs, a bubble NAYA BANA DO!",
+   "highlights": [
+    "Naya bana do"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S03",
+   "chapter": "problem",
+   "vo": "Ruko! Yahin sabse badi galti hoti hai.",
+   "tts": "रुको! यहीं सबसे बड़ी गलती होती है।",
+   "delivery": "serious · a sharp stop on Ruko!, then low and clear",
+   "scene": "Everything freezes; a red stamp GALTI! lands above Shivam, who looks worried",
+   "highlights": [
+    "sabse badi galti"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S04",
+   "chapter": "problem",
+   "vo": "Naya UAN, matlab purana PF purane UAN mein atka.",
+   "tts": "नया यूएएन, मतलब पुराना पीएफ पुराने यूएएन में अटका।",
+   "delivery": "concerned · stress atka",
+   "scene": "Shivam's old PF sits as a stack of coins behind a cross; Shivam's face falls",
+   "highlights": [
+    "atka."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S05",
+   "chapter": "why",
+   "vo": "Priya ne samjhaya: \"UAN ek hi hota hai. Poori zindagi ke liye.\"",
+   "tts": "प्रिया ने समझाया: \"यूएएन एक ही होता है। पूरी ज़िंदगी के लिए।\"",
+   "delivery": "warm · Priya, kind and sure; stress ek hi",
+   "scene": "Priya stands up and points; a bubble EK HI UAN!",
+   "highlights": [
+    "ek hi"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S06",
+   "chapter": "why",
+   "vo": "\"Naukri badlo, company badlo, UAN wahi rehta hai.\"",
+   "tts": "\"नौकरी बदलो, कंपनी बदलो, यूएएन वही रहता है।\"",
+   "delivery": "proud · a quick rhythm on badlo, badlo, then land wahi",
+   "scene": "Shivam nods as a yellow card UAN WAHI comes in above",
+   "highlights": [
+    "wahi rehta"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S07",
+   "chapter": "steps",
+   "vo": "Toh Shivam ne joining form mein purana UAN hi diya.",
+   "tts": "तो शिवम ने जॉइनिंग फ़ॉर्म में पुराना यूएएन ही दिया।",
+   "delivery": "happy · relieved, quick, a lift on purana UAN",
+   "scene": "Shivam holds a form and a yellow tick pops beside it",
+   "highlights": [
+    "purana UAN"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S08",
+   "chapter": "steps",
+   "vo": "Phir member portal pe KYC: Aadhaar, bank aur PAN.",
+   "tts": "फिर मेंबर पोर्टल पे केवाईसी: आधार, बैंक और पैन।",
+   "delivery": "curious · a quick list, one beat each on Aadhaar, bank, PAN",
+   "scene": "Shivam on his phone (the portal); a card KYC: AADHAAR + BANK + PAN",
+   "highlights": [
+    "KYC"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S09",
+   "chapter": "steps",
+   "vo": "Naam aur janam tithi bilkul Aadhaar jaise. Galat ho, toh khud theek karo.",
+   "tts": "नाम और जन्म तिथि बिलकुल आधार जैसे। गलत हो, तो खुद ठीक करो।",
+   "delivery": "serious · firm on bilkul, then encouraging on khud theek karo",
+   "scene": "A document with a lemon highlight; Shivam checks it, thinking, then smiles",
+   "highlights": [
+    "Aadhaar jaise."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S10",
+   "chapter": "steps",
+   "vo": "Aur purana PF? Form 13 se naye khaate mein transfer.",
+   "tts": "और पुराना पीएफ? फ़ॉर्म थर्टीन से नए खाते में ट्रांसफ़र।",
+   "delivery": "proud · a question, then a confident answer on transfer",
+   "scene": "The coin stack moves from an old building to the new mill; a card FORM 13",
+   "highlights": [
+    "Form 13"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S11",
+   "chapter": "check",
+   "vo": "Bas ek check: purani company ne exit date daali hai?",
+   "tts": "बस एक चेक: पुरानी कंपनी ने एग्ज़िट डेट डाली है?",
+   "delivery": "curious · a raised eyebrow on exit date",
+   "scene": "Shivam thinks in front of a calendar; a thought bubble EXIT DATE?",
+   "highlights": [
+    "exit date"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S12",
+   "chapter": "check",
+   "vo": "Nahi daali? 60 din baad Shivam khud Mark Exit kar sakta hai.",
+   "tts": "नहीं डाली? सिक्सटी दिन बाद शिवम खुद मार्क एग्ज़िट कर सकता है।",
+   "delivery": "warm · reassuring, stress khud",
+   "scene": "A clock spins (time passing); Shivam marks it on his phone; a card 60 DIN BAAD",
+   "highlights": [
+    "60 din"
+   ],
+   "uses": [
+    "mark_exit_days"
+   ]
+  },
+  {
+   "shot": "S13",
+   "chapter": "help",
+   "vo": "Phir bhi atka? EPFiGMS pe shikayat karo. Bilkul free.",
+   "tts": "फिर भी अटका? ईपीएफ़आईजीएमएस पे शिकायत करो। बिलकुल फ़्री।",
+   "delivery": "warm · helpful, a smile on free",
+   "scene": "Shivam outside the PF office, holding his phone; an ink stamp FREE HAI",
+   "highlights": [
+    "Bilkul free."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S14",
+   "chapter": "share",
+   "vo": "Nayi naukri join karne wale dost ko abhi bhejo.",
+   "tts": "नई नौकरी जॉइन करने वाले दोस्त को अभी भेजो।",
+   "delivery": "playful · a quick nudge on abhi bhejo",
+   "scene": "Shivam hands a phone to Ravi, who has a suitcase; a yellow tag SHARE ↗",
+   "highlights": [
+    "abhi bhejo."
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S15",
+   "chapter": "signoff",
+   "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+   "tts": "पीएफ समझो, क्लेम पाओ। ईपीएफओ की हर जानकारी चाहिए? फ़ॉलो करो पीएफ गुरु जी।",
+   "delivery": "proud · warm and bright, a smile on Follow karo PF Guru Ji",
+   "highlights": [
+    "PF Guru Ji."
+   ],
+   "uses": [],
+   "scene": "The end card; Shivam waves beside it"
+  }
+ ],
+ "hook_options": [
+  "Nayi naukri ka pehla din. Ek sawaal, aur PF atak sakta hai.",
+  "\"Purana UAN hai?\" Joining pe yeh sawaal aaye, toh ruko!"
+ ],
+ "shots": [],
+ "breaks": [],
+ "post": {
+  "caption": "Shivam ki nayi naukri, pehla din. HR ne poocha: purana UAN hai? Shivam bola: naya bana do. Wahi galti!\n\nUAN ek hi hota hai, poori zindagi ke liye. Naukri badlo, UAN wahi rehta hai. Naya UAN bana, toh purana PF purane UAN mein atak jaata hai.\n\nJoining ke din: purana UAN do. Member portal pe KYC poori karo: Aadhaar, bank aur PAN. Naam aur janam tithi Aadhaar jaise ho. Purana PF Form 13 se transfer karo. Purani company ne exit date nahi daali? 60 din baad aap khud Mark Exit kar sakte ho. Phir bhi atka? EPFiGMS pe shikayat, bilkul free.\n\nDo UAN ban chuke hain? Employer ko aur uanepf@epfindia.gov.in pe dono UAN batao.\n\nYeh us dost ko bhejo jo nayi naukri join kar raha hai.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\n#pfguruji #epfo #uan #newjob #pfstory",
+  "hashtags": [
+   "#pfguruji",
+   "#epfo",
+   "#uan",
+   "#newjob",
+   "#pfstory"
+  ],
+  "pinned_comment": "Aapke paas kitne UAN hain: ek ya do? Comment karo. UAN number, OTP ya bank details kabhi mat likhna.",
+  "cover": {
+   "lines": [
+    "NAYI NAUKRI?",
+    "PURANA UAN DO!"
+   ],
+   "stamp": "SHIVAM KI KAHANI",
+   "asset": "A07"
+  },
+  "trial_hook": "Nayi naukri, pehla din. HR ne poocha: purana UAN hai?"
+ }
+}
