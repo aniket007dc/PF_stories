@@ -189,7 +189,7 @@ Rules, follow exactly:
 Muse can run Python. This route draws every word with the brand fonts, so the text is exact by construction, and the timing is exact to the frame. Muse needs the GitHub connection, or attach `brand/assets/plates/paper-a01.webp` and the files in `brand/fonts/` yourself.
 
 ```text
-Build shot S04 with code, not with the image or video model. First read these from the GitHub repo aniket007dc/PF-Uncle-: brand/prompts/code-build.txt (the rules: follow every one), brand/assets/plates/paper-a01.webp (the paper) and the fonts in brand/fonts/.
+Build shot S04 with code, not with the image or video model. First read these from the GitHub repo aniket007dc/PF_stories: brand/prompts/code-build.txt (the rules: follow every one), brand/assets/plates/paper-a01.webp (the paper) and the fonts in brand/fonts/.
 Text, exactly: "ATKA HUA PF", "₹2,00,000", "EXAMPLE", "WAPAS!"
 Layout: a large lemon-yellow card, about 87% of the frame width and 24% of the frame height, its top edge at 22% of the frame height, rotated −1°, soft shadow. A black tab at its top-left with white monospace caps "ATKA HUA PF", huge black condensed "₹2,00,000" in the middle, and small black monospace caps "EXAMPLE" at the bottom-right. Below the card, a red rubber stamp "WAPAS!" rotated +6°.
 Motion: 0.1 s: the yellow card drops in with a small bounce. 2.8 s: the stamp "WAPAS!" slams down from 150% to 100% size. Hold until 5.0 s.

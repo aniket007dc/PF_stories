@@ -283,8 +283,10 @@ def prompt_text(name):
     text = read_text(BRAND_DIR / "prompts" / name).strip()
     b = brand()
     note, button = follow_line()
+    cast = "; ".join("{} ({}: {})".format(k, v.get("name", k), v.get("about", "")) for k, v in (b.get("cast") or {}).items())
     for key, value in (("SIGNOFF", b.get("signoff", "")), ("TAGLINE", b.get("tagline", "")),
-                       ("INSTAGRAM", b.get("instagram", "")), ("FOLLOW_NOTE", note), ("FOLLOW_BUTTON", button)):
+                       ("INSTAGRAM", b.get("instagram", "")), ("FOLLOW_NOTE", note), ("FOLLOW_BUTTON", button),
+                       ("CAST", cast or "none yet")):
         text = text.replace("{{" + key + "}}", value)
     return text
 

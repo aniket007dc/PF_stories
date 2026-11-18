@@ -25,7 +25,9 @@
     "lemon": "#F5EE30",
     "stamp_red": "#C8443A",
     "pencil": "#A39E95",
-    "black_paper": "#121212"
+    "black_paper": "#121212",
+    "skin": "#C98E62",
+    "skin_dark": "#9E6A45"
   },
   "fonts": {
     "numbers_and_headlines": "Anton",
@@ -102,5 +104,49 @@
     ],
     "tail_seconds": 3,
     "script_review_from": "ep05"
+  },
+  "cast": {
+    "shivam": {
+      "name": "Shivam",
+      "about": "the hero of the stories: a young worker in his twenties, new to PF",
+      "hair": "short",
+      "shirt": "lemon",
+      "pants": "ink",
+      "sleeves": "short",
+      "skin": "skin"
+    },
+    "priya": {
+      "name": "Priya",
+      "about": "HR at Shivam's company: she knows the PF rules",
+      "hair": "bun",
+      "shirt": "stamp_red",
+      "pants": "ink",
+      "sleeves": "long",
+      "skin": "skin_dark",
+      "top": "kurta",
+      "dupatta": "lemon"
+    },
+    "ravi": {
+      "name": "Ravi",
+      "about": "Shivam's friend, who learned the PF rules the hard way",
+      "hair": "short",
+      "shirt": "card",
+      "pants": "pencil",
+      "sleeves": "short",
+      "skin": "skin_dark",
+      "moustache": true
+    },
+    "papa": {
+      "name": "Papa",
+      "about": "Shivam's father, retired after 30 years at a mill",
+      "hair": "grey",
+      "shirt": "card",
+      "pants": "pencil",
+      "sleeves": "long",
+      "skin": "skin",
+      "glasses": true,
+      "moustache": true,
+      "top": "kurta"
+    }
   }
 }

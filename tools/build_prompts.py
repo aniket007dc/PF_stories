@@ -172,14 +172,20 @@ def render_build(ep_dir):
     rel = "episodes/" + ep_dir.name
     out = [HEADER, "# Prompts · {} · {}".format(ep.get("id"), ep.get("title")), ""]
     out.append("This episode is built by `tools/build_reel.py` from `episode.json` and `reel.json`. "
-               "Muse makes the photos and the voice lines below; the build draws everything else (paper, header, cards, "
-               "numbers, stamps, charts, captions, wipes, sound effects), so every word and number on screen is exact. "
+               "Muse makes the voice lines below (and any photos it lists); the build draws everything else (paper, the "
+               "paper cut-out people and things, header, cards, numbers, stamps, bubbles, captions, wipes, sound effects), "
+               "so every word and number on screen is exact. "
                "The steps are in **MUSE.md**.")
     out.append("")
     out.append("## 1 · Photos")
     out.append("")
-    out.append("Make each photo with the image model, using its prompt exactly. Black and white, landscape 4:3, and **no writing of any kind** in the picture. Save it under the file name shown.")
-    out.append("")
+    if not reel.get("photos"):
+        out.append("None: the build draws every person and thing in this reel as a paper cut-out (`tools/cutout.py`). "
+                   "Nothing to make here.")
+        out.append("")
+    else:
+        out.append("Make each photo with the image model, using its prompt exactly. Black and white, landscape 4:3, and **no writing of any kind** in the picture. Save it under the file name shown.")
+        out.append("")
     used = {}
     for sid, els in reel.get("shots", {}).items():
         for el in els:

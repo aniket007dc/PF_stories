@@ -2,7 +2,7 @@
 
 # Prompts · ep04 · EPF ka byaaj FD se zyada? Safe options ki tulna.
 
-This episode is built by `tools/build_reel.py` from `episode.json` and `reel.json`. Muse makes the photos and the voice lines below; the build draws everything else (paper, header, cards, numbers, stamps, charts, captions, wipes, sound effects), so every word and number on screen is exact. The steps are in **MUSE.md**.
+This episode is built by `tools/build_reel.py` from `episode.json` and `reel.json`. Muse makes the voice lines below (and any photos it lists); the build draws everything else (paper, the paper cut-out people and things, header, cards, numbers, stamps, bubbles, captions, wipes, sound effects), so every word and number on screen is exact. The steps are in **MUSE.md**.
 
 ## 1 · Photos
 

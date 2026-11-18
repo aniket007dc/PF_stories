@@ -5,6 +5,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 import re
 import shutil
 import subprocess
@@ -328,7 +329,8 @@ class TestNewEpisodeFlow(unittest.TestCase):
 
     def test_brief_then_script_then_shots(self):
         src = dc.load_json(PILOT / "episode.json")
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(topics, "DONE_FILE", Path(tmp) / "none.json"):   # no reels made elsewhere
             ep_dir = Path(tmp) / "ep99-flow-test"
             ep_dir.mkdir()
             ep = dc.load_json(ROOT / "templates" / "episode.template.json")
@@ -367,6 +369,9 @@ class TestNewEpisode(unittest.TestCase):
     def test_new_episode_skeleton_passes(self):
         tmp = Path(tempfile.mkdtemp())
         try:
+            done = mock.patch.object(topics, "DONE_FILE", tmp / "none.json")         # no reels made elsewhere
+            done.start()
+            self.addCleanup(done.stop)
             folder = new_episode.create("ep99", "test-topic", "Test topic?", base=tmp)
             r, _, _ = validate.validate_episode(folder, dc.brand())
             self.assertEqual(r.of("fail"), [])
@@ -730,6 +735,115 @@ class TestScriptReviewStartsAtEp05(unittest.TestCase):
                 self.assertFalse((ep_dir / "script.md").exists(), ep_dir.name)
 
 
+class TestCutouts(unittest.TestCase):
+    """PF Stories: people and things cut from paper (tools/cutout.py), and how the reel moves them."""
+    DEMO = ROOT / "brand" / "assets" / "style-frames" / "cutout-demo"
+
+    @classmethod
+    def setUpClass(cls):
+        import cutout
+        cls.cutout = cutout
+        cls.paper = build_reel.Paper()
+
+    def test_every_person_in_every_pose(self):
+        c = self.cutout
+        for who in c.CAST:
+            for pose in c.POSES:
+                img, (gx, gy) = c.person(who, pose, "smile", phase=0.8 if pose == "walk" else None)
+                self.assertEqual(img.mode, "RGBA")
+                box = img.getchannel("A").getbbox()
+                self.assertIsNotNone(box, (who, pose))
+                self.assertGreater(box[0], 0, (who, pose))                       # nothing cut off the canvas
+                self.assertLess(box[2], img.width, (who, pose))
+                self.assertGreater(box[1], 0, (who, pose))
+                self.assertLessEqual(abs(box[3] - gy), 12, (who, pose))          # it stands on its ground point
+        for mood in c.MOODS:
+            c.person("shivam", "stand", mood)
+        a, _ = c.person("priya", "wave", "happy", wave=0.4)
+        b, _ = c.person("priya", "wave", "happy", wave=0.4)
+        self.assertEqual(a.tobytes(), b.tobytes())                               # the same pose is the same image
+        with self.assertRaises(KeyError):
+            c.person("nobody")
+
+    def test_a_hand_reaches_its_target_with_the_arm_its_own_length(self):
+        c = self.cutout
+        for target in ((60, -560), (20, -470), (250, -430), (-30, -650)):
+            sho = (c.SHOULDER_X, c.SHOULDER_Y + 8)
+            el, wr = c._ik(sho, target, c.UPPER_ARM, c.FOREARM, 1)
+            self.assertAlmostEqual(math.dist(sho, el), c.UPPER_ARM, delta=0.5)
+            self.assertAlmostEqual(math.dist(el, wr), c.FOREARM, delta=0.5)
+
+    def test_every_prop_and_the_white_cut_edge(self):
+        c = self.cutout
+        for kind in c.PROPS:
+            img, anchors = c.prop(kind)
+            self.assertIsNotNone(img.getchannel("A").getbbox(), kind)
+            done = c.finish(img, self.paper, 3)
+            self.assertEqual(done.size, (img.width + 2 * c.PAD, img.height + 2 * c.PAD))
+        tick, _ = c.prop("tick")
+        done = c.finish(tick, self.paper, 3)
+        x0, y0, x1, y1 = tick.getchannel("A").getbbox()
+        r, g, b, a = done.getpixel((x0 + c.PAD - 3, (y0 + y1) // 2 + c.PAD))  # just outside the shape: white paper
+        self.assertGreater(a, 200)
+        self.assertGreater(min(r, g, b), 225)
+        with self.assertRaises(KeyError):
+            c.prop("rocket")
+
+    def test_the_demo_draws_only_its_card_text(self):
+        reel = build_reel.Reel(self.DEMO, use_voice=False)
+        self.assertEqual(reel.check_texts(), [])
+        spec = json.loads((self.DEMO / "reel.json").read_text(encoding="utf-8"))
+        spec["shots"]["S03"].append({"type": "bubble", "text": "NAYA UAN BANA DO", "x": 300, "y": 500})
+        spec["shots"]["S04"][1]["label"] = "EPFO HQ"
+        with tempfile.TemporaryDirectory() as tmp:
+            ep = Path(tmp) / "cutout-demo"
+            shutil.copytree(self.DEMO, ep)
+            (ep / "reel.json").write_text(json.dumps(spec), encoding="utf-8")
+            problems = build_reel.Reel(ep, use_voice=False).check_texts()
+        self.assertIn('S03 draws "NAYA UAN BANA DO", which isn\'t in its card_text', problems)
+        self.assertIn('S04 draws "EPFO HQ", which isn\'t in its card_text', problems)
+
+    def test_unknown_names_stop_the_build(self):
+        ctx = {"paper": self.paper, "photos": {}, "screens": {}, "seed": 1}
+        with self.assertRaises(KeyError):
+            build_reel.Puppet({"who": "nobody"}, ctx)
+        with self.assertRaises(SystemExit):
+            build_reel.Puppet({"who": "shivam", "moves": [{"do": "pose", "pose": "dance"}]}, ctx)
+        with self.assertRaises(SystemExit):
+            build_reel.Prop({"kind": "rocket"}, ctx)
+
+    def test_moves_land_on_their_words_and_walks_take_their_time(self):
+        reel = build_reel.Reel(self.DEMO, use_voice=False)
+        s1 = reel.elements[0]
+        shivam = next(e for e in s1 if isinstance(e, build_reel.Puppet))
+        jump = next(m for m in shivam.moves if m["do"] == "jump")
+        shot = reel.E.shots[0]
+        word_at = reel.E.word_time(shot, "pehli")
+        self.assertAlmostEqual(shivam.at + jump["at"], word_at - 0.12, places=2)   # on the word, a beat early
+        (t0, t1, a, b), = shivam.walks
+        self.assertEqual((a, b), (-140, 330))
+        mid = (t0 + t1) / 2
+        x, _, key = shivam.look(*build_reel.stop_motion(mid))
+        self.assertTrue(a < x < b)
+        self.assertEqual(key[0], "walk")
+        self.assertEqual(key[-1], 1)                                             # facing the way it walks
+        self.assertGreaterEqual(reel.E.min_length("S01"), shivam.at + t1)        # the shot lasts the whole walk
+
+    def test_stop_motion_holds_each_pose_for_a_twelfth_of_a_second(self):
+        reel = build_reel.Reel(self.DEMO, use_voice=False)
+        shivam = next(e for e in reel.elements[0] if isinstance(e, build_reel.Puppet))
+        u = 0.7
+        k = build_reel.stop_motion(u)[1]
+        a = shivam.frame_image(k / 12 + 0.001)
+        b = shivam.frame_image(k / 12 + 0.07)                                    # the same pose
+        self.assertIs(a, b)
+        self.assertEqual(shivam.state(k / 12 + 0.001), shivam.state(k / 12 + 0.07))
+        c = shivam.frame_image((k + 1) / 12 + 0.001)                             # the next pose
+        self.assertIsNot(a, c)
+        frame = reel.render(0.9)
+        self.assertEqual(frame.size, (build_reel.W, build_reel.H))
+
+
 class TestHandwriting(unittest.TestCase):
     def test_unread_handwriting_is_left_for_an_eye_but_never_a_number(self):
         def run(expected, lines, hand):
@@ -1015,6 +1129,19 @@ class TestNotARepeat(unittest.TestCase):
         ids, r = self.checks(self.new(repeat_check={"closest": "old-01", "different_because": "It is the same topic, said again."}))
         self.assertIn("E11.1", ids)
         self.assertTrue(any("old-01" in i["msg"] for i in r.of("fail")))
+
+    def test_a_reel_made_in_another_repo_counts_as_its_own_episode(self):
+        dc.save_json(topics.DONE_FILE, {"topics": [{"topic": "UAN activate kaise karein?", "episode": "ep03-uan-elsewhere",
+                                                    "hook": "UAN mila, par login nahi hota?"}]})
+        early = self.new(folder="ep02-pension-kab", title="Pension ka paisa kab milta hai?")
+        later = self.new(folder="ep04-uan-activate")
+        self.assertNotIn("ep03-uan-elsewhere", [o["id"] for o in topics.earlier(early)])   # it came after ep02
+        self.assertIn("ep03-uan-elsewhere", [o["id"] for o in topics.earlier(later)])
+        self.assertEqual(topics.resolve("ep03", topics.earlier(later))["id"], "ep03-uan-elsewhere")
+        ids, r = self.checks(later)
+        self.assertIn("E11.1", ids)                                                      # the same topic, repeated
+        self.assertIn("Next episode number: ep05", topics.register(self.tmp))
+        self.assertIn("| ep03-uan-elsewhere (made in another repo) |", topics.register(self.tmp))
 
     def test_a_person_can_allow_a_repeat_and_the_ok_lapses_when_it_changes(self):
         f = self.copy_of_ep01()

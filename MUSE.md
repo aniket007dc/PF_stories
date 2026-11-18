@@ -1,19 +1,20 @@
-# Muse: make a PF Guru Ji reel
+# Muse: make a PF Guru Ji story reel
 
-This is the one file Muse follows. A person pastes the prompt below into Muse once; everything else is in this repo.
+This is the one file Muse follows. For a new reel, a person pastes the prompt in **A new episode** below; to finish a reel whose script is approved, the one here. Everything else is in this repo.
 
 ## Paste this into Muse
 
 ```text
-You make Instagram reels for PF Guru Ji, a channel that explains EPFO in plain Hinglish. Your GitHub connection gives you the repo aniket007dc/PF-Uncle-. Open MUSE.md in that repo and follow it from top to bottom for the episode episodes/ep01-claim-reject. Work one step at a time. After each step, tell me exactly what you made and where you saved it, then wait for my OK before the next step. Never post anything to Instagram until I write "post it".
+You make Instagram story reels for PF Guru Ji, a channel that explains EPFO in plain Hinglish through short stories told with paper cut-outs. Your GitHub connection gives you the repo aniket007dc/PF_stories. Open MUSE.md in that repo and follow "Making the reel" for the episode episodes/<EPISODE FOLDER> (its script must already be approved). Work one step at a time. After each step, tell me exactly what you made and where you saved it, then wait for my OK before the next step. Never post anything to Instagram until I write "post it".
 ```
 
 ## What we're making
 
-A vertical reel of about 60 to 75 seconds (1080×1920, 30 fps), told briskly, in the style of the moneytheory.co Jio IPO reel: one crumpled sheet of paper, black-and-white halftone photos with torn edges, yellow, white and black cards with huge numbers, red rubber stamps, graph-paper charts, handwritten notes, a header with the brand name and a running timecode, a torn caption strip whose words darken as they're spoken, with key words highlighted, and torn-paper sheets that sweep across between chapters.
+A vertical reel of about 60 to 75 seconds (1080×1920, 30 fps) that tells a short story: Shivam (or someone else from the cast) runs into a PF problem, and the story shows what he does about it, the right way. Everything is a paper cut-out on one crumpled sheet of paper: the people as jointed paper puppets that walk, wave and react, the places and things (the mill, the PF office, a phone, a form) as paper props, speech bubbles for what they say, and the series' yellow, white and black cards with huge numbers and red rubber stamps above them. Everything moves in stop motion. A header with the brand name and a running timecode, a torn caption strip whose words darken as they're spoken, and torn-paper sheets between chapters, all in the PF Guru Ji colours.
 
-- **What it looks like:** [`brand/assets/style-frames/ep01-contact-sheet.jpg`](brand/assets/style-frames/ep01-contact-sheet.jpg) shows one frame of each of episode 01's shots, with grey placeholders where your photos go.
-- **The finished reel:** `episodes/ep01-claim-reject/media/final/ep01-claim-reject.mp4`, which GitHub builds once your photos and voice lines are uploaded. Every episode should look and sound like it.
+- **What it looks like:** [`brand/assets/style-frames/cutout-demo.mp4`](brand/assets/style-frames/cutout-demo.mp4), a 21-second style test (its `reel.json` is in `brand/assets/style-frames/cutout-demo/`), and [`cutout-demo-sheet.jpg`](brand/assets/style-frames/cutout-demo-sheet.jpg).
+- **The cast:** `brand/brand.json` → `cast`: Shivam (the hero), Priya (HR), Ravi (his friend) and Papa. The build draws each of them the same way in every reel.
+- **The finished reel:** `episodes/<episode>/media/final/<episode>.mp4`, which GitHub builds once the voice lines are uploaded.
 - **What PF Guru Ji is:** a channel that explains EPFO. It isn't EPFO and doesn't speak for it: every rule a reel states comes from EPFO's own pages, and a person checks each one.
 - **Every reel so far:** [`TOPICS.md`](TOPICS.md). A new reel never repeats one of them.
 
@@ -21,11 +22,11 @@ A vertical reel of about 60 to 75 seconds (1080×1920, 30 fps), told briskly, in
 
 | Who | Does |
 |---|---|
-| **Muse** | Makes the photos (image model) and the voice lines, uploads them, and writes new episodes |
-| **The build** (`tools/build_reel.py`; GitHub runs it by itself) | Draws everything you see and hear apart from the photos and voice: paper, header, cards, numbers, stamps, charts, captions, wipes, sound effects, the mix, and the cover |
+| **Muse** | Writes new episodes (the story script, then the scenes in `reel.json`), makes the voice lines, and uploads them. No photos: the build draws every person and thing |
+| **The build** (`tools/build_reel.py`, `tools/cutout.py`; GitHub runs it by itself) | Draws everything you see and hear apart from the voice: paper, the cut-out people and things and how they move, header, speech bubbles, cards, numbers, stamps, charts, captions, wipes, sound effects, the mix, and the cover |
 | **A person** | Checks every fact and rule against EPFO's own pages, reads and approves each new reel's script and hook before anything else is made, takes the member portal screenshots a reel needs (on their own login, every personal detail covered), approves the finished reel, and says when to post |
 
-Why it's split this way: in Muse's first test (12 Nov 2026), its video model kept the numbers but ignored the timing and the layout. So no word or number is ever drawn by AI. The build draws them from the episode file with real fonts, and a check reads every card back with OCR.
+Why it's split this way: in Muse's first test (12 Nov 2026), its video model kept the numbers but ignored the timing and the layout. So no word or number is ever drawn by AI. The build draws them from the episode file with real fonts, and a check reads every card back with OCR. The cut-outs are drawn from shapes for the same reason: Shivam looks the same in every shot of every reel.
 
 ## The rules
 
@@ -39,6 +40,7 @@ Why it's split this way: in Muse's first test (12 Nov 2026), its video model kep
 8. **Never repeat a reel.** Every reel has its own topic, hook, script and photos. [`TOPICS.md`](TOPICS.md) lists every reel made so far, and the checks compare each new one with all of them. Every reel is posted once: when its folder has a `posted.json`, it's live, so never post it again.
 9. **Screenshots come from a person.** A reel that shows the member portal uses screenshots a person takes on their own login. Never log in to any EPFO site, and never ask anyone for a UAN, password or OTP. Before you upload a screenshot a person gives you, look at it: if a name, anything from someone's account (UAN, member ID, Aadhaar, PAN, bank account, mobile, email, amounts, claim numbers) or the EPFO logo or a government emblem shows, don't upload it: send it back to the person to cover or crop.
 10. **The script comes first.** From episode 05 on, a new reel's script and hook go to a person before anything else is made. Make no shots, `reel.json`, photos, screenshots or voice lines until the person has written that the script is OK and you've uploaded `script-approved.json` for that version (N3). If the script changes after that, it goes back to them.
+11. **The cast stays the cast.** Use only the people in `brand/brand.json` → `cast`, by their names, as puppets. Never make a photo or an AI picture of a person for a story reel: the build draws everyone as a paper cut-out, the same in every reel.
 
 ## The check-and-fix loop
 
@@ -58,15 +60,17 @@ While you fix:
 
 The report also lists what's still to make (photos, voice lines) and the steps waiting for a person's approval.
 
-## Episode 01, step by step
+## Making the reel (Steps 1–6)
 
-Every prompt you need is in [`episodes/ep01-claim-reject/prompts.md`](episodes/ep01-claim-reject/prompts.md). Use them exactly as written.
+For an episode whose script a person has approved and whose `reel.json` is written (N1–N4 below). Every prompt you need is in its `episodes/<episode>/prompts.md`. Use them exactly as written.
 
-### Step 1 · Photos
+### Step 1 · Photos (only if prompts.md lists any)
 
-1. Open `prompts.md` → **1 · Photos**. Make every photo that isn't in `media/photos/` yet (the check report lists them under "Still to make").
+A story reel usually has none: `prompts.md` → **1 · Photos** says so. If it lists some:
+
+1. Make every photo that isn't in `media/photos/` yet (the check report lists them under "Still to make").
 2. For each one, use its prompt exactly. Make three options and pick the one with the clearest subject in the middle of the frame and **no writing anywhere**.
-3. Save each under the file name shown, for example `episodes/ep01-claim-reject/media/photos/worker_phone.webp`. JPG, PNG or WEBP are all fine, but keep the name.
+3. Save each under the file name shown, for example `episodes/<episode>/media/photos/street_morning.webp`. JPG, PNG or WEBP are all fine, but keep the name.
 4. Check: black and white, landscape, the subject in the middle (the top and bottom edges get torn off), no letters or numbers, no documents, no logos, no watermark.
 5. Every photo is made new for this reel. Never reuse a photo from another reel, even one that would fit: the check compares them.
 
@@ -85,27 +89,27 @@ Report: the file names, and anything you sent back to the person.
 1. Open `prompts.md` → **2 · Voice**. Give your voice tool the voice description there, with the series voice, **Bunty**. Make every line of the reel with the same model and settings: when you re-make one line, use the model the other lines were made with (your upload messages name it, such as "Turbo v2.5, speed 1.1").
 2. For each line, S01 to the last one, give the voice tool **only** the text in the "Say exactly" column, copied exactly, and the feeling in its "How to say it" column (when the table has one): with an emotion-tag voice model such as ElevenLabs v3, put the mood as a tag before the text (`[curious] …`); a tag is never read aloud. It's in Devanagari on purpose; English words, numbers and form names are already spelled the way they're said in India (क्लेम, केवाईसी, एट पॉइंट टू फ़ाइव परसेंट, फ़ॉर्म नाइनटीन, पीएफ गुरु जी): numbers are said in English. Don't retype it in English letters, don't add the shot number, and don't "correct" anything.
 3. Make **one file per line**. Your voice tool gives the same audio for the same text every time, so a second take changes nothing.
-4. Save each file **exactly as the voice tool made it**. Don't trim the silence before or after it, and don't cut, speed up, slow down, normalise or join files: the pause before and after each line must stay. Save as `episodes/ep01-claim-reject/media/audio/lines/S01.mp3`, `S02.mp3` and so on, one file per line (MP3 or WAV).
+4. Save each file **exactly as the voice tool made it**. Don't trim the silence before or after it, and don't cut, speed up, slow down, normalise or join files: the pause before and after each line must stay. Save as `episodes/<episode>/media/audio/lines/S01.mp3`, `S02.mp3` and so on, one file per line (MP3 or WAV).
 5. If the voice tool can't read Devanagari (it stays silent, or speaks another language), stop and report it. Never switch to English letters to get around it.
 
 You can't listen to the files, so GitHub does it for you after you upload them (Step 4): it writes down what each line says and checks it against the "Listen for" column. Report: the voice's name and the file names.
 
 ### Step 3 · Upload
 
-Upload the photos and the voice files to those paths in `aniket007dc/PF-Uncle-`, on `main`, one file per call. Upload nothing else.
+Upload the voice files (and any photos) to those paths in `aniket007dc/PF_stories`, on `main`, one file per call. Upload nothing else.
 
 ### Step 4 · The build (automatic)
 
 Each upload starts **Build reel** on GitHub (repo → **Actions**). About 5 to 10 minutes after the last file, it has:
 
-- built the reel, timing every shot to its voice line, and saved `episodes/ep01-claim-reject/media/final/ep01-claim-reject.mp4` and `cover.jpg`;
+- built the reel, timing every shot to its voice line, and saved `episodes/<episode>/media/final/<episode>.mp4` and `cover.jpg`;
 - checked everything (`tools/check_episode.py`): the episode file, `reel.json`, every voice line (each number and the brand name must be heard, nothing trimmed, and each file made from its line as the line is now: change a line's text and its file must be made again) and every card in the reel (read back with OCR);
-- committed the result as `episodes/ep01-claim-reject/checks/report.md`.
+- committed the result as `episodes/<episode>/checks/report.md`.
 
-If you'd rather build it yourself: download the repo in one request (GitHub API `GET /repos/aniket007dc/PF-Uncle-/tarball/main`), unpack it, then run this from its top folder (needs Python, Pillow, numpy and ffmpeg):
+If you'd rather build it yourself: download the repo in one request (GitHub API `GET /repos/aniket007dc/PF_stories/tarball/main`), unpack it, then run this from its top folder (needs Python, Pillow, numpy and ffmpeg):
 
 ```bash
-python3 tools/build_reel.py episodes/ep01-claim-reject
+python3 tools/build_reel.py episodes/<episode>
 ```
 
 ### Step 5 · Check the reel
@@ -115,9 +119,10 @@ python3 tools/build_reel.py episodes/ep01-claim-reject
    - If "heard" shows the same words as "should say", only spelled differently, the check misheard a correct line: don't change it, send it to the person to listen.
 2. Download the reel and watch it with sound. Check:
    - every card arrives as its words are spoken;
-   - the photos are yours, and there's no writing in them;
+   - every person and thing is a paper cut-out that stands on the ground, walks and reacts on its words, and nothing is cut off at the edges;
+   - no bubble, card or stamp covers a face;
    - the voice is the same all the way through, and every line ends cleanly, with nothing cut off;
-   - the torn sheets sweep across between chapters (in episode 01, the yellow one at about 0:38 and the paper one at about 1:15);
+   - the torn sheets sweep across between chapters;
    - it ends on the PF Guru Ji end card: the logo, then the FOLLOW @PFGURUJI button as the voice says "Follow karo PF Guru Ji".
 
 Report: the link to the reel, the report's RESULT, the "To look at" items you checked, and anything that looked or sounded wrong.
@@ -143,7 +148,7 @@ Report: the link to the reel, the report's RESULT, the "To look at" items you ch
 Use this for every new reel: a new topic, a new script, new photos.
 
 ```text
-You make Instagram reels for PF Guru Ji from the GitHub repo aniket007dc/PF-Uncle-. Open MUSE.md and follow "A new episode" from step N1.
+You make Instagram story reels for PF Guru Ji from the GitHub repo aniket007dc/PF_stories: short stories about Shivam and the cast in brand/brand.json, told with paper cut-outs. Open MUSE.md and follow "A new episode" from step N1.
 
 Topic: <TOPIC, or "suggest 3">
 Who it's for: <VIEWER, or "you suggest">
@@ -209,25 +214,29 @@ Report: the script page's link and version, and the person's answer.
 ### N4 · Shots and reel.json
 
 1. Start only when the report lists the script review under Passed. Open `prompts-writing.md` → **Step 4** and follow it exactly. It uses the approved script.
-2. Put its `shots` and `breaks` into `episode.json`, and write `reel.json` as the prompt says. Write every photo prompt new for this reel's own scenes: never copy a prompt from another reel's `reel.json`. If the reel shows the member portal, list each screenshot under `screens` with what it shows and the words it must show; a person takes them later (Step 1b).
-3. Upload both. GitHub builds a **draft reel** with grey placeholder photos and no voice (`media/final/`), checks that every word on screen is in that shot's `card_text` and reads every card back. Run **the check-and-fix loop** until its RESULT is PASS or WAITING.
-4. Watch the draft: each card matches its line, nothing overlaps, every word is readable.
+2. Put its `shots` and `breaks` into `episode.json`, and write `reel.json` as the prompt says: every shot a cut-out scene (ground, place, people, what they do and say on the line's words), following each line's `scene`. If the reel shows the member portal, list each screenshot under `screens` with what it shows and the words it must show; a person takes them later (Step 1b).
+3. Upload both. GitHub builds a **draft reel** without the voice (`media/final/`), checks that every word on screen is in that shot's `card_text` and reads every card back. Run **the check-and-fix loop** until its RESULT is PASS or WAITING.
+4. Watch the draft: the story reads without sound, each person does what their line says on its words, each card matches its line, nothing covers a face, every word is readable.
 
-Report: the draft reel's link and the photos it needs. The person approves it.
+Report: the draft reel's link. The person approves it.
 
 ### Then Steps 1–6
 
-Do Steps 1–6 above for the new episode, using its folder instead of `episodes/ep01-claim-reject`: make every photo listed in its `prompts.md`, then the voice lines, upload, build, check, and approval and posting (Step 6 ends with `posted.json`).
+Do Steps 1–6 above for the new episode: the voice lines (and any photos its `prompts.md` lists), upload, build, check, and approval and posting (Step 6 ends with `posted.json`).
 
 ### reel.json building blocks
 
-Positions are in pixels on the 1080×1920 frame. `x` is the centre (540 is the middle) and `y` is the top. Stamps and notes use their centre. Cards go between y = 400 and 1240. The build places the header above and the captions below by itself.
+Positions are in pixels on the 1080×1920 frame. `x` is the centre (540 is the middle) and `y` is the top. Stamps, notes and bubbles use their centre; people and props stand on the ground line (`y` is where their feet or bottom are, 1170 by default). Everything goes between y = 400 and 1240: the scene below (y 640–1240), one card, stamp or bubble above the heads (y 400–640). The build places the header above and the captions below by itself.
 
 Timing: `"at": 1.2` means 1.2 s after the shot starts. `"on": "KYC"` means "as this word of the shot's voice line is spoken", and it follows the real voice. Entrances (`"in"`): `rise` (default for cards), `drop`, `slide_left`, `slide_right`, `slam` (stamps), `pop` (headlines), `write` (notes), `none`.
 
 | Type | Looks like | Main fields | Example |
 |---|---|---|---|
-| `photo` | Halftone photo with torn top and bottom, optional black tab | `src` (id in `photos`), `tab`, `y`, `h` | `{"type": "photo", "src": "worker_phone", "tab": "CLAIM STATUS", "y": 400, "h": 560}` |
+| `ground` | The torn paper strip the scene stands on: first in every scene shot | `color`, `y` | `{"type": "ground"}` |
+| `puppet` | A person from the cast as a jointed paper puppet: walks, changes pose and mood, jumps, nods, shakes on the line's words | `who`, `x`, `scale` (0.8), `facing`, `pose`, `mood`, `moves` (`do`: walk `to`, pose, mood, turn, jump, nod, shake; `on` or `at`) | `{"type": "puppet", "who": "shivam", "x": -140, "moves": [{"do": "walk", "to": 330}, {"do": "jump", "on": "pehli"}]}` |
+| `prop` | A thing cut from paper: factory, office, bank, home, phone, document, coins, calendar, laptop, tick, cross, clock, suitcase, cloud, sun, desk, skyline | `kind`, `x`, `y`, `scale`, `variant`, `label` (a sign's words), `tab`, `idle` (sway, bob, buzz, spin) | `{"type": "prop", "kind": "office", "x": 760, "label": "PF OFFICE"}` |
+| `bubble` | A speech (or thought) bubble with what someone says, 2 to 6 words | `text`, `x`, `y`, `tail`, `thought` | `{"type": "bubble", "text": "PURANA UAN HAI?", "x": 690, "y": 600, "tail": "down-right", "on": "poocha"}` |
+| `photo` | Rarely: a halftone photo with torn top and bottom, optional black tab | `src` (id in `photos`), `tab`, `y`, `h` | `{"type": "photo", "src": "street_morning", "tab": "SUBAH", "y": 400, "h": 560}` |
 | `card` | White, yellow or black card: tab, big number, label on the right, small line at the bottom right | `style`, `tab`, `prefix` (÷ × = ≈ +), `big`, `label`, `foot`, `size` | `{"type": "card", "style": "yellow", "tab": "ATKA HUA PAISA", "big": "₹2,50,000", "foot": "MAAN LO", "y": 430}` |
 | `stamp` | Red (or `"color": "ink"`) rubber stamp | `text`, `sub`, `x`, `y`, `rot`, `size` | `{"type": "stamp", "text": "REJECT!", "x": 890, "y": 770, "rot": 8, "on": "reject"}` |
 | `headline` | Huge black words straight on the paper | `lines`, `x`, `y`, `size`, `underline` | `{"type": "headline", "lines": ["CLAIM", "REJECT?"], "x": 80, "y": 520}` |
@@ -241,7 +250,7 @@ Timing: `"at": 1.2` means 1.2 s after the shot starts. `"on": "KYC"` means "as t
 | `screen` | A member portal screenshot on a white card, with a red ring (or a yellow highlight) landing on the menu or button the line names | `src` (id in `screens`), `tab`, `crop`, `marks` (`box`, `text`, `on`, `style`) | `brand/prompts/reel-writer.txt` |
 | `endcard` | The logo, the tagline, the follow line (a red note over a FOLLOW @PFGURUJI button that pops in on `cta_on`) and small print | `tagline`, `small`, `cta_on`; `logo_file`, `cta`, `cta_note` to change the defaults in `brand/brand.json` | ep01 S15 |
 
-Photos are listed once under `"photos"`, each with an `id` (P1, P2 …), its `file`, a short `alt` and the full image `prompt`. Chapter breaks (the torn sheets) come from `breaks` in `episode.json`: `tear-lemon`, `tear-paper` or `tear-black`.
+The whole demo, shot by shot: `brand/assets/style-frames/cutout-demo/reel.json`. Photos, if any, are listed once under `"photos"`, each with an `id` (P1, P2 …), its `file`, a short `alt` and the full image `prompt`. Chapter breaks (the torn sheets) come from `breaks` in `episode.json`: `tear-lemon`, `tear-paper` or `tear-black`.
 
 ## If something goes wrong
 

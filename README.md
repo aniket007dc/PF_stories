@@ -1,14 +1,17 @@
-# PF Guru Ji
+# PF Guru Ji · Stories
 
-Video creation for EPFO guidance: the production pipeline for **PF Guru Ji**, Instagram reels that explain EPFO in plain Hinglish (PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help) in the paper-collage explainer style. Meta Muse or a person can work through it step by step. Every step is checked, and nothing moves on until its gate is passed.
+The production pipeline for **PF Guru Ji Stories**: Instagram reels that explain EPFO in plain Hinglish through short stories. Shivam (or someone else from the cast) runs into a PF problem (a new job, a claim, a transfer, KYC) and the story shows what he does about it, the right way. Everyone and everything is a **paper cut-out** in the PF Guru Ji colours: jointed paper puppets that walk, wave and react on the voice's words, paper props (the mill, the PF office, a phone, a form) and speech bubbles, with the series' cards, numbers and stamps, on crumpled paper, in stop motion. Meta Muse or a person can work through it step by step. Every step is checked, and nothing moves on until its gate is passed.
+
+This repo started as a copy of [aniket007dc/PF-Uncle-](https://github.com/aniket007dc/PF-Uncle-) (the collage explainer reels ep01–ep05). **See the style:** [`brand/assets/style-frames/cutout-demo.mp4`](brand/assets/style-frames/cutout-demo.mp4), a 21-second style test, and its `reel.json` in `brand/assets/style-frames/cutout-demo/`.
 
 PF Guru Ji is not EPFO and doesn't speak for it. Every rule a reel states comes from EPFO's own pages, and a person checks each one before the reel can move on.
 
 **To make a reel, give Muse [MUSE.md](MUSE.md).** In short:
 
 - **[MUSE.md](MUSE.md):** the one file Muse follows, with the prompt to paste into Muse.
-- **`tools/build_reel.py`:** makes the video from the episode files: paper, header, cards, numbers, stamps, charts, karaoke captions, torn-paper wipes, sound effects and the cover, in the reference reel's style. GitHub runs it by itself when Muse uploads photos or voice (**Actions → Build reel**).
-- **`episodes/ep01-claim-reject/`:** the first episode, on why a PF claim gets rejected and how to fix it. Its prompts (photos, voice, every line) are in `prompts.md`.
+- **`tools/build_reel.py`:** makes the video from the episode files: paper, the cut-out scenes, header, bubbles, cards, numbers, stamps, charts, karaoke captions, torn-paper wipes, sound effects and the cover. GitHub runs it by itself when Muse uploads voice lines (**Actions → Build reel**).
+- **`tools/cutout.py`:** the paper cut-outs: the cast (`brand/brand.json` → `cast`: Shivam, Priya, Ravi, Papa) as puppets with poses and moods, and the props. Drawn from shapes, never by AI, so every character looks the same in every reel.
+- **`episodes/`:** ep01–ep04, the posted collage reels, kept so no story repeats them (ep05 is recorded in `brand/topics-done.json`); story reels start at ep06.
 - **Everything else** (checks, approvals) makes sure no wrong number, rule or form is ever posted. [START-HERE.md](START-HERE.md) explains it.
 
 ```mermaid

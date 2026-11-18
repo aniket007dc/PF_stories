@@ -1,11 +1,18 @@
 {
-  "about": "Reels PF Guru Ji posted before this repo, so a new reel doesn't repeat them. Add one entry per reel at the end and never reorder: each one's id is old-<its place in the list>, starting at old-01. Only 'topic' is needed; 'hook', 'covers', 'posted' (YYYY-MM-DD) and 'link' help.",
-  "example": {
-    "topic": "UAN activate kaise karein?",
-    "hook": "UAN mila, par login nahi hota?",
-    "covers": "activating a UAN on the member portal",
-    "posted": "2026-06-01",
-    "link": "https://www.instagram.com/reel/ABC123/"
-  },
-  "topics": []
+ "about": "Reels PF Guru Ji made outside this repo, so a new reel doesn't repeat them. Add one entry per reel at the end and never reorder. A reel posted before this repo is old-<its place in the list>, starting at old-01. A reel made in another repo gives its folder name in 'episode' (such as ep05-transfer-out-rejected): it then counts as that episode, so only later episodes compare with it. Only 'topic' is needed; 'episode', 'hook', 'covers', 'posted' (YYYY-MM-DD) and 'link' help.",
+ "example": {
+  "topic": "UAN activate kaise karein?",
+  "hook": "UAN mila, par login nahi hota?",
+  "covers": "activating a UAN on the member portal",
+  "posted": "2026-06-01",
+  "link": "https://www.instagram.com/reel/ABC123/"
+ },
+ "topics": [
+  {
+   "episode": "ep05-transfer-out-rejected",
+   "topic": "Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein?",
+   "hook": "Nayi naukri join kar li — purana PF aaya nahi?",
+   "covers": "why a Form 13 transfer claim comes back or sits for months (service dates that overlap, identity, the employer's attestation) and how to fix it: made in aniket007dc/PF-Uncle- as episodes/ep05-transfer-out-rejected (cover: PURANA PF ATKA KYUN?, stamp FORM 13)"
+  }
+ ]
 }

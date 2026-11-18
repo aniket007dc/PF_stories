@@ -27,7 +27,10 @@ from functools import lru_cache
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import cutout  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BRAND = ROOT / "brand"
@@ -1181,9 +1184,325 @@ class EndCard(Element):
         return art
 
 
+# ---------------------------------------------------------------- paper cut-outs (PF Stories)
+
+GROUND_Y = 1170        # where the cut-outs stand: just above the captions
+STOP = 12              # stop motion: 12 poses a second
+
+
+def stop_motion(u):
+    """Local time held at the last of 12 poses a second, and that pose's number."""
+    k = int(math.floor(max(0.0, u) * STOP + 1e-6))
+    return k / STOP, k
+
+
+def walk_plan(spec, speed=280.0):
+    """A puppet's walks, in order: (start, end, from x, to x), times in seconds after it appears."""
+    x, plan = spec.get("x", 540), []
+    for m in sorted(spec.get("moves", []), key=lambda m: m.get("at", 0.0)):
+        if m.get("do") == "walk":
+            to = float(m["to"])
+            at = m.get("at", 0.0)
+            dur = m.get("dur") or max(0.4, abs(to - x) / speed)
+            plan.append((at, at + dur, x, to))
+            x = to
+    return plan
+
+
+class Cutout(Element):
+    """Something cut from paper (tools/cutout.py) standing on the ground: x is its centre, y the ground line.
+    It moves in stop motion, 12 poses a second, each a little off, as if moved by hand between photos."""
+    entrance = "pop"
+    anchor = "bottom"
+    WOBBLE = 1.4            # pixels a pose can be off by
+
+    def __init__(self, spec, ctx):
+        super().__init__(spec, ctx)
+        self.y = spec.get("y", GROUND_Y)
+        self.scale = float(spec.get("scale", 1.0))
+        self._cache, self._anchor = {}, (0, 0)
+
+    def animated_until(self):
+        return 10 ** 6
+
+    def cut(self, art, anchor, flip=False):
+        """The finished cut-out (paper finish, white edge, shadow; mirrored to face left) and its ground point."""
+        if self.scale != 1.0:
+            art = art.resize((max(1, int(art.width * self.scale)), max(1, int(art.height * self.scale))), Image.LANCZOS)
+            anchor = (anchor[0] * self.scale, anchor[1] * self.scale)
+        pad = 36
+        img = shadowed(cutout.finish(art, self.ctx["paper"], self.seed), offset=(9, 12), blur=11, opacity=0.34, pad=pad)
+        ax, ay = anchor[0] + cutout.PAD + pad, anchor[1] + cutout.PAD + pad
+        if flip:
+            img, ax = ImageOps.mirror(img), img.width - ax
+        return img, (ax, ay)
+
+    def keep(self, key, make):
+        if key not in self._cache:
+            self._cache[key] = make()
+            if len(self._cache) > 48:
+                self._cache.pop(next(iter(self._cache)))
+        img, self._anchor = self._cache[key]
+        return img
+
+    def place(self, sc):
+        """Where the image's top-left goes so that its ground point stands at x, y."""
+        ax, ay = self._anchor
+        return self.x - ax * sc, self.y - ay * sc
+
+    def size0(self):
+        return (300, 300)
+
+    def state(self, u):
+        uq, k = stop_motion(u)
+        dx, dy, sc, alpha, reveal = super().state(uq)
+        rng = np.random.default_rng(self.seed * 7919 + k)
+        return dx + rng.uniform(-1, 1) * self.WOBBLE, dy + rng.uniform(-1, 1) * self.WOBBLE, sc, alpha, reveal
+
+
+class Puppet(Cutout):
+    """A person from the cast (brand.json → cast) as a jointed paper puppet. Spec: who, x, y, scale (0.8), facing
+    ("right" or "left"), pose, mood, and moves, each at a time ("at": seconds after it appears) or on a word ("on"):
+      {"do": "walk", "to": 760, "dur": 1.6}   walk to x = 760 (dur in seconds; by default about 280 px a second)
+      {"do": "pose", "pose": "wave"}          stand, wave, point, think, phone, hips, cheer, shrug, hold, sad
+      {"do": "mood", "mood": "worried"}       neutral, smile, happy, worried, surprised, sad, angry, thinking
+      {"do": "turn"} · {"do": "jump"} · {"do": "nod"} · {"do": "shake"}"""
+    STEPS = 2.2            # steps a second when walking
+    SCALE = 0.8            # a person beside a building, by default
+
+    def __init__(self, spec, ctx):
+        super().__init__(spec, ctx)
+        self.scale = float(spec.get("scale", self.SCALE))
+        self.who = spec.get("who", "shivam")
+        cutout.look_of(self.who)                 # an unknown name stops here, with the cast listed
+        for key, ok in (("pose", cutout.POSES), ("mood", cutout.MOODS)):
+            for v in [spec.get(key)] + [m.get(key) for m in spec.get("moves", [])]:
+                if v is not None and v not in ok:
+                    raise SystemExit("{}: no {} '{}' (there are: {})".format(self.who, key, v, ", ".join(ok)))
+        self.walks = walk_plan(spec)
+        self.moves = sorted(spec.get("moves", []), key=lambda m: m.get("at", 0.0))
+
+    def look(self, u, k):
+        """Where the puppet is and how it looks at local time u (pose number k): (x, dy, render key)."""
+        x, walk_t, facing = self.x, None, 1 if self.spec.get("facing", "right") == "right" else -1
+        for t0, t1, a, b in self.walks:
+            if u < t0:
+                break
+            facing = 1 if b >= a else -1
+            if u < t1:
+                x, walk_t = a + (b - a) * (u - t0) / (t1 - t0), u - t0
+                break
+            x = b
+        pose, mood, tilt, dy = self.spec.get("pose", "stand"), self.spec.get("mood", "smile"), 0.0, 0.0
+        for m in self.moves:
+            at = m.get("at", 0.0)
+            if at > u:
+                break
+            d, v = m.get("do"), u - at
+            if d == "pose":
+                pose = m.get("pose", pose)
+            elif d == "mood":
+                mood = m.get("mood", mood)
+            elif d == "turn":
+                facing = -facing
+            elif d == "jump" and v < 0.6:
+                dy, pose = -120 * math.sin(math.pi * v / 0.6), "cheer"
+            elif d == "nod" and v < 0.7:
+                dy = 7 * abs(math.sin(2 * math.pi * 1.5 * v))
+            elif d == "shake" and v < 0.8:
+                tilt = 9 * math.sin(2 * math.pi * 2.5 * v)
+        phase = None
+        if walk_t is not None:
+            phase, pose = round(math.pi * self.STEPS * walk_t, 2), "walk"
+        blink = k % 37 == self.seed % 37 and walk_t is None and mood != "surprised"
+        wave = round(math.sin(2 * math.pi * 2.4 * u), 2) if pose == "wave" else 0.0
+        return x, dy, (pose, mood, phase, blink, wave, round(tilt, 1), facing)
+
+    def frame_image(self, u):
+        uq, k = stop_motion(u)
+        _, _, key = self.look(uq, k)
+
+        def make():
+            pose, mood, phase, blink, wave, tilt, facing = key
+            art, anchor = cutout.person(self.who, pose, mood, phase=phase, blink=blink, wave=wave, tilt=tilt)
+            return self.cut(art, anchor, flip=facing < 0)
+        return self.keep(key, make)
+
+    def state(self, u):
+        dx, dy, sc, alpha, reveal = super().state(u)
+        uq, k = stop_motion(u)
+        x, ddy, _ = self.look(uq, k)
+        return dx + (x - self.x), dy + ddy, sc, alpha, reveal
+
+    def sounds(self, t0):
+        ev = super().sounds(t0)
+        for a, b, _, _ in self.walks:
+            ev += [("step", t0 + a + (i + 0.5) / self.STEPS) for i in range(int((b - a) * self.STEPS))]
+        return ev
+
+
+class Prop(Cutout):
+    """A thing cut from paper (tools/cutout.py → PROPS: factory, office, bank, home, phone, document, coins, calendar,
+    laptop, tick, cross, clock, suitcase, cloud, sun, desk, skyline). Spec: kind, x, y (where its bottom stands),
+    scale, facing, variant (phone: tick, alert, otp, chat, portal; document: rejected; clock: "4:30"), label (the
+    name on its sign, from card_text: factory, office, bank), tab (a black tab on it, from card_text), and idle:
+    sway, bob, buzz, smoke (a factory's chimney; on by default) or spin (a clock's hands race: time passing)."""
+
+    def __init__(self, spec, ctx):
+        super().__init__(spec, ctx)
+        self.kind = spec.get("kind")
+        if self.kind not in cutout.PROPS:
+            raise SystemExit("no prop '{}' (there are: {})".format(self.kind, ", ".join(sorted(cutout.PROPS))))
+        self.idle = spec.get("idle", "smoke" if self.kind == "factory" else None)
+        self._base = None
+
+    def texts(self):
+        return [t for t in (self.spec.get("label"), self.spec.get("tab")) if t]
+
+    def base(self):
+        """The prop with its sign and tab, before the paper finish: (image, anchors, ground point)."""
+        if self._base is None:
+            art, anchors = cutout.prop(self.kind, self.spec.get("variant"))
+            art = art.copy()
+            label = self.spec.get("label")
+            if label and "sign" in anchors:
+                x0, y0, x1, y1 = anchors["sign"]
+                size = int((y1 - y0) * 0.86)
+                while size > 12 and text_width(label, "anton", size, 1.5) > (x1 - x0) - 16:
+                    size -= 1
+                tw = text_width(label, "anton", size, 1.5)
+                draw_text(art, (x0 + x1) / 2 - tw / 2, (y0 + y1) / 2 + size * 0.42, label, "anton", size,
+                          cutout.col(anchors.get("sign_fg", "ink")), 1.5)
+            if self.spec.get("tab"):
+                tab = tab_image(self.spec["tab"], 24)
+                grown = Image.new("RGBA", (max(art.width, tab.width + 20), art.height + tab.height // 2), (0, 0, 0, 0))
+                grown.alpha_composite(art, ((grown.width - art.width) // 2, 0))
+                grown.alpha_composite(tab, ((grown.width - tab.width) // 2, art.height - tab.height // 2))
+                art = grown
+            top = 260 if self.idle == "smoke" and "smoke" in anchors else 0
+            if top:
+                grown = Image.new("RGBA", (art.width, art.height + top), (0, 0, 0, 0))
+                grown.alpha_composite(art, (0, top))
+                art, anchors = grown, dict(anchors, smoke=(anchors["smoke"][0], anchors["smoke"][1] + top))
+            self._base = (art, anchors, (art.width / 2, art.height))
+        return self._base
+
+    def frame_image(self, u):
+        uq, k = stop_motion(u)
+        art, anchors, ground = self.base()
+        moving = self.idle in ("smoke", "spin")
+        key = k if moving else 0
+
+        def make():
+            img = art
+            if self.idle == "smoke" and "smoke" in anchors:
+                img = art.copy()
+                pen = cutout.Pen(img.width, img.height)
+                sx, sy = anchors["smoke"]
+                for j in range(3):
+                    q = ((uq * 0.42) + j / 3) % 1.0
+                    r = 12 + 22 * q
+                    pen.ellipse(sx + 16 + 90 * q, sy - 26 - 190 * q + 10 * math.sin(5 * q + j), r * 1.2, r, "card")
+                img.alpha_composite(pen.done())
+            if self.kind == "clock":
+                hh, mm = (str(self.spec.get("variant") or "4:30") + ":0").split(":")[:2]
+                minutes = int(hh) * 60 + int(mm) + (int(uq * STOP) * 25 if self.idle == "spin" else 0)
+                img = cutout.clock_hands(img, anchors["hands"], (minutes / 60) % 12, minutes % 60)
+            return self.cut(img, ground, flip=self.spec.get("facing") == "left")
+        img = self.keep(key, make)
+        if self.idle == "sway":
+            ang = round(1.6 * math.sin(2 * math.pi * 0.6 * uq), 1)
+            if ang:
+                img = img.rotate(-ang, resample=Image.BICUBIC, center=self._anchor)
+        return img
+
+    def state(self, u):
+        dx, dy, sc, alpha, reveal = super().state(u)
+        uq, k = stop_motion(u)
+        if self.idle == "bob":
+            dy += 7 * math.sin(2 * math.pi * 0.8 * uq)
+        elif self.idle == "buzz" and uq < 0.9:
+            dx += (-1) ** k * 6
+        return dx, dy, sc, alpha, reveal
+
+
+class Bubble(Element):
+    """A speech bubble (or a thought bubble) cut from paper, with a line of dialogue from card_text. Spec: text,
+    x, y (the bubble's centre), width (at most, 560), size (46), tail ("left", "right", "down-left",
+    "down-right": toward whoever says it), thought (true: a thought bubble)."""
+    entrance = "pop"
+    anchor = "center"
+
+    def texts(self):
+        return [self.spec["text"]]
+
+    def art(self, u):
+        s = self.spec
+        size, maxw = s.get("size", 46), s.get("width", 560)
+        lines = [" ".join(l) for l in wrap(s["text"].split(), maxw - 60, size)]
+        lh = int(size * 1.18)
+        tw = max(text_width(l, "caption", size) for l in lines)
+        bw, bh = int(tw + 76), int(lh * len(lines) + 52)
+        m = 70
+        pen = cutout.Pen(bw + 2 * m, bh + 2 * m)
+        tail = s.get("tail", "down-left")
+        cx = m + bw / 2
+        if s.get("thought"):
+            for i, (dx, r) in enumerate(((0.18, 20), (0.07, 13))):
+                x = m + bw * (dx if "left" in tail else 1 - dx)
+                pen.ellipse(x, m + bh + 18 + i * 30, r, r, "card")
+            pen.rect(m, m, m + bw, m + bh, "card", r=min(bh / 2, 60))
+        else:
+            x = m + bw * (0.22 if "left" in tail else 0.78)
+            tip = {"left": (m - 46, m + bh * 0.6), "right": (m + bw + 46, m + bh * 0.6),
+                   "down-left": (x - 40, m + bh + 54), "down-right": (x + 40, m + bh + 54)}.get(tail, (x - 40, m + bh + 54))
+            if tail in ("left", "right"):
+                yb = m + bh * 0.42
+                base = [(m + (14 if tail == "left" else bw - 14), yb), (m + (14 if tail == "left" else bw - 14), yb + 44)]
+            else:
+                base = [(x - 26, m + bh - 10), (x + 26, m + bh - 10)]
+            pen.poly(base + [tip], "card")
+            pen.rect(m, m, m + bw, m + bh, "card", r=34)
+        img = pen.done()
+        y = m + 26 + size * 0.86
+        for l in lines:
+            w_ = text_width(l, "caption", size)
+            draw_text(img, cx - w_ / 2, y, l, "caption", size, INK)
+            y += lh
+        return cutout.finish(img, self.ctx["paper"], self.seed)
+
+    def state(self, u):
+        return super().state(stop_motion(u)[0])
+
+
+class Ground(Element):
+    """The ground the cut-outs stand on: a strip of torn paper across the frame, its top edge a little above the
+    ground line y (1170). Spec: y, color (pencil), h (170)."""
+    entrance = "none"
+
+    def __init__(self, spec, ctx):
+        spec = dict(spec, x=540)
+        spec["y"] = spec.get("y", GROUND_Y) - 34
+        super().__init__(spec, ctx)
+
+    def art(self, u):
+        w, h = W + 120, self.spec.get("h", 170)
+        body = textured(cutout.col(self.spec.get("color", "pencil")), w, h, self.ctx["paper"], self.seed, 0.9, 0.3)
+        body = body.convert("RGBA")
+        body.putalpha(torn_mask(w, h, self.seed, top=True, bottom=False, depth=12))
+        fibres = Image.new("RGBA", (w, h), (246, 243, 236, 255))
+        fibres.putalpha(torn_mask(w, h, self.seed, top=True, bottom=False, depth=12, fiber=5))
+        fibres.alpha_composite(body)
+        return fibres
+
+    def finish(self, art):
+        return shadowed(art, offset=(0, -6), blur=10, opacity=0.25, pad=30)
+
+
 ELEMENTS = {"card": Card, "stamp": Stamp, "photo": Photo, "headline": Headline, "note": Note, "tag": Tag,
             "funnel": Funnel, "line_chart": LineChart, "arrow_card": ArrowCard, "timeline": Timeline,
-            "typewriter": Typewriter, "endcard": EndCard, "screen": Screen}
+            "typewriter": Typewriter, "endcard": EndCard, "screen": Screen,
+            "puppet": Puppet, "prop": Prop, "bubble": Bubble, "ground": Ground}
 
 
 # ---------------------------------------------------------------- episode, timing, captions
@@ -1352,6 +1671,10 @@ class Episode:
             last = max(last, spec.get("at", 0.1) if "on" not in spec else 0.0)
             if spec.get("type") == "screen":
                 last = max(last, spec.get("hold", Screen.HOLD) - 0.8)
+            if spec.get("type") == "puppet" and "on" not in spec:        # a walk finishes inside its shot
+                ends = [t1 for _, t1, _, _ in walk_plan(spec)] + [m.get("at", 0) + 0.6 for m in spec.get("moves", [])
+                                                                     if "on" not in m]
+                last = max([last] + [spec.get("at", 0.1) + e for e in ends])
         return last + 0.8
 
     def word_time(self, shot, query):
@@ -1399,7 +1722,7 @@ class Reel:
         for k in list(spec):
             if k.endswith("_on"):
                 spec[k[:-3] + "_at"] = max(0.0, wt(spec[k]) - base)
-        for key in ("rows", "segments", "marks"):
+        for key in ("rows", "segments", "marks", "moves"):
             for item in spec.get(key, []):
                 if "on" in item:
                     item["at"] = max(0.0, wt(item["on"]) - base)
@@ -1570,8 +1893,11 @@ class Reel:
                 sc, alpha, reveal = 1.0, 1.0, 1.0
             if sc != 1.0:
                 img = img.resize((max(1, int(img.width * sc)), max(1, int(img.height * sc))), Image.BILINEAR)
-            cx, cy = el.centre()
-            x0, y0 = cx - img.width / 2, cy - img.height / 2
+            if isinstance(el, Cutout):
+                x0, y0 = el.place(sc)          # its ground point stands on the ground line
+            else:
+                cx, cy = el.centre()
+                x0, y0 = cx - img.width / 2, cy - img.height / 2
             x0 += dx + jolt[0]
             y0 += dy + push + jolt[1]
             if reveal < 1.0:
@@ -1708,6 +2034,9 @@ def sfx_bank():
     n = int(0.03 * SR)
     t = np.arange(n) / SR
     bank["key"] = (0.25 * smooth(noise(n), 2) * np.exp(-t / 0.006)).astype(np.float32)
+    n = int(0.07 * SR)
+    t = np.arange(n) / SR
+    bank["step"] = (0.11 * smooth(noise(n), 5) * np.exp(-t / 0.014)).astype(np.float32)   # a paper foot on the page
     return bank
 
 

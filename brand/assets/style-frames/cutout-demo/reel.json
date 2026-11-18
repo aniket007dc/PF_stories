@@ -1,0 +1,246 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "cutout-demo",
+ "brand_label": "PF GURU JI",
+ "shots": {
+  "S01": [
+   {
+    "type": "ground"
+   },
+   {
+    "type": "prop",
+    "kind": "sun",
+    "x": 900,
+    "y": 560,
+    "scale": 0.62,
+    "in": "drop",
+    "idle": "sway"
+   },
+   {
+    "type": "prop",
+    "kind": "cloud",
+    "x": 620,
+    "y": 470,
+    "scale": 0.7,
+    "idle": "bob",
+    "at": 0.2
+   },
+   {
+    "type": "prop",
+    "kind": "home",
+    "x": 800,
+    "y": 1170,
+    "scale": 1.0,
+    "at": 0.15
+   },
+   {
+    "type": "puppet",
+    "who": "shivam",
+    "x": -140,
+    "mood": "happy",
+    "at": 0.1,
+    "moves": [
+     {
+      "do": "walk",
+      "to": 330,
+      "dur": 1.5
+     },
+     {
+      "do": "jump",
+      "on": "pehli"
+     },
+     {
+      "do": "pose",
+      "pose": "wave",
+      "at": 2.4
+     }
+    ]
+   },
+   {
+    "type": "bubble",
+    "text": "PEHLI NAUKRI!",
+    "x": 340,
+    "y": 560,
+    "tail": "down-left",
+    "on": "pehli"
+   }
+  ],
+  "S02": [
+   {
+    "type": "ground"
+   },
+   {
+    "type": "prop",
+    "kind": "skyline",
+    "x": 540,
+    "y": 1140,
+    "scale": 1.0,
+    "in": "none"
+   },
+   {
+    "type": "prop",
+    "kind": "factory",
+    "x": 690,
+    "y": 1170,
+    "scale": 1.05,
+    "label": "SHREE MILLS",
+    "in": "drop"
+   },
+   {
+    "type": "puppet",
+    "who": "shivam",
+    "x": -120,
+    "mood": "smile",
+    "at": 0.25,
+    "moves": [
+     {
+      "do": "walk",
+      "to": 220,
+      "dur": 1.4
+     },
+     {
+      "do": "pose",
+      "pose": "point",
+      "on": "HR"
+     }
+    ]
+   }
+  ],
+  "S03": [
+   {
+    "type": "ground"
+   },
+   {
+    "type": "puppet",
+    "who": "priya",
+    "x": 790,
+    "facing": "left",
+    "mood": "smile",
+    "pose": "hold",
+    "at": 0.25
+   },
+   {
+    "type": "prop",
+    "kind": "desk",
+    "x": 760,
+    "y": 1170,
+    "scale": 1.0,
+    "in": "rise",
+    "at": 0.2
+   },
+   {
+    "type": "prop",
+    "kind": "laptop",
+    "x": 700,
+    "y": 963,
+    "scale": 0.55,
+    "at": 0.35
+   },
+   {
+    "type": "puppet",
+    "who": "shivam",
+    "x": 270,
+    "mood": "smile",
+    "at": 0.3,
+    "moves": [
+     {
+      "do": "pose",
+      "pose": "think",
+      "on": "soch"
+     },
+     {
+      "do": "mood",
+      "mood": "thinking",
+      "on": "soch"
+     }
+    ]
+   },
+   {
+    "type": "bubble",
+    "text": "PURANA UAN HAI?",
+    "x": 690,
+    "y": 600,
+    "tail": "down-right",
+    "on": "poocha"
+   }
+  ],
+  "S04": [
+   {
+    "type": "ground"
+   },
+   {
+    "type": "prop",
+    "kind": "office",
+    "x": 770,
+    "y": 1170,
+    "scale": 1.05,
+    "label": "PF OFFICE",
+    "in": "drop"
+   },
+   {
+    "type": "card",
+    "style": "yellow",
+    "tab": "KYC",
+    "big": "AADHAAR + BANK + PAN",
+    "size": 78,
+    "x": 540,
+    "y": 410,
+    "on": "KYC"
+   },
+   {
+    "type": "puppet",
+    "who": "shivam",
+    "x": 290,
+    "pose": "phone",
+    "mood": "smile",
+    "at": 0.3
+   },
+   {
+    "type": "prop",
+    "kind": "phone",
+    "variant": "tick",
+    "x": 470,
+    "y": 930,
+    "scale": 0.5,
+    "idle": "buzz",
+    "on": "portal"
+   }
+  ],
+  "S05": [
+   {
+    "type": "ground"
+   },
+   {
+    "type": "prop",
+    "kind": "coins",
+    "x": 830,
+    "y": 1170,
+    "scale": 1.0,
+    "in": "drop",
+    "at": 0.3
+   },
+   {
+    "type": "puppet",
+    "who": "shivam",
+    "x": 450,
+    "mood": "happy",
+    "pose": "cheer",
+    "at": 0.1,
+    "moves": [
+     {
+      "do": "jump",
+      "on": "smooth"
+     }
+    ]
+   },
+   {
+    "type": "stamp",
+    "text": "CLAIM PASS!",
+    "x": 560,
+    "y": 560,
+    "rot": -7,
+    "on": "smooth"
+   }
+  ]
+ }
+}

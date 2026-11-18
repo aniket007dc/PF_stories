@@ -7,10 +7,11 @@ The two writing steps of a new episode (MUSE.md → A new episode). Follow each 
 ## Step 3 · Script prompt
 
 ```text
-Write the voiceover for one Instagram Reel for PF Guru Ji, a channel that explains EPFO in plain Hinglish: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help.
+Write one Instagram Reel for PF Guru Ji Stories: a short story, told by a narrator in Hinglish, about one person from the cast who runs into a PF problem (a claim, a transfer, KYC, a new job) and gets through it the right way. The viewer sees themselves in the hero and learns what to do from the story, not from a lecture. Every person and place is drawn as a paper cut-out, so each line is a scene.
 Topic: PF claim online kaise bharein? Member portal pe step by step.
 Viewer: Someone who wants their PF (they left a job, or need an advance while working) and has never filed a claim themselves, and is about to pay an agent to do it.
-Language: Hinglish in Roman script. Sound like a patient friend who has filed PF claims many times: not an ad, and not a government notice.
+The cast (use only these people, by their names): shivam (Shivam: the hero of the stories: a young worker in his twenties, new to PF); priya (Priya: HR at Shivam's company: she knows the PF rules); ravi (Ravi: Shivam's friend, who learned the PF rules the hard way); papa (Papa: Shivam's father, retired after 30 years at a mill)
+Language: Hinglish in Roman script. A narrator telling a friend's story: warm, quick, a little dramatic at the twist; not an ad, and not a government notice.
 
 Use ONLY the numbers and rules in this data sheet. Each line is: id = value (kind).
 - final_wait_months = 12 months (fact) · Months without a job before the whole PF can be taken
@@ -39,13 +40,13 @@ The forms a reel may name, and what each one is for:
 
 Rules:
 1. 150–175 words in total (about 60–70 seconds at a brisk pace). Sentences of 3–9 words.
-2. One line per shot, 14–18 shots, in this chapter order: hook, problem, why, steps, check, help, share, signoff.
-   - hook (max 7 s): the viewer's exact situation or the message they saw, in their words ("Claim reject ho gaya?").
-   - problem (max 10 s): what went wrong and what it costs them: money stuck, time lost.
-   - why (max 20 s): the reasons, most common first, as "Ek: … Do: … Teen: …", one short sentence each. Only reasons EPFO itself gives.
-   - steps (max 25 s): the fix, in the order they do it, naming the real screens and menus ("Member portal, Manage, phir KYC").
-   - check (max 12 s): the one thing to check before filing (again), and what skipping it costs.
-   - help (max 10 s): where to go if it's still stuck: an official channel from the data sheet.
+2. One line per shot, 14–18 shots, in this chapter order (the story's beats): hook, problem, why, steps, check, help, share, signoff.
+   - hook (max 7 s): the hero's moment and the twist, in a line or two ("Shivam ne nayi naukri join ki. Pehle hi din, ek chhoti si galti.").
+   - problem (max 10 s): what it costs the hero: money stuck, a claim back, months lost.
+   - why (max 20 s): why it happened, only as EPFO's own rules say: someone who knows (Priya from HR, or Ravi) says it, or the narrator counts "Ek: … Do: …".
+   - steps (max 25 s): what the hero does, in order, naming the real screens, menus and forms ("Member portal, Manage, phir KYC").
+   - check (max 12 s): the one thing the hero checks, and what skipping it would have cost.
+   - help (max 10 s): where the hero goes if it's still stuck: an official channel from the data sheet.
    - share: one line that ends "… abhi bhejo.", aimed at one kind of friend.
    - signoff: exactly "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji."
 3. The first time an assumption from the sheet is used, that line must say "maan lo".
@@ -62,10 +63,16 @@ Rules:
 8. "delivery" says how the voice says the line: one mood (curious, surprised, excited, serious, concerned, warm, proud or playful), then " · " and one short cue: what to stress, where the energy goes up. Keep the pace brisk: the feeling comes from the voice, not from slowing down, so never write "slow down"; one held beat (…) at the big reveal at most. Change the mood from line to line, the way a friend telling a story would: a curious hook, a concerned problem, a proud answer, a warm share line. Never the same mood for every line.
 9. Every line is new. TOPICS.md in the repo lists every reel we've made: never reuse a line, the hook or the cover from one of them, even with other numbers. Only the series formats repeat: "Ek: … Do: … Teen: …", the shape of the share line and the sign-off.
 10. The caption ends with "EPFO ki har jankari chahiye? Follow karo @pfguruji.", then "PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in", then the hashtags.
-11. Write two more hooks in "hook_options": other first lines for this reel, each from a different angle (a sharp question, the most surprising number in the sheet, the mistake the viewer is about to make), under the same rules as the hook. A person reads the script before anything is made, and picks one of the three or keeps yours.
+11. The story:
+   - The hero is Shivam unless the topic needs someone else from the cast. Name each person the first time. A person speaks only in short quoted lines of 2 to 6 words, inside the narration ('HR ne poocha: "Purana UAN hai?"'): each one appears in a speech bubble.
+   - One concrete place per beat: his home, the mill, HR's desk, the PF office, his phone. Things happen on the line's words: he walks in, his face falls, he checks his phone.
+   - The hero learns and does the right thing; the story never laughs at the viewer.
+   - A number in the story (his salary, how many months) is a data item like any other (input or assumption), and an assumption is said with "maan lo" the first time.
+   - "scene" says, in one sentence for the reel writer, what the viewer sees on that line: who, where, doing what, and the words of any bubble (copied from the line).
+12. Write two more hooks in "hook_options": other first lines for this reel, each from a different angle (a sharp question, the most surprising number in the sheet, the mistake the viewer is about to make), under the same rules as the hook. A person reads the script before anything is made, and picks one of the three or keeps yours.
 
 Reply with JSON only, in this shape:
-{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "curious · ...", "highlights": ["..."], "uses": ["..."]}],
+{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "curious · ...", "scene": "Shivam walks into the mill on his first day, smiling", "highlights": ["..."], "uses": ["..."]}],
  "hook_options": ["...", "..."],
  "post": {"caption": "...", "hashtags": ["#..."], "pinned_comment": "...", "cover": {"lines": ["...", "..."], "stamp": "..."}, "trial_hook": "..."}}
 After the JSON, list every number you used and the data id it came from, and every form you named.
@@ -76,9 +83,9 @@ After the JSON, list every number you used and the data id it came from, and eve
 Put `shots` and `breaks` into `episode.json`, and `reel` into `reel.json` (adding `"schema": "dc-reel/1"`, `"episode": "ep03-claim-online-steps"` and `"brand_label": "PF GURU JI"` at the top).
 
 ```text
-REEL WRITER · PF Guru Ji
+REEL WRITER · PF Guru Ji Stories
 
-Turn the approved script below into the reel's shot list and its build file. tools/build_reel.py draws everything from your answer, in the style of the reference reel: paper, header, captions and sound are added for you. Be exact: every word on screen must come from that shot's card_text, every number from the episode's data, and every form name from brand/epfo-forms.json.
+Turn the approved story script below into the reel's shot list and its build file. Every shot is a paper cut-out scene: the cast as jointed paper puppets, the places and things as paper props, speech bubbles for what they say, and the series' cards and stamps for the numbers, all on the crumpled paper (see brand/assets/style-frames/cutout-demo.mp4 and its reel.json). tools/build_reel.py draws everything from your answer; paper, header, captions and sound are added for you. Be exact: every word on screen must come from that shot's card_text, every number from the episode's data, and every form name from brand/epfo-forms.json.
 
 ANSWER WITH JSON ONLY, in three parts:
 {"shots": [...], "breaks": [...], "reel": {"photos": {...}, "shots": {...}}}
@@ -95,18 +102,27 @@ ANSWER WITH JSON ONLY, in three parts:
  {"after": "<last shot of the check chapter>", "at": <that shot's end time>, "type": "tear-paper", "asset": "A09"}]
 
 3. "reel": the build file.
-- "photos": every photo the reel uses (2 to 4), as {"<short_id>": {"id": "P1", "file": "episodes/ep03-claim-online-steps/media/photos/<short_id>.webp", "alt": "what it shows, in a few words", "prompt": "..."}}. Write each prompt like this: "Black-and-white documentary photograph, landscape 4:3. <who or what, doing what, where in India>. <the light>, high contrast, fine film grain, eye-level camera, the subject in the middle of the frame. No text, no readable labels, no logos, no watermark." Never ask for signs, screens with writing, documents or forms with readable text, ID cards, passbooks, the EPFO logo or any government emblem.
+- "photos": usually {}: the cut-outs need no photos. Only if a scene truly needs one (rarely), list it {"<short_id>": {"id": "P1", "file": "episodes/ep03-claim-online-steps/media/photos/<short_id>.webp", "alt": "what it shows, in a few words", "prompt": "..."}}. Write each prompt like this: "Black-and-white documentary photograph, landscape 4:3. <who or what, doing what, where in India>. <the light>, high contrast, fine film grain, eye-level camera, the subject in the middle of the frame. No text, no readable labels, no logos, no watermark." Never ask for signs, screens with writing, documents or forms with readable text, ID cards, passbooks, the EPFO logo or any government emblem.
 - "screens": only for a reel that shows the member portal: every screenshot it uses, as {"<short_id>": {"id": "SC1", "file": "episodes/ep03-claim-online-steps/media/screens/<short_id>.png", "shows": "which page and what is open on it, for the person taking it", "must_show": ["each menu or button name the voice says on that screen, written as the portal writes it"]}}. A person takes them on their own login, with every personal detail covered; once one is uploaded, add "crop" ([x0, y0, x1, y1], shares of the image) to show only the part the line is about.
-- "shots": {"S01": [elements], "S02": [elements], ...}: what each shot shows and when, built only from the blocks below.
+- "shots": {"S01": [elements], "S02": [elements], ...}: what each shot shows and when, built only from the blocks below. Elements are drawn in order: the first is at the back.
 
-BUILDING BLOCKS
-Positions are pixels on the 1080×1920 frame. "x" is the horizontal centre (540 is the middle) and "y" is the top. Stamps and notes use their centre (x, y). Everything goes between y = 400 and y = 1240: the header is above and the captions are below.
+LAYOUT
+Positions are pixels on the 1080×1920 frame. "x" is the horizontal centre (540 is the middle) and "y" is the top. Stamps, notes and bubbles use their centre (x, y); puppets and props stand on the ground line ("y" is where their feet or bottom are, 1170 by default). Everything goes between y = 400 and y = 1240: the header is above and the captions are below.
+Two zones: the scene (y 640 to 1240): the ground, places, things and people; and above it (y 400 to 640): one card, stamp, headline or bubble at a time, never covering a face. A puppet at its usual scale (0.8) is about 500 px tall, its head near y 680.
 Timing: "at" is seconds after the shot starts (the first element 0.1; the reel's very first element 0). "on" is a word from the shot's voice line (vo), copied with its punctuation if it has any ("Reject.", "Ek:"): the element lands as that word is spoken. Use "on" for every element after the first.
 Entrances ("in"): rise (cards, the default), drop (photos and row cards), slide_left or slide_right (arrow cards and tags), slam (stamps, the default), pop (headlines, the default), write (notes, the default), none.
 Tilt ("rot", degrees): cards −1.5 to 1.5, stamps 3 to 8 either way, notes −4 to −2.
 
+- ground: {"type": "ground"}
+  The torn paper strip the scene stands on. First in every scene shot. "color": "pencil" (the default) or "card".
+- puppet: {"type": "puppet", "who": "shivam", "x": 300, "scale": 0.8, "facing": "right", "pose": "stand", "mood": "smile", "moves": [{"do": "walk", "to": 620, "dur": 1.4}, {"do": "pose", "pose": "wave", "on": "<word>"}, {"do": "mood", "mood": "worried", "on": "<word>"}]}
+  A person from the cast (brand/brand.json → cast: shivam (Shivam: the hero of the stories: a young worker in his twenties, new to PF); priya (Priya: HR at Shivam's company: she knows the PF rules); ravi (Ravi: Shivam's friend, who learned the PF rules the hard way); papa (Papa: Shivam's father, retired after 30 years at a mill)), always the same look. Poses: stand, wave, point, think, phone, hips, cheer, shrug, hold, sad. Moods: neutral, smile, happy, worried, surprised, sad, angry, thinking. Moves land "on" a word (or "at" seconds after it appears): walk (to x; it faces the way it walks, about 280 px a second unless "dur" says), pose, mood, turn, jump, nod, shake. To enter, start off the frame (x −150 or 1230) and walk in; "in": "pop" (the default) to appear in place.
+- prop: {"type": "prop", "kind": "office", "x": 760, "scale": 1.0, "label": "PF OFFICE", "variant": "tick", "idle": "sway"}
+  A thing cut from paper: factory (smoke rises by itself), office, bank, home, phone (variant tick, alert, otp, chat or portal), document (variant rejected: a red cross), coins, calendar, laptop, tick, cross, clock (variant "4:30"; idle "spin": time passing), suitcase, cloud, sun, desk, skyline (a row of buildings far behind). "label" is the name on a factory, office or bank sign; "tab" a black label on any prop; both are card_text. "idle": sway, bob, buzz (a phone that rings) or spin. A prop on a desk or in a hand stands at that height: "y" is its bottom.
+- bubble: {"type": "bubble", "text": "PURANA UAN HAI?", "x": 700, "y": 560, "tail": "down-right", "on": "<word>"}
+  What a character says (or, with "thought": true, thinks), 2 to 6 words in capitals, above the speaker's head with the tail toward them ("left", "right", "down-left", "down-right"). Its text is card_text.
 - photo: {"type": "photo", "src": "<short_id>", "tab": "TAB TEXT", "y": 400, "w": 960, "h": 560, "rot": -1.2}
-  A halftone photo with torn top and bottom edges. "tab" is optional: a small black label at the bottom left.
+  Rarely: a halftone photo with torn top and bottom edges.
 - card: {"type": "card", "style": "white|yellow|black", "tab": "TAB TEXT", "prefix": "=", "big": "₹50,000", "label": "PF BALANCE\n(MAAN LO)", "foot": "small print", "size": 120, "y": 430, "w": 900, "h": 470}
   Big-number card: yellow, a tab, "big" at size 200–250, an optional "foot", h 400–470.
   Row cards, in a stack of 2 or 3: white (the result yellow), "prefix" (÷ × = ≈ +) and "big" at size 120 and a "label", no tab, at y 420, 595, 770.
@@ -138,23 +154,25 @@ Tilt ("rot", degrees): cards −1.5 to 1.5, stamps 3 to 8 either way, notes −4
   The end card draws the logo, the tagline, the follow line ("EPFO ki har jankari chahiye?" over a "FOLLOW @PFGURUJI" button that pops in on "Follow") and the small print. Its card_text is "PF samjho, claim pao.", "EPFO ki har jankari chahiye?", "FOLLOW @PFGURUJI" and the small lines.
 
 HOW EACH CHAPTER LOOKS
-- hook: a photo of the viewer's world filling the top ("at": 0, "in": "none", so the very first frame is already full), a red stamp with the hook question across it, and a black card naming what's stuck overlapping the photo's bottom edge. Then a headline shot with the question.
-- problem: a big yellow card with what the viewer has lost or is waiting for (an amount from the data, or the form they filed), plus a red note with the catch.
-- why: the reasons as three arrow cards ("Ek: … Do: … Teen: …"), one of them yellow, and a red stamp on the most common one. If the line starts by counting the reasons, open with a 3 WAJAH headline that slides away ("out": {"at": 1.0}) before the cards come in.
-- steps: a typewriter card with the path through the portal, one line per step, or a funnel when the steps happen in order to the claim itself. When the reel shows the member portal, a screenshot per step instead, with a ring on the menu or button the line names.
-- check: a big yellow card or a row-card stack with the one thing to check, and a red stamp with what skipping it costs; a timeline when the rule is a waiting time.
-- help: a black or white card naming the official channel (portal or helpline, from the data), with an ink stamp FREE HAI or OFFICIAL.
-- share: a new photo of a hand holding a phone with a blank screen (a different hand, angle and background from earlier reels), a yellow "SHARE ↗" tag on "abhi" or "bhejo", and a red note naming who to send it to.
+Every shot is a scene from the story: the ground, where it happens (a prop), who is there (puppets), and what they do and say on the line's words, with a card or stamp above when a number or a verdict lands. Follow each line's "scene" from the script. The same person keeps the same place on the ground from one shot to the next while the scene continues; a new place starts with the hero walking in.
+- hook: the hero in his world from the very first frame (ground, place and puppet with "at": 0 and "in": "none"), and the twist landing on its word: a bubble, or a red stamp above.
+- problem: what happens to the hero: his mood turns worried or sad on the word, a document with variant rejected or a phone with variant alert, and a big yellow card (h 220 to 260, at y 400) with what it costs, an amount from the data.
+- why: someone who knows explains: Priya (HR) or Ravi (a friend) in a bubble, or the reasons as arrow cards at the top ("Ek: … Do: …", y 400, 500, 600 with "w" 760) while the hero thinks below.
+- steps: the hero does each step, one beat each: a phone (variant portal or otp) or a laptop for the member portal, a document for a form, the office for the PF office; a typewriter checklist card can sum the steps up. A portal screenshot only if the reel shows the portal, at the top with the hero small below (scale 0.6).
+- check: a card with the one thing to check and a red stamp with what skipping it costs; the hero nods.
+- help: the office or a phone with a card naming the official channel (from the data) and an ink stamp FREE HAI or OFFICIAL.
+- share: the hero gives a phone to a friend (pose hold, a phone prop between them), a yellow "SHARE ↗" tag on "abhi" or "bhejo", and a red note naming who to send it to.
 - signoff: the endcard pair above.
-Each element lands on its own beat of the line: 1 to 5 elements per shot. At most one yellow element per shot. Red only for stamps and notes.
+Each element lands on its own beat of the line: 2 to 6 elements per shot. At most one yellow element per shot. Red only for stamps, notes and the things that are red by nature (the factory door, the calendar, a cross).
 
 CHECK BEFORE YOU ANSWER
 - Every string you draw is in that shot's card_text or motion_text, character for character, and every card_text string is still on screen when the shot ends.
 - Every number on screen is in that shot's "uses" data, written with ₹ and Indian commas, and every form named is in brand/epfo-forms.json.
 - Every "on" word is in that shot's vo line, and every mark's "text" is a menu or button name its line says.
 - Nothing sits above y 400 or below y 1240, and nothing covers small print.
-- The photo prompts ask for no writing of any kind, and no documents, ID cards or official logos.
-- Every photo prompt is written new for this reel. Never copy a prompt or reuse a photo from another reel's reel.json: the check compares them.
+- Every person is from the cast, every prop from the list above, and every pose and mood one of those named.
+- No card, stamp or bubble covers a face: they sit above the heads (y 400 to 640).
+- If there is a photo after all, its prompt asks for no writing of any kind, and no documents, ID cards or official logos, and is written new for this reel.
 
 EPISODE: ep03-claim-online-steps
 

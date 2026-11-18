@@ -1,0 +1,130 @@
+{
+ "schema": "dc-episode/1",
+ "id": "demo",
+ "slug": "cutout-demo",
+ "title": "Paper cut-out style test",
+ "tag": "PF GURU JI · STORIES · STYLE TEST",
+ "route": "build",
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "Yeh hai Shivam. Aaj uski pehli naukri ka din hai!",
+   "tts": "",
+   "highlights": [
+    "pehli naukri"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "problem",
+   "vo": "Mill pahunch kar, sabse pehle HR ke paas.",
+   "tts": "",
+   "highlights": [
+    "HR"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S03",
+   "chapter": "why",
+   "vo": "HR ne poocha: purana UAN hai? Shivam soch mein pad gaya.",
+   "tts": "",
+   "highlights": [
+    "purana UAN"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S04",
+   "chapter": "steps",
+   "vo": "Phir KYC: Aadhaar, bank aur PAN, sab portal pe.",
+   "tts": "",
+   "highlights": [
+    "KYC"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S05",
+   "chapter": "signoff",
+   "vo": "Aur claim? Ek dum smooth!",
+   "tts": "",
+   "highlights": [
+    "smooth!"
+   ],
+   "uses": []
+  }
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 4.4,
+   "chapter": "hook",
+   "card_text": [
+    "PEHLI NAUKRI!"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S02",
+   "start": 4.4,
+   "end": 8.2,
+   "chapter": "problem",
+   "card_text": [
+    "SHREE MILLS"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S03",
+   "start": 8.2,
+   "end": 12.8,
+   "chapter": "why",
+   "card_text": [
+    "PURANA UAN HAI?"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S04",
+   "start": 12.8,
+   "end": 17.2,
+   "chapter": "steps",
+   "card_text": [
+    "PF OFFICE",
+    "KYC",
+    "AADHAAR + BANK + PAN"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S05",
+   "start": 17.2,
+   "end": 20.8,
+   "chapter": "signoff",
+   "card_text": [
+    "CLAIM PASS!"
+   ],
+   "uses": []
+  }
+ ],
+ "breaks": [
+  {
+   "after": "S02",
+   "at": 8.2,
+   "type": "tear-lemon"
+  }
+ ],
+ "post": {
+  "cover": {
+   "lines": [
+    "SHIVAM KI",
+    "PEHLI NAUKRI"
+   ],
+   "stamp": "PF STORY"
+  }
+ }
+}

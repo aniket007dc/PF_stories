@@ -5,25 +5,15 @@ Every PF Guru Ji reel. A new reel needs its own topic, hook, script and photos, 
 - **Next episode number: ep06**
 - **Muse:** read this before choosing a topic (MUSE.md → N1). In the new episode's `brief.repeat_check`, name the reel here that's closest to yours and say how yours is different.
 - **The checks** compare every new episode with all of these (check report → Not a repeat).
-- GitHub rewrites this file after every upload (`tools/topics.py`). Don't edit it. To add a reel posted before this repo, add it to `brand/topics-done.json`.
+- GitHub rewrites this file after every upload (`tools/topics.py`). Don't edit it. To add a reel posted before this repo (or made in another one), add it to `brand/topics-done.json`.
 
 | Reel | Topic | Hook | Posted |
 |---|---|---|---|
-| ep05-transfer-out-rejected | Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein? | Nayi naukri join kar li — purana PF aaya nahi? | not yet |
 | ep04-epf-interest-vs-fd | EPF ka byaaj FD, post office, PPF aur LIC se zyada kyun? Safe options ki seedhi tulna. | PF nikaal ke FD karne ki soch rahe ho? Ruko! | [2026-11-14](https://www.instagram.com/reel/Dfud73RPQHp/) |
 | ep03-claim-online-steps | PF claim online kaise bharein? Member portal pe step by step. | PF nikalna hai? Agent ki zaroorat nahi. | [2026-11-14](https://www.instagram.com/reel/DfttMyBvNKx/) |
 | ep02-what-is-pf | PF kya hai, employee par iska kya asar hota hai, aur salary se PF kaise kat-ta hai? | Salary aayi, PF kat gaya — yeh paisa kahan gaya? | [2026-11-14](https://www.instagram.com/reel/DfsSecYvJW2/) |
 | ep01-claim-reject | PF claim reject kyun hota hai, aur kaise theek karein? | PF claim reject ho gaya? Paisa atka hai? | [2026-11-13](https://www.instagram.com/reel/DfrokvGvHfC/) |
-
-## ep05-transfer-out-rejected
-
-- **Title:** Transfer out form reject kyun hota hai?
-- **Topic:** Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein?
-- **Hook:** Nayi naukri join kar li — purana PF aaya nahi?
-- **Covers:** Why: The two jobs' service periods overlap in EPFO's records — EPFO itself says regional offices have been rejecting transfer claims for this. · The member's identity or account ownership couldn't be confirmed online, so the claim goes to the employer to forward after confirming identity. · The pension amount never moves with a transfer — only the past service history does — so a passbook without the pension amount looks like a failed transfer.. Steps: Check the service dates: the old exit date against the new joining date — if they overlap, that is what EPFO's offices have been rejecting claims for. · If the identity couldn't be confirmed online, ask the employer to confirm the identity and forward the application — the Scheme says the employer shall do that. · If the employer won't attest or isn't available, get the form attested by the bank manager and submit it to the Regional PF Commissioner. · Check the transfer with Annexure K — the transfer certificate with the full details.
-- **Cover:** PURANA PF ATKA KYUN? FORM 13
-- **Photos:** P1 a young man on his first day at a new office desk, staring at his phone with a worried frown · P2 a hand holding out a phone with a blank screen towards a friend
-- **Posted:** not yet
+| ep05-transfer-out-rejected (made in another repo) | Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein? | Nayi naukri join kar li — purana PF aaya nahi? | not yet |
 
 ## ep04-epf-interest-vs-fd
 
@@ -64,4 +54,10 @@ Every PF Guru Ji reel. A new reel needs its own topic, hook, script and photos, 
 - **Cover:** CLAIM REJECT? WAJAH + FIX
 - **Photos:** P1 a worker looking worried at his phone · P2 a hand holding a phone with a blank screen
 - **Posted:** [2026-11-13](https://www.instagram.com/reel/DfrokvGvHfC/)
+
+## Made outside this repo
+
+From `brand/topics-done.json`.
+
+- **ep05-transfer-out-rejected** · Transfer out form (Form 13) reject kyun hota hai, aur kaise theek karein? · hook: Nayi naukri join kar li — purana PF aaya nahi? · covers: why a Form 13 transfer claim comes back or sits for months (service dates that overlap, identity, the employer's attestation) and how to fix it: made in aniket007dc/PF-Uncle- as episodes/ep05-transfer-out-rejected (cover: PURANA PF ATKA KYUN?, stamp FORM 13) · not yet
 

@@ -1,7 +1,8 @@
-Write the voiceover for one Instagram Reel for PF Guru Ji, a channel that explains EPFO in plain Hinglish: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help.
+Write one Instagram Reel for PF Guru Ji Stories: a short story, told by a narrator in Hinglish, about one person from the cast who runs into a PF problem (a claim, a transfer, KYC, a new job) and gets through it the right way. The viewer sees themselves in the hero and learns what to do from the story, not from a lecture. Every person and place is drawn as a paper cut-out, so each line is a scene.
 Topic: {{TOPIC}}
 Viewer: {{VIEWER}}
-Language: Hinglish in Roman script. Sound like a patient friend who has filed PF claims many times: not an ad, and not a government notice.
+The cast (use only these people, by their names): {{CAST}}
+Language: Hinglish in Roman script. A narrator telling a friend's story: warm, quick, a little dramatic at the twist; not an ad, and not a government notice.
 
 Use ONLY the numbers and rules in this data sheet. Each line is: id = value (kind).
 {{DATA_SHEET}}
@@ -12,13 +13,13 @@ The forms a reel may name, and what each one is for:
 
 Rules:
 1. 150–175 words in total (about 60–70 seconds at a brisk pace). Sentences of 3–9 words.
-2. One line per shot, 14–18 shots, in this chapter order: hook, problem, why, steps, check, help, share, signoff.
-   - hook (max 7 s): the viewer's exact situation or the message they saw, in their words ("Claim reject ho gaya?").
-   - problem (max 10 s): what went wrong and what it costs them: money stuck, time lost.
-   - why (max 20 s): the reasons, most common first, as "Ek: … Do: … Teen: …", one short sentence each. Only reasons EPFO itself gives.
-   - steps (max 25 s): the fix, in the order they do it, naming the real screens and menus ("Member portal, Manage, phir KYC").
-   - check (max 12 s): the one thing to check before filing (again), and what skipping it costs.
-   - help (max 10 s): where to go if it's still stuck: an official channel from the data sheet.
+2. One line per shot, 14–18 shots, in this chapter order (the story's beats): hook, problem, why, steps, check, help, share, signoff.
+   - hook (max 7 s): the hero's moment and the twist, in a line or two ("Shivam ne nayi naukri join ki. Pehle hi din, ek chhoti si galti.").
+   - problem (max 10 s): what it costs the hero: money stuck, a claim back, months lost.
+   - why (max 20 s): why it happened, only as EPFO's own rules say: someone who knows (Priya from HR, or Ravi) says it, or the narrator counts "Ek: … Do: …".
+   - steps (max 25 s): what the hero does, in order, naming the real screens, menus and forms ("Member portal, Manage, phir KYC").
+   - check (max 12 s): the one thing the hero checks, and what skipping it would have cost.
+   - help (max 10 s): where the hero goes if it's still stuck: an official channel from the data sheet.
    - share: one line that ends "… abhi bhejo.", aimed at one kind of friend.
    - signoff: exactly "{{SIGNOFF}}"
 3. The first time an assumption from the sheet is used, that line must say "maan lo".
@@ -35,10 +36,16 @@ Rules:
 8. "delivery" says how the voice says the line: one mood (curious, surprised, excited, serious, concerned, warm, proud or playful), then " · " and one short cue: what to stress, where the energy goes up. Keep the pace brisk: the feeling comes from the voice, not from slowing down, so never write "slow down"; one held beat (…) at the big reveal at most. Change the mood from line to line, the way a friend telling a story would: a curious hook, a concerned problem, a proud answer, a warm share line. Never the same mood for every line.
 9. Every line is new. TOPICS.md in the repo lists every reel we've made: never reuse a line, the hook or the cover from one of them, even with other numbers. Only the series formats repeat: "Ek: … Do: … Teen: …", the shape of the share line and the sign-off.
 10. The caption ends with "{{FOLLOW_NOTE}} Follow karo {{INSTAGRAM}}.", then "PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in", then the hashtags.
-11. Write two more hooks in "hook_options": other first lines for this reel, each from a different angle (a sharp question, the most surprising number in the sheet, the mistake the viewer is about to make), under the same rules as the hook. A person reads the script before anything is made, and picks one of the three or keeps yours.
+11. The story:
+   - The hero is Shivam unless the topic needs someone else from the cast. Name each person the first time. A person speaks only in short quoted lines of 2 to 6 words, inside the narration ('HR ne poocha: "Purana UAN hai?"'): each one appears in a speech bubble.
+   - One concrete place per beat: his home, the mill, HR's desk, the PF office, his phone. Things happen on the line's words: he walks in, his face falls, he checks his phone.
+   - The hero learns and does the right thing; the story never laughs at the viewer.
+   - A number in the story (his salary, how many months) is a data item like any other (input or assumption), and an assumption is said with "maan lo" the first time.
+   - "scene" says, in one sentence for the reel writer, what the viewer sees on that line: who, where, doing what, and the words of any bubble (copied from the line).
+12. Write two more hooks in "hook_options": other first lines for this reel, each from a different angle (a sharp question, the most surprising number in the sheet, the mistake the viewer is about to make), under the same rules as the hook. A person reads the script before anything is made, and picks one of the three or keeps yours.
 
 Reply with JSON only, in this shape:
-{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "curious · ...", "highlights": ["..."], "uses": ["..."]}],
+{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "curious · ...", "scene": "Shivam walks into the mill on his first day, smiling", "highlights": ["..."], "uses": ["..."]}],
  "hook_options": ["...", "..."],
  "post": {"caption": "...", "hashtags": ["#..."], "pinned_comment": "...", "cover": {"lines": ["...", "..."], "stamp": "..."}, "trial_hook": "..."}}
 After the JSON, list every number you used and the data id it came from, and every form you named.

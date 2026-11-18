@@ -177,7 +177,9 @@ def fingerprint(ep_dir):
 
 
 def old_reels():
-    """Reels posted before this repo (brand/topics-done.json), as old-01, old-02 … in their order."""
+    """Reels made outside this repo (brand/topics-done.json): old-01, old-02 … in their order, posted before it; or,
+    for an entry with an "episode" (the folder name of a reel made in another repo, such as
+    "ep05-transfer-out-rejected"), that episode, with its number."""
     try:
         items = dc.load_json(DONE_FILE).get("topics") or []
     except FileNotFoundError:
@@ -187,7 +189,10 @@ def old_reels():
         if not isinstance(it, dict) or not it.get("topic"):
             continue
         link, on = str(it.get("link") or ""), str(it.get("posted") or "")
-        out.append({"id": "old-{:02d}".format(i), "num": 0, "old": True, "title": str(it["topic"]), "topic": "",
+        name = str(it.get("episode") or "").strip()
+        num = number_of(name) if name else None
+        out.append({"id": name if num else "old-{:02d}".format(i), "num": num or 0, "old": True,
+                    "title": str(it["topic"]), "topic": "",
                     "hook": str(it.get("hook") or ""), "first_line": "", "cover": "", "why": [], "steps": [],
                     "covers": str(it.get("covers") or ""), "script": [], "photos": [], "prompts": {}, "alts": [],
                     "posted": {"url": link, "on": on, "file": "topics-done.json", "by": ""} if (link or on) else None})
@@ -202,7 +207,8 @@ def episode_folders(base):
 
 
 def earlier(ep_dir):
-    """Every reel this one must not repeat: the old reels and the episodes with a lower number."""
+    """Every reel this one must not repeat: the reels made before this repo, and the episodes with a lower number
+    (here or, from brand/topics-done.json, in another repo)."""
     ep_dir = Path(ep_dir).resolve()
     me = number_of(ep_dir.name)
     out = []
@@ -212,14 +218,14 @@ def earlier(ep_dir):
         n = number_of(d.name)
         if me is None or n is None or n < me:
             out.append(fingerprint(d))
-    return old_reels() + out
+    return [o for o in old_reels() if not o["num"] or me is None or o["num"] < me] + out
 
 
 def resolve(name, reels):
     """Find a reel by its folder name, its number (ep01) or its old-NN id."""
     name = str(name or "").strip().rstrip("/").split("/")[-1]
     for o in reels:
-        if name and (o["id"] == name or (not o["old"] and o["id"].split("-")[0] == name)):
+        if name and (o["id"] == name or ((not o["old"] or o["num"]) and o["id"].split("-")[0] == name)):
             return o
     return None
 
@@ -439,7 +445,7 @@ def register(base=None):
     base = Path(base) if base else dc.EPISODES_DIR
     eps = [fingerprint(d) for d in episode_folders(base)]
     old = old_reels()
-    nums = [e["num"] for e in eps if e["num"] is not None]
+    nums = [e["num"] for e in eps if e["num"] is not None] + [o["num"] for o in old if o["num"]]
     nxt = "ep{:02d}".format((max(nums) if nums else 0) + 1)
     out = ["# Topics we've made", "",
            "Every {} reel. A new reel needs its own topic, hook, script and photos, and no reel is "
@@ -449,12 +455,13 @@ def register(base=None):
            "name the reel here that's closest to yours and say how yours is different.",
            "- **The checks** compare every new episode with all of these (check report → Not a repeat).",
            "- GitHub rewrites this file after every upload (`tools/topics.py`). Don't edit it. To add a reel posted "
-           "before this repo, add it to `brand/topics-done.json`.", "",
+           "before this repo (or made in another one), add it to `brand/topics-done.json`.", "",
            "| Reel | Topic | Hook | Posted |", "|---|---|---|---|"]
     for e in reversed(eps):
         out.append("| {} | {} | {} | {} |".format(e["id"], cell(e["topic"] or e["title"]), cell(e["hook"]), posted_text(e["posted"])))
     for o in reversed(old):
-        out.append("| {} (before this repo) | {} | {} | {} |".format(o["id"], cell(o["title"]), cell(o["hook"]), posted_text(o["posted"])))
+        where = "made in another repo" if o["num"] else "before this repo"
+        out.append("| {} ({}) | {} | {} | {} |".format(o["id"], where, cell(o["title"]), cell(o["hook"]), posted_text(o["posted"])))
     if not eps and not old:
         out.append("| — | nothing yet | — | — |")
     out.append("")
@@ -469,7 +476,7 @@ def register(base=None):
                 "- **Photos:** {}".format(" · ".join("{} {}".format(i, a) for i, a in e["alts"]) or "—"),
                 "- **Posted:** {}".format(posted_text(e["posted"])), ""]
     if old:
-        out += ["## Posted before this repo", "", "From `brand/topics-done.json`.", ""]
+        out += ["## Made outside this repo", "", "From `brand/topics-done.json`.", ""]
         for o in old:
             out.append("- **{}** · {}{}{} · {}".format(o["id"], o["title"], " · hook: " + o["hook"] if o["hook"] else "",
                                                      " · covers: " + o["covers"] if o["covers"] else "", posted_text(o["posted"])))

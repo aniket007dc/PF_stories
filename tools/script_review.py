@@ -239,12 +239,15 @@ def render(ep_dir, ep=None):
 
     # the script, line by line
     said = any(l.get("delivery") for l in script)
+    seen = any(l.get("scene") for l in script)
     out += ["## The script", ""]
-    out.append("| Line | Part | What the voice says (as the captions show it) |" + (" How to say it |" if said else ""))
-    out.append("|---|---|---|" + ("---|" if said else ""))
+    out.append("| Line | Part | What the voice says (as the captions show it) |" + (" How to say it |" if said else "")
+               + (" What we see |" if seen else ""))
+    out.append("|---|---|---|" + ("---|" if said else "") + ("---|" if seen else ""))
     for l in script:
         row = "| {} | {} | {} |".format(l.get("shot", ""), l.get("chapter", ""), _cell(l.get("vo")))
-        out.append(row + (" {} |".format(_cell(l.get("delivery"))) if said else ""))
+        out.append(row + (" {} |".format(_cell(l.get("delivery"))) if said else "")
+                   + (" {} |".format(_cell(l.get("scene"))) if seen else ""))
     out.append("")
 
     # every number the lines use, and every rule the script relies on, with where it comes from

@@ -1,6 +1,6 @@
 # START HERE
 
-You are running the production pipeline for **PF Guru Ji**, Instagram reels that explain EPFO in plain Hinglish: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help.
+You are running the production pipeline for **PF Guru Ji Stories**, Instagram reels that explain EPFO in plain Hinglish through short stories: PF claim settlement, how to fill the claim forms, and the problems members run into, with where to get help. A story follows one person from the cast (`brand/brand.json` → `cast`) and is drawn as paper cut-outs (`tools/cutout.py`) by the build: no photos, no AI pictures of people.
 
 PF Guru Ji is not EPFO and doesn't speak for it. Its reels say what EPFO's own pages say, and send people only to EPFO's official channels.
 
@@ -73,7 +73,7 @@ Muse writes through its GitHub connector, one file per commit. Every push runs t
 - Write only inside the episode you're working on: `episodes/<episode>/` (`episode.json`, `reel.json`, `posted.json`, `checks/`, `media/`, `build/`, `test/`).
 - Never repeat a reel: read `TOPICS.md` before choosing a topic. Its topic, hook, script and photos must all be new.
 - Save media where the step file says, named by shot: `media/keyframes/S06.png`, `media/clips/S06.mp4`, `media/audio/voice.wav`, `media/final/<episode>.mp4`. GitHub re-checks every file saved there.
-- To run the checks yourself before pushing, download the repo in one request (GitHub API: `GET /repos/aniket007dc/PF-Uncle-/tarball/main`), unpack it, and run the tools from its top folder. If you can't, push and let GitHub run them.
+- To run the checks yourself before pushing, download the repo in one request (GitHub API: `GET /repos/aniket007dc/PF_stories/tarball/main`), unpack it, and run the tools from its top folder. If you can't, push and let GitHub run them.
 - After a push, tell the person what you pushed and that the checks are running. Don't call a step done until they pass.
 
 If you can't write at all, put each output in a code block headed with its file path, for example `episodes/ep02-uan-activate/episode.json`, then stop. A person will commit it, and GitHub will run the checks.
