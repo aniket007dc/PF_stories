@@ -3,7 +3,7 @@
 
 **Version `6b9d83`** · 15 lines · 152 words · about 61 seconds
 
-**Waiting for your review.** Read the hook and the script, then reply (see *How to reply* at the end). Nothing else is made until you approve version `6b9d83`.
+**Approved** by Divyank Sharma on 2026-11-18 ("script ok"). The shots, photos and voice are made from this version.
 
 ## The hook
 

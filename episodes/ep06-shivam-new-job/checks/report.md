@@ -1,6 +1,6 @@
 # Check report · ep06-shivam-new-job
 
-Checked commit `fa6a3ed` on 2026-11-18 17:15 UTC. GitHub writes a new report after every upload.
+Checked commit `60a51d2` on 2026-11-18 17:47 UTC. GitHub writes a new report after every upload.
 
 **RESULT: WAITING** · Nothing for Muse to fix. A person's part is left (below).
 
@@ -28,17 +28,18 @@ Checked commit `fa6a3ed` on 2026-11-18 17:15 UTC. GitHub writes a new report aft
    - A person opens the source, finds the rule and records it with `python3 tools/approve.py fact episodes/ep06-shivam-new-job grievance_epfigms --by NAME`. Muse never marks a rule checked.
 11. **Rule · services_free** · rule 'services_free' needs a person to check the source. Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)
    - A person opens the source, finds the rule and records it with `python3 tools/approve.py fact episodes/ep06-shivam-new-job services_free --by NAME`. Muse never marks a rule checked.
-12. **Script review · version 6b9d83** · The script and hook (version 6b9d83) wait for a person to read and approve them. Nothing else is made until then: no shots or reel.json, photos, screenshots or voice lines.
-   - Muse sends the person the script page, https://github.com/aniket007dc/PF_stories/blob/main/episodes/ep06-shivam-new-job/script.md, and waits. The person replies with changes, or writes that the script is OK. Muse makes exactly the changes they ask for and sends them the new page; after their OK, Muse uploads script-approved.json with the version on the page they approved (MUSE.md → N3).
 
 ## Still to make
 
-- everything after the script waits for its review: the shots and reel.json (MUSE.md → N4), photos, screenshots, voice lines and the reel
+- reel.json (MUSE.md → N4)
+- voice lines (MUSE.md → Step 2)
+- the reel (GitHub builds it once reel.json is uploaded)
 
 ## Passed
 
 - Episode file: brief, data, script, shots and post
 - Not a repeat: topic, hook, script and photos are this reel's own (TOPICS.md)
+- Script review: Divyank Sharma approved version 6b9d83 on 2026-11-18
 
 ## Posting
 
