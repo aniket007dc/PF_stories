@@ -1,0 +1,692 @@
+{
+  "schema": "dc-reel/1",
+  "episode": "ep06-shivam-new-job",
+  "brand_label": "PF GURU JI",
+  "photos": {},
+  "shots": {
+    "S01": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "factory",
+        "x": 690,
+        "y": 1170,
+        "scale": 1.05,
+        "in": "drop",
+        "at": 0.15
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": -140,
+        "mood": "smile",
+        "at": 0.1,
+        "moves": [
+          {
+            "do": "walk",
+            "to": 330,
+            "dur": 1.5
+          },
+          {
+            "do": "pose",
+            "pose": "wave",
+            "on": "Pehla"
+          }
+        ]
+      }
+    ],
+    "S02": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "desk",
+        "x": 760,
+        "y": 1170,
+        "in": "rise",
+        "at": 0.2
+      },
+      {
+        "type": "prop",
+        "kind": "laptop",
+        "x": 700,
+        "y": 963,
+        "scale": 0.55,
+        "at": 0.35
+      },
+      {
+        "type": "puppet",
+        "who": "priya",
+        "x": 790,
+        "facing": "left",
+        "mood": "smile",
+        "pose": "hold",
+        "at": 0.25
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 270,
+        "mood": "smile",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "pose",
+            "pose": "shrug",
+            "on": "Naya"
+          }
+        ]
+      },
+      {
+        "type": "bubble",
+        "text": "PURANA UAN HAI?",
+        "x": 760,
+        "y": 560,
+        "size": 40,
+        "tail": "down-right",
+        "on": "Purana"
+      },
+      {
+        "type": "bubble",
+        "text": "NAYA BANA DO!",
+        "x": 300,
+        "y": 560,
+        "size": 40,
+        "tail": "down-left",
+        "on": "Naya"
+      }
+    ],
+    "S03": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "factory",
+        "x": 690,
+        "y": 1170,
+        "scale": 1.05,
+        "in": "none",
+        "at": 0.1
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 540,
+        "mood": "neutral",
+        "at": 0.1,
+        "moves": [
+          {
+            "do": "mood",
+            "mood": "worried",
+            "on": "Ruko!"
+          }
+        ]
+      },
+      {
+        "type": "stamp",
+        "text": "GALTI!",
+        "color": "red",
+        "x": 540,
+        "y": 520,
+        "rot": 6,
+        "size": 100,
+        "on": "galti"
+      }
+    ],
+    "S04": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "coins",
+        "x": 700,
+        "y": 1170,
+        "in": "drop",
+        "at": 0.2
+      },
+      {
+        "type": "prop",
+        "kind": "cross",
+        "x": 700,
+        "y": 950,
+        "scale": 0.9,
+        "in": "pop",
+        "at": 0.4
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 340,
+        "mood": "neutral",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "mood",
+            "mood": "sad",
+            "on": "atka."
+          }
+        ]
+      }
+    ],
+    "S05": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "desk",
+        "x": 760,
+        "y": 1170,
+        "in": "rise",
+        "at": 0.2
+      },
+      {
+        "type": "prop",
+        "kind": "laptop",
+        "x": 700,
+        "y": 963,
+        "scale": 0.55,
+        "at": 0.35
+      },
+      {
+        "type": "puppet",
+        "who": "priya",
+        "x": 790,
+        "facing": "left",
+        "mood": "smile",
+        "at": 0.25,
+        "moves": [
+          {
+            "do": "pose",
+            "pose": "point",
+            "on": "ek"
+          }
+        ]
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 270,
+        "mood": "neutral",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "nod",
+            "on": "hai."
+          }
+        ]
+      },
+      {
+        "type": "bubble",
+        "text": "EK HI UAN!",
+        "x": 690,
+        "y": 600,
+        "tail": "down-right",
+        "on": "ek"
+      }
+    ],
+    "S06": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "desk",
+        "x": 760,
+        "y": 1170,
+        "in": "rise",
+        "at": 0.2
+      },
+      {
+        "type": "prop",
+        "kind": "laptop",
+        "x": 700,
+        "y": 963,
+        "scale": 0.55,
+        "at": 0.35
+      },
+      {
+        "type": "puppet",
+        "who": "priya",
+        "x": 790,
+        "facing": "left",
+        "mood": "smile",
+        "at": 0.25
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 270,
+        "mood": "neutral",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "nod",
+            "on": "wahi"
+          }
+        ]
+      },
+      {
+        "type": "card",
+        "style": "yellow",
+        "big": "UAN WAHI",
+        "size": 200,
+        "x": 540,
+        "y": 420,
+        "w": 900,
+        "on": "wahi"
+      }
+    ],
+    "S07": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "document",
+        "x": 520,
+        "y": 950,
+        "at": 0.2
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 400,
+        "pose": "hold",
+        "mood": "happy",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "mood",
+            "mood": "happy",
+            "on": "purana"
+          }
+        ]
+      },
+      {
+        "type": "prop",
+        "kind": "tick",
+        "x": 780,
+        "y": 900,
+        "scale": 0.8,
+        "in": "pop",
+        "on": "diya."
+      }
+    ],
+    "S08": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "card",
+        "style": "yellow",
+        "tab": "KYC",
+        "big": "AADHAAR + BANK + PAN",
+        "size": 78,
+        "x": 540,
+        "y": 410,
+        "on": "KYC"
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 290,
+        "pose": "phone",
+        "mood": "smile",
+        "at": 0.3
+      },
+      {
+        "type": "prop",
+        "kind": "phone",
+        "variant": "portal",
+        "x": 470,
+        "y": 930,
+        "scale": 0.5,
+        "on": "portal"
+      }
+    ],
+    "S09": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "document",
+        "x": 620,
+        "y": 950,
+        "at": 0.2
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 350,
+        "pose": "think",
+        "mood": "thinking",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "mood",
+            "mood": "smile",
+            "on": "theek"
+          }
+        ]
+      }
+    ],
+    "S10": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "office",
+        "x": 250,
+        "y": 1170,
+        "in": "drop",
+        "at": 0.1
+      },
+      {
+        "type": "prop",
+        "kind": "factory",
+        "x": 800,
+        "y": 1170,
+        "scale": 1.05,
+        "in": "drop",
+        "at": 0.15
+      },
+      {
+        "type": "prop",
+        "kind": "coins",
+        "x": 250,
+        "y": 1170,
+        "in": "drop",
+        "at": 0.2,
+        "out": {
+          "on": "transfer"
+        }
+      },
+      {
+        "type": "prop",
+        "kind": "coins",
+        "x": 800,
+        "y": 1170,
+        "in": "pop",
+        "on": "transfer"
+      },
+      {
+        "type": "card",
+        "style": "yellow",
+        "big": "FORM 13",
+        "size": 200,
+        "x": 540,
+        "y": 420,
+        "w": 900,
+        "on": "Form"
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 540,
+        "mood": "happy",
+        "at": 0.3
+      }
+    ],
+    "S11": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "calendar",
+        "x": 700,
+        "y": 1170,
+        "in": "drop",
+        "at": 0.2
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 350,
+        "pose": "think",
+        "mood": "thinking",
+        "at": 0.3
+      },
+      {
+        "type": "bubble",
+        "text": "EXIT DATE?",
+        "x": 600,
+        "y": 600,
+        "thought": true,
+        "tail": "down-left",
+        "on": "exit"
+      }
+    ],
+    "S12": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "clock",
+        "x": 750,
+        "y": 1170,
+        "idle": "spin",
+        "in": "drop",
+        "at": 0.2
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 350,
+        "pose": "phone",
+        "mood": "neutral",
+        "at": 0.3
+      },
+      {
+        "type": "prop",
+        "kind": "phone",
+        "x": 550,
+        "y": 930,
+        "scale": 0.5,
+        "on": "Mark"
+      },
+      {
+        "type": "card",
+        "style": "yellow",
+        "tab": "MARK EXIT",
+        "big": "60 DIN BAAD",
+        "size": 170,
+        "x": 540,
+        "y": 400,
+        "w": 900,
+        "on": "60"
+      }
+    ],
+    "S13": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "office",
+        "x": 770,
+        "y": 1170,
+        "scale": 1.05,
+        "label": "PF OFFICE",
+        "in": "drop",
+        "at": 0.1
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 290,
+        "pose": "phone",
+        "mood": "happy",
+        "at": 0.3,
+        "moves": [
+          {
+            "do": "mood",
+            "mood": "happy",
+            "on": "free."
+          }
+        ]
+      },
+      {
+        "type": "prop",
+        "kind": "phone",
+        "x": 470,
+        "y": 930,
+        "scale": 0.5,
+        "on": "shikayat"
+      },
+      {
+        "type": "stamp",
+        "text": "FREE HAI",
+        "color": "ink",
+        "x": 540,
+        "y": 520,
+        "rot": 6,
+        "size": 110,
+        "on": "free."
+      }
+    ],
+    "S14": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "prop",
+        "kind": "suitcase",
+        "x": 800,
+        "y": 1170,
+        "in": "drop",
+        "at": 0.2
+      },
+      {
+        "type": "puppet",
+        "who": "ravi",
+        "x": 780,
+        "facing": "left",
+        "mood": "smile",
+        "at": 0.3
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 350,
+        "facing": "right",
+        "pose": "hold",
+        "mood": "happy",
+        "at": 0.1
+      },
+      {
+        "type": "prop",
+        "kind": "phone",
+        "x": 560,
+        "y": 930,
+        "scale": 0.5,
+        "on": "dost"
+      },
+      {
+        "type": "tag",
+        "text": "SHARE ↗",
+        "x": 760,
+        "y": 905,
+        "rot": -4,
+        "size": 96,
+        "on": "abhi"
+      },
+      {
+        "type": "note",
+        "text": "naye naukri wale dost",
+        "color": "red",
+        "x": 320,
+        "y": 1110,
+        "size": 74,
+        "rot": -3,
+        "on": "bhejo."
+      }
+    ],
+    "S15": [
+      {
+        "type": "ground",
+        "at": 0,
+        "in": "none"
+      },
+      {
+        "type": "note",
+        "text": "PF samjho, claim pao.",
+        "color": "ink",
+        "x": 540,
+        "y": 760,
+        "size": 124,
+        "rot": -2,
+        "at": 0.1,
+        "dur": 1.0,
+        "out": {
+          "on": "EPFO"
+        }
+      },
+      {
+        "type": "endcard",
+        "tagline": "PF samjho, claim pao.",
+        "small": [
+          "NIYAM: EPFO.GOV.IN",
+          "EPFO KA OFFICIAL CHANNEL NAHI"
+        ],
+        "y": 430,
+        "on": "EPFO",
+        "lead": -0.2,
+        "cta_on": "Follow"
+      },
+      {
+        "type": "puppet",
+        "who": "shivam",
+        "x": 150,
+        "scale": 0.55,
+        "facing": "right",
+        "mood": "happy",
+        "at": 0.1,
+        "moves": [
+          {
+            "do": "pose",
+            "pose": "wave",
+            "on": "Follow"
+          }
+        ]
+      }
+    ]
+  }
+}
