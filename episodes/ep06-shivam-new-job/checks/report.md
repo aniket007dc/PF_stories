@@ -1,15 +1,8 @@
 # Check report · ep06-shivam-new-job
 
-Checked commit `664017d` on 2026-11-18 18:15 UTC. GitHub writes a new report after every upload.
+Checked commit `62bc886` on 2026-11-18 18:40 UTC. GitHub writes a new report after every upload.
 
-**RESULT: FIX** · Muse has something to fix (below). Fix it all, upload, and wait for the next report.
-
-## To fix (Muse)
-
-1. **Reel · S06** · S06 `UAN WAHI`: words not found (best match 0%)
-   - Fix: Look at S06 in the reel at 23.6 s. If the words are right but hard to read, give them room in reel.json: move whatever overlaps them, or make them bigger. If they're wrong, copy them from card_text exactly. Then upload reel.json.
-2. **Reel · S12** · S12 `60 DIN BAAD`: number 60 not found
-   - Fix: Look at S12 in the reel at 51.6 s. If the words are right but hard to read, give them room in reel.json: move whatever overlaps them, or make them bigger. If they're wrong, copy them from card_text exactly. Then upload reel.json.
+**RESULT: WAITING** · Nothing for Muse to fix. A person's part is left (below).
 
 ## For a person
 
@@ -56,6 +49,7 @@ OCR can't read symbols, lone digits or handwriting. Look at these in the reel an
 - Not a repeat: topic, hook, script and photos are this reel's own (TOPICS.md)
 - Script review: Divyank Sharma approved version 6b9d83 on 2026-11-18
 - Reel file: every word on screen comes from that shot's card text
+- Reel: every card read back exactly, and the length, size and sound are right
 
 ## Posting
 
