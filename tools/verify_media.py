@@ -301,6 +301,23 @@ def loudness(path):
     return float(m[-1]) if m else None
 
 
+def voice_share(video, shots):
+    """For each shot, the share of its 0.1 s stretches where something is heard (louder than -40 dBFS), from just
+    after the shot starts to just before it ends. A voiced shot whose line went missing is mostly silence."""
+    from array import array
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-ac", "1", "-ar", "8000", "-f", "s16le", "-"],
+                         capture_output=True).stdout
+    a = array("h")
+    a.frombytes(raw[:len(raw) // 2 * 2])
+    sr, w, out = 8000, 800, {}
+    for sh in shots:
+        i0, i1 = int((sh["start"] + 0.15) * sr), int((sh["end"] - 0.3) * sr)
+        parts = [a[i:i + w] for i in range(i0, max(i0, i1 - w), w)]
+        heard = sum(1 for x in parts if x and (sum(v * v for v in x) / len(x)) ** 0.5 > 327.68)
+        out[sh["id"]] = heard / len(parts) if parts else 1.0
+    return out
+
+
 def frame_at(video, t, out, crop=None):
     vf = ["scale=iw:ih"]
     if crop:
@@ -518,6 +535,13 @@ def check_final(ep_dir, video, use_ocr=True):
         res.bad("length {:.1f} s is far from the {}–{} s target".format(dur, lo, hi))
     if info.get("audio"):
         res.ok("has sound")
+        timeline = dc.load_json(tl) if tl.exists() else {}
+        if timeline.get("voiced") and timeline.get("shots"):
+            quiet = [sid for sid, share in voice_share(video, timeline["shots"]).items() if share < 0.2]
+            if quiet:
+                res.bad("no voice in {}: the line is in media/audio/lines but silent in the reel".format(", ".join(quiet)))
+            else:
+                res.ok("every shot's voice line is heard")
         lufs = loudness(video)
         llo, lhi = rules.get("loudness_lufs", [-16, -12])
         if lufs is None:

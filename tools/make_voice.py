@@ -19,9 +19,14 @@ How a line is made:
   take that says every initialism (PF, UAN, EPFO, ...), every number and every word of the part, with nothing extra,
   is kept; else the one that comes closest;
 - the model blurs or swallows the first sound it makes, so every part starts with a throwaway "हाँ।" (LEAD), cut off
-  in the pause after it before Whisper listens; a spelled letter takes longer to say than its characters suggest,
-  so each gets 0.1 s more (without it, यू ए एन came out as "यूएन"); and a colon is read as a comma (the model says
-  it like the visarga ः: "चेक:" came out "चेके");
+  in the pause after it before Whisper listens; and a colon is read as a comma (the model says it like the
+  visarga ः: "चेक:" came out "चेके");
+- initialisms are said as one quick word (UAN, not U... A... N). Written apart (यू ए एन), each letter gets 0.1 s
+  more than its characters suggest, so none is dropped (without it, यू ए एन came out as "यूएन"); written as one
+  word (यूएएन), the model says it as one, with no extra time. Then the pauses between the
+  letters are cut to 0.03 s and the initialism sped up, pitch kept, to about 0.17 s a letter (UAN in about half a
+  second). A take keeps that only if Whisper still hears every letter, and a take still said letter by letter is
+  the last choice;
 - the pace: SPEED times the reference speaker's pace, a little quicker for an excited line and slower for a serious
   one (the line's "delivery"); pauses inside a part held to 0.25 s, a 0.32 s beat when the speaker changes;
 - every part equally loud, the same peak on every line, 0.22 s of silence before the words and 0.4 s after.
@@ -60,7 +65,10 @@ SR = 24000
 Word = namedtuple("Word", "start end word")          # a word Whisper heard, and when (seconds into the take)
 # Who reads with which reference clip (brand/voices/<name>.wav, its words in <name>.txt)
 VOICES = {"narrator": "narrator", "shivam": "narrator", "priya": "priya", "ravi": "narrator", "papa": "narrator"}
-SPEED, TAKES, MAX_GAP, TURN, REF_PAUSE, LETTER_TIME = 1.15, 6, 0.25, 0.32, 0.4, 0.1
+SPEED, TAKES, MAX_GAP, TURN, REF_PAUSE = 1.15, 6, 0.25, 0.32, 0.4
+# Initialisms: each letter gets LETTER_TIME more to be said in (so none is dropped), then the pauses between
+# letters are cut to LETTER_GAP and the whole initialism sped up to about LETTER_SEC a letter (at most MAX_QUICK)
+LETTER_TIME, LETTER_GAP, LETTER_SEC, MAX_QUICK = 0.1, 0.03, 0.17, 1.4
 # Said before every part and cut off: the model blurs or swallows the first sound it makes after the reference
 LEAD = "हाँ। "
 MOOD = {"excited": 1.06, "playful": 1.04, "surprised": 1.05, "happy": 1.03, "curious": 1.0, "proud": 1.0,
@@ -173,7 +181,8 @@ def judge(text, heard, vo=""):
         return [w for w in _tokens(t) if w not in spelled and not [n for n in spoken_numbers(w) if n >= 4]]
 
     def close(x, y):             # the same word, or two run together, but not a word with a sound stuck on it
-        return _similar(x, y, 0.75) and abs(len(x) - len(y)) <= max(1, len(x) // 3)
+        d = abs(len(x) - len(y))
+        return _similar(x, y, 0.75) and (d <= max(1, len(x) // 3) or (d <= 2 and _similar(x, y, 0.8)))
 
     want = [fold(w) for w in plain_words(text) if not re.search(r"[0-9]", w)]
     vo_words = {w.lower() for w in _tokens(vo) if re.fullmatch(r"[A-Za-z]+", w)}
@@ -255,6 +264,127 @@ def spoken(text):
     return text.replace(":", ",")
 
 
+def initialism_spans(words, keys):
+    """[(key, start, end)] for each of keys Whisper wrote, from its words' times (Word tuples)."""
+    sp = []
+    for w in words:
+        t = re.sub(r"(?<=\b[A-Za-z])\.", "", w.word).strip(PUNCT + " ")
+        sp.append(t.lower() if re.fullmatch(r"[A-Za-z]+", t) else spell(t))
+    out = []
+    for key in sorted(set(keys)):
+        i = 0
+        while i < len(words):
+            acc, j = "", i
+            while j < len(words) and sp[j] and key.startswith(acc + sp[j]) and acc != key:
+                acc, j = acc + sp[j], j + 1
+            if acc == key:
+                out.append((key, words[i].start, words[j - 1].end))
+                i = j
+            else:
+                i += 1
+    return out
+
+
+def tighten_spans(a, spans, floor=-35):
+    """Spans moved in to where there's sound: Whisper starts a take's first word before it's said, and can end a word
+    in the pause after it."""
+    n = int(0.01 * SR)
+    rms = np.array([np.sqrt(np.mean(a[i:i + n] ** 2)) for i in range(0, len(a) - n, n)]) + 1e-9
+    loud = 20 * np.log10(rms / rms.max()) > floor
+    out = []
+    for key, t0, t1 in spans:
+        k0, k1 = max(0, int(t0 * 100)), min(len(loud), int(t1 * 100))
+        on = np.where(loud[k0:k1])[0]
+        out.append((key, (k0 + on[0]) / 100, (k0 + on[-1] + 1) / 100) if len(on) else (key, t0, t1))
+    return out
+
+
+def letter_gaps(a, spans, floor=-38):
+    """[(start, end)] of the pauses between an initialism's letters: quiet 10 ms frames (floor dB under the take's
+    peak) inside its span, not at its edges, where the pause belongs to the words around it."""
+    n = int(0.01 * SR)
+    rms = np.array([np.sqrt(np.mean(a[i:i + n] ** 2)) for i in range(0, len(a) - n, n)]) + 1e-9
+    db = 20 * np.log10(rms / rms.max())
+    out = []
+    for _, t0, t1 in spans:
+        k, k1 = max(0, int((t0 + 0.05) * 100)), min(len(db), int((t1 - 0.05) * 100))
+        while k < k1:
+            if db[k] < floor:
+                j = k
+                while j < k1 and db[j] < floor:
+                    j += 1
+                if j < k1:                                   # speech of the same initialism after it
+                    out.append((k / 100, j / 100))
+                k = j
+            else:
+                k += 1
+    return out
+
+
+def close_gaps(a, gaps, keep=None):
+    """The take with every pause in gaps cut down to keep seconds, from its middle, crossfaded: UAN said as one
+    word, not U... A... N."""
+    f, keep = int(0.005 * SR), LETTER_GAP if keep is None else keep
+    for g0, g1 in sorted(gaps, reverse=True):
+        if g1 - g0 <= keep:
+            continue
+        mid, half = (g0 + g1) / 2 * SR, (g1 - g0 - keep) / 2 * SR
+        s0, s1 = int(mid - half), int(mid + half)
+        if s0 < f or s1 + f > len(a):
+            continue
+        head, tail = a[:s0].copy(), a[s1:].copy()
+        head[-f:] = head[-f:] * np.linspace(1, 0, f) + tail[:f] * np.linspace(0, 1, f)
+        a = np.concatenate([head, tail[f:]])
+    return a
+
+
+def stretch(x, factor, win=0.03, search=0.008):
+    """x played factor times faster with its pitch kept: overlapping 30 ms pieces, each nudged (within 8 ms) to
+    where it joins the last one most smoothly (WSOLA)."""
+    n, tol = int(win * SR), int(search * SR)
+    hop = n // 2
+    w = np.hanning(n).astype(np.float32)
+    out, norm = np.zeros(int(len(x) / factor) + 2 * n, np.float32), np.zeros(int(len(x) / factor) + 2 * n, np.float32)
+    pos_in, pos_out, prev = 0.0, 0, None
+    while True:
+        c = int(pos_in)
+        if prev is None:
+            start = c
+        else:
+            want = x[prev + hop:prev + hop + n]
+            lo, hi = max(0, c - tol), min(len(x) - n, c + tol)
+            if len(want) < n or hi < lo:
+                break
+            start = lo + int(np.argmax([np.dot(x[k:k + n], want) for k in range(lo, hi + 1)]))
+        if start + n > len(x) or pos_out + n > len(out):
+            break
+        out[pos_out:pos_out + n] += x[start:start + n] * w
+        norm[pos_out:pos_out + n] += w
+        prev, pos_out, pos_in = start, pos_out + hop, pos_in + hop * factor
+    end = pos_out + hop
+    tail = x[prev + hop:] if prev is not None else x
+    out, norm = out[:end], np.maximum(norm[:end], 1e-3)
+    out = out / norm
+    return np.concatenate([out[:max(0, end - hop)], tail[:hop]]) if len(tail) >= hop else out
+
+
+def quicken(a, spans):
+    """Each initialism said as one quick word: its span sped up (pitch kept) to about LETTER_SEC a letter, at most
+    MAX_QUICK times, joined back with 5 ms crossfades."""
+    f = int(0.005 * SR)
+    for key, t0, t1 in sorted(spans, key=lambda sp: -sp[1]):
+        s0, s1 = max(f, int(t0 * SR)), min(len(a) - f, int(t1 * SR))
+        factor = min(MAX_QUICK, (s1 - s0) / SR / (LETTER_SEC * len(key)))
+        if s1 - s0 < 4 * f or factor < 1.08:
+            continue
+        seg = stretch(a[s0:s1], factor)
+        head, tail = a[:s0].copy(), a[s1:].copy()
+        seg[:f] = head[-f:] * np.linspace(1, 0, f) + seg[:f] * np.linspace(0, 1, f)
+        seg[-f:] = seg[-f:] * np.linspace(1, 0, f) + tail[:f] * np.linspace(0, 1, f)
+        a = np.concatenate([head[:-f], seg, tail[f:]])
+    return a
+
+
 def is_lead(word):
     """Whisper heard the lead word (हाँ, हां, उहाँ, Haan)."""
     return bool(re.fullmatch(r"[अआउ]?हा?न?|[अआउ]?हान|हम", fold(word))) or \
@@ -289,6 +419,17 @@ def cut_lead(a, words):
                 end += 1
             return a[(start + end + 1) // 2 * n:]               # the middle of the pause
     return a
+
+
+def mp3(a):
+    """The samples as they come back from an mp3 like the line's file (44.1 kHz, 160 kbit/s)."""
+    enc = subprocess.run(["ffmpeg", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-",
+                          "-ar", "44100", "-codec:a", "libmp3lame", "-b:a", "160k", "-f", "mp3", "-"],
+                         input=np.asarray(a, np.float32).tobytes(), capture_output=True, check=True).stdout
+    dec = subprocess.run(["ffmpeg", "-v", "error", "-i", "-", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-"],
+                         input=enc, capture_output=True, check=True).stdout
+    b = np.frombuffer(dec, np.float32)[int(1105 / 44100 * SR):]     # the encoder's and decoder's delay (1105 samples)
+    return np.pad(b, (0, max(0, len(a) - len(b))))[:len(a)]      # same length, so word times still match
 
 
 def level(seg):
@@ -340,6 +481,11 @@ class Voice:
             return heard, conf
         return heard, conf, [Word(w.start - 0.3, w.end - 0.3, w.word) for s in segs for w in (s.words or [])]
 
+    @staticmethod
+    def slow(spans):
+        """How many initialisms are said slowly, letter by letter: longer than 1.3 times LETTER_SEC a letter."""
+        return sum(1 for key, t0, t1 in spans if t1 - t0 > 1.3 * LETTER_SEC * len(key))
+
     def part(self, who, text, speed, vo, seed0):
         """The best of up to self.takes takes of one part: (samples, seed, heard, misses)."""
         from f5_tts.infer.utils_infer import infer_process
@@ -347,7 +493,7 @@ class Voice:
         ref_wav, ref_text = self.ref(who)
         # The model gives a part as much time as its characters, at the reference speaker's pace. A spelled letter
         # takes longer to say than its one or two characters (यू ए एन came out as "यूएन"), so each gets LETTER_TIME more.
-        letters = sum(len(k) for k in initialisms(text))
+        letters = sum(len(k) for k, ws in _runs(text) if len(ws) > 1)       # written apart: यू ए एन, not यूएएन
         ref_sec = self._refs_len[ref_wav]
         length = (ref_sec + ref_sec / len(ref_text.encode("utf-8")) * len((LEAD + text).encode("utf-8")) / speed
                   + LETTER_TIME * letters) if letters else None
@@ -360,21 +506,29 @@ class Voice:
                                            self.tts.mel_spec_type, show_info=lambda *a, **kw: None, progress=None,
                                            nfe_step=32, speed=speed, fix_duration=length, device="cpu")
             a = np.asarray(wav, np.float32)
-            first, _, words = self.listen(a, words=True)
-            a = trim(cut_lead(a, words))
-            heard, conf = self.listen(a)
+            a = trim(cut_lead(a, self.listen(a, words=True)[2]))
+            # Whisper judges the take as it will be saved (mp3): a sound said faintly can be lost in the mp3
+            heard, conf, words = self.listen(mp3(a), words=True)
             misses, missing, extra = judge(text, heard, vo)
-            # Whisper heard the take twice (with the lead, then without): an initialism or number only one of the
-            # two caught is said too faintly, and could be lost when the file is saved as mp3
-            if words and is_lead(words[0].word):
-                first = first.replace(words[0].word.strip(), "", 1)
-            misses += [m for m in judge(text, first, vo)[0] if m not in misses]
-            score = (-len(misses), -(missing + extra), conf)
-            print("   {} take {} · {:.2f} s · {} · {}".format(who, seed, len(a) / SR, "ok" if score[:2] == (0, 0)
-                  else "misses {} · {} words off".format(misses or "none", missing + extra), heard), flush=True)
+            keys = initialisms(text)
+            spans = tighten_spans(a, initialism_spans(words, keys))
+            slow = self.slow(spans)
+            if keys and slow:   # say each initialism as one quick word; keep that only if Whisper still hears it all
+                b = close_gaps(a, letter_gaps(a, spans))
+                b = quicken(b, tighten_spans(b, initialism_spans(self.listen(mp3(b), words=True)[2], keys)))
+                heard_b, conf_b, words_b = self.listen(mp3(b), words=True)
+                judged = judge(text, heard_b, vo)
+                if len(judged[0]) <= len(misses) and judged[1] + judged[2] <= missing + extra:
+                    a, heard, conf, (misses, missing, extra) = b, heard_b, conf_b, judged
+                    slow = self.slow(tighten_spans(b, initialism_spans(words_b, keys)))
+            score = (-len(misses), -(missing + extra), -slow, conf)
+            print("   {} take {} · {:.2f} s · {}{} · {}".format(
+                who, seed, len(a) / SR, "ok" if score[:2] == (0, 0) else
+                "misses {} · {} words off".format(misses or "none", missing + extra),
+                " · {} said letter by letter".format(slow) if slow else "", heard), flush=True)
             if best is None or score > best[0]:
                 best = (score, a, seed, heard, misses)
-            if score[:2] == (0, 0) and conf > -0.35:
+            if score[:3] == (0, 0, 0) and conf > -0.35:
                 break
         return best[1:]
 

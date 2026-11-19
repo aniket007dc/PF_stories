@@ -583,6 +583,33 @@ class TestVoiceCheck(unittest.TestCase):
         self.assertEqual(judge("नाम और जन्म तिथि बिलकुल आधार जैसे। गलत हो, तो खुद ठीक करो।",
                                "नाम और जन्मतिथी बिल्कुल आदार जैसे गलत हो, तो खुद थीक करो।", ""), ([], 0, 0))
 
+    def test_the_voice_maker_says_an_initialism_as_one_word(self):
+        import numpy as np
+        import make_voice
+        sr = make_voice.SR
+        t = np.arange(int(0.15 * sr)) / sr
+        letter = (0.3 * np.sin(2 * np.pi * 200 * t)).astype(np.float32)
+        gap = np.zeros(int(0.15 * sr), np.float32)
+        take = np.concatenate([letter, letter, letter, gap, letter, gap, letter, gap, letter])   # पुराना यू·ए·एन, है
+        W = make_voice.Word
+        words = [W(0.0, 0.3, "पुराना"), W(0.3, 1.05, "UAN"), W(1.2, 1.35, "है")]
+        spans = make_voice.initialism_spans(words, ["uan"])
+        self.assertEqual(spans, [("uan", 0.3, 1.05)])
+        gaps = make_voice.letter_gaps(take, spans)
+        self.assertEqual(len(gaps), 2)                                     # between the letters, not after UAN
+        tight = make_voice.close_gaps(take, gaps)
+        self.assertAlmostEqual((len(take) - len(tight)) / sr, 2 * (0.15 - make_voice.LETTER_GAP), delta=0.03)
+        self.assertEqual(make_voice.initialism_spans([W(0, 0.2, "EPFO")], ["pf"]), [])   # PF isn't in EPFO
+        t = np.arange(int(0.8 * sr)) / sr
+        uan = (0.3 * np.sin(2 * np.pi * 150 * t)).astype(np.float32)          # UAN said slowly, in 0.8 s
+        line = np.concatenate([gap, uan, gap])
+        self.assertEqual(make_voice.Voice.slow([("uan", 0.15, 0.95)]), 1)
+        quick = make_voice.quicken(line, [("uan", 0.15, 0.95)])
+        said = (len(quick) - 2 * len(gap)) / sr
+        self.assertAlmostEqual(said, 0.8 / make_voice.MAX_QUICK, delta=0.04)   # sped up as far as allowed
+        spectrum = np.abs(np.fft.rfft(quick[len(gap):len(gap) + 4096] * np.hanning(4096)))
+        self.assertAlmostEqual(np.fft.rfftfreq(4096, 1 / sr)[np.argmax(spectrum)], 150, delta=8)   # same pitch
+
     def test_the_voice_maker_cuts_off_the_lead_word(self):
         import numpy as np
         import make_voice

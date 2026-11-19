@@ -2066,8 +2066,10 @@ def mix_audio(reel, out_wav):
             rms = np.sqrt(np.mean(a ** 2)) or 1
             a = a * (0.1 / rms)
             i = int(s["vo"]["at"] * SR)
+            if i < 0:                            # the first shot: the file's silence before the words starts before 0:00
+                a, i = a[-i:], 0
             m = min(len(a), n - i)
-            if m > 0 and i >= 0:
+            if m > 0:
                 voice[i:i + m] += a[:m]
     music = np.zeros(n, np.float32)
     mfile = next((p for p in (reel.E.dir / "media" / "audio").glob("music.*")), None) if (reel.E.dir / "media" / "audio").exists() else None

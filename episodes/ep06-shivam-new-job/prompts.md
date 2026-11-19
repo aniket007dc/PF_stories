@@ -33,7 +33,7 @@ Text: read it exactly. Don't add, skip, repeat, reorder or translate any word (a
 | S02 | `episodes/ep06-shivam-new-job/media/audio/lines/S02.mp3` | "पुराना, यू ए एन है?" शिवम बोला: "नया बना दो ना!" | playful · Priya asks crisply, Shivam answers carelessly | — |
 | S03 | `episodes/ep06-shivam-new-job/media/audio/lines/S03.mp3` | रुको! यहीं सबसे बड़ी गलती होती है। | serious · a sharp stop on Ruko!, then low and clear | — |
 | S04 | `episodes/ep06-shivam-new-job/media/audio/lines/S04.mp3` | नया यू ए एन, मतलब पुराना पी एफ़, पुराने यू ए एन में अटका। | concerned · stress atka | — |
-| S05 | `episodes/ep06-shivam-new-job/media/audio/lines/S05.mp3` | प्रिया ने समझाया: "यू ए एन एक ही होता है। पूरी ज़िंदगी के लिए।" | warm · Priya, kind and sure; stress ek hi | — |
+| S05 | `episodes/ep06-shivam-new-job/media/audio/lines/S05.mp3` | प्रिया ने समझाया: "यूएएन एक ही होता है। पूरी ज़िंदगी के लिए।" | warm · Priya, kind and sure; stress ek hi | — |
 | S06 | `episodes/ep06-shivam-new-job/media/audio/lines/S06.mp3` | "नौकरी बदलो, कंपनी बदलो, यू ए एन वही रहता है।" | proud · a quick rhythm on badlo, badlo, then land wahi | — |
 | S07 | `episodes/ep06-shivam-new-job/media/audio/lines/S07.mp3` | तो शिवम ने जॉइनिंग फ़ॉर्म में पुराना यू ए एन ही दिया। | happy · relieved, quick, a lift on purana UAN | — |
 | S08 | `episodes/ep06-shivam-new-job/media/audio/lines/S08.mp3` | फिर मेंबर पोर्टल पे केवाईसी: आधार, बैंक और पैन। | curious · a quick list, one beat each on Aadhaar, bank, PAN | — |
