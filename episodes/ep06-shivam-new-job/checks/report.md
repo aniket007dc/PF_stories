@@ -1,6 +1,6 @@
 # Check report · ep06-shivam-new-job
 
-Checked commit `62bc886` on 2026-11-18 18:40 UTC. GitHub writes a new report after every upload.
+Checked commit `aef84c7` on 2026-11-19 04:17 UTC. GitHub writes a new report after every upload.
 
 **RESULT: WAITING** · Nothing for Muse to fix. A person's part is left (below).
 
@@ -28,20 +28,18 @@ Checked commit `62bc886` on 2026-11-18 18:40 UTC. GitHub writes a new report aft
    - A person opens the source, finds the rule and records it with `python3 tools/approve.py fact episodes/ep06-shivam-new-job grievance_epfigms --by NAME`. Muse never marks a rule checked.
 11. **Rule · services_free** · rule 'services_free' needs a person to check the source. Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)
    - A person opens the source, finds the rule and records it with `python3 tools/approve.py fact episodes/ep06-shivam-new-job services_free --by NAME`. Muse never marks a rule checked.
+12. **Voice · S08** · almost no pause at the end: check the last word isn't clipped
+   - A person listens to this line.
+   - should say: फिर मेंबर पोर्टल पे केवाईसी: आधार, बैंक और पैन। · heard: फिर मेंबर पोटल पे के वाईसी, आधार, बैंख और पैन.
 
 ## To look at (Muse, not blocking)
 
 OCR can't read symbols, lone digits or handwriting. Look at these in the reel and say in your report that they're right.
 - `naye naukri wale dost` (handwriting, which OCR can't read reliably; check it by eye)
 
-## Still to make
-
-- voice lines (MUSE.md → Step 2)
-
 ## Notes
 
 - Script E3.3: estimated length 61 s and the shot timeline 69 s differ by more than 5 s
-- Reel : loudness -27.2 LUFS; aim for about −14 (-16.0 to -12.0)
 
 ## Passed
 
@@ -49,6 +47,7 @@ OCR can't read symbols, lone digits or handwriting. Look at these in the reel an
 - Not a repeat: topic, hook, script and photos are this reel's own (TOPICS.md)
 - Script review: Divyank Sharma approved version 6b9d83 on 2026-11-18
 - Reel file: every word on screen comes from that shot's card text
+- Voice: 14 of 15 lines say every number and word
 - Reel: every card read back exactly, and the length, size and sound are right
 
 ## Posting

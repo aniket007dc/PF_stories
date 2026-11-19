@@ -1,103 +1,103 @@
 {
- "inputs": "d6efad2ad83e52f3",
- "voiced": false,
- "length": 69.0,
+ "inputs": "35c30aff5d3022a6",
+ "voiced": true,
+ "length": 61.063,
  "shots": [
   {
    "id": "S01",
    "start": 0.0,
-   "end": 4.5,
+   "end": 3.682,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S02",
-   "start": 4.5,
-   "end": 8.5,
+   "start": 3.682,
+   "end": 7.208,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S03",
-   "start": 8.5,
-   "end": 11.5,
+   "start": 7.208,
+   "end": 10.967,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S04",
-   "start": 11.5,
-   "end": 15.5,
+   "start": 10.967,
+   "end": 14.549,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S05",
-   "start": 15.5,
-   "end": 20.5,
+   "start": 14.549,
+   "end": 19.429,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S06",
-   "start": 20.5,
-   "end": 24.0,
+   "start": 19.429,
+   "end": 22.862,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S07",
-   "start": 24.0,
-   "end": 28.5,
+   "start": 22.862,
+   "end": 25.813,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S08",
-   "start": 28.5,
-   "end": 32.5,
+   "start": 25.813,
+   "end": 29.488,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S09",
-   "start": 32.5,
-   "end": 38.0,
+   "start": 29.488,
+   "end": 33.538,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S10",
-   "start": 38.0,
-   "end": 42.5,
+   "start": 33.538,
+   "end": 37.995,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S11",
-   "start": 42.5,
-   "end": 47.0,
+   "start": 37.995,
+   "end": 41.157,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S12",
-   "start": 47.0,
-   "end": 52.0,
+   "start": 41.157,
+   "end": 45.008,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S13",
-   "start": 52.0,
-   "end": 56.0,
+   "start": 45.008,
+   "end": 50.331,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S14",
-   "start": 56.0,
-   "end": 60.0,
+   "start": 50.331,
+   "end": 53.073,
    "handwritten": [
     "naye naukri wale dost"
    ],
@@ -105,8 +105,8 @@
   },
   {
    "id": "S15",
-   "start": 60.0,
-   "end": 69.0,
+   "start": 53.073,
+   "end": 61.063,
    "handwritten": [
     "PF samjho, claim pao.",
     "PF samjho, claim pao.",
