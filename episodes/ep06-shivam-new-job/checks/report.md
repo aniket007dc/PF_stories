@@ -1,6 +1,6 @@
 # Check report · ep06-shivam-new-job
 
-Checked commit `2bbe03d` on 2026-11-19 10:05 UTC. GitHub writes a new report after every upload.
+Checked commit `3aed10c` on 2026-11-19 12:25 UTC. GitHub writes a new report after every upload.
 
 **RESULT: WAITING** · Nothing for Muse to fix. A person's part is left (below).
 
@@ -33,7 +33,6 @@ Checked commit `2bbe03d` on 2026-11-19 10:05 UTC. GitHub writes a new report aft
 
 OCR can't read symbols, lone digits or handwriting. Look at these in the reel and say in your report that they're right.
 - `naye naukri wale dost` (handwriting, which OCR can't read reliably; check it by eye)
-- `PF samjho, claim pao.` (handwriting, which OCR can't read reliably; check it by eye)
 
 ## Notes
 
