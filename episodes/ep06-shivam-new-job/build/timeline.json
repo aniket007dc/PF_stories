@@ -1,103 +1,103 @@
 {
- "inputs": "35c30aff5d3022a6",
+ "inputs": "69cf628a050f900f",
  "voiced": true,
- "length": 61.063,
+ "length": 58.887,
  "shots": [
   {
    "id": "S01",
    "start": 0.0,
-   "end": 3.682,
+   "end": 3.403,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S02",
-   "start": 3.682,
-   "end": 7.208,
+   "start": 3.403,
+   "end": 7.551,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S03",
-   "start": 7.208,
-   "end": 10.967,
+   "start": 7.551,
+   "end": 10.152,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S04",
-   "start": 10.967,
-   "end": 14.549,
+   "start": 10.152,
+   "end": 14.181,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S05",
-   "start": 14.549,
-   "end": 19.429,
+   "start": 14.181,
+   "end": 19.188,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S06",
-   "start": 19.429,
-   "end": 22.862,
+   "start": 19.188,
+   "end": 22.656,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S07",
-   "start": 22.862,
-   "end": 25.813,
+   "start": 22.656,
+   "end": 26.014,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S08",
-   "start": 25.813,
-   "end": 29.488,
+   "start": 26.014,
+   "end": 29.37,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S09",
-   "start": 29.488,
-   "end": 33.538,
+   "start": 29.37,
+   "end": 33.774,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S10",
-   "start": 33.538,
-   "end": 37.995,
+   "start": 33.774,
+   "end": 37.248,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S11",
-   "start": 37.995,
-   "end": 41.157,
+   "start": 37.248,
+   "end": 40.449,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S12",
-   "start": 41.157,
-   "end": 45.008,
+   "start": 40.449,
+   "end": 44.432,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S13",
-   "start": 45.008,
-   "end": 50.331,
+   "start": 44.432,
+   "end": 48.121,
    "handwritten": [],
    "screens": []
   },
   {
    "id": "S14",
-   "start": 50.331,
-   "end": 53.073,
+   "start": 48.121,
+   "end": 51.353,
    "handwritten": [
     "naye naukri wale dost"
    ],
@@ -105,8 +105,8 @@
   },
   {
    "id": "S15",
-   "start": 53.073,
-   "end": 61.063,
+   "start": 51.353,
+   "end": 58.887,
    "handwritten": [
     "PF samjho, claim pao.",
     "PF samjho, claim pao.",

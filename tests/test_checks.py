@@ -524,6 +524,17 @@ class TestVoiceCheck(unittest.TestCase):
         self.assertEqual(n("फ़ॉर्म थर्टी वन"), [31])
         self.assertEqual(n("प्रोसीड फ़ॉर ऑनलाइन क्लेम"), [])                   # "for" is a word, not four
         self.assertEqual(n("दो तीन"), [2, 3])                                    # Hindi number words stay apart
+        self.assertEqual(n("सिक्स्टी दिन बाद"), [60])                            # sixty, spelled for a crisper t
+
+    def test_the_voice_maker_gives_each_quote_to_its_speaker(self):
+        import make_voice
+        line = {"tts": '"पुराना यू ए एन है?" शिवम बोला: "नया बना दो ना!"', "speakers": ["priya", "narrator"]}
+        self.assertEqual(make_voice.parts_of(line), [("priya", "पुराना यू ए एन है?"),
+                                                     ("narrator", "शिवम बोला: नया बना दो ना!")])   # read together
+        self.assertEqual(make_voice.parts_of({"tts": 'प्रिया ने कहा: "हाँ।"'}),
+                         [("narrator", "प्रिया ने कहा: हाँ।")])                  # no speakers: the narrator reads it
+        for who in ("narrator", "shivam", "priya", "ravi", "papa"):
+            self.assertIn(who, make_voice.VOICES)
 
     def test_a_rate_whisper_half_wrote_in_digits_is_still_heard(self):
         n = verify_voice.spoken_numbers
