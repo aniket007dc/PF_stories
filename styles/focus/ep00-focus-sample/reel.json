@@ -1,0 +1,570 @@
+{
+ "schema": "dc-reel/1",
+ "episode": "ep00-focus-sample",
+ "brand_label": "PF GURU JI",
+ "photos": {},
+ "route": [
+  {
+   "label": "MANAGE",
+   "from": "S06"
+  },
+  {
+   "label": "MARK EXIT",
+   "from": "S07"
+  },
+  {
+   "label": "OTP",
+   "from": "S10"
+  },
+  {
+   "label": "CHECK",
+   "from": "S12"
+  }
+ ],
+ "screens": {
+  "home": {
+   "device": "laptop",
+   "url": "unifiedportal-mem.epfindia.gov.in/memberinterface",
+   "app": "EPFO Member e-Sewa",
+   "accent": "#1f4e9c",
+   "sources": [
+    {
+     "kind": "official",
+     "title": "EPFO · Frequently asked questions: date of exit on the member portal",
+     "url": "https://www.epfindia.gov.in/site_en/FAQ.php",
+     "note": "Not opened by the research: EPFO's and PIB's sites refuse automated reading. A person opens it, checks this screen against it and the live portal, and adds \"seen\"."
+    },
+    {
+     "kind": "official",
+     "title": "PIB · EPFO members can record their date of exit (8 January 2021)",
+     "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1687113",
+     "published": "2021-01-08",
+     "note": "Not opened by the research: EPFO's and PIB's sites refuse automated reading. A person opens it, checks this screen against it and the live portal, and adds \"seen\"."
+    }
+   ],
+   "parts": [
+    {
+     "kind": "tabs",
+     "id": "top",
+     "items": [
+      "Home",
+      "View",
+      "Manage",
+      "Account",
+      "Online Services"
+     ],
+     "active": "Home"
+    },
+    {
+     "kind": "title",
+     "text": "Welcome, Shivam K.",
+     "sub": "UAN XXXX XXXX 1234"
+    },
+    {
+     "kind": "stats",
+     "items": [
+      {
+       "id": "kyc",
+       "label": "KYC",
+       "value": "Aadhaar, Bank, PAN",
+       "tone": "good"
+      },
+      {
+       "id": "jobs",
+       "label": "Service",
+       "value": "2 employers"
+      }
+     ]
+    },
+    {
+     "kind": "table",
+     "id": "service",
+     "head": [
+      "Employer",
+      "Joined",
+      "Exit"
+     ],
+     "rows": [
+      [
+       "Purani Company",
+       "01/04/2023",
+       "—"
+      ],
+      [
+       "Nayi Company",
+       "02/11/2026",
+       "—"
+      ]
+     ]
+    }
+   ],
+   "overlays": {
+    "manage": {
+     "kind": "menu",
+     "near": "top/Manage",
+     "items": [
+      {
+       "text": "Basic Details"
+      },
+      {
+       "text": "Contact Details"
+      },
+      {
+       "text": "KYC"
+      },
+      {
+       "text": "e-Nomination"
+      },
+      {
+       "id": "markexit",
+       "text": "Mark Exit"
+      }
+     ]
+    }
+   }
+  },
+  "exit": {
+   "device": "laptop",
+   "url": "unifiedportal-mem.epfindia.gov.in/memberinterface/markexit",
+   "app": "EPFO Member e-Sewa",
+   "accent": "#1f4e9c",
+   "sources": [
+    {
+     "kind": "official",
+     "title": "EPFO · Frequently asked questions: date of exit on the member portal",
+     "url": "https://www.epfindia.gov.in/site_en/FAQ.php",
+     "note": "Not opened by the research: EPFO's and PIB's sites refuse automated reading. A person opens it, checks this screen against it and the live portal, and adds \"seen\"."
+    },
+    {
+     "kind": "official",
+     "title": "PIB · EPFO members can record their date of exit (8 January 2021)",
+     "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1687113",
+     "published": "2021-01-08",
+     "note": "Not opened by the research: EPFO's and PIB's sites refuse automated reading. A person opens it, checks this screen against it and the live portal, and adds \"seen\"."
+    }
+   ],
+   "parts": [
+    {
+     "kind": "tabs",
+     "id": "top",
+     "items": [
+      "Home",
+      "View",
+      "Manage",
+      "Account",
+      "Online Services"
+     ],
+     "active": "Manage"
+    },
+    {
+     "kind": "title",
+     "text": "Mark Exit",
+     "sub": "Manage  ›  Mark Exit"
+    },
+    {
+     "kind": "stat",
+     "id": "status",
+     "label": "Date of exit: Purani Company",
+     "value": "Not marked",
+     "tone": "bad"
+    },
+    {
+     "kind": "field",
+     "id": "employment",
+     "label": "Select Employment",
+     "placeholder": "Select"
+    },
+    {
+     "kind": "field",
+     "id": "doe",
+     "label": "Date of Exit",
+     "placeholder": "DD/MM/YYYY"
+    },
+    {
+     "kind": "field",
+     "id": "reason",
+     "label": "Reason of Exit",
+     "placeholder": "Select"
+    },
+    {
+     "kind": "button",
+     "id": "otp",
+     "text": "Request OTP",
+     "style": "secondary"
+    },
+    {
+     "kind": "field",
+     "id": "otpfield",
+     "label": "Enter OTP",
+     "placeholder": "Enter the OTP"
+    },
+    {
+     "kind": "check",
+     "id": "agree",
+     "text": "I have read the conditions",
+     "on": false
+    },
+    {
+     "kind": "button",
+     "id": "update",
+     "text": "Update",
+     "style": "primary"
+    }
+   ],
+   "overlays": {
+    "jobs": {
+     "kind": "menu",
+     "near": "employment",
+     "items": [
+      {
+       "id": "oldjob",
+       "text": "Purani Company"
+      },
+      {
+       "text": "Nayi Company"
+      }
+     ]
+    },
+    "reasons": {
+     "kind": "menu",
+     "near": "reason",
+     "items": [
+      {
+       "id": "cessation",
+       "text": "Cessation (Short Service)"
+      },
+      {
+       "text": "Superannuation"
+      },
+      {
+       "text": "Retirement"
+      }
+     ]
+    },
+    "done": {
+     "kind": "toast",
+     "text": "Date of exit updated",
+     "tone": "good"
+    }
+   }
+  }
+ },
+ "shots": {
+  "S01": [
+   {
+    "type": "headline",
+    "text": "EXIT DATE KHALI HAI?",
+    "accent": "KHALI HAI?",
+    "at": 0,
+    "in": "none"
+   },
+   {
+    "type": "screen",
+    "screen": "exit",
+    "focus": "status"
+   }
+  ],
+  "S02": [
+   {
+    "type": "flow",
+    "from": [
+     {
+      "title": "Purani company",
+      "sub": "exit date"
+     }
+    ],
+    "to": {
+     "title": "EPFO",
+     "sub": "aapka PF record"
+    },
+    "pills": [
+     {
+      "text": "Exit date galat",
+      "from": 0,
+      "tone": "bad",
+      "on": "galti"
+     }
+    ],
+    "result": {
+     "text": "Claim reject",
+     "sub": "mismatch",
+     "tone": "bad",
+     "on": "reject"
+    }
+   }
+  ],
+  "S03": [
+   {
+    "type": "flow",
+    "from": [
+     {
+      "title": "Company",
+      "sub": "har mahine upload"
+     },
+     {
+      "title": "Aap khud",
+      "sub": "member portal"
+     }
+    ],
+    "to": {
+     "title": "EPFO",
+     "sub": "aapka PF record"
+    },
+    "pills": [
+     {
+      "text": "Exit date",
+      "from": 0,
+      "on": "company"
+     },
+     {
+      "text": "Exit date",
+      "from": 1,
+      "tone": "good",
+      "on": "khud"
+     }
+    ],
+    "result": {
+     "text": "Record sahi",
+     "tone": "good",
+     "on": "sakte"
+    }
+   }
+  ],
+  "S04": [
+   {
+    "type": "screen",
+    "screen": "home",
+    "do": [
+     {
+      "look": "service/Purani Company",
+      "on": "Naukri"
+     }
+    ]
+   }
+  ],
+  "S05": [
+   {
+    "type": "route",
+    "title": "POORA RAASTA",
+    "now": 0,
+    "steps": [
+     {
+      "text": "MANAGE",
+      "sub": "upar ka menu"
+     },
+     {
+      "text": "MARK EXIT",
+      "sub": "purani naukri chuno"
+     },
+     {
+      "text": "OTP",
+      "sub": "mobile pe aayega"
+     },
+     {
+      "text": "CHECK",
+      "sub": "status dekho"
+     }
+    ]
+   }
+  ],
+  "S06": [
+   {
+    "type": "screen",
+    "screen": "home",
+    "do": [
+     {
+      "tap": "top/Manage",
+      "open": "manage",
+      "on": "Manage"
+     }
+    ]
+   }
+  ],
+  "S07": [
+   {
+    "type": "screen",
+    "screen": "home",
+    "do": [
+     {
+      "tap": "markexit",
+      "go": "exit",
+      "on": "Mark"
+     }
+    ]
+   }
+  ],
+  "S08": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "do": [
+     {
+      "tap": "employment",
+      "open": "jobs",
+      "on": "Select"
+     },
+     {
+      "tap": "oldjob",
+      "close": "jobs",
+      "on": "purani"
+     },
+     {
+      "label": "Purani Company",
+      "label_of": "employment",
+      "on": "chuno"
+     }
+    ]
+   }
+  ],
+  "S09": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "do": [
+     {
+      "write": "doe",
+      "text": "15/09/2026",
+      "on": "Date"
+     },
+     {
+      "tap": "reason",
+      "open": "reasons",
+      "on": "Reason"
+     },
+     {
+      "tap": "cessation",
+      "close": "reasons",
+      "on": "chuno"
+     },
+     {
+      "label": "Cessation (Short Service)",
+      "label_of": "reason",
+      "on": "chuno"
+     }
+    ]
+   }
+  ],
+  "S10": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "do": [
+     {
+      "tap": "otp",
+      "on": "Request"
+     },
+     {
+      "write": "otpfield",
+      "text": "••••••",
+      "on": "daalo"
+     }
+    ]
+   }
+  ],
+  "S11": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "do": [
+     {
+      "scroll": 260,
+      "on": "Checkbox"
+     },
+     {
+      "check": "agree",
+      "on": "tick"
+     },
+     {
+      "tap": "update",
+      "show": "done",
+      "on": "Update"
+     }
+    ]
+   }
+  ],
+  "S12": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "focus": "status",
+    "do": [
+     {
+      "label": "15/09/2026",
+      "label_of": "status",
+      "tone": "good",
+      "on": "Status"
+     }
+    ]
+   }
+  ],
+  "S13": [
+   {
+    "type": "flow",
+    "from": [
+     {
+      "title": "Aap",
+      "sub": "andaaze wali date"
+     }
+    ],
+    "to": {
+     "title": "EPFO",
+     "sub": "aapka PF record"
+    },
+    "pills": [
+     {
+      "text": "Galat date",
+      "from": 0,
+      "tone": "bad",
+      "on": "andaaze"
+     }
+    ],
+    "result": {
+     "text": "Claim reject",
+     "sub": "mismatch",
+     "tone": "bad",
+     "on": "reject"
+    }
+   }
+  ],
+  "S14": [
+   {
+    "type": "checklist",
+    "title": "MARK EXIT",
+    "sub": "screenshot le lo",
+    "items": [
+     {
+      "text": "60 din baad"
+     },
+     {
+      "text": "Manage, phir Mark Exit"
+     },
+     {
+      "text": "Purani company chuno"
+     },
+     {
+      "text": "Sahi date, sahi reason"
+     },
+     {
+      "text": "OTP, phir Update"
+     }
+    ]
+   }
+  ],
+  "S15": [
+   {
+    "type": "screen",
+    "screen": "exit",
+    "focus": "status"
+   }
+  ],
+  "S16": [
+   {
+    "type": "outro",
+    "logo": "PF GURU JI",
+    "tagline": "PF samjho, claim pao.",
+    "web": "@PFGURUJI",
+    "at": 0.1
+   }
+  ]
+ }
+}

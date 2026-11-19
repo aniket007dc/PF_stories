@@ -181,8 +181,10 @@ def judge(text, heard, vo=""):
         return [w for w in _tokens(t) if w not in spelled and not [n for n in spoken_numbers(w) if n >= 4]]
 
     def close(x, y):             # the same word, or two run together, but not a word with a sound stuck on it
+        if len(y) > len(x) and y.endswith(x) and y[0] != x[0]:
+            return False                                  # अफिर for फिर, त्रास्ता for रास्ता: a sound before the word
         d = abs(len(x) - len(y))
-        return _similar(x, y, 0.75) and (d <= max(1, len(x) // 3) or (d <= 2 and _similar(x, y, 0.8)))
+        return _similar(x, y, 0.75) and (d <= max(1, len(x) // 3) or (d <= 2 and x[0] == y[0] and _similar(x, y, 0.8)))
 
     want = [fold(w) for w in plain_words(text) if not re.search(r"[0-9]", w)]
     vo_words = {w.lower() for w in _tokens(vo) if re.fullmatch(r"[A-Za-z]+", w)}

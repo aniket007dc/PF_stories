@@ -262,6 +262,21 @@ def brand():
     return load_json(BRAND_DIR / "brand.json")
 
 
+def for_style(brand_settings, ep):
+    """The brand settings for an episode's theme: brand.json → styles → <style> replaces the chapters and adds to the
+    rules. Episodes without a "style" are "paper" (the paper cut-out story)."""
+    style = (ep or {}).get("style") or "paper"
+    st = (brand_settings.get("styles") or {}).get(style) or {}
+    out = dict(brand_settings)
+    if st.get("chapters"):
+        out["chapters"] = list(st["chapters"])
+    out["rules"] = dict(brand_settings.get("rules") or {}, **(st.get("rules") or {}))
+    out["free_shape"] = bool(st.get("free_shape"))          # its chapters are only the hook and the sign-off (Focus)
+    out["parts"] = dict(st.get("parts") or {})
+    out["style"] = style
+    return out
+
+
 def epfo_forms():
     """{id: form} from brand/epfo-forms.json, or {} when it can't be read (check_brand reports that)."""
     try:

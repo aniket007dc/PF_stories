@@ -14,6 +14,7 @@ A vertical reel of about 60 to 75 seconds (1080×1920, 30 fps) that tells a shor
 
 - **What it looks like:** [`brand/assets/style-frames/cutout-demo.mp4`](brand/assets/style-frames/cutout-demo.mp4), a 21-second style test (its `reel.json` is in `brand/assets/style-frames/cutout-demo/`), and [`cutout-demo-sheet.jpg`](brand/assets/style-frames/cutout-demo-sheet.jpg).
 - **The cast:** `brand/brand.json` → `cast`: Shivam (the hero), Priya (HR), Ravi (his friend) and Papa. The build draws each of them the same way in every reel.
+- **Two themes:** this paper cut-out story is **Kahani**, the default. The other is **Focus** (`"style": "focus"` in `episode.json`): how to do one EPFO task on the screen itself, the member portal's pages drawn from the newest official pages and videos, the cursor clicking each button as the voice names it (`styles/focus/STYLE.md`; a sample: `styles/focus/ep00-focus-sample/`). Kahani shows what happened to Shivam; Focus shows how to do it on the portal. **Focus for a Focus reel** below says what changes.
 - **The finished reel:** `episodes/<episode>/media/final/<episode>.mp4`, which GitHub builds once the voice lines are uploaded.
 - **What PF Guru Ji is:** a channel that explains EPFO. It isn't EPFO and doesn't speak for it: every rule a reel states comes from EPFO's own pages, and a person checks each one.
 - **Every reel so far:** [`TOPICS.md`](TOPICS.md). A new reel never repeats one of them.
@@ -219,6 +220,16 @@ Report: the script page's link and version, and the person's answer.
 4. Watch the draft: the story reads without sound, each person does what their line says on its words, each card matches its line, nothing covers a face, every word is readable.
 
 Report: the draft reel's link. The person approves it.
+
+### Focus for a Focus reel
+
+When the topic is "how to do it on the portal" (Mark Exit, a claim, a transfer, KYC, the passbook, a nominee), suggest the Focus theme to the person; they pick. For Focus, the steps above change like this:
+
+- **N1:** write `"style": "focus"` in `episode.json`, next to `"route": "build"`.
+- **N2:** the brief is `topic`, `viewer`, `hook`, `app` (the member portal, the passbook site or UMANG, and on a laptop or a phone), `steps` (3 to 12, in the portal's order), `check` (how the viewer sees it worked) and `share_target`. The data lists only the rules and numbers the reel says; a how-to needs few.
+- **N3:** `prompts-writing.md` → Step 3 is the Focus prompt. Before writing, open EPFO's newest page for the task and one or two videos from the last 60 days that do it on screen (EPFO's pages often refuse automated reading: open them in a browser), and write the steps, with every menu and button name exactly as the portal shows it, in `research.md` → Steps on screen. 100 to 220 words; the chapters are the how-to's own (hook, why, route, steps, mistake, fix, check, list, share, signoff).
+- **N4:** `prompts-writing.md` → Step 4 is the Focus reel prompt. You describe every screen in `reel.json` → `screens` (no screenshots, and nobody's details: masked numbers only), with two sources each, one of them EPFO's own, each with the day you read it. The walk starts on the page the viewer sees after logging in, and every later page is opened on screen by the click that leads there. The draft shows every screen drawn.
+- **Steps 1 and 1b** don't apply: a Focus reel has no photos and no screenshots. Step 2 (voice) is the same.
 
 ### Then Steps 1–6
 

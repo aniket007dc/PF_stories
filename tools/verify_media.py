@@ -318,6 +318,14 @@ def voice_share(video, shots):
     return out
 
 
+def card_band(ep):
+    """The part of the frame the cards are read in: below the header and its timecode, above the captions (y 336 to
+    1267). A Focus reel's cards fill its screen's zone (y 315 to 1546), above the words under it."""
+    if (ep or {}).get("style") == "focus":
+        return "crop=iw:ih*0.641:0:ih*0.164"
+    return "crop=iw:ih*0.485:0:ih*0.175"
+
+
 def frame_at(video, t, out, crop=None):
     vf = ["scale=iw:ih"]
     if crop:
@@ -364,10 +372,11 @@ def load_episode(ep_dir):
     return ep, {s["id"]: s for s in ep.get("shots", [])}
 
 
-def text_check(res, expected, ocr_lines, label, outside=None, handwritten=()):
+def text_check(res, expected, ocr_lines, label, outside=None, handwritten=(), shown=()):
     """ocr_lines: text read inside the card band. outside: text read elsewhere in the frame.
     handwritten: strings drawn in handwriting, which OCR often can't read; if one isn't found and has
-    no numbers, it's left for a person to check by eye instead of failing."""
+    no numbers, it's left for a person to check by eye instead of failing.
+    shown: words a drawn app screen shows in this shot (a Focus reel): its numbers may be read, though no card says them."""
     for m in match_strings(expected, ocr_lines):
         if m["result"] == "fail" and m["text"] in handwritten and not expected_numbers(m["text"]):
             m = dict(m, result="eye", detail="handwriting, which OCR can't read reliably; check it by eye")
@@ -378,7 +387,7 @@ def text_check(res, expected, ocr_lines, label, outside=None, handwritten=()):
         else:
             res.bad("{} `{}`: {}".format(label, m["text"], m["detail"]))
     want = [n for s in expected for n in expected_numbers(s)]
-    extra = unexpected_numbers(expected, ocr_lines)
+    extra = unexpected_numbers(list(expected) + list(shown), ocr_lines)
     wrong = [(t, near_miss(t, want)) for t in extra if near_miss(t, want)]
     for t, n in wrong:
         res.bad("{} shows {}, which looks like a wrong copy of {}".format(label, t, n))
@@ -561,7 +570,7 @@ def check_final(ep_dir, video, use_ocr=True):
         return res
     res.note("OCR engine: {} · each shot's cards are read just before the shot ends (card band only, so captions can't stand in for cards)".format(name))
     scale = dur / ep["shots"][-1]["end"] if ep.get("shots") and dur else 1.0
-    built, hand, screens = {}, {}, {}
+    built, hand, screens, shown = {}, {}, {}, {}
     tl = Path(ep_dir) / "build" / "timeline.json"
     if tl.exists():
         timeline = dc.load_json(tl)
@@ -569,11 +578,12 @@ def check_final(ep_dir, video, use_ocr=True):
             built = {s["id"]: s["end"] for s in timeline.get("shots", [])}
             hand = {s["id"]: s.get("handwritten", []) for s in timeline.get("shots", [])}
             screens = {s["id"]: s.get("screens", []) for s in timeline.get("shots", [])}
+            shown = {s["id"]: s.get("screen", []) for s in timeline.get("shots", [])}
             res.note("shot times from build/timeline.json (written by tools/build_reel.py)")
     if not built and abs(scale - 1) > 0.03:
         res.note("the reel is {:.1f} s and the plan is {:.1f} s, so shot times are scaled by {:.2f}".format(
             dur, ep["shots"][-1]["end"], scale))
-    crop = "crop=iw:ih*0.485:0:ih*0.175"   # the cards only: below the header and its timecode, above the captions
+    crop = card_band(ep)
     with tempfile.TemporaryDirectory() as tmp:
         for sh in ep.get("shots", []):
             t = (built[sh["id"]] if sh["id"] in built else sh["end"] * scale) - 0.35
@@ -583,7 +593,8 @@ def check_final(ep_dir, video, use_ocr=True):
                 read = outside_screens(read, screens[sh["id"]], fh * 0.175, fh * 0.485, fw)
             lines = [l["text"] for l in read]
             sub = Result(sh["id"])
-            text_check(sub, sh.get("card_text", []), lines, sh["id"], handwritten=hand.get(sh["id"], ()))
+            text_check(sub, sh.get("card_text", []), lines, sh["id"], handwritten=hand.get(sh["id"], ()),
+                       shown=shown.get(sh["id"], ()))
             res.lines.extend(sub.lines)
             res.failed = res.failed or sub.failed
     return res
@@ -597,8 +608,8 @@ def check_screens(ep_dir):
     None when the reel has no screenshots."""
     path = Path(ep_dir) / "reel.json"
     reel = dc.load_json(path) if path.exists() else {}
-    screens = reel.get("screens", {})
-    if not screens:
+    screens = {k: sc for k, sc in (reel.get("screens") or {}).items() if isinstance(sc, dict) and sc.get("file")}
+    if not screens:              # none, or a Focus reel's screens, drawn from their description: nothing to read back
         return None
     res = Result("Screenshots")
     run, name = ocr_engine()

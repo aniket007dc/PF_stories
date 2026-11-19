@@ -1,0 +1,93 @@
+Plan the shots of one Focus reel for PF Guru Ji: the screens, what happens on them line by line, and the few cards between them. The build draws everything from what you write: each screen as the portal or the app shows it now, every page opening on screen and seen whole, the camera and a finger (phone) or the cursor (laptop) travelling across it to the part in use, the tap, the screen answering, the part that changes lifted out big while the rest dims, the cards, the words under the screen and the sounds. Nobody pastes a screenshot: you describe each screen from the newest official pages and videos, and the build draws it clean and sharp, at any zoom, with nobody's details on it.
+
+THE APPROVED SCRIPT (one line per shot):
+{{SCRIPT_JSON}}
+
+THE NUMBERS (only these may appear on a card; each line is: id = value (kind)):
+{{DATA_SHEET}}
+
+Reply with JSON only, in this shape:
+{"shots": [{"id": "S01", "start": 0, "end": 3.4, "chapter": "hook", "card_text": ["..."], "uses": []}],
+ "reel": {"screens": {"home": {...}}, "route": [{"label": "MANAGE", "from": "S03"}], "shots": {"S01": [...], "S02": [...]}}}
+Put "shots" into episode.json (with "breaks": []), and "reel" into reel.json (adding "schema": "dc-reel/1", "episode": "{{EPISODE}}" and "brand_label": "PF GURU JI" at the top).
+
+THE FRAME (1080 × 1920; the build lays it out: you place nothing)
+- The logo and the route's chips share the row at the top; the screen fills the middle, as big as Instagram's own buttons allow; the spoken words run under it in one or two lines. A laptop page is a window the camera moves over, from part to part; a phone shows whole.
+- On S01 the hook's giant words sit over the screen's first look.
+
+1 · SEE EACH SCREEN AS IT IS NOW
+For every screen the reel shows, use research.md → Steps on screen, and open again what you need:
+- EPFO's own page for it ("official": the member portal's help, an FAQ, a circular, a PIB release, UMANG's EPFO help), and
+- a video or post from the last {{SOURCE_DAYS}} days that shows it on screen (on YouTube, search the task and sort by upload date).
+Describe what they show today: the same names, the same order, the same places. When two sources differ, the newest official one wins. Never draw a screen from memory or from an old video. EPFO's pages often refuse automated reading: open them in a browser.
+
+2 · DESCRIBE EACH SCREEN (reel.json → screens)
+{"home": {"device": "laptop", "url": "unifiedportal-mem.epfindia.gov.in/memberinterface", "app": "EPFO Member e-Sewa", "accent": "#1f4e9c",
+          "sources": [{"kind": "official", "title": "...", "url": "https://...", "updated": "YYYY-MM-DD", "seen": "YYYY-MM-DD"},
+                      {"kind": "video", "title": "...", "url": "https://www.youtube.com/watch?v=...", "published": "YYYY-MM-DD", "seen": "YYYY-MM-DD"}],
+          "parts": [ ...top to bottom... ],
+          "overlays": { ... }}}
+- "device": "phone" for an app (UMANG) or the portal on a phone, "laptop" for the portal in a browser. "url": the page's address without https://. "app": its name. "accent": the colour of its main buttons.
+- "parts", top to bottom, as the screen shows them. Every part a line uses gets an "id": short, lowercase. The kinds the build draws:
+{{PART_KINDS}}
+- An item of tabs, chips or a sidebar is "<its part's id>/<the item's text>" ("top/Manage"); a table's row is "<the table's id>/<its first cell>".
+- "overlays": what opens over the screen, each under its own id:
+{{OVERLAY_KINDS}}
+- Icons for rows and the sidebar: {{ICONS}}.
+- Fill the page as the real one is: every section it shows in that place, in order, with believable example data. NEVER a real person's details: no name but the cast's (Shivam), and every number masked the way the portal masks it, or obviously an example: UAN "XXXX XXXX 1234", mobile "XXXXXX7890", PAN "ABCDE####F", member ID "XX/XXX/0000000/000/0000000". The checks fail any 12-digit or 10-digit number, PAN or member ID in full (E4.28).
+- Never draw the EPFO logo, the national emblem or any seal: the build draws only the parts above, so leave logos out of the description (write the portal's name as its title).
+- "sources": two at least, one of them "official". "kind": official, video, article, post or forum. "seen": the day you read it, as YYYY-MM-DD. "updated" (a page) or "published" (a video): the date the source shows. At least one source must be dated in the last {{SOURCE_DAYS}} days, and every one read in the last {{SEEN_DAYS}} days.
+
+3 · THE WALK: THE VIEWER SEES EVERY CLICK THAT GETS THEM THERE
+The viewer will do this on their own screen, so the reel goes the way they will, click by click. A reel that jumps straight to a button teaches nothing.
+- The steps start on the page the viewer sees first when they log in (the member portal's home page; UMANG's EPFO page). Describe that page too, in screens, from its sources.
+- From there, every page the reel shows is opened on screen: a tap on the menu item, tab, link or button that opens it, with "go": that page's screen. The member portal's top menu is a tabs part ("top": Home, View, Manage, Account, Online Services) whose items open a menu overlay: {"tap": "top/Manage", "open": "manage", "on": "Manage"}, then {"tap": "markexit", "go": "exit", "on": "Mark"}. A menu that expands first is opened ("open"), then its item is tapped.
+- Never start a line on a page nobody opened, never tap a menu item without going to its page, and never tap the page the viewer is already on. The checks fail all three (E4.27). Only the hook and the why before the steps may show any page, and the share line may show the result again.
+- A part further down the page: {"scroll": 300} on its word, before the camera goes there.
+- On every page that opens, the build shows it whole for a second, then moves in: a line that opens a page gives the new page a moment before its next touch.
+
+4 · WHAT HAPPENS, LINE BY LINE (reel.json → shots)
+- A line on a screen: {"type": "screen", "screen": "exit", "focus": "employment", "do": [{"tap": "employment", "open": "jobs", "on": "Employment"}]}
+  "focus": the part the line is about: the camera travels there (a lemon ring shows it), then it lifts out big while the rest dims. "do": what happens, each action on its word ("on", copied from the line), in the order the viewer does them.
+  - {"tap": id}: tapped. What the tap does goes in the same action: "open": overlay, "close": overlay, "show": a toast, "go": another screen, "toggle": true or false.
+  - {"write": id, "text": "15/10/2026"}: typed into a field, letter by letter. Never an OTP, a password or a real number: an OTP field is filled with "● ● ● ● ● ●".
+  - {"check": id}: a checkbox ticked.
+  - {"look": id}: lifted out without a touch, when the line points at it ("Date of Exit khali hai").
+  - {"label": "Exit date updated", "label_of": id, "tone": "good"}: a status or value changes, as the portal shows it after the step.
+  - {"select": "tabs", "item": "Passbook"}: an item chosen without a tap. {"scroll": 300}: the page scrolls.
+  After a "go", the line's next actions happen on the new page: use that page's ids.
+- Give every touch its own word; a line with three touches needs words for all three.
+- The screen stays from line to line until a card takes its place.
+- A line that lands on a result shows it: "label" or "show", on the word that says it.
+
+5 · THE CARDS (the idea behind the screens)
+- headline: {"type": "headline", "text": "EXIT DATE KHALI HAI?", "accent": "KHALI HAI?", "at": 0, "in": "none"}
+  S01 only, with the screen: the hook's first-frame words, 6 at most. "accent": the end of the headline, on a lemon block.
+- route: {"type": "route", "title": "POORA RAASTA", "steps": [{"text": "MANAGE", "sub": "upar ka menu"}, {"text": "MARK EXIT", "sub": "naukri chuno"}], "now": 0}
+  The whole path before the first step: 3 to 5 stops of one or two words, each with a short "sub".
+- flow: {"type": "flow", "from": [{"title": "Purani company", "sub": "exit date"}], "to": {"title": "EPFO", "sub": "aapka record"},
+         "pills": [{"text": "Exit date", "from": 0, "on": "date"}], "result": {"text": "Claim ready", "sub": "transfer bhi", "tone": "good", "on": "ready"}}
+  What happens behind the screen: up to 3 senders, one receiver, what travels, and the result: the mistake in red ("tone": "bad"), the fix in green ("good").
+- checklist: {"type": "checklist", "title": "MARK EXIT", "sub": "screenshot le lo", "items": [{"text": "Manage, phir Mark Exit"}, {"text": "Sahi naukri chuno"}]}
+  The list worth saving: every step in 3 to 5 words, ticked in one after another.
+- outro: {"type": "outro", "logo": "PF GURU JI", "tagline": "{{TAGLINE}}", "web": "{{INSTAGRAM}}"}: the sign-off only. Its words go into card_text.
+- The route's chips (reel.json → route): [{"label": "MANAGE", "from": "S03"}, {"label": "OTP", "from": "S07"}]: 5 at most, 12 letters at most each.
+A card takes the screen's place for its line (the headline and the screen share S01). Use a card where the line explains, a screen where the line does.
+
+6 · THE SHOTS FOR episode.json
+- One shot per script line, with the same ids and chapters.
+- The first starts at 0, and each starts where the last one ended. Make each about (words in its line ÷ 2.6) + 0.5 seconds, rounded to 0.1, and the last one 1.5 seconds longer. The build times every shot to the real voice later.
+- card_text: every word the shot's cards draw, exactly as drawn. The screens' own words are the portal's: they don't go in card_text. A shot that only shows a screen has an empty card_text. No dash (—) between words on any card.
+- uses: the data ids whose numbers the cards show.
+
+CHECK BEFORE YOU ANSWER
+- Every screen has two sources or more, one of them official, one dated in the last {{SOURCE_DAYS}} days, each with its link, "seen" and its date.
+- Every menu, tab and button name is written exactly as the newest official page or video shows it.
+- Every "focus", "tap", "write", "check" and "look" is an id on its screen (after a "go", on the new one); every "open", "close" and "show" one of its overlays.
+- The walk: the steps start on the page the viewer sees first; every later page is opened on screen by the tap that leads there.
+- No real person's details anywhere, no logo, no OTP or password on any screen.
+- Every "on" word is in that shot's line, and every touch has its own word.
+- S01 starts with the headline ("at": 0, "in": "none") and the screen.
+- Every string a card draws is in that shot's card_text, character for character.
+
+EPISODE: {{EPISODE}}

@@ -75,6 +75,24 @@ def forms_sheet():
     return "\n".join("- Form {}: {}".format(fid, f.get("for", "")) for fid, f in forms.items()) or "[no forms listed yet]"
 
 
+def focus_fields(text, ep):
+    """The Focus prompts' lists: the chapters' labels, the screen parts and overlays the build draws (tools/screens.py),
+    its icons, and how fresh the sources must be."""
+    b = dc.for_style(dc.brand(), ep)
+    rules = b.get("rules") or {}
+    parts = ", ".join("{} ({})".format(k, v) for k, v in (b.get("parts") or {}).items())
+    text = text.replace("{{PARTS}}", parts).replace("{{SOURCE_DAYS}}", str(rules.get("source_days") or 60)).replace(
+        "{{SEEN_DAYS}}", str(rules.get("seen_days") or 30))
+    if "{{PART_KINDS}}" in text or "{{OVERLAY_KINDS}}" in text or "{{ICONS}}" in text:
+        import screens                                  # tools/screens.py: what the build can draw (needs Pillow)
+        text = text.replace("{{PART_KINDS}}", "\n".join("  - {}: {}\n    {}".format(k, about, example)
+                                                        for k, (example, about) in screens.PART_DOCS.items()))
+        text = text.replace("{{OVERLAY_KINDS}}", "\n".join("  - {}: {}\n    {}".format(k, about, example)
+                                                           for k, (example, about) in screens.OVERLAY_DOCS.items()))
+        text = text.replace("{{ICONS}}", ", ".join(screens.ICONS))
+    return text
+
+
 def render_writing(ep_dir):
     ep = dc.load_json(ep_dir / "episode.json")
     brief = ep.get("brief", {})
@@ -88,8 +106,14 @@ def render_writing(ep_dir):
     out.append("")
     out.append("## Step 3 · Script prompt")
     out.append("")
-    writer = dc.prompt_text("script-writer.txt")
-    writer = writer.replace("{{TOPIC}}", brief.get("topic", "[TOPIC]")).replace(
+    focus = ep.get("style") == "focus"
+    if focus:
+        out.append("**Theme: Focus** (`\"style\": \"focus\"`): how to do one EPFO task on the screen itself, the "
+                   "screens drawn from the newest official pages and videos (styles/focus/STYLE.md).")
+        out.append("")
+    writer = dc.prompt_text("focus-script-writer.txt" if focus else "script-writer.txt")
+    writer = (focus_fields(writer, ep) if focus else writer).replace("{{EPISODE}}", ep_dir.name).replace(
+        "{{TOPIC}}", brief.get("topic", "[TOPIC]")).replace(
         "{{VIEWER}}", brief.get("viewer", "[VIEWER]")).replace("{{DATA_SHEET}}", data_sheet(ep) or "[no data yet: finish step 2 first]").replace(
         "{{FORMS}}", forms_sheet())
     out.append(fence(writer))
@@ -109,7 +133,8 @@ def render_writing(ep_dir):
                    "uses": l.get("uses") or next((s.get("uses", []) for s in ep.get("shots", []) if s.get("id") == l.get("shot")), [])}
                   for l in ep["script"]]
         if is_build(ep_dir):
-            writer4 = dc.prompt_text("reel-writer.txt").replace("{{EPISODE}}", ep_dir.name).replace(
+            writer4 = (focus_fields(dc.prompt_text("focus-reel-writer.txt"), ep) if focus else
+                       dc.prompt_text("reel-writer.txt")).replace("{{EPISODE}}", ep_dir.name).replace(
                 "{{SCRIPT_JSON}}", json.dumps(script, ensure_ascii=False, indent=1)).replace(
                 "{{DATA_SHEET}}", data_sheet(ep) or "[no data yet]")
         else:
@@ -164,13 +189,9 @@ def screenshot_list(reel):
     return out
 
 
-def render_build(ep_dir):
-    """prompts.md for an episode built by tools/build_reel.py: only what Muse has to make."""
-    ep = dc.load_json(ep_dir / "episode.json")
-    reel = dc.load_json(ep_dir / "reel.json") if (ep_dir / "reel.json").exists() else {"photos": {}, "shots": {}}
-    data = {it["id"]: it for it in ep.get("data", [])}
-    rel = "episodes/" + ep_dir.name
-    out = [HEADER, "# Prompts · {} · {}".format(ep.get("id"), ep.get("title")), ""]
+def paper_photos(ep, reel):
+    """prompts.md's first part for a paper story: the photos to make, if any, and the screenshots a person takes."""
+    out = []
     out.append("This episode is built by `tools/build_reel.py` from `episode.json` and `reel.json`. "
                "Muse makes the voice lines below (and any photos it lists); the build draws everything else (paper, the "
                "paper cut-out people and things, header, cards, numbers, stamps, bubbles, captions, wipes, sound effects), "
@@ -198,8 +219,50 @@ def render_build(ep_dir):
         out.append("")
         out.append(fence(ph.get("prompt", "")))
         out.append("")
-    if reel.get("screens"):
+    if any(isinstance(sc, dict) and sc.get("file") for sc in (reel.get("screens") or {}).values()):
         out += screenshot_list(reel)
+    return out
+
+
+def focus_screens(ep, reel):
+    """prompts.md's first part for a Focus how-to: nothing to make, the screens are drawn; each with its sources."""
+    rules = dc.for_style(dc.brand(), ep).get("rules") or {}
+    out = ["This episode is built by `tools/build_reel.py` from `episode.json` and `reel.json`, in the **Focus** theme "
+           "(styles/focus/STYLE.md). Muse makes the voice lines below; the build draws everything else: each screen "
+           "from its description in `reel.json → screens`, the camera, the lifted parts, the taps, the cards, the words "
+           "under the screen and the sound effects. The steps are in **MUSE.md**.", "",
+           "## 1 · Screens", "",
+           "Nothing to make here, and no screenshots: the build draws every screen from `reel.json → screens`, as the "
+           "newest official pages and videos show it, with no one's details on it. Each screen names its sources, every "
+           "one read in the last {} days and one dated in the last {}. EPFO's own pages often refuse automated reading: "
+           "a person opens those in a browser, checks the screen against them, and updates \"seen\".".format(
+               rules.get("seen_days") or 30, rules.get("source_days") or 60)]
+    for name, spec in (reel.get("screens") or {}).items():
+        if not isinstance(spec, dict):
+            continue
+        srcs = [x for x in spec.get("sources") or [] if isinstance(x, dict)]
+        out.append("")
+        out.append("- **{}** ({}{}): {}".format(name, spec.get("app") or spec.get("device", ""),
+                                               ", " + spec["url"] if spec.get("url") else "",
+                                               "; ".join("[{}]({}) {}, read {}".format(
+                                                   x.get("title") or x.get("kind"), x.get("url"),
+                                                   x.get("updated") or x.get("published") or "undated",
+                                                   x.get("seen") or "not yet") for x in srcs) or "no sources yet"))
+    out.append("")
+    return out
+
+
+def render_build(ep_dir):
+    """prompts.md for an episode built by tools/build_reel.py: only what Muse has to make."""
+    ep = dc.load_json(ep_dir / "episode.json")
+    reel = dc.load_json(ep_dir / "reel.json") if (ep_dir / "reel.json").exists() else {"photos": {}, "shots": {}}
+    data = {it["id"]: it for it in ep.get("data", [])}
+    rel = "episodes/" + ep_dir.name
+    out = [HEADER, "# Prompts · {} · {}".format(ep.get("id"), ep.get("title")), ""]
+    if ep.get("style") == "focus":
+        out += focus_screens(ep, reel)
+    else:
+        out += paper_photos(ep, reel)
     brand_name = dc.brand().get("brand", "")
     out.append("## 2 · Voice")
     out.append("")

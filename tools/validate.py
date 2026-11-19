@@ -10,6 +10,7 @@ person (an approval, a source check) is listed but doesn't fail the run.
   python3 tools/validate.py --json                         machine-readable output
 """
 import argparse
+import datetime
 import json
 import re
 import sys
@@ -114,15 +115,20 @@ def check_brand(r):
 
 # ---------------------------------------------------------------- episode content
 
-def check_brief(ep, r):
+def check_brief(ep, r, style="paper"):
     """The brief plans one reel per chapter: the problem, why it happens, the steps that fix it,
-    what to check before filing, and where to get help."""
+    what to check before filing, and where to get help. A Focus how-to plans the task on the screen: the app or
+    portal, its steps in order (3 to 12), how to check it worked."""
     s = "01-brief"
     brief = ep.get("brief") or {}
-    for key in ("topic", "viewer", "hook", "problem", "why", "steps", "check", "help", "share_target"):
+    focus = style == "focus"
+    keys = ("topic", "viewer", "hook", "app", "steps", "check", "share_target") if focus else \
+        ("topic", "viewer", "hook", "problem", "why", "steps", "check", "help", "share_target")
+    for key in keys:
         if not brief.get(key):
             r.fail("E1.1", s, "brief.{} is empty".format(key))
-    for key, lo, hi, what in (("why", 1, 3, "reasons"), ("steps", 2, 5, "steps, in order")):
+    for key, lo, hi, what in ((("steps", 3, 12, "steps on the screen, in order"),) if focus else
+                              (("why", 1, 3, "reasons"), ("steps", 2, 5, "steps, in order"))):
         value = brief.get(key)
         if value and (not isinstance(value, list) or not lo <= len(value) <= hi):
             r.fail("E1.2", s, "brief.{} needs a list of {} to {} {}".format(key, lo, hi, what))
@@ -222,6 +228,7 @@ def check_script_and_shots(ep, data, brand, r, run_script=True, run_shots=True, 
         r = _Muted(r, muted)
     rules = brand.get("rules", {})
     chapters = brand.get("chapters", [])
+    free = bool(brand.get("free_shape"))      # Focus: the hook first, the sign-off last, the how-to's parts between
     always = rules.get("always_allowed_numbers", [0, 1, 2, 3])
     labels = rules.get("assumption_labels", ["maan lo", "example"])
     shots = ep.get("shots") or []
@@ -317,7 +324,22 @@ def check_script_and_shots(ep, data, brand, r, run_script=True, run_shots=True, 
             r.fail("E3.1", s3, "script line {} is for {} but shot {} is {}".format(i + 1, sid, i + 1, shots[i].get("id")))
         sh = sh or {}
         ch = line.get("chapter")
-        if ch not in chapters:
+        if free:
+            last = i == len(script) - 1
+            if not re.fullmatch(r"[a-z][a-z_]{1,13}", str(ch or "")):
+                r.fail("E3.2", s3, "{}: chapter '{}' must be one short lowercase word, the part of the how-to the line "
+                                   "is in (why, route, steps, mistake, fix, check, list …)".format(sid, ch))
+            elif i == 0 and ch != "hook":
+                r.fail("E3.2", s3, "{}: the first line is the hook, so its chapter is 'hook'".format(sid))
+            elif ch == "hook" and i > 0 and script[i - 1].get("chapter") != "hook":
+                r.fail("E3.2", s3, "{}: the hook is the reel's first line or two, not later".format(sid))
+            elif last != (ch == "signoff"):
+                r.fail("E3.2", s3, "{}: the sign-off is the last line, and only the last".format(sid) if not last else
+                       "{}: the last line is the sign-off, so its chapter is 'signoff'".format(sid))
+            elif ch == "share" and script[i + 1].get("chapter") not in ("share", "signoff"):
+                r.fail("E3.2", s3, "{}: the share line comes right before the sign-off".format(sid))
+            seen_chapters.add(ch)
+        elif ch not in chapters:
             r.fail("E3.2", s3, "{}: chapter '{}' is not one of {}".format(sid, ch, ", ".join(chapters)))
         else:
             idx = chapters.index(ch)
@@ -591,6 +613,345 @@ def next_action(ep_dir, ep, status, r):
 
 # ---------------------------------------------------------------- run
 
+# Focus shows how to do something on the screen itself (styles/focus/STYLE.md)
+FOCUS_CARDS = {"screen", "headline", "route", "flow", "checklist", "outro"}
+FOCUS_DO = {"tap", "write", "text", "check", "look", "toggle", "to", "open", "close", "show", "hold", "select", "item",
+            "label", "label_of", "tone", "done", "list", "scroll", "go", "on", "at", "lift"}
+SOURCE_KINDS = {"official", "video", "article", "post", "forum"}
+
+
+def said_word(word, line):
+    """True when the line says a word starting with `word`, as the build finds an "on" word (build_reel.word_time)."""
+    norm = lambda w: re.sub(r"[^0-9a-z₹%]", "", str(w).lower())   # noqa: E731
+    q = norm(word)
+    return bool(q) and any(norm(w).startswith(q) for w in str(line or "").split())
+
+
+def is_sample(ep_dir):
+    try:
+        return Path(ep_dir).resolve().relative_to(dc.ROOT).parts[0] == "styles"
+    except ValueError:
+        return False
+
+
+def check_screens(ep_dir, ep, brand, r):
+    """Focus: every screen drawn from a description the newest official pages back (two sources at least, one of them
+    official, read this month, one of them dated in the last two months), every part a line uses on its screen, and
+    every touch on a word of its line."""
+    path = ep_dir / "reel.json"
+    if not path.exists() or not ep.get("shots"):
+        return
+    try:
+        reel = dc.load_json(path)
+    except Exception:  # noqa: BLE001  (the reel check reports a broken reel.json)
+        return
+    s = "04-shots"
+    try:
+        import screens as K                                 # the screens the build draws (needs Pillow)
+    except Exception:  # noqa: BLE001
+        K = None
+    screens = reel.get("screens") or {}
+    if not isinstance(screens, dict) or not screens:
+        r.fail("E4.22", s, "reel.json has no screens: a Focus reel shows each step on the screen itself, drawn from its "
+                           "description in reel.json → screens (prompts-writing.md → Step 4)")
+        return
+    rules = brand.get("rules") or {}
+    source_days, seen_days = int(rules.get("source_days") or 60), int(rules.get("seen_days") or 30)
+    fresh = not is_sample(ep_dir) and not topics.posted_record(ep_dir)   # a sample or a live reel never goes stale
+    fetched = {}
+    if (ep_dir / "research-sources.json").exists():
+        try:
+            fetched = dc.load_json(ep_dir / "research-sources.json").get("sources") or {}
+        except Exception:  # noqa: BLE001
+            fetched = {}
+    today = datetime.date.fromisoformat(dc.today())
+
+    def day(text):
+        try:
+            return datetime.date.fromisoformat(str(text or "")[:10])
+        except ValueError:
+            return None
+    ids = {}
+    for name, spec in screens.items():
+        if not isinstance(spec, dict):
+            r.fail("E4.22", s, "screen \"{}\" must be an object: device, url or title, parts".format(name))
+            continue
+        if spec.get("src"):
+            if not (ep_dir / spec["src"]).exists():
+                r.fail("E4.22", s, "screen \"{}\": its picture {} isn't in the episode folder".format(name, spec["src"]))
+            if not spec.get("targets"):
+                r.fail("E4.22", s, "screen \"{}\" is a picture: give \"targets\", each part the reel uses with its box "
+                                   "in the picture's pixels [x0, y0, x1, y1]".format(name))
+            ids[name] = set((spec.get("targets") or {}).keys())
+        elif K is not None:
+            for problem in K.check_spec(spec, name):
+                r.fail("E4.22", s, problem)
+            try:
+                ids[name] = K.all_ids(spec)
+            except Exception as e:  # noqa: BLE001
+                r.fail("E4.22", s, "screen \"{}\" can't be drawn: {}".format(name, e))
+        # where it was seen: the newest official pages and tutorials, never one old video
+        sources = [x for x in spec.get("sources") or [] if isinstance(x, dict)]
+        if len(sources) < 2 or not any(x.get("kind") == "official" for x in sources):
+            r.fail("E4.23", s, "screen \"{}\" needs two sources at least, one of them official (the app's own help, "
+                               "developer or product pages): every screen is drawn as the newest pages show it".format(name))
+        dated = []
+        for x in sources:
+            url = str(x.get("url") or "")
+            if x.get("kind") not in SOURCE_KINDS:
+                r.fail("E4.23", s, "screen \"{}\": source {} needs \"kind\": one of {}".format(
+                    name, url or "(no url)", ", ".join(sorted(SOURCE_KINDS))))
+            if not re.match(r"https://\S+$", url):
+                r.fail("E4.23", s, "screen \"{}\": every source needs its link (https://…)".format(name))
+                continue
+            seen = day(x.get("seen"))
+            if seen is None:
+                r.fail("E4.23", s, "screen \"{}\": source {} needs \"seen\", the day it was read (YYYY-MM-DD)".format(
+                    name, url))
+            elif fresh and (today - seen).days > seen_days:
+                r.fail("E4.23", s, "screen \"{}\": source {} was read on {}, more than {} days ago: open it again and "
+                                   "check the screen still looks like that, then update \"seen\"".format(
+                                       name, url, seen.isoformat(), seen_days))
+            when = day(x.get("updated") or x.get("published"))
+            got = fetched.get(url) or {}
+            if got.get("updated") and day(got["updated"]) and (when is None or day(got["updated"]) > when):
+                if when is not None and fresh:
+                    r.warn("E4.26", s, "screen \"{}\": {} changed on {}, after it was read: open it again and check "
+                                       "the screen against it".format(name, url, got["updated"]))
+                when = day(got["updated"])
+            if when is not None:
+                dated.append(when)
+            if got and got.get("ok") is False and got.get("status") in (404, 410):
+                r.fail("E4.23", s, "screen \"{}\": {} is gone ({}): find the page that replaced it".format(
+                    name, url, got.get("status")))
+        if fresh and sources and not any((today - d).days <= source_days for d in dated):
+            r.fail("E4.23", s, "screen \"{}\": none of its sources shows a date in the last {} days, so the screen may "
+                               "be an old version: add a page or a video from the last {} days that shows it (on "
+                               "YouTube, sort by upload date), with its \"updated\" or \"published\" date".format(
+                                   name, source_days, source_days))
+        texts = " ".join(str((fetched.get(str(x.get("url"))) or {}).get("text") or "") for x in sources).lower()
+        if K is not None and not spec.get("src") and len(texts) > 400:
+            missing = [lab for lab in K.labels_of(spec) if " ".join(lab.lower().split()) not in " ".join(texts.split())]
+            if missing:
+                r.warn("E4.26", s, "screen \"{}\": its sources never say {}: check each against the newest official "
+                                   "page, and write the name exactly as the app shows it".format(
+                                       name, ", ".join("\"{}\"".format(m) for m in missing[:8])))
+    lines = {l.get("shot"): str(l.get("vo") or "") for l in ep.get("script") or [] if isinstance(l, dict)}
+    order = [sh.get("id") for sh in ep.get("shots") or []]
+    current = None
+    for sid in order:
+        line = lines.get(sid, "")
+        for el in (reel.get("shots") or {}).get(sid) or []:
+            if not isinstance(el, dict):
+                continue
+            t = el.get("type")
+            if t not in FOCUS_CARDS:
+                r.fail("E4.24", s, "{}: \"{}\" isn't a card of the Focus style: {}".format(
+                    sid, t, ", ".join(sorted(FOCUS_CARDS))))
+                continue
+            words = [el.get("on")] + [x.get("on") for key in ("do", "items", "pills", "steps") for x in el.get(key) or []
+                                      if isinstance(x, dict)] + [(el.get("result") or {}).get("on")
+                                                                 if isinstance(el.get("result"), dict) else None]
+            for w in words:
+                if w and not said_word(w, line):
+                    r.fail("E4.24", s, "{}: \"on\": \"{}\" isn't a word of its line (\"{}\"): use a word the line "
+                                       "says, where that touch or card should come".format(sid, w, line))
+            if t != "screen":
+                continue
+            name = el.get("screen")
+            if name not in screens:
+                r.fail("E4.24", s, "{}: screen \"{}\" isn't in reel.json → screens ({})".format(
+                    sid, name, ", ".join(sorted(screens))))
+                continue
+            current = name
+            known = ids.get(name)
+            spec = screens[name] if isinstance(screens[name], dict) else {}
+            overlays = set((spec.get("overlays") or {}).keys())
+            if el.get("focus") and known is not None and el["focus"] not in known:
+                r.fail("E4.24", s, "{}: focus \"{}\" isn't a part of screen \"{}\": its ids are {}".format(
+                    sid, el["focus"], name, ", ".join(sorted(known))))
+            here = name                                     # the page an action happens on: a "go" moves on
+            for a in el.get("do") or []:
+                if not isinstance(a, dict):
+                    r.fail("E4.24", s, "{}: every action in \"do\" is an object, like {{\"tap\": \"save\", \"on\": "
+                                       "\"dabao\"}}".format(sid))
+                    continue
+                if here != name:
+                    known = ids.get(here)
+                    overlays = set(((screens.get(here) if isinstance(screens.get(here), dict) else {}).get("overlays")
+                                    or {}).keys())
+                odd = sorted(set(a) - FOCUS_DO)
+                if odd:
+                    r.fail("E4.24", s, "{}: an action can't say {}: it can {}".format(
+                        sid, ", ".join(odd), ", ".join(sorted(FOCUS_DO - {"on", "at", "text", "to", "item", "hold",
+                                                                         "label_of", "tone", "list", "lift"}))))
+                for key in ("tap", "write", "check", "look", "select", "label_of"):
+                    if a.get(key) and known is not None and a[key] not in known:
+                        r.fail("E4.24", s, "{}: {} \"{}\" isn't a part of screen \"{}\": its ids are {}".format(
+                            sid, key, a[key], here, ", ".join(sorted(known))))
+                for key in ("open", "close", "show"):
+                    if a.get(key) and a[key] not in overlays:
+                        r.fail("E4.24", s, "{}: {} \"{}\" isn't one of screen \"{}\"'s overlays ({})".format(
+                            sid, key, a[key], here, ", ".join(sorted(overlays)) or "none"))
+                if a.get("go") and a["go"] not in screens:
+                    r.fail("E4.24", s, "{}: go \"{}\" isn't a screen in reel.json → screens".format(sid, a["go"]))
+                elif a.get("go"):
+                    here = a["go"]
+                if a.get("write") and not str(a.get("text") or "").strip():
+                    r.fail("E4.24", s, "{}: write \"{}\" needs \"text\", the words typed in".format(sid, a["write"]))
+    if current is None:
+        r.fail("E4.24", s, "no line shows a screen: a Focus reel walks through the steps on the screen itself")
+    live = bool(topics.posted_record(ep_dir))
+    for sid, msg in walk_problems(ep, reel, screens):
+        (r.warn if live else r.fail)("E4.27", s, "{} {}".format(sid, msg))
+    route = reel.get("route") or []
+    for step in route if isinstance(route, list) else []:
+        if not isinstance(step, dict) or step.get("from") not in order:
+            r.fail("E4.25", s, "route: each stop is {\"label\": \"…\", \"from\": \"<the shot where it starts>\"}, "
+                               "its shot one of the episode's")
+        elif len(str(step.get("label") or "")) > 12:
+            r.warn("E4.25", s, "route: \"{}\" is long for a stop on the logo's row: 12 letters at most (one or two "
+                               "words)".format(step.get("label")))
+    if isinstance(route, list) and len(route) > 5:
+        r.warn("E4.25", s, "route: {} stops crowd the logo's row: 5 at most".format(len(route)))
+    for name, spec in screens.items():
+        for text in personal_numbers(spec):
+            r.fail("E4.28", s, "screen \"{}\" shows \"{}\", which looks like a real person's number (a UAN, Aadhaar, "
+                               "PAN, mobile, bank account or member ID): a drawn screen shows nobody's details. Mask it "
+                               "(XXXX XXXX 1234, ABCDE####F, XXXXXX7890) or leave it out".format(name, text))
+
+
+# A person's numbers, as a drawn screen must never show them in full: a 12-digit UAN or Aadhaar, a 10-digit mobile,
+# a PAN, a long bank account, or a member ID (MH/BAN/12345/000/0012345). Masked ones (XXXX XXXX 1234) are fine.
+PERSONAL = [re.compile(p) for p in (r"(?<![\dX])\d{4}\s?\d{4}\s?\d{4}(?![\dX])",   # UAN or Aadhaar
+                                    r"(?<![\dX])[6-9]\d{9}(?![\dX])",                    # a mobile number
+                                    r"\b[A-Z]{5}\d{4}[A-Z]\b",                           # a PAN
+                                    r"(?<![\dX])\d{9,18}(?![\dX])",                      # a bank account
+                                    r"\b[A-Z]{2}/?[A-Z]{3}/?\d{5,7}/?\d{3}/?\d{5,7}\b")]   # a member ID
+
+
+def personal_numbers(spec):
+    """The texts in a drawn screen's description (its parts, items and overlays) that look like a person's number."""
+    out, seen = [], set()
+
+    def walk(x):
+        if isinstance(x, dict):
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+        elif isinstance(x, str) and x not in seen:
+            seen.add(x)
+            if any(p.search(x) for p in PERSONAL):
+                out.append(x)
+    walk({k: v for k, v in spec.items() if k not in ("sources", "url", "accent")})
+    return out
+
+
+def walk_problems(ep, reel, screens):
+    """Where a Focus reel jumps to a page the viewer never saw being opened, or taps a menu item that leads nowhere:
+    [(shot, what)]. The walk starts at the first "steps" line (else the first screen after the route card, else the
+    first after the hook): before it, the hook and the why may show any page; from there every page is reached on
+    screen, by a tap that goes to it or by its address typed in the browser bar. The share line and the sign-off are
+    left out."""
+    lines = {l.get("shot"): l for l in ep.get("script") or [] if isinstance(l, dict)}
+    order = [sh.get("id") for sh in ep.get("shots") or [] if isinstance(sh, dict)]
+    shots = reel.get("shots") or {}
+
+    def screen_of(sid):
+        return next((el for el in shots.get(sid) or [] if isinstance(el, dict) and el.get("type") == "screen"), None)
+    chapter = {sid: str((lines.get(sid) or {}).get("chapter") or "") for sid in order}
+    begin = next((sid for sid in order if chapter[sid] == "steps" and screen_of(sid)), None)
+    if begin is None:
+        routed = False
+        for sid in order:
+            if any(isinstance(el, dict) and el.get("type") == "route" for el in shots.get(sid) or []):
+                routed = True
+            elif routed and screen_of(sid):
+                begin = sid
+                break
+    if begin is None:
+        begin = next((sid for sid in order[1:] if screen_of(sid)), None)
+    out, walking, last = [], False, None
+    for sid in order:
+        el = screen_of(sid)
+        walking = walking or sid == begin
+        if el is None:
+            continue
+        name, aside = el.get("screen"), chapter[sid] in ("share", "signoff")
+        if walking and sid != begin and not aside and last and name != last:
+            out.append((sid, "opens on page \"{0}\", but the viewer was last on \"{1}\" and nothing on screen took them "
+                             "there: start the line on \"{1}\" and tap what opens \"{0}\", on its word ({{\"tap\": "
+                             "\"<the menu item, tab or link>\", \"go\": \"{0}\", \"on\": \"…\"}}), or type its address "
+                             "in the browser bar ({{\"write\": \"url\", \"text\": \"<its address>\", \"on\": \"…\"}}, "
+                             "then {{\"go\": \"{0}\", \"on\": \"…\"}}). Every page in the walk is reached on screen, the "
+                             "way the viewer gets there".format(name, last)))
+        here = name
+        for a in el.get("do") or []:
+            if not isinstance(a, dict):
+                continue
+            tap = str(a.get("tap") or "")
+            spec = screens.get(here) if isinstance(screens.get(here), dict) else {}
+            if walking and not aside and "/" in tap and not (a.get("go") or a.get("open")):
+                owner, item = tap.split("/", 1)
+                part = next((p for p in spec.get("parts") or [] if isinstance(p, dict) and p.get("id") == owner), None)
+                if part and part.get("kind") == "nav":
+                    if item == part.get("active"):
+                        out.append((sid, "taps \"{}\", the page the viewer is already on: start the walk on the page "
+                                         "they see first when they open the app (a screen of its own), and let this "
+                                         "tap take them here (\"go\")".format(tap)))
+                    else:
+                        out.append((sid, "taps the menu item \"{}\" and no page opens: a menu item opens its page, so "
+                                         "add \"go\" with that page's screen (described in reel.json → screens), or "
+                                         "\"open\" when it only opens a submenu".format(tap)))
+            if a.get("go") in screens:
+                here = a["go"]
+        if not aside:
+            last = here
+    return out
+
+
+FIRST_FRAME_COMPANIONS = {"headline", "screen"}
+
+
+def check_first_frame(ep_dir, ep, r):
+    """Most people scroll with the sound off, so a Focus reel's first frame already shows the hook's words: a
+    headline card, 6 words at most, over the screen's first look (E4.20)."""
+    path = ep_dir / "reel.json"
+    if not path.exists():
+        return
+    try:
+        reel = dc.load_json(path)
+    except Exception:  # noqa: BLE001  (the reel check reports a broken reel.json)
+        return
+    shots = ep.get("shots") or []
+    first = shots[0].get("id", "S01") if shots else "S01"
+
+    def at_start(el):
+        try:
+            return "on" not in el and float(el.get("at", 0.1)) <= 0.05 and el.get("in") == "none"
+        except (TypeError, ValueError):
+            return False
+
+    els = [el for el in (reel.get("shots") or {}).get(first) or [] if isinstance(el, dict)]
+    heads = [el for el in els if el.get("type") == "headline" and at_start(el)]
+    if not heads:
+        r.fail("E4.20", "04-shots", "{}: the first frame must show the hook's words, as a headline card: 6 words at most "
+                                    "in giant letters, over the screen ({{\"type\": \"headline\", \"text\": \"…\", "
+                                    "\"accent\": \"…\", \"at\": 0, \"in\": \"none\"}}, its words in card_text)".format(first))
+        return
+    words = len(str(heads[0].get("text") or "").split())
+    if words > 6:
+        r.fail("E4.20", "04-shots", "{}: the headline has {} words: it's read in a glance, so 6 at most (the cover's words "
+                                    "work)".format(first, words))
+    others = sorted({el.get("type") for el in els} - FIRST_FRAME_COMPANIONS)
+    if others:
+        r.warn("E4.20", "04-shots", "{}: the headline shares the first shot with {}: give it the screen only, and bring "
+                                    "{} in on the next line".format(first, ", ".join(others),
+                                                                    "it" if len(others) == 1 else "them"))
+
+
 def validate_episode(ep_dir, brand):
     r = Report(ep_dir.name)
     try:
@@ -603,6 +964,10 @@ def validate_episode(ep_dir, brand):
     except Exception as e:  # noqa: BLE001
         r.fail("G1", None, "status.json can't be read: {}".format(e))
         status = {"steps": {}, "shots": {}}
+    brand = dc.for_style(brand, ep)          # the theme's chapters and rules: the paper story, or Focus
+    if brand.get("style") not in (brand.get("styles") or {"paper": 1}):
+        r.fail("E1.3", "01-brief", "style '{}' isn't one of the themes: {}".format(
+            brand.get("style"), ", ".join(brand.get("styles") or ["paper"])))
     # Content is checked as soon as it's written (or once its step has started), so an episode
     # Muse writes is checked on its first upload. Only empty, untouched parts are skipped.
     states = {k: (v or {}).get("state", "todo") for k, v in (status.get("steps") or {}).items()}
@@ -622,12 +987,15 @@ def validate_episode(ep_dir, brand):
 
     data = check_data(ep, r) if active("02-data") else {d.get("id"): d for d in ep.get("data") or []}
     if active("01-brief"):
-        check_brief(ep, r)
+        check_brief(ep, r, brand.get("style"))
     run_script, run_shots = active("03-script"), active("04-shots")
     if run_script or run_shots:
         check_script_and_shots(ep, data, brand, r, run_script=run_script, run_shots=run_shots, build=build)
     if run_shots:
         check_prompts_file(ep_dir, r)
+    if brand.get("style") == "focus" and run_shots:
+        check_first_frame(ep_dir, ep, r)
+        check_screens(ep_dir, ep, brand, r)
     if run_script or active("10-publish"):
         check_post(ep, data, brand, r)  # the post copy is written with the script
     # not a repeat of an earlier reel: topic, hook, script, photos, post (tools/topics.py)

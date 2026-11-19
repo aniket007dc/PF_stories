@@ -6,6 +6,7 @@
   "city": "",
   "series": "PF Guru Ji",
   "tagline": "PF samjho, claim pao.",
+  "logo_text": "PF GURU JI",
   "signoff": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
   "follow": {
     "note": "EPFO ki har jankari chahiye?",
@@ -147,6 +148,47 @@
       "glasses": true,
       "moustache": true,
       "top": "kurta"
+    }
+  },
+  "styles": {
+    "paper": {
+      "name": "Kahani",
+      "about": "The paper cut-out story: Shivam and the cast as paper cut-outs on the series' paper, a real situation told as a story, with the rule and the fix in it. The default theme (styles: none in episode.json)."
+    },
+    "focus": {
+      "name": "Focus",
+      "example": "styles/focus/ep00-focus-sample",
+      "about": "How to do one EPFO task on the screen itself (the member portal, the passbook site, UMANG): the page drawn from the newest official pages and videos, never a screenshot; the camera goes to each part as the line names it, the part in use lifts out big while the rest dims, a finger or the cursor taps it and the screen answers. Between the screens: the whole route first, the mistake and the fix, and a checklist worth saving. 40 to 120 seconds. Best for step by step tasks: a claim, a transfer, Mark Exit, KYC, the passbook, a nominee.",
+      "chapters": [
+        "hook",
+        "signoff"
+      ],
+      "free_shape": true,
+      "parts": {
+        "route": "RAASTA",
+        "steps": "STEPS",
+        "mistake": "GALTI",
+        "fix": "FIX",
+        "check": "CHECK",
+        "list": "LIST",
+        "why": "KYUN"
+      },
+      "rules": {
+        "script_words": [
+          70,
+          260
+        ],
+        "target_words": [
+          100,
+          220
+        ],
+        "duration_seconds": [
+          40,
+          120
+        ],
+        "source_days": 60,
+        "seen_days": 30
+      }
     }
   }
 }

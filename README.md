@@ -11,6 +11,8 @@ PF Guru Ji is not EPFO and doesn't speak for it. Every rule a reel states comes 
 - **[MUSE.md](MUSE.md):** the one file Muse follows, with the prompt to paste into Muse.
 - **`tools/build_reel.py`:** makes the video from the episode files: paper, the cut-out scenes, header, bubbles, cards, numbers, stamps, charts, karaoke captions, torn-paper wipes, sound effects and the cover. GitHub runs it by itself when Muse uploads voice lines (**Actions → Build reel**).
 - **`tools/cutout.py`:** the paper cut-outs: the cast (`brand/brand.json` → `cast`: Shivam, Priya, Ravi, Papa) as puppets with poses and moods, and the props. Drawn from shapes, never by AI, so every character looks the same in every reel.
+- **Two themes:** the paper cut-out story (**Kahani**, the default) and **Focus** (`"style": "focus"`), a how-to on the screen itself: the member portal's pages drawn from the newest official pages, the cursor clicking each button as the voice names it, the part in use lifting out big. Focus comes from [pr4dyuman/dcvideo](https://github.com/pr4dyuman/dcvideo)'s Focus style (`tools/build_focus.py`, `tools/screens.py`, on its Host engine `tools/build_host.py`). See [`styles/focus/STYLE.md`](styles/focus/STYLE.md) and the sample `styles/focus/ep00-focus-sample/`.
+- **`tools/make_voice.py`:** makes an episode's voice lines in a native Hindi voice on a computer, no ElevenLabs (credits in `brand/voices/README.md`).
 - **`episodes/`:** ep01–ep04, the posted collage reels, kept so no story repeats them (ep05 is recorded in `brand/topics-done.json`); story reels start at ep06.
 - **Everything else** (checks, approvals) makes sure no wrong number, rule or form is ever posted. [START-HERE.md](START-HERE.md) explains it.
 

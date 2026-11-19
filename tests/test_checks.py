@@ -580,6 +580,8 @@ class TestVoiceCheck(unittest.TestCase):
         vo = '"Purana UAN hai?" Shivam bola: "Naya bana do na!"'
         self.assertEqual(judge("पुराना यू ए एन है?", "उहाँ पुराना UAN है।", vo), ([], 0, 1))   # the lead left on
         self.assertEqual(judge("शिवम बोला: नया बना दो ना!", "शिवम बोला नया बना दोना", vo), ([], 0, 0))
+        self.assertEqual(judge("रास्ता सीधा है।", "त्रास्ता सीधा है।", ""), ([], 1, 1))     # a sound before the word
+        self.assertEqual(judge("फिर मेंबर पोर्टल।", "अफिर मेंबर पोर्टल।", ""), ([], 1, 1))
         self.assertEqual(judge("नाम और जन्म तिथि बिलकुल आधार जैसे। गलत हो, तो खुद ठीक करो।",
                                "नाम और जन्मतिथी बिल्कुल आदार जैसे गलत हो, तो खुद थीक करो।", ""), ([], 0, 0))
 
@@ -1477,3 +1479,128 @@ class TestOcrOnStyleFrames(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+FOCUS_SAMPLE = ROOT / "styles" / "focus" / "ep00-focus-sample"
+
+
+class TestFocusTheme(unittest.TestCase):
+    """The Focus theme (styles/focus/STYLE.md): an EPFO task shown on drawn screens."""
+
+    def copy_sample(self, tmp):
+        ep_dir = Path(tmp) / FOCUS_SAMPLE.name
+        shutil.copytree(FOCUS_SAMPLE, ep_dir, ignore=shutil.ignore_patterns("final", "build", "lines"))
+        return ep_dir
+
+    def fresh_sources(self, reel, day="2026-11-10"):
+        for spec in reel["screens"].values():
+            for src in spec["sources"]:
+                src["seen"] = day
+            spec["sources"][0]["updated"] = day
+
+    def focus_fails(self, ep_dir):
+        """{check id: all its messages} for the Focus checks (E4.20 to E4.28) that fail."""
+        r, _, _ = validate.validate_episode(ep_dir, dc.brand())
+        out = {}
+        for i in r.of("fail"):
+            if i["id"].startswith("E4.2"):
+                out[i["id"]] = (out.get(i["id"], "") + " | " + i["msg"]).strip(" |")
+        return out
+
+    def test_the_theme_settings_replace_the_story_shape(self):
+        b = dc.for_style(dc.brand(), {"style": "focus"})
+        self.assertEqual(b["chapters"], ["hook", "signoff"])
+        self.assertTrue(b["free_shape"])
+        self.assertEqual(b["rules"]["duration_seconds"], [40, 120])
+        self.assertEqual(b["rules"]["tail_seconds"], dc.brand()["rules"]["tail_seconds"])   # the rest stays
+        self.assertEqual(dc.for_style(dc.brand(), {})["chapters"], dc.brand()["chapters"])   # Kahani, as it was
+
+    @unittest.skipIf(build_reel is None, "needs Pillow and numpy")
+    def test_the_sample_is_built_as_a_focus_reel_in_the_brand(self):
+        reel = build_reel.make_reel(FOCUS_SAMPLE, use_voice=False)
+        self.assertEqual(type(reel).__name__, "FocusReel")
+        self.assertEqual([p for p in reel.check_texts() if "placeholder" not in p], [])
+        self.assertEqual(build_reel.logo_text(), "PF GURU JI")
+        frame = reel.render(1.0)
+        self.assertEqual(frame.size, (1080, 1920))
+        self.assertIn("Mark Exit", reel.screen_words(6))                     # S07's drawn menu, not a card
+        story = build_reel.make_reel(PILOT, use_voice=False)                  # a story reel stays a story reel
+        self.assertIsInstance(story, build_reel.Reel)
+
+    def test_a_screen_needs_fresh_official_sources(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ep_dir = self.copy_sample(tmp)
+            reel = dc.load_json(ep_dir / "reel.json")
+            self.assertIn("E4.23", self.focus_fails(ep_dir))                  # the sample's sources aren't read yet
+            self.fresh_sources(reel)
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                self.assertEqual(self.focus_fails(ep_dir), {})
+            reel["screens"]["exit"]["sources"] = reel["screens"]["exit"]["sources"][1:]   # one source, not official
+            reel["screens"]["exit"]["sources"][0]["kind"] = "video"
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                self.assertIn("two sources at least", self.focus_fails(ep_dir).get("E4.23", ""))
+
+    def test_a_drawn_screen_shows_nobodys_details(self):
+        spec = {"parts": [{"kind": "title", "text": "Welcome", "sub": "UAN 1012 3456 7890"},
+                          {"kind": "row", "text": "Mobile", "value": "9876543210"},
+                          {"kind": "row", "text": "PAN", "value": "ABCDE1234F"},
+                          {"kind": "row", "text": "Masked", "value": "XXXX XXXX 1234"},
+                          {"kind": "row", "text": "Joined", "value": "01/04/2023"}]}
+        self.assertEqual(validate.personal_numbers(spec), ["UAN 1012 3456 7890", "9876543210", "ABCDE1234F"])
+        with tempfile.TemporaryDirectory() as tmp:
+            ep_dir = self.copy_sample(tmp)
+            reel = dc.load_json(ep_dir / "reel.json")
+            self.fresh_sources(reel)
+            reel["screens"]["home"]["parts"][1]["sub"] = "UAN 1012 3456 7890"
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                self.assertIn("E4.28", self.focus_fails(ep_dir))
+
+    def test_the_walk_takes_the_viewer_to_every_page(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ep_dir = self.copy_sample(tmp)
+            reel = dc.load_json(ep_dir / "reel.json")
+            self.fresh_sources(reel)
+            reel["shots"]["S07"][0]["do"] = [{"look": "markexit", "on": "Mark"}]    # Mark Exit, but no page opens
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                fails = self.focus_fails(ep_dir)
+            self.assertIn("E4.27", fails)
+            self.assertIn("nothing on screen took them there", fails["E4.27"])
+
+    def test_a_focus_reel_uses_only_its_own_cards_and_words(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ep_dir = self.copy_sample(tmp)
+            reel = dc.load_json(ep_dir / "reel.json")
+            self.fresh_sources(reel)
+            reel["shots"]["S02"] = [{"type": "stamp", "text": "GALTI"}]          # a story card in a Focus reel
+            reel["shots"]["S08"][0]["do"][0]["on"] = "Dropdown"                  # a word the line doesn't say
+            reel["shots"]["S09"][0]["do"][0]["write"] = "dateofexit"            # a part the screen doesn't have
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                msgs = self.focus_fails(ep_dir).get("E4.24", "")
+            self.assertIn("isn't a card of the Focus style", msgs)
+            self.assertIn("\"Dropdown\" isn't a word of its line", msgs)
+            self.assertIn("\"dateofexit\" isn't a part of screen \"exit\"", msgs)
+
+    def test_the_hook_opens_on_its_words(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ep_dir = self.copy_sample(tmp)
+            reel = dc.load_json(ep_dir / "reel.json")
+            self.fresh_sources(reel)
+            reel["shots"]["S01"] = [el for el in reel["shots"]["S01"] if el["type"] != "headline"]
+            dc.save_json(ep_dir / "reel.json", reel)
+            with mock.patch.object(dc, "today", return_value="2026-11-19"):
+                self.assertIn("E4.20", self.focus_fails(ep_dir))
+
+    def test_a_focus_episode_gets_the_focus_prompts_and_no_screenshot_list(self):
+        writing = build_prompts.render_writing(FOCUS_SAMPLE)
+        self.assertIn("Theme: Focus", writing)
+        self.assertIn("THE STEPS COME FROM THE NEWEST PAGES", writing)
+        self.assertNotIn("{{", writing)
+        prompts = build_prompts.render(FOCUS_SAMPLE)
+        self.assertIn("## 1 · Screens", prompts)
+        self.assertNotIn("Screenshots", prompts.split("## 2 · Voice")[0])
+        self.assertIsNone(verify_media.check_screens(FOCUS_SAMPLE))           # drawn screens: nothing to read back

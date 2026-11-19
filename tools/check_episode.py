@@ -209,7 +209,7 @@ def reel_file(ep_dir, rep):
         return
     try:
         import build_reel
-        reel = build_reel.Reel(ep_dir, use_voice=False)
+        reel = build_reel.make_reel(ep_dir, use_voice=False)
     except ImportError:
         rep.notes.append({"area": "Reel file", "where": "", "what": "not checked here: needs Pillow and numpy"})
         return

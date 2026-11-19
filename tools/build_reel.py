@@ -55,6 +55,33 @@ PUSH = 0.22          # seconds the previous shot takes to leave upward
 WIPE_IN, WIPE_HOLD, WIPE_OUT = 0.28, 0.05, 0.3
 CAP_SIZE, CAP_LINE = 56, 66
 STYLE_FILL = {"white": CARD, "yellow": LEMON, "black": BLACK_CARD, "red": RED}
+BRAND_NOW = {}       # the brand of the episode being built (its colours and wordmark), set by use_brand
+
+
+def use_brand(b):
+    """Draw in this brand's colours from now on (brand.json's). The Focus style's engine (tools/build_host.py,
+    tools/build_focus.py) reads them from here."""
+    global CARD, STRIP, INK, LEMON, RED
+    col = dict(_COL, **((b or {}).get("colors") or {}))
+    CARD, STRIP, INK = hexrgb(col["card"]), hexrgb(col["caption_strip"]), hexrgb(col["ink"])
+    LEMON, RED = hexrgb(col["lemon"]), hexrgb(col["stamp_red"])
+    STYLE_FILL.update({"white": CARD, "yellow": LEMON, "red": RED})
+    BRAND_NOW.clear()
+    BRAND_NOW.update(b or {})
+
+
+def logo_text():
+    """The wordmark: brand.json → logo_text (PF GURU JI)."""
+    return str(BRAND_NOW.get("logo_text") or _BRAND.get("logo_text") or BRAND_NAME.upper())
+
+
+def logo_lines():
+    """The wordmark on two lines, as even as they can be: PF GURU / JI."""
+    words = logo_text().split()
+    if len(words) < 2:
+        return words
+    cut = min(range(1, len(words)), key=lambda i: abs(len(" ".join(words[:i])) - len(" ".join(words[i:]))))
+    return [" ".join(words[:cut]), " ".join(words[cut:])]
 
 
 # ---------------------------------------------------------------- fonts and text
@@ -1613,17 +1640,28 @@ def highlight_flags(words, phrases):
     return flags
 
 
+def handwritten_texts(el):
+    """An element's handwritten texts: this file's elements list them (handwritten()); the Focus engine's say whether
+    all their texts are (handwritten = True)."""
+    h = getattr(el, "handwritten", None)
+    if callable(h):
+        return h()
+    return list(el.texts()) if h else []
+
+
 class Episode:
     def __init__(self, ep_dir, use_voice=True):
         self.dir = Path(ep_dir)
         self.ep = load_json(self.dir / "episode.json")
+        self.brand = _BRAND
+        use_brand(self.brand)
         self.reel = load_json(self.dir / "reel.json")
         self.lines = {l["shot"]: l for l in self.ep["script"]}
         self.photos = {}
         for pid, p in self.reel.get("photos", {}).items():
             self.photos[pid] = dict(p, id=p.get("id", pid), path=str(ROOT / p["file"]))
         self.screens = {sid: dict(sc, id=sc.get("id", sid), path=str(ROOT / sc["file"]))
-                        for sid, sc in self.reel.get("screens", {}).items()}
+                        for sid, sc in self.reel.get("screens", {}).items() if "file" in sc}   # Focus: drawn
         self.voice = {}
         vdir = self.dir / "media" / "audio" / "lines"
         if use_voice and vdir.exists():
@@ -2037,6 +2075,18 @@ def sfx_bank():
     n = int(0.07 * SR)
     t = np.arange(n) / SR
     bank["step"] = (0.11 * smooth(noise(n), 5) * np.exp(-t / 0.014)).astype(np.float32)   # a paper foot on the page
+    # the Focus theme's (from dcvideo), after the rest so their noise leaves the others as they were: a soft drop
+    # when a card lands, and a glint on the sign-off
+    n = int(0.22 * SR)
+    t = np.arange(n) / SR
+    f = 300 + 760 * (1 - np.exp(-t / 0.018))
+    drop = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.05)
+    splash = (noise(n) - smooth(noise(n), 4)) * np.exp(-np.maximum(0, t - 0.01) / 0.03) * (t > 0.01)
+    bank["plop"] = (0.32 * drop + 0.05 * splash).astype(np.float32)
+    n = int(0.5 * SR)
+    t = np.arange(n) / SR
+    bank["sparkle"] = (0.06 * (np.sin(2 * np.pi * 2350 * t) + np.sin(2 * np.pi * 3140 * t) * (t > 0.08))
+                       * np.exp(-t / 0.12)).astype(np.float32)
     return bank
 
 
@@ -2091,6 +2141,24 @@ def mix_audio(reel, out_wav):
 
 
 # ---------------------------------------------------------------- main
+
+# Instagram's profile grid shows a reel's cover as its middle 3:4 (y 240 to 1680 of 1920): a Focus cover draws the
+# header this much lower, whole inside the grid's picture
+COVER_HEAD = 60
+
+
+def make_reel(ep_dir, use_voice=True):
+    """The reel for an episode, in its theme: the paper story (this file), or "focus" (tools/build_focus.py), a how-to
+    on the screen itself, when episode.json says "style": "focus"."""
+    try:
+        style = load_json(Path(ep_dir) / "episode.json").get("style") or "paper"
+    except (OSError, ValueError):
+        style = "paper"
+    if style == "focus":
+        import build_focus
+        return build_focus.FocusReel(ep_dir, use_voice)
+    return Reel(ep_dir, use_voice)
+
 
 def build_video(reel, out, t0=0.0, t1=None):
     t1 = reel.E.length if t1 is None else min(t1, reel.E.length)
@@ -2158,7 +2226,7 @@ def main():
             return
     if not shutil.which("ffmpeg"):
         raise SystemExit("ffmpeg is needed")
-    reel = Reel(ep_dir, use_voice=not a.no_voice)
+    reel = make_reel(ep_dir, use_voice=not a.no_voice)
     problems = reel.check_texts()
     hard = [p for p in problems if "placeholder" not in p]
     for p in problems:
@@ -2176,9 +2244,11 @@ def main():
         "inputs": dc.reel_inputs_hash(ep_dir),
         "voiced": reel.E.voiced, "length": round(reel.E.length, 3),
         "shots": [{"id": s["id"], "start": round(s["start"], 3), "end": round(s["end"], 3),
-                   "handwritten": [t for el in reel.elements[i] for t in el.handwritten()],
+                   "handwritten": [t for el in reel.elements[i] for t in handwritten_texts(el)],
                    "screens": [[round(v) for v in el.frame_box()] for el in reel.elements[i]
-                               if isinstance(el, Screen) and not el.out]}
+                               if isinstance(el, Screen) and not el.out],
+                   # a Focus reel: the app's own words on its drawn screen, allowed on screen, never cards to read back
+                   "screen": reel.screen_words(i) if hasattr(reel, "screen_words") else []}
                   for i, s in enumerate(reel.E.shots)]},
         indent=1) + "\n")
     if a.cover:

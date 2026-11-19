@@ -1,0 +1,469 @@
+{
+ "schema": "dc-episode/1",
+ "id": "ep00",
+ "slug": "focus-sample",
+ "series": "PF Guru Ji",
+ "title": "Mark Exit kaise karein: purani company ne exit date nahi daali?",
+ "tag": "PF GURU JI · MARK EXIT",
+ "created": "2026-11-19",
+ "style": "focus",
+ "route": "build",
+ "sample": "A sample of the Focus theme (styles/focus/STYLE.md), not a reel to post. Its screens are drawn from what EPFO's pages describe (Manage, then Mark Exit), not checked against the live portal: a person checks every screen against the portal before any of it goes into a real reel.",
+ "brief": {
+  "topic": "Mark Exit kaise karein, jab purani company ne exit date nahi daali?",
+  "viewer": "Someone who left a job two months or more ago and finds their old employer never entered the date of exit, so their old PF can't move on.",
+  "hook": "Purani company ne exit date nahi daali?",
+  "app": "EPFO Member e-Sewa (unified member portal), on a laptop",
+  "steps": [
+   "Log in, then Manage in the top menu",
+   "Mark Exit",
+   "Select Employment: the old job",
+   "Date of Exit and Reason of Exit",
+   "Request OTP, then enter it",
+   "Tick the checkbox, then Update"
+  ],
+  "check": "The page shows the exit date as updated.",
+  "share_target": "Jis dost ne pichhle mahine naukri chhodi"
+ },
+ "data": [
+  {
+   "id": "reject_details",
+   "label": "Mismatched details get claims rejected",
+   "kind": "rule",
+   "statement": "A mismatch in date of birth, date of exit, Aadhaar or bank details is one of the usual reasons EPFO gives for rejecting a claim.",
+   "source": "Lok Sabha, Unstarred Question 2680, answered 9 March 2026 (reasons for rejection of claims)",
+   "source_url": "https://www.outlookmoney.com/retirement/pension/epf-claim-settlement-why-epfo-rejects-the-claims-and-what-subscribers-can-do",
+   "check_note": "The link reproduces the official reply (it lists mismatches in date of birth, exit date, service details, Aadhaar or bank details). Find the reply on sansad.in, check it says this, and put that official link here instead. The reply is about pension claims; confirm it applies to PF claims too, or say so. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "exit_date_upload",
+   "label": "Who puts the date of exit in",
+   "kind": "rule",
+   "statement": "The employer must upload who left within fifteen days of each month's end; the member can also record their own date of exit.",
+   "source": "EPF Scheme, 2026, paragraph 24(2)(v) (G.S.R. 525(E)); PIB, 8 January 2021 (members record their date of exit)",
+   "source_url": "https://egazette.gov.in/WriteReadData/2026/273957.pdf",
+   "check_note": "Para 24(2)(v): 'Every employer shall, within fifteen days of the close of each month, upload ... details of the employees leaving the service'. For the member's own entry: PIB https://www.pib.gov.in/PressReleasePage.aspx?PRID=1687113 ('record their date of exit themselves'). (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "mark_exit_days",
+   "label": "Days after leaving before the member can mark their own date of exit",
+   "kind": "fact",
+   "value": 60,
+   "unit": "days",
+   "source": "EPFO FAQ, member portal (official, undated)",
+   "source_url": "https://www.epfindia.gov.in/site_en/FAQ.php",
+   "check_note": "Find: 'After 60 days from the date of leaving of services, the member can him self submit / update Date of Exit online through Member Portal.' The research couldn't open the page (seen in a search snippet only), and the menu (Manage → Mark Exit) may have changed after the July 2026 upgrade: confirm both on the portal. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  },
+  {
+   "id": "services_free",
+   "label": "EPFO's services are free",
+   "kind": "rule",
+   "statement": "EPFO's services are free: members shouldn't pay any fee to agents or cyber cafes.",
+   "source": "PIB, Ministry of Labour and Employment, 16 June 2025",
+   "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2136592",
+   "check_note": "Find: members 'should not pay any fees to third party agents or cyber cafes' for EPFO's services. (Checked by Divyank Sharma for ep01 on 2026-11-13: same statement and source; confirm it still holds.)",
+   "checked_by": null,
+   "checked_on": null
+  }
+ ],
+ "script": [
+  {
+   "shot": "S01",
+   "chapter": "hook",
+   "vo": "Purani company ne exit date nahi daali?",
+   "tts": "पुरानी कंपनी ने एग्ज़िट डेट नहीं डाली?",
+   "delivery": "surprised · quick, a lift on nahi daali",
+   "highlights": [
+    "exit date"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S02",
+   "chapter": "why",
+   "vo": "Exit date mein galti, claim reject hone ki ek badi wajah hai.",
+   "tts": "एग्ज़िट डेट में ग़लती, क्लेम रिजेक्ट होने की एक बड़ी वजह है।",
+   "delivery": "concerned · stress reject",
+   "highlights": [
+    "reject"
+   ],
+   "uses": [
+    "reject_details"
+   ]
+  },
+  {
+   "shot": "S03",
+   "chapter": "why",
+   "vo": "Exit date company daalti hai, par aap bhi khud daal sakte ho.",
+   "tts": "एग्ज़िट डेट कंपनी डालती है, पर आप भी ख़ुद डाल सकते हो।",
+   "delivery": "warm · a lift on khud",
+   "highlights": [
+    "khud"
+   ],
+   "uses": [
+    "exit_date_upload"
+   ]
+  },
+  {
+   "shot": "S04",
+   "chapter": "why",
+   "vo": "Naukri chhode 60 din ho gaye? Toh Mark Exit aap khud karo.",
+   "tts": "नौकरी छोड़े सिक्सटी दिन हो गए? तो मार्क एग्ज़िट आप ख़ुद करो।",
+   "delivery": "curious · a question, then sure",
+   "highlights": [
+    "60 din"
+   ],
+   "uses": [
+    "mark_exit_days"
+   ]
+  },
+  {
+   "shot": "S05",
+   "chapter": "route",
+   "vo": "Raasta seedha hai: Manage, Mark Exit, OTP, aur check.",
+   "tts": "रास्ता सीधा है: मैनेज, मार्क एग्ज़िट, ओटीपी, और चेक।",
+   "delivery": "proud · one beat per stop",
+   "highlights": [
+    "Manage",
+    "OTP"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S06",
+   "chapter": "steps",
+   "vo": "Member portal pe login karo, aur upar Manage pe click karo.",
+   "tts": "मेंबर पोर्टल पे लॉगिन करो, और ऊपर मैनेज पे क्लिक करो।",
+   "delivery": "warm · calm and sure",
+   "highlights": [
+    "Manage"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S07",
+   "chapter": "steps",
+   "vo": "Menu mein Mark Exit chuno.",
+   "tts": "मेन्यू में मार्क एग्ज़िट चुनो।",
+   "delivery": "warm · light",
+   "highlights": [
+    "Mark Exit"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S08",
+   "chapter": "steps",
+   "vo": "Select Employment kholo, aur purani company chuno.",
+   "tts": "सेलेक्ट एम्प्लॉयमेंट खोलो, और पुरानी कंपनी चुनो।",
+   "delivery": "warm · a beat on purani",
+   "highlights": [
+    "Select Employment"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S09",
+   "chapter": "steps",
+   "vo": "Phir Date of Exit likho, aur Reason of Exit chuno.",
+   "tts": "फिर डेट ऑफ़ एग्ज़िट लिखो, और रीज़न ऑफ़ एग्ज़िट चुनो।",
+   "delivery": "serious · clear on Date and Reason",
+   "highlights": [
+    "Date of Exit"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S10",
+   "chapter": "steps",
+   "vo": "Ab Request OTP dabao, aur aaya hua OTP daalo.",
+   "tts": "अब रिक्वेस्ट ओटीपी दबाओ, और आया हुआ ओटीपी डालो।",
+   "delivery": "warm · brisk",
+   "highlights": [
+    "Request OTP"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S11",
+   "chapter": "steps",
+   "vo": "Checkbox tick karo, phir Update dabao.",
+   "tts": "चेकबॉक्स टिक करो, फिर अपडेट दबाओ।",
+   "delivery": "proud · a lift on Update",
+   "highlights": [
+    "Update"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S12",
+   "chapter": "check",
+   "vo": "Status mein exit date aa gayi. Bas, ho gaya.",
+   "tts": "स्टेटस में एग्ज़िट डेट आ गई। बस, हो गया।",
+   "delivery": "happy · relieved on ho gaya",
+   "highlights": [
+    "ho gaya"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S13",
+   "chapter": "mistake",
+   "vo": "Par date andaaze se mat daalo: galat date pe claim reject ho sakta hai.",
+   "tts": "पर डेट अंदाज़े से मत डालो: ग़लत डेट पे क्लेम रिजेक्ट हो सकता है।",
+   "delivery": "concerned · firm on mat daalo",
+   "highlights": [
+    "galat date"
+   ],
+   "uses": [
+    "reject_details"
+   ]
+  },
+  {
+   "shot": "S14",
+   "chapter": "list",
+   "vo": "Yeh list save kar lo, kaam aayegi.",
+   "tts": "ये लिस्ट सेव कर लो, काम आएगी।",
+   "delivery": "playful · a smile",
+   "highlights": [
+    "save"
+   ],
+   "uses": [
+    "mark_exit_days"
+   ]
+  },
+  {
+   "shot": "S15",
+   "chapter": "share",
+   "vo": "Jis dost ne pichhle mahine naukri chhodi, use abhi bhejo.",
+   "tts": "जिस दोस्त ने पिछले महीने नौकरी छोड़ी, उसे अभी भेजो।",
+   "delivery": "playful · a quick nudge on abhi bhejo",
+   "highlights": [
+    "abhi bhejo"
+   ],
+   "uses": []
+  },
+  {
+   "shot": "S16",
+   "chapter": "signoff",
+   "vo": "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji.",
+   "tts": "पी एफ़ समझो, क्लेम पाओ। ईपीएफ़ओ की हर जानकारी चाहिए? फ़ॉलो करो, पी एफ़ गुरु जी।",
+   "delivery": "proud · warm and bright, a smile on Follow karo PF Guru Ji",
+   "highlights": [
+    "PF Guru Ji"
+   ],
+   "uses": []
+  }
+ ],
+ "hook_options": [
+  "Exit date khali? Claim aage nahi badhega.",
+  "60 din ho gaye, company ne kuch nahi kiya?"
+ ],
+ "shots": [
+  {
+   "id": "S01",
+   "start": 0.0,
+   "end": 3.2,
+   "chapter": "hook",
+   "card_text": [
+    "EXIT DATE KHALI HAI?"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S02",
+   "start": 3.2,
+   "end": 8.3,
+   "chapter": "why",
+   "card_text": [
+    "Purani company",
+    "exit date",
+    "EPFO",
+    "aapka PF record",
+    "Exit date galat",
+    "Claim reject",
+    "mismatch"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S03",
+   "start": 8.3,
+   "end": 13.4,
+   "chapter": "why",
+   "card_text": [
+    "Company",
+    "har mahine upload",
+    "Aap khud",
+    "member portal",
+    "EPFO",
+    "aapka PF record",
+    "Exit date",
+    "Record sahi"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S04",
+   "start": 13.4,
+   "end": 18.5,
+   "chapter": "why",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S05",
+   "start": 18.5,
+   "end": 22.5,
+   "chapter": "route",
+   "card_text": [
+    "POORA RAASTA",
+    "MANAGE",
+    "upar ka menu",
+    "MARK EXIT",
+    "purani naukri chuno",
+    "OTP",
+    "mobile pe aayega",
+    "CHECK",
+    "status dekho"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S06",
+   "start": 22.5,
+   "end": 27.2,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S07",
+   "start": 27.2,
+   "end": 29.6,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S08",
+   "start": 29.6,
+   "end": 32.8,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S09",
+   "start": 32.8,
+   "end": 37.1,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S10",
+   "start": 37.1,
+   "end": 41.1,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S11",
+   "start": 41.1,
+   "end": 43.9,
+   "chapter": "steps",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S12",
+   "start": 43.9,
+   "end": 47.9,
+   "chapter": "check",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S13",
+   "start": 47.9,
+   "end": 53.8,
+   "chapter": "mistake",
+   "card_text": [
+    "Aap",
+    "andaaze wali date",
+    "EPFO",
+    "aapka PF record",
+    "Galat date",
+    "Claim reject",
+    "mismatch"
+   ],
+   "uses": []
+  },
+  {
+   "id": "S14",
+   "start": 53.8,
+   "end": 57.0,
+   "chapter": "list",
+   "card_text": [
+    "MARK EXIT",
+    "screenshot le lo",
+    "60 din baad",
+    "Manage, phir Mark Exit",
+    "Purani company chuno",
+    "Sahi date, sahi reason",
+    "OTP, phir Update"
+   ],
+   "uses": [
+    "mark_exit_days"
+   ]
+  },
+  {
+   "id": "S15",
+   "start": 57.0,
+   "end": 61.3,
+   "chapter": "share",
+   "card_text": [],
+   "uses": []
+  },
+  {
+   "id": "S16",
+   "start": 61.3,
+   "end": 68.7,
+   "chapter": "signoff",
+   "card_text": [
+    "PF GURU JI",
+    "PF samjho, claim pao.",
+    "@PFGURUJI"
+   ],
+   "uses": []
+  }
+ ],
+ "breaks": [],
+ "post": {
+  "caption": "Mark Exit kaise kare? Purani company ne EPFO mein exit date nahi daali?\n\nNaukri chhode 60 din ho gaye, toh member portal pe khud karo: Manage, phir Mark Exit, purani company chuno, Date of Exit aur Reason of Exit bharo, OTP daalo, Update.\n\nDate andaaze se mat daalo: galat date pe claim reject ho sakta hai.\n\nJis dost ne pichhle mahine naukri chhodi, use bhejo.\n\nEPFO ki har jankari chahiye? Follow karo @pfguruji.\n\nPF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in\n\nAwaaz: AI voice, F5-Hindi model (SPRING Lab, IIT Madras) aur AI4Bharat Rasa voice clips se. Licence: CC BY.\n\n#pfguruji #epfo #markexit #pfclaim #pftransfer",
+  "hashtags": [
+   "#pfguruji",
+   "#epfo",
+   "#markexit",
+   "#pfclaim",
+   "#pftransfer"
+  ],
+  "pinned_comment": "Aapke portal pe Mark Exit kahan mila? Apne screen pe kya dikha, batao. UAN, OTP ya bank details kabhi mat likhna.",
+  "cover": {
+   "lines": [
+    "EXIT DATE",
+    "KHALI HAI?"
+   ],
+   "stamp": "MARK EXIT"
+  },
+  "trial_hook": "Exit date khali? Claim aage nahi badhega."
+ }
+}

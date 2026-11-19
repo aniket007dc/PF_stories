@@ -1,0 +1,64 @@
+Write one Instagram Reel for PF Guru Ji in the Focus theme: how to do one real EPFO task on the screen itself (on the member portal, the passbook site or the UMANG app), click by click. The viewer watches the screen while one calm voice walks them through it: each line names the place and the button, the part in use lifts out big, a finger or the cursor taps it, and the screen answers. Between the screens, a few cards show the idea behind them: the whole route first, what goes wrong and the fix, and a list worth saving.
+Topic: {{TOPIC}}
+Viewer: {{VIEWER}}
+Language: Hinglish in Roman script. One narrator, the viewer's sharp friend who has done this a hundred times: calm and sure, a little playful; never lectures, never sells, never sounds like a government notice.
+
+THE STEPS COME FROM THE NEWEST PAGES, NEVER FROM MEMORY
+EPFO changes its portal every few months, and a reel that shows last year's menu teaches the viewer to get lost. Before you write a line:
+1. Open EPFO's own page for this task, the newest one: the member portal's help, an FAQ, a circular or a PIB release, and the UMANG app's EPFO help. Note the date it shows.
+2. Open one or two videos or posts from the last {{SOURCE_DAYS}} days that do the task on screen: on YouTube, search the task and sort by upload date. An official page's screenshots count too.
+3. Write down, in episodes/{{EPISODE}}/research.md under "Steps on screen":
+   - the steps in the order the portal has them now, and the name of every menu, tab and button exactly as the portal writes it ("Manage", "Mark Exit", "Get OTP");
+   - what each screen shows on the way (its title, its sections, what changes after each tap);
+   - anything that changed lately (a renamed menu, a moved button): the reel shows the portal as it is today;
+   - the one mistake people make most here, and how to check it worked;
+   - every link, with the date the page or video shows and the day you read it.
+EPFO's own pages often refuse automated reading: open them in a browser. If a step needs a login, take it from the official page and the newest videos: never guess a screen, and never log in to anyone's account. If two sources differ, the newest official one wins. If you can't confirm a step, write [NEED CHECK: what] and a person checks it before anything is made.
+
+Use ONLY the numbers and rules in this data sheet. Each line is: id = value (kind).
+{{DATA_SHEET}}
+If you need a number, a limit, a waiting time or a rule that is not in the sheet, write [NEED DATA: what to find] instead. Never invent a statistic, a limit, a time or a rule. A how-to usually needs few numbers.
+
+The forms a reel may name, and what each one is for:
+{{FORMS}}
+
+WRITE FOR THE SCREEN
+- THE WALK. The first step starts where the viewer starts: the page they see when they open the portal or the app, logged in. From there, say every click that opens the next page, in order, with the names the screen shows ("Upar Manage pe click karo, phir Mark Exit."), and where on the page the thing is ("Neeche Select Employment hai."). Never "Mark Exit page par aao" as if the viewer were already there: say the click that takes them. Each click needs its own word in the line: the reel shows it on screen.
+- A step line says where, what, and the button's name, in the order the viewer does it, as a whole sentence: "Manage mein Mark Exit chuno.", "Ab Get OTP dabao." The button's name is said in English exactly as the portal writes it, so the viewer finds it on their own screen.
+- One action per line, or two when the second follows at once ("Employment chuno, aur exit date daalo."). The tap comes on the word that names it or on "dabao", "kholo", "chuno", "daalo".
+- A line that points at something without touching it ("Date of Exit khali hai") is as good as a tap: the part lifts out while it's said.
+- Real tasks, not three easy steps: 6 to 12 steps, the order and the catch. Skip only logging in.
+- A term the viewer will meet on the screen (UAN, KYC, e-Nomination) is said plainly the first time, in the same line ("KYC, yaani Aadhaar, bank aur PAN jude hue").
+- Never ask the viewer for their UAN, password, OTP, Aadhaar, PAN or bank details: not in the reel, the caption or the pinned comment. The voice says "apna OTP daalo", never a number.
+
+THE SHAPE (100–220 words, one line per shot; 40 to 120 seconds)
+The task decides which parts it needs, in this order:
+- hook (S01): the problem or the result in the viewer's own words, in 8 words or fewer for the first sentence.
+- why (1 line): what goes wrong without it, or what they get.
+- route (1 line): the whole path in one breath before the first step ("Raasta seedha hai: Manage, Mark Exit, OTP, aur check."). Its stops stay on screen as chips while the steps run.
+- steps: one line per action, in order, grouped by the route's stops.
+- mistake (1 line): the one mistake most people make here, and what it costs.
+- fix (1 line): how to avoid it.
+- check (1 line): how to see it worked: a status, a date in the passbook, a message.
+- list (1 line): the steps as a checklist worth a screenshot ("Yeh list save kar lo, …").
+- share (1 line, right before the sign-off): aimed at one kind of friend, ending "… bhejo." Never "tag karo", "like karo" or a number of friends.
+- signoff: exactly "{{SIGNOFF}}"
+Every line has a "chapter": the part it belongs to (hook, why, route, steps, mistake, fix, check, list, share, signoff), or one short lowercase word of your own for a part this task needs. These names show on screen as: {{PARTS}}.
+
+Rules:
+1. 100–220 words in total (the checks allow 70–260). The first line's chapter is "hook", the last one's "signoff", with the share line right before it.
+2. Say only what EPFO's own pages, circulars and forms say, through the data sheet. Name a form only from the list above, and only for what it's for. Never promise an outcome or a date. Send people only to official channels named in the data sheet.
+3. In "vo" (shown as the words under the screen), write Roman-script Hinglish, with numbers as digits and Indian commas. Buttons and menus as the portal writes them.
+   In "tts" (read by the voice), write the same words in Devanagari: every number said in English and spelled in Devanagari (सिक्सटी for 60), every English word as people in India say it (क्लेम, मैनेज, मार्क एग्ज़िट, गेट ओटीपी, केवाईसी), initialisms as one word (यूएएन, पीएफ़, ईपीएफ़ओ). No digits, and no words that aren't in "vo". Use । for full stops.
+4. "highlights" lists 1–3 words from the line to colour, copied exactly: the button's name in a step line.
+5. "uses" lists the data ids whose numbers or rules appear in the line.
+6. "delivery" says how the voice says the line: one mood (curious, surprised, excited, serious, concerned, warm, proud or playful), then " · " and one short cue. Sure and calm on the steps, concerned on the mistake, relieved or proud on the check, warm on the share line. Never the same mood for every line.
+7. Every line is new: TOPICS.md lists every reel we've made; never reuse a line, a hook or a cover. Only the series formats repeat: the route line's shape, the list line, the share line's shape and the sign-off.
+8. The caption opens with the hook's question in one line, with the words people search for this task in it (the English term and the romanised Hindi they'd type: "Mark Exit kaise kare? EPFO exit date online"), then the steps in a few short lines, the share line, "{{FOLLOW_NOTE}} Follow karo {{INSTAGRAM}}.", then "PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in", the voice credit line, and the hashtags. "pinned_comment" asks what happened on their own screen, never for personal details.
+9. Write two more hooks in "hook_options", each from a different angle, under the same rules as the hook. A person reads the script before anything is made, and picks one.
+
+Reply with JSON only, in this shape:
+{"script": [{"shot": "S01", "chapter": "hook", "vo": "...", "tts": "...", "delivery": "surprised · ...", "highlights": ["..."], "uses": []}],
+ "hook_options": ["...", "..."],
+ "post": {"caption": "...", "hashtags": ["#..."], "pinned_comment": "...", "cover": {"lines": ["...", "..."], "stamp": "..."}, "trial_hook": "..."}}
+After the JSON: the steps as research.md → Steps on screen has them, each with the source it came from (link and date); the screen each line will show and the part it touches; and every number you used with the data id it came from.
