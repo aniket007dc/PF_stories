@@ -33,7 +33,8 @@ SR = 16000
 
 # ---------------------------------------------------------------- spoken numbers (tools/spoken.py)
 
-from spoken import (SOUND_ALIKE, _plain, expected_numbers, spoken_numbers, word_numbers)  # noqa: E402,F401
+from spoken import (SOUND_ALIKE, _plain, expected_numbers, letter_words, spelled_count,  # noqa: E402,F401
+                    spoken_numbers, word_numbers)
 
 
 # ---------------------------------------------------------------- brand
@@ -48,17 +49,13 @@ def _fold(w):
 
 
 def brand_heard(brand, hi_text, en_text):
-    """Every word of the brand is in what Whisper heard, in English letters or in Hindi. A mangled or missing
-    word isn't the brand: "PF Kuru Ji", or "PF Guru" without the Ji."""
-    hindi = _fold("".join(hi_text.split()))
-    latin = re.sub(r"[^a-z]", "", (en_text + " " + hi_text).lower())
-    for word in brand.lower().split():
-        if word in latin:
-            continue
-        want = BRAND_WORD_HI.get(word)
-        if not (want and _fold(want) in hindi):
-            return False
-    return True
+    """The brand is heard as whole words, in English letters or in Hindi, however Whisper splits or joins them:
+    "PF Guru Ji", "P.F. गुरुजी", "पी एफ गुरू जी". A mangled or missing word isn't the brand ("PF Kuru Ji", or
+    "PF Guru" without the Ji), and neither is the PF inside EPFO."""
+    target = "".join(brand.lower().split())
+    pieces = {_fold(h): w for w, h in BRAND_WORD_HI.items()}
+    return any(spelled_count(target, letter_words(" ".join(_fold(w) for w in text.split()), pieces))
+               for text in (hi_text, en_text))
 
 
 # ---------------------------------------------------------------- audio

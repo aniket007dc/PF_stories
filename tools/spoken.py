@@ -1,7 +1,9 @@
-"""How numbers are said: read numbers out of Hindi, Hinglish or digit text.
+"""How numbers and letters are said: read numbers out of Hindi, Hinglish or digit text, and initialisms
+(UAN, PF, EPFO) out of letters spelled in Devanagari or English.
 
-Used by tools/validate.py (the voice text must say the caption's numbers) and tools/verify_voice.py
-(what Whisper heard must contain them). Standard library only.
+Used by tools/validate.py (the voice text must say the caption's numbers), tools/verify_voice.py (what Whisper
+heard must contain them, and the brand) and tools/make_voice.py (which take says every initialism). Standard
+library only.
 """
 import re
 import sys
@@ -159,3 +161,54 @@ def expected_numbers(vo):
 def word_numbers(vo):
     """Numbers the line says in words ("Sau mein ek…"): allowed to be heard, not required."""
     return set(spoken_numbers(re.sub(r"\d[\d,]*(?:\.\d+)?", " ", vo)))
+
+
+# ---------------------------------------------------------------- spelled-out letters
+
+# How each English letter is said, in Devanagari: यू ए एन is UAN, ईपीएफ़ओ is EPFO, पी एफ is PF
+LETTERS = {"ए": "a", "बी": "b", "सी": "c", "डी": "d", "ई": "e", "एफ": "f", "जी": "g", "एच": "h", "आई": "i", "जे": "j",
+           "के": "k", "एल": "l", "एम": "m", "एन": "n", "ओ": "o", "पी": "p", "क्यू": "q", "आर": "r", "एस": "s",
+           "टी": "t", "यू": "u", "वी": "v", "डब्ल्यू": "w", "एक्स": "x", "वाई": "y", "जेड": "z"}
+PUNCT = "।॥,.?!:;\"'‘’“”–—-()"
+
+
+def spell(word, pieces=None):
+    """The English letters a Devanagari word spells out (ईपीएफ़ओ -> "epfo"), or None if it isn't only letter names.
+    pieces adds whole words to read the same way, such as {"गुरु": "guru"}."""
+    table = dict(LETTERS, **(pieces or {}))
+    w, out = word.replace("़", "").strip(PUNCT), ""
+    while w:
+        for name in sorted(table, key=len, reverse=True):
+            if w.startswith(name):
+                out, w = out + table[name], w[len(name):]
+                break
+        else:
+            return None
+    return out or None
+
+
+def letter_words(heard, pieces=None):
+    """A transcript's words as the letters they spell, in order: UAN, U.A.N., यू, पीएफ़ -> "uan", "uan", "u", "pf";
+    None for any other word and after a comma or a stop."""
+    out = []
+    for t in re.sub(r"(?<=\b[A-Za-z])\.", "", heard).replace("-", " ").split():      # EPF-IGMS is EPF IGMS
+        w = t.strip(PUNCT)
+        out.append(w.lower() if re.fullmatch(r"[A-Za-z]+", w) else spell(w, pieces))
+        if t[-1] in PUNCT:
+            out.append(None)
+    return out
+
+
+def spelled_count(target, words):
+    """How many times target is made of whole neighbouring words from letter_words(): EPFO holds the letters of PF,
+    but no whole word of it is PF."""
+    n, i = 0, 0
+    while i < len(words):
+        acc, j = "", i
+        while j < len(words) and words[j] and target.startswith(acc + words[j]) and acc != target:
+            acc, j = acc + words[j], j + 1
+        if acc == target:
+            n, i = n + 1, j
+        else:
+            i += 1
+    return n

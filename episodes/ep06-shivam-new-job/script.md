@@ -78,6 +78,8 @@ These go with the post. You see them again before it's posted.
 >
 > PF Guru Ji EPFO ka official channel nahi hai. Niyam: epfo.gov.in
 >
+> Awaaz: AI voice, F5-Hindi model (SPRING Lab, IIT Madras) aur AI4Bharat Rasa voice clips se. Licence: CC BY.
+>
 > #pfguruji #epfo #uan #newjob #pfstory
 
 **Pinned comment:** Aapke paas kitne UAN hain: ek ya do? Comment karo. UAN number, OTP ya bank details kabhi mat likhna.

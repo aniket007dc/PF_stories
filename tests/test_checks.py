@@ -466,6 +466,11 @@ class TestVoiceCheck(unittest.TestCase):
         self.assertFalse(heard("PF Guru Ji", "ये है पीएफ कुरु जी", "This is PF Kuru Ji."))
         self.assertFalse(heard("PF Guru Ji", "ये है पीएफ गुरू", "This is PF Guru."))   # the Ji is missing
         self.assertFalse(heard("PF Guru Ji", "ये है पीएफ गर्व जी", ""))           # a near word isn't the brand
+        self.assertTrue(heard("PF Guru Ji", "फॉलो करो, P.F. गुरूजी", ""))
+        # the PF inside EPFO isn't the brand's PF
+        self.assertFalse(heard("PF Guru Ji", "T.F. सम्झो, EPFO की हर जानकारी चाहिये, Follow करो Guru Ji.", ""))
+        self.assertFalse(heard("PF Guru Ji", "Follow करो PFO Guru Ji.", ""))
+        self.assertFalse(heard("PF Guru Ji", "फॉलो करो, ईपीएफ गुरु जी", ""))
 
     def test_whisper_spellings_of_amounts(self):
         n = verify_voice.spoken_numbers
@@ -535,6 +540,63 @@ class TestVoiceCheck(unittest.TestCase):
                          [("narrator", "प्रिया ने कहा: हाँ।")])                  # no speakers: the narrator reads it
         for who in ("narrator", "shivam", "priya", "ravi", "papa"):
             self.assertIn(who, make_voice.VOICES)
+            self.assertTrue((make_voice.VOICE_DIR / (make_voice.VOICES[who] + ".wav")).exists())
+            self.assertTrue((make_voice.VOICE_DIR / (make_voice.VOICES[who] + ".txt")).read_text(encoding="utf-8").strip())
+
+    def test_the_voice_maker_knows_which_initialisms_a_line_spells(self):
+        import make_voice
+        self.assertEqual(make_voice.initialisms("नया यू ए एन, मतलब पुराना पी एफ़, पुराने यू ए एन में अटका।"),
+                         ["uan", "pf", "uan"])
+        self.assertEqual(make_voice.initialisms("ईपीएफ़ओ की हर जानकारी, पी एफ़ गुरु जी"), ["epfo", "pf"])  # not जी
+        self.assertEqual(make_voice.initialisms("फिर मेंबर पोर्टल पे केवाईसी: आधार, बैंक और पैन।"), ["kyc"])
+        self.assertEqual(make_voice.initialisms("दोस्त के लिए"), [])                       # के alone is a word
+        count = make_voice.initialism_count
+        self.assertEqual(count("uan", "नया UAN, U.A.N. और यू ए एन"), 3)
+        self.assertEqual(count("pf", "T.F. Sampao EPFO की"), 0)                   # EPFO has PF's letters, not PF
+        self.assertEqual(count("pf", "पीफ समझो"), 0)                               # "peef" isn't P-F
+
+    def test_the_voice_maker_keeps_the_take_that_says_the_whole_part(self):
+        import make_voice
+        judge = make_voice.judge
+        vo = "Naukri badlo, company badlo, UAN wahi rehta hai."
+        text = "नौकरी बदलो, कंपनी बदलो, यू ए एन वही रहता है।"
+        self.assertEqual(judge(text, "नौकरी बदलो, कंपनी बदलो, UAN वही रहता है।", vo), ([], 0, 0))
+        self.assertEqual(judge(text, "COMPANY BADLO, UAN वही रहता है।", vo), ([], 2, 0))   # the first words swallowed
+        self.assertEqual(judge(text, "कंपनी बद्लो, यू एन वही रहता है।", vo)[0], ["initialism UAN"])
+        vo = "PF samjho, claim pao. EPFO ki har jankari chahiye? Follow karo PF Guru Ji."
+        text = "पी एफ़ समझो, क्लेम पाओ। ईपीएफ़ओ की हर जानकारी चाहिए? फ़ॉलो करो, पी एफ़ गुरु जी।"
+        self.assertEqual(judge(text, "O PF समझो, Claim पाओ, EPFO की हर जानकारी चाहिये, Follow करो, PF Guru Ji", vo),
+                         ([], 0, 1))                                                     # a stray sound before it
+        self.assertEqual(judge(text, "T.F. Sampao EPFO की हर जानकारी चाहिये. Follow करो P.F. Guru Ji.", vo)[0],
+                         ["initialism PF"])
+        self.assertEqual(judge("यू ए एन एक ही होता है।", "UAN 1 ही होता है", ""), ([], 0, 0))   # एक written as 1
+        vo = "Shivam ki nayi naukri! Pehla din, aur HR ka pehla sawaal."
+        text = "शिवम की नई नौकरी! पहला दिन, और एचआर का पहला सवाल।"
+        # Whisper writes नई as नहीं even from a native speaker, and नौकरी as it's said, नौक्री
+        self.assertEqual(judge(text, "शिवम की नहीं नौक्री पहला दिन और HR का पहला सवाल", vo), ([], 0, 0))
+        self.assertEqual(judge(text, "नहीं नौक्री पहला दिन और H.R. का पहला सवाल", vo), ([], 2, 0))
+        self.assertEqual(judge("नहीं डाली? सिक्सटी दिन बाद शिवम खुद मार्क एग्ज़िट कर सकता है।",
+                               "नहीं डाली। 20 दिन बाद शिवम खुद मार्क एग्सिट कर सकता है।", "")[0], ["number 60"])
+        vo = '"Purana UAN hai?" Shivam bola: "Naya bana do na!"'
+        self.assertEqual(judge("पुराना यू ए एन है?", "उहाँ पुराना UAN है।", vo), ([], 0, 1))   # the lead left on
+        self.assertEqual(judge("शिवम बोला: नया बना दो ना!", "शिवम बोला नया बना दोना", vo), ([], 0, 0))
+        self.assertEqual(judge("नाम और जन्म तिथि बिलकुल आधार जैसे। गलत हो, तो खुद ठीक करो।",
+                               "नाम और जन्मतिथी बिल्कुल आदार जैसे गलत हो, तो खुद थीक करो।", ""), ([], 0, 0))
+
+    def test_the_voice_maker_cuts_off_the_lead_word(self):
+        import numpy as np
+        import make_voice
+        sr = make_voice.SR
+        t = np.arange(int(0.3 * sr)) / sr
+        word = (0.3 * np.sin(2 * np.pi * 220 * t)).astype(np.float32)
+        gap = np.zeros(int(0.25 * sr), np.float32)
+        take = np.concatenate([gap[:2400], word, gap, word, word])        # हाँ, a pause, then the part
+        self.assertTrue(all(make_voice.is_lead(w) for w in ("हाँ।", "हां,", "उहाँ", "Haan.")))
+        self.assertFalse(any(make_voice.is_lead(w) for w in ("हैं", "नया", "हाथ")))
+        cut = make_voice.cut_lead(take, [])                                # Whisper didn't write the lead
+        self.assertAlmostEqual(len(cut) / sr, 0.6 + 0.125, delta=0.03)     # cut in the middle of the pause
+        long_first = np.concatenate([gap[:2400], word, word, word, gap, word])   # a long first sound isn't the lead
+        self.assertEqual(len(make_voice.cut_lead(long_first, [])), len(long_first))
 
     def test_a_rate_whisper_half_wrote_in_digits_is_still_heard(self):
         n = verify_voice.spoken_numbers

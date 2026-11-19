@@ -30,7 +30,7 @@ Text: read it exactly. Don't add, skip, repeat, reorder or translate any word (a
 | Shot | Save as | Say exactly | How to say it | Listen for |
 |---|---|---|---|---|
 | S01 | `episodes/ep06-shivam-new-job/media/audio/lines/S01.mp3` | शिवम की नई नौकरी! पहला दिन, और एचआर का पहला सवाल। | excited · bright and quick, a little suspense on pehla sawaal | — |
-| S02 | `episodes/ep06-shivam-new-job/media/audio/lines/S02.mp3` | "पुराना यू ए एन है?" शिवम बोला: "नया बना दो ना!" | playful · Priya asks crisply, Shivam answers carelessly | — |
+| S02 | `episodes/ep06-shivam-new-job/media/audio/lines/S02.mp3` | "पुराना, यू ए एन है?" शिवम बोला: "नया बना दो ना!" | playful · Priya asks crisply, Shivam answers carelessly | — |
 | S03 | `episodes/ep06-shivam-new-job/media/audio/lines/S03.mp3` | रुको! यहीं सबसे बड़ी गलती होती है। | serious · a sharp stop on Ruko!, then low and clear | — |
 | S04 | `episodes/ep06-shivam-new-job/media/audio/lines/S04.mp3` | नया यू ए एन, मतलब पुराना पी एफ़, पुराने यू ए एन में अटका। | concerned · stress atka | — |
 | S05 | `episodes/ep06-shivam-new-job/media/audio/lines/S05.mp3` | प्रिया ने समझाया: "यू ए एन एक ही होता है। पूरी ज़िंदगी के लिए।" | warm · Priya, kind and sure; stress ek hi | — |
@@ -40,7 +40,7 @@ Text: read it exactly. Don't add, skip, repeat, reorder or translate any word (a
 | S09 | `episodes/ep06-shivam-new-job/media/audio/lines/S09.mp3` | नाम और जन्म तिथि बिलकुल आधार जैसे। गलत हो, तो खुद ठीक करो। | serious · firm on bilkul, then encouraging on khud theek karo | — |
 | S10 | `episodes/ep06-shivam-new-job/media/audio/lines/S10.mp3` | और पुराना पी एफ़? फ़ॉर्म थर्टीन से नए खाते में ट्रांसफ़र। | proud · a question, then a confident answer on transfer | — |
 | S11 | `episodes/ep06-shivam-new-job/media/audio/lines/S11.mp3` | बस एक चेक: पुरानी कंपनी ने एग्ज़िट डेट डाली है? | curious · a raised eyebrow on exit date | — |
-| S12 | `episodes/ep06-shivam-new-job/media/audio/lines/S12.mp3` | नहीं डाली? सिक्स्टी दिन बाद शिवम खुद मार्क एग्ज़िट कर सकता है। | warm · reassuring, stress khud | 60 |
+| S12 | `episodes/ep06-shivam-new-job/media/audio/lines/S12.mp3` | नहीं डाली? सिक्सटी दिन बाद शिवम खुद मार्क एग्ज़िट कर सकता है। | warm · reassuring, stress khud | 60 |
 | S13 | `episodes/ep06-shivam-new-job/media/audio/lines/S13.mp3` | फिर भी अटका? ईपीएफ़आईजीएमएस पे शिकायत करो। बिलकुल फ़्री। | warm · helpful, a smile on free | — |
 | S14 | `episodes/ep06-shivam-new-job/media/audio/lines/S14.mp3` | नई नौकरी जॉइन करने वाले दोस्त को अभी भेजो। | playful · a quick nudge on abhi bhejo | — |
 | S15 | `episodes/ep06-shivam-new-job/media/audio/lines/S15.mp3` | पी एफ़ समझो, क्लेम पाओ। ईपीएफ़ओ की हर जानकारी चाहिए? फ़ॉलो करो, पी एफ़ गुरु जी। | proud · warm and bright, a smile on Follow karo PF Guru Ji | PF Guru Ji |
