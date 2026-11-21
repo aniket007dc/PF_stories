@@ -4,7 +4,7 @@ PF Guru Ji's how-to theme for one real EPFO task (`"style": "focus"` in `episode
 transfer, KYC, the passbook, a nominee. The screen is the reel. One calm voice walks the viewer through it, click by
 click, the way they'll do it themselves: every page opens on screen and is seen whole, the camera and the cursor (a
 finger on a phone) travel across it to the part the line names, and the part being changed lifts out big and sharp
-while the rest goes soft and dark, so the viewer always knows where they are and where to look.
+while the rest goes soft and pale, so the viewer always knows where they are and where to look.
 
 The other theme is **Kahani**, the paper cut-out story (no `"style"`, or `"paper"`): a real situation told as a
 story. Pick Focus when the reel is "how to do it on the portal"; Kahani when it's "what happened to Shivam".
@@ -35,14 +35,27 @@ of them must be from the last 60 days, and every one read in the last 30 (`brand
 rules`: `source_days`, `seen_days`). EPFO's pages often refuse automated reading, so a person opens them in a browser.
 The checks fail a screen without them (E4.23).
 
+## The look
+
+Neat and clean, like a product walkthrough: a white page (a breath of grey only at the very bottom), and the website
+open in a **MacBook** as wide as the frame: silver lid, black bezel with its camera, the hinge, the base and a soft
+shadow, all drawn by the build. The MacBook stays still and the camera works inside its screen: the page is seen whole
+when it opens, then zooms and pans behind the glass to the part the line names, so the viewer always sees the laptop
+they'll use. A page on the phone (UMANG) shows in a phone on the same white page.
+
+The part in use gets a lemon ring; a part that changes lifts out on a white card with an ink and lemon edge while the
+rest of the page frosts over, white and soft. The words under the screen are near-black, the highlighted ones on a
+lemon marker. The route's chips, the cards and the cursor are white, ink and lemon, with hairline edges and soft
+shadows: no dark panels anywhere.
+
 ## The frame (1080 × 1920)
 
 | Area | What's there |
 |---|---|
-| y 0 to 210 | Instagram's own top bar: background only |
+| y 0 to 210 | Instagram's own top bar: white page only |
 | y 216 to 304 | the PF GURU JI wordmark, and the route's chips on the same row (MANAGE · MARK EXIT · OTP), each lighting up from the line where its step starts |
-| y 316 to 1540 | **the screen**, as big as Instagram's buttons allow (on the hook, under the giant words, from y 660) |
-| y 1560 to 1660 | the spoken words, one or two lines, left of Instagram's buttons; the highlighted words in lemon |
+| y 316 to 1500 | **the screen**: the website in the MacBook, edge to edge (the MacBook from y 597 to 1219, its screen 906 × 566), or the app in a phone; on the hook, under the giant words, from y 660 |
+| y 1560 to 1660 | the spoken words, one or two lines, left of Instagram's buttons, in ink; the highlighted words on a lemon marker |
 | x 930 to 1080, y 1100 to 1660 | Instagram's like, comment and share buttons: nothing that matters goes there, and no tap lands there |
 | y 1660 to 1920 | Instagram's name, caption and audio: background only |
 
@@ -50,11 +63,11 @@ The checks fail a screen without them (E4.23).
 
 | Part | What it does | Who makes it |
 |---|---|---|
-| **The screen** | A page that opens is shown whole for a second; then the camera moves in to each part as its line names it | Muse describes it (reel.json → screens); the build draws it |
+| **The screen** | The website in the MacBook (an app page in a phone). A page that opens is shown whole for a second; then the camera moves in to each part as its line names it, inside the MacBook's screen | Muse describes it (reel.json → screens); the build draws it |
 | **The walk** | The steps start on the page the viewer sees first when they log in, and every page after it opens on screen: a click on a menu item, tab, link or button that goes there. Nothing jumps to a page nobody opened (E4.27) | Muse: `"go"` on the tap that opens each page |
-| **Focus** | The camera travels to the part with a lemon ring round it; then a part that changes (typed words, a tick, a status) lifts out on a white card while the rest blurs and dims | The build, from each line's `focus` and touches |
+| **Focus** | The camera travels to the part with a lemon ring round it; then a part that changes (typed words, a tick, a status) lifts out on a white card while the rest blurs and frosts over | The build, from each line's `focus` and touches |
 | **The touch** | The cursor (laptop) or a finger (phone) travels to the part and taps beside its words, with a ripple; each new page is seen for a second and each change for half a second | Muse: `"do"` actions on their words; the build times them |
-| **The screen answers** | A menu opens, a row picked in a list lights up with a tick, words type themselves, a status turns green, a message pops up | Muse: `open`, `close`, `show`, `toggle`, `write`, `label` … |
+| **The screen answers** | A menu opens and is framed whole; the row picked closes it and its field shows the pick at once, ringed. A row picked in a list lights up with a tick, words type themselves, a status turns green, a message pops up | Muse: `open`, `close`, `show`, `toggle`, `write`, `label` … (a menu pick is one action: `tap`, `close` and the field's `label`) |
 | **Route** | Before the first step: the whole path in 3 to 5 stops | Muse: `route` card, and `route` chips |
 | **Flow** | What happens behind the screen: who sends what to EPFO, and the result: the mistake in red, then the fix in green | Muse: `flow` card |
 | **Checklist** | The list worth a screenshot, ticked in item by item | Muse: `checklist` card |

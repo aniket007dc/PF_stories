@@ -406,12 +406,9 @@
      {
       "tap": "oldjob",
       "close": "jobs",
-      "on": "purani"
-     },
-     {
       "label": "Purani Company",
       "label_of": "employment",
-      "on": "chuno"
+      "on": "purani"
      }
     ]
    }
@@ -422,8 +419,8 @@
     "screen": "exit",
     "do": [
      {
-      "write": "doe",
-      "text": "15/09/2026",
+      "label": "15/09/2026",
+      "label_of": "doe",
       "on": "Date"
      },
      {
@@ -434,9 +431,6 @@
      {
       "tap": "cessation",
       "close": "reasons",
-      "on": "chuno"
-     },
-     {
       "label": "Cessation (Short Service)",
       "label_of": "reason",
       "on": "chuno"

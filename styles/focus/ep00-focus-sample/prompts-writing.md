@@ -89,7 +89,7 @@ After the JSON: the steps as research.md → Steps on screen has them, each with
 Put `shots` and `breaks` into `episode.json`, and `reel` into `reel.json` (adding `"schema": "dc-reel/1"`, `"episode": "ep00-focus-sample"` and `"brand_label": "PF GURU JI"` at the top).
 
 ```text
-Plan the shots of one Focus reel for PF Guru Ji: the screens, what happens on them line by line, and the few cards between them. The build draws everything from what you write: each screen as the portal or the app shows it now, every page opening on screen and seen whole, the camera and a finger (phone) or the cursor (laptop) travelling across it to the part in use, the tap, the screen answering, the part that changes lifted out big while the rest dims, the cards, the words under the screen and the sounds. Nobody pastes a screenshot: you describe each screen from the newest official pages and videos, and the build draws it clean and sharp, at any zoom, with nobody's details on it.
+Plan the shots of one Focus reel for PF Guru Ji: the screens, what happens on them line by line, and the few cards between them. The build draws everything from what you write: each screen as the portal or the app shows it now (a website open in a MacBook, an app in a phone, on a clean white page), every page opening on screen and seen whole, the camera and a finger (phone) or the cursor (laptop) travelling across it to the part in use, the tap, the screen answering, the part that changes lifted out big while the rest fades, the cards, the words under the screen and the sounds. Nobody pastes a screenshot: you describe each screen from the newest official pages and videos, and the build draws it clean and sharp, at any zoom, with nobody's details on it.
 
 THE APPROVED SCRIPT (one line per shot):
 [
@@ -344,8 +344,8 @@ The viewer will do this on their own screen, so the reel goes the way they will,
 
 4 · WHAT HAPPENS, LINE BY LINE (reel.json → shots)
 - A line on a screen: {"type": "screen", "screen": "exit", "focus": "employment", "do": [{"tap": "employment", "open": "jobs", "on": "Employment"}]}
-  "focus": the part the line is about: the camera travels there (a lemon ring shows it), then it lifts out big while the rest dims. "do": what happens, each action on its word ("on", copied from the line), in the order the viewer does them.
-  - {"tap": id}: tapped. What the tap does goes in the same action: "open": overlay, "close": overlay, "show": a toast, "go": another screen, "toggle": true or false.
+  "focus": the part the line is about: the camera travels there (a lemon ring shows it), then it lifts out big while the rest fades. "do": what happens, each action on its word ("on", copied from the line), in the order the viewer does them.
+  - {"tap": id}: tapped. What the tap does goes in the same action: "open": overlay, "close": overlay, "show": a toast, "go": another screen, "toggle": true or false. A row picked in a menu closes it and fills its field at once, so the pick, the close and the field's new value are one action: {"tap": "oldjob", "close": "jobs", "label": "Purani Company", "label_of": "employment", "on": "purani"}.
   - {"write": id, "text": "15/10/2026"}: typed into a field, letter by letter. Never an OTP, a password or a real number: an OTP field is filled with "● ● ● ● ● ●".
   - {"check": id}: a checkbox ticked.
   - {"look": id}: lifted out without a touch, when the line points at it ("Date of Exit khali hai").

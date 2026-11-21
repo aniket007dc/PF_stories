@@ -2,9 +2,10 @@
 """Focus: how to do something on a website or in an app, shown on the screen itself (styles/focus/STYLE.md).
 tools/build_reel.py builds an episode in this style when its episode.json says "style": "focus".
 
-- The screen is the reel: as big as Instagram's own overlays allow (ZONE). A phone shows whole; a laptop page is a
-  window the camera moves over, to each part as its line names it.
-- Focus mode: the part being used lifts out of the screen, big and sharp, while the rest goes soft and dark; a touch
+- A clean white board. The screen is the reel: as big as Instagram's own overlays allow (ZONE). A website opens in a
+  MacBook as wide as the frame, and the camera moves over the page inside its screen, to each part as its line names
+  it; a phone shows whole.
+- Focus mode: the part being used lifts out of the screen, big and sharp, while the rest goes soft and pale; a touch
   (phone) or a cursor (laptop) taps beside its words, never on them; the screen answers (a toggle flips, a sheet slides
   up, words type themselves, a message confirms).
 - Screens are drawn from Muse's description (tools/screens.py), after the newest official pages and tutorials: never
@@ -35,7 +36,15 @@ CAP_SIZE = 54
 READABLE = 34                        # px: the smallest body text a part being used may show
 LEMON, INK, WHITE = B.LEMON, B.INK, (255, 255, 255)
 GREEN, RED, BLUE = (52, 199, 89), (255, 69, 58), (10, 132, 255)
-CHIP_OFF = (40, 48, 74)
+# A clean white board (PF Guru Ji): ink words, grey for what's not yet, lemon for what's now
+TEXT, MUTED, FAINT, HAIR = (26, 26, 28), (110, 110, 118), (152, 152, 160), (226, 226, 232)
+CHIP_OFF, CHIP_OFF_TEXT = (236, 236, 241), (140, 140, 150)
+# The MacBook a laptop page opens on, in points (its screen is the page's 1280 x 800): the lid with its aluminium rim
+# and black bezel, the hinge, and the base, wider than the lid
+MAC_W, MAC_H = 1492.0, 878.0
+MAC_LID = (86.0, 0.0, 1406.0, 844.0)
+MAC_SCREEN = (106.0, 24.0, 1386.0, 824.0)
+MAC_SIDE = 12                        # px between the MacBook and the frame's edges
 FADE = 0.28                          # a card takes the screen's place with a short cross-fade
 LIFT_IN, LIFT_OUT = 0.42, 0.3
 REACH = 0.6                          # the pointer travels this long to its target before the tap
@@ -72,27 +81,75 @@ def blend_view(a, b, u):
     return (mx - w / 2, my - h / 2, w, h)
 
 
-def ring_round(frame, box, alpha=1.0):
-    """A lemon ring round a part of the page, faded in by alpha."""
+def ring_round(frame, box, alpha=1.0, clip=None):
+    """A lemon ring round a part of the page, faded in by alpha. clip: the frame box it stays inside (a MacBook's
+    screen): the ring is on the page, so a part wider than the glass has its ring cut where the glass ends."""
     x0, y0, x1, y1 = [int(round(v)) for v in box]
     pad = 6
     x0c, y0c, x1c, y1c = max(0, x0 - pad), max(0, y0 - pad), min(W, x1 + pad), min(H, y1 + pad)
+    if clip:
+        x0c, y0c = max(x0c, int(math.ceil(clip[0]))), max(y0c, int(math.ceil(clip[1])))
+        x1c, y1c = min(x1c, int(clip[2])), min(y1c, int(clip[3]))
     if x1c <= x0c or y1c <= y0c:
         return
     ov = Image.new("RGBA", (x1c - x0c, y1c - y0c), (0, 0, 0, 0))
-    ImageDraw.Draw(ov).rounded_rectangle([x0 - x0c, y0 - y0c, x1 - x0c, y1 - y0c], 16,
-                                         outline=LEMON + (int(255 * max(0.0, min(1.0, alpha))),), width=5)
+    a = int(255 * max(0.0, min(1.0, alpha)))
+    od = ImageDraw.Draw(ov)
+    od.rounded_rectangle([x0 - x0c, y0 - y0c, x1 - x0c, y1 - y0c], 16, outline=INK + (a,), width=8)
+    od.rounded_rectangle([x0 - x0c + 2, y0 - y0c + 2, x1 - x0c - 2, y1 - y0c - 2], 14, outline=LEMON + (a,), width=4)
     frame.alpha_composite(ov, (x0c, y0c))
 
 
 @lru_cache(maxsize=1)
 def board():
-    """Deep navy with a soft light behind the screen and a whisper of grain."""
-    rng = np.random.default_rng(7)
-    yy, xx = np.mgrid[0:H, 0:W]
-    glow = np.clip(1 - np.sqrt(((xx - 540) / 700.0) ** 2 + ((yy - 930) / 900.0) ** 2), 0, 1) ** 1.6
-    arr = np.stack([12 + 26 * glow, 16 + 34 * glow, 30 + 58 * glow], axis=2) + rng.normal(0, 2.2, (H, W, 3))
+    """A clean white board, a breath of grey towards the bottom so the MacBook stands on something."""
+    yy = np.mgrid[0:H, 0:W][0]
+    shade = np.clip((yy - 1100) / 820.0, 0, 1) ** 2 * 7
+    arr = np.repeat((255 - shade)[:, :, None], 3, axis=2)
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA")
+
+
+def macbook_rect(zone):
+    """Where the MacBook sits for a zone: (points to px, its box, its screen's box), in frame pixels. As wide as the
+    frame allows, in the middle of the zone."""
+    zx0, zy0, zx1, zy1 = zone
+    width = W - 2 * MAC_SIDE
+    u = width / MAC_W
+    top = (zy0 + zy1) / 2 - MAC_H * u / 2
+    dev = (MAC_SIDE, top, MAC_SIDE + width, top + MAC_H * u)
+    scr = (MAC_SIDE + MAC_SCREEN[0] * u, top + MAC_SCREEN[1] * u, MAC_SIDE + MAC_SCREEN[2] * u,
+           top + MAC_SCREEN[3] * u)
+    return u, dev, scr
+
+
+@lru_cache(maxsize=4)
+def macbook_body(width_px):
+    """The MacBook drawn width_px wide, its screen black (the page goes on it), with its soft shadow under it: RGBA,
+    30 points taller than the MacBook for the shadow."""
+    k = 2.0                                                        # drawn twice as big, then shrunk: smooth edges
+    u = width_px / MAC_W * k
+    w, h = int(round(MAC_W * u)), int(round((MAC_H + 30) * u))
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sh = Image.new("L", (w, h), 0)
+    ImageDraw.Draw(sh).ellipse([70 * u, (MAC_H - 12) * u, (MAC_W - 70) * u, (MAC_H + 14) * u], fill=120)
+    img.paste((0, 0, 0, 255), mask=sh.filter(ImageFilter.GaussianBlur(9 * u)))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([0, 852 * u, w - 1, MAC_H * u], radius=int(12 * u), fill=(186, 188, 193))   # the base's front
+    d.rounded_rectangle([0, 866 * u, w - 1, MAC_H * u], radius=int(12 * u), fill=(166, 168, 173))
+    d.rounded_rectangle([3 * u, 849 * u, w - 3 * u, 858 * u], radius=int(4 * u), fill=(224, 225, 229))  # its top
+    d.rounded_rectangle([(MAC_W / 2 - 96) * u, 852 * u, (MAC_W / 2 + 96) * u, 859 * u], radius=int(5 * u),
+                        fill=(198, 200, 205))                                                       # the thumb notch
+    d.rectangle([(MAC_LID[0] + 46) * u, 840 * u, (MAC_LID[2] - 46) * u, 850 * u], fill=(54, 55, 60))  # the hinge
+    d.rounded_rectangle([MAC_LID[0] * u, MAC_LID[1] * u, MAC_LID[2] * u, MAC_LID[3] * u], radius=int(28 * u),
+                        fill=(200, 202, 207), corners=(True, True, False, False))                  # the lid's rim
+    d.rounded_rectangle([(MAC_LID[0] + 2.5) * u, (MAC_LID[1] + 2.5) * u, (MAC_LID[2] - 2.5) * u,
+                         (MAC_LID[3] - 1) * u], radius=int(26 * u), fill=(13, 13, 15),
+                        corners=(True, True, False, False))                                         # the bezel
+    d.rectangle([MAC_SCREEN[0] * u, MAC_SCREEN[1] * u, MAC_SCREEN[2] * u, MAC_SCREEN[3] * u], fill=(0, 0, 0))
+    cx = (MAC_LID[0] + MAC_LID[2]) / 2 * u
+    d.ellipse([cx - 3.4 * u, 9 * u, cx + 3.4 * u, 15.8 * u], fill=(34, 34, 38))                     # the camera
+    d.ellipse([cx - 1.4 * u, 11 * u, cx + 1.4 * u, 13.8 * u], fill=(58, 62, 84))
+    return img.resize((int(round(w / k)), int(round(h / k))), Image.LANCZOS)
 
 
 def wrap_caption(words, size=CAP_SIZE, width=SAFE_R - SAFE_L, avoid=()):
@@ -233,10 +290,11 @@ class Headline(Card):
             tw = B.text_width(line, "anton", size, 0)
             if lit:                                         # the block sits around the letters themselves
                 top, bot = B.ink_box(line, "anton", size)
-                d.rectangle([(W - tw) / 2 - 20, y + top - 12, (W + tw) / 2 + 20, y + bot + 16],
+                d.rectangle([(W - tw) / 2 - 28, y + top - 14, (W + tw) / 2 + 28, y + bot + 18],
                             fill=LEMON + (int(255 * a),))
-            B.draw_text(frame, (W - tw) / 2, y, line, "anton", size, INK if lit else WHITE, 0)
-            y += size + 12
+            B.draw_text(frame, (W - tw) / 2, y, line, "anton", size, INK if lit else TEXT, 0)
+            y += size + 30                                  # room between the lines: on white, a lemon block that
+                                                            # touches the line above reads as one blur (and OCR agrees)
 
 
 class Route(Card):
@@ -265,7 +323,7 @@ class Route(Card):
         block = (150 if title else 0) + step * len(items)
         y = (ZONE[1] + ZONE[3]) / 2 - block / 2               # the whole route sits in the middle of the zone
         if title:
-            B.draw_text(frame, (W - B.text_width(title, "anton", 88, 0)) / 2, y + 88, title, "anton", 88, WHITE, 0)
+            B.draw_text(frame, (W - B.text_width(title, "anton", 88, 0)) / 2, y + 88, title, "anton", 88, TEXT, 0)
             y += 150
         r = min(44, step * 0.24)
         for k, it in enumerate(items):
@@ -273,22 +331,22 @@ class Route(Card):
             if a <= 0:
                 continue
             cy = y + k * step + step / 2
-            col = GREEN if k < now else (LEMON if k == now else (52, 62, 96))
+            col = GREEN if k < now else (LEMON if k == now else CHIP_OFF)
             d.ellipse([194 - r, cy - r, 194 + r, cy + r], fill=col)
             if k < now:
-                K.tick_mark(d, 194 / 1.0, cy, 1.0, INK, 2.3 * r / 44)
+                K.tick_mark(d, 194 / 1.0, cy, 1.0, WHITE, 2.3 * r / 44)
             else:
                 n = str(k + 1)
                 B.draw_text(frame, 194 - B.text_width(n, "anton", 50, 0) / 2, cy + 20, n, "anton", 50,
-                            INK if k == now else WHITE, 0)
+                            INK if k == now else CHIP_OFF_TEXT, 0)
             if k < len(items) - 1:
-                d.line([(194, cy + r + 4), (194, cy + step - r - 4)], fill=(70, 80, 118), width=6)
+                d.line([(194, cy + r + 4), (194, cy + step - r - 4)], fill=HAIR, width=6)
             sub = it.get("sub")
             B.draw_text(frame, 280, cy + (8 if sub else 24), it.get("text", ""), "anton",
-                        fit_size(it.get("text", ""), "anton", 66, SAFE_R - 290), WHITE if k <= now else (176, 184, 208), 0)
+                        fit_size(it.get("text", ""), "anton", 66, SAFE_R - 290), TEXT if k <= now else FAINT, 0)
             if sub:
                 B.draw_text(frame, 282, cy + 54, sub, "caption", fit_size(sub, "caption", 32, SAFE_R - 290),
-                            (196, 204, 226), 0)
+                            MUTED, 0)
 
 
 class Flow(Card):
@@ -343,7 +401,7 @@ class Flow(Card):
         to_box = (560, ty - sh / 2, SAFE_R, ty + sh / 2)
         tx = to_box[0]
         for y in ys:                                       # the roads, under everything
-            d.line([(440, y), (490, y), (520, ty), (tx, ty)], fill=(110, 124, 168), width=7, joint="curve")
+            d.line([(440, y), (490, y), (520, ty), (tx, ty)], fill=(204, 204, 212), width=7, joint="curve")
         for snd, y in zip(senders, ys):
             self.node(frame, (60, y - sh / 2, 440, y + sh / 2), snd.get("title", ""), snd.get("sub", ""))
         to = self.spec.get("to") or {}
@@ -442,10 +500,10 @@ class Outro(Card):
 def Card_box(frame, box, ring=None, radius=26):
     x0, y0, x1, y1 = [int(v) for v in box]
     sh = Image.new("L", (W, H), 0)
-    ImageDraw.Draw(sh).rounded_rectangle([x0 + 6, y0 + 20, x1 + 6, y1 + 24], radius, fill=170)
-    frame.paste((0, 0, 0, 255), mask=sh.filter(ImageFilter.GaussianBlur(26)))
+    ImageDraw.Draw(sh).rounded_rectangle([x0 + 4, y0 + 14, x1 - 4, y1 + 18], radius, fill=60)
+    frame.paste((0, 0, 0, 255), mask=sh.filter(ImageFilter.GaussianBlur(22)))
     d = ImageDraw.Draw(frame)
-    d.rounded_rectangle([x0, y0, x1, y1], radius, fill=WHITE)
+    d.rounded_rectangle([x0, y0, x1, y1], radius, fill=WHITE, outline=HAIR, width=2)
     if ring:
         d.rounded_rectangle([x0 - 2, y0 - 2, x1 + 2, y1 + 2], radius + 2, outline=ring, width=5)
 
@@ -822,8 +880,11 @@ class FocusReel(Hs.HostReel):
                 marks.append((e0 + float(a.get("hold", 2.4)) + 0.3, "whole", None, a["show"]))
             elif a.get("open"):
                 marks.append((e0 + 0.3, "overlay", a["open"], None))
-            elif a.get("close"):
-                marks.append((e0 + 0.15, "whole", None, None))
+            elif a.get("close"):                          # a closed dialog shows the page; a menu on a MacBook, the
+                shown = self.screens[self.screen_name_at(self.track[a["shot"]], a["t"])]   # field it hangs from,
+                near = ((shown.spec.get("overlays") or {}).get(a["close"]) or {}).get("near")   # with what was picked
+                marks.append((e0 + 0.15, "aim", near, None) if near and shown.device == "laptop"
+                             else (e0 + 0.15, "whole", None, None))
             elif target and self.navigates(a) and not a.get("go"):   # a tab or a menu item: what changed on the page
                 marks.append((e0 + SHOW, "whole", None, None))
         for t in lands:                                  # a page seen whole, then the camera settles where it reads
@@ -895,12 +956,14 @@ class FocusReel(Hs.HostReel):
         return ZONE
 
     def camera(self, shown, boxes, target, zone, kind="part"):
-        """(x, y, w, h) in the device image's points that the zone shows.
-        - "land": a page that has just opened, all of it: a laptop window from edge to edge, a phone whole.
-        - "whole": a laptop page's top left, where its name and menu are; a phone whole.
+        """(x, y, w, h) in the device image's points that the zone shows (a laptop page: laptop_camera).
+        - "land": a page that has just opened, all of it: a phone whole.
+        - "whole": a phone whole.
         - "aim" and "part": the part in use, close enough to read (a phone comes closer too), left of Instagram's
           buttons and never past the page's edges.
         - "overlay": an open dialog, whole."""
+        if shown.device == "laptop":
+            return self.laptop_camera(shown, boxes, target, zone, kind)
         sw, sh = shown.size_pt()
         ox, oy = shown.offset_pt()
         zw, zh = zone[2] - zone[0], zone[3] - zone[1]
@@ -940,6 +1003,54 @@ class FocusReel(Hs.HostReel):
             limit = SAFE_R - (20 if narrow else 80)
             if edge > limit:
                 x = min(max(0, sw - cw), x + (edge - limit) / scale)
+        return (x, y, cw, ch)
+
+    def laptop_camera(self, shown, boxes, target, zone, kind="part"):
+        """(x, y, w, h) of the page the MacBook's screen shows, in the page's points. The MacBook stays where it is and
+        the page zooms inside its screen: the whole page when it has just opened ("land") or when no part is named
+        ("whole"); the part in use close enough to read ("aim", "part"), left of Instagram's buttons and never past the
+        page's edges; an open dialog whole ("overlay")."""
+        sw, sh = shown.size_pt()
+        _, _, scr = macbook_rect(zone)
+        vw, vh = scr[2] - scr[0], scr[3] - scr[1]
+        aspect = vh / vw
+        box = boxes.get(target) if target else None
+        if not box and kind == "overlay" and target:      # an open menu or dialog: all of its own items
+            ov = (shown.spec.get("overlays") or {}).get(target) or {}
+            ids = [x.get("id") if isinstance(x, dict) and x.get("id") else       # an item without an id is menu/label
+                   "{}/{}".format(target, x if isinstance(x, str) else (x or {}).get("text", ""))
+                   for x in ov.get("items") or []]
+            ids += [x.get("id") for x in ov.get("parts") or [] if isinstance(x, dict)]
+            got = [boxes[k] for k in ids if k and k in boxes]
+            near = boxes.get(ov.get("near")) if ov.get("near") else None
+            if near and got:                               # the part it hangs from, only as far across as the menu:
+                lo, hi = min(b[0] for b in got), max(b[2] for b in got)   # a field's left end, where its name is
+                lo = min(max(near[0], lo), near[2])
+                near = (lo, near[1], max(lo, min(near[2], hi)), near[3])
+            got += [near] if near else []
+            if got:
+                box = (min(b[0] for b in got), min(b[1] for b in got), max(b[2] for b in got), max(b[3] for b in got))
+        if kind in ("land", "whole") or not box:
+            return (0.0, 0.0, sw, sw * aspect)
+        least = vw * 16.5 / (READABLE + 2)                 # closer than the page's text needs to be readable
+        most = least * 0.62                                # a part wider than this: frame its left end, where its
+        if box[2] - box[0] > most and kind != "overlay":   # name or a row's words are
+            box = (box[0], box[1], box[0] + most, box[3])
+        bw, bh = box[2] - box[0], box[3] - box[1]
+        cw = max(bw + 60 if kind == "overlay" else bw / 0.62, least)
+        if kind == "overlay":                              # an open menu or dialog, top to bottom
+            cw = max(cw, (bh + 60) / aspect)
+        cw = min(cw, sw)
+        ch = cw * aspect
+        cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
+        x = min(max(cx - cw / 2, 0), max(0, sw - cw))
+        y = min(max(cy - ch / 2, 0), max(0, sh - ch))
+        scale = vw / cw                                    # the part stays left of Instagram's buttons
+        narrow = (box[2] - box[0]) * scale < SAFE_R - scr[0] - 60
+        edge = scr[0] + ((box[2] if narrow else (box[0] + box[2]) / 2) - x) * scale
+        limit = SAFE_R - (20 if narrow else 80)
+        if edge > limit:
+            x = min(max(0, sw - cw), x + (edge - limit) / scale)
         return (x, y, cw, ch)
 
     def aim(self, shown, name, beat, t, zone):
@@ -986,14 +1097,33 @@ class FocusReel(Hs.HostReel):
         if stills:
             lifts = [(pid, 1.0, False) for pid, _, _ in lifts[-1:]]
         info = {"lift": None, "lifted": None, "hit": None, "text_px": None, "pointers": [], "aimed": None}
-        scale_pt = zw / cw                                 # pixels per point
         ox, oy = off[0] / ppt, off[1] / ppt                # the screen's top left in the device image, in points
-        to_frame = lambda x, y: (zx0 + (ox + x - cx) * scale_pt, zy0 + (oy + y - cy) * scale_pt)   # noqa: E731
         layer = Image.new("RGBA", (zw, zh), (0, 0, 0, 0))
         iw, ih = img.width / ppt, img.height / ppt
         vx0, vy0, vx1, vy1 = max(0.0, cx), max(0.0, cy), min(iw, cx + cw), min(ih, cy + ch)
-        body = None                                        # where the device shows in the frame
-        if vx1 > vx0 and vy1 > vy0:                        # the part of the device the camera sees, at its size
+        body = glass = None                                # where the device shows in the frame; a MacBook's screen
+        if shown.device == "laptop":                       # a MacBook, the page on its screen, zoomed inside it
+            _, dev, scr = macbook_rect(zone)
+            glass = scr
+            vw, vh = int(round(scr[2] - scr[0])), int(round(scr[3] - scr[1]))
+            scale_pt = vw / cw
+            to_frame = lambda x, y: (scr[0] + (ox + x - cx) * scale_pt, scr[1] + (oy + y - cy) * scale_pt)   # noqa: E731
+            mac = macbook_body(int(round(dev[2] - dev[0])))
+            layer.alpha_composite(mac, (int(round(dev[0] - zx0)), int(round(dev[1] - zy0))))
+            view = Image.new("RGBA", (vw, vh), (0, 0, 0, 255))
+            if vx1 > vx0 and vy1 > vy0:
+                src = img.crop((int(vx0 * ppt), int(vy0 * ppt), int(math.ceil(vx1 * ppt)), int(math.ceil(vy1 * ppt))))
+                dw, dh = max(1, int(round((vx1 - vx0) * scale_pt))), max(1, int(round((vy1 - vy0) * scale_pt)))
+                piece = src.resize((dw, dh), Image.LANCZOS)
+                view.paste(piece, (int(round((vx0 - cx) * scale_pt)), int(round((vy0 - cy) * scale_pt))), piece)
+            m = Image.new("L", view.size, 0)
+            ImageDraw.Draw(m).rounded_rectangle([0, 0, vw - 1, vh - 1], 5, fill=255)
+            view.putalpha(m)
+            layer.paste(view, (int(round(scr[0] - zx0)), int(round(scr[1] - zy0))), view)
+        else:
+            scale_pt = zw / cw                             # pixels per point
+            to_frame = lambda x, y: (zx0 + (ox + x - cx) * scale_pt, zy0 + (oy + y - cy) * scale_pt)   # noqa: E731
+        if shown.device != "laptop" and vx1 > vx0 and vy1 > vy0:   # the part of the device the camera sees
             src = img.crop((int(vx0 * ppt), int(vy0 * ppt), int(math.ceil(vx1 * ppt)), int(math.ceil(vy1 * ppt))))
             dw, dh = max(1, int(round((vx1 - vx0) * scale_pt))), max(1, int(round((vy1 - vy0) * scale_pt)))
             piece = src.resize((dw, dh), Image.LANCZOS)
@@ -1039,16 +1169,16 @@ class FocusReel(Hs.HostReel):
                 info.update(text_px=text_px, lift=(left, top, left + full_w, top + full_h), lifted=pid,
                             hit=None if hit is None else (left + hit[0], top + hit[1], left + hit[2], top + hit[3]))
         soft = max([c[2] for c in cards if c[0] == "card"] or [0.0])
-        if soft > 0.01:                                    # focus: the rest softens and dims
+        if soft > 0.01:                                    # focus: the rest softens and frosts over, white
             a = float(min(1.0, soft))
             blurred = layer.filter(ImageFilter.GaussianBlur(5 * a))
-            dark = Image.new("RGBA", blurred.size, (6, 8, 16, int(120 * a)))
-            layer = Image.alpha_composite(blurred, Image.composite(dark, Image.new("RGBA", blurred.size, (0, 0, 0, 0)),
+            frost = Image.new("RGBA", blurred.size, (255, 255, 255, int(150 * a)))
+            layer = Image.alpha_composite(blurred, Image.composite(frost, Image.new("RGBA", blurred.size, (0, 0, 0, 0)),
                                                                    blurred.getchannel("A")))
         if body:
             sh = Image.new("L", (W, H), 0)
             ImageDraw.Draw(sh).rounded_rectangle([body[0] + 8, body[1] + 26, body[2] - 8, body[3] + 22],
-                                                 60 if shown.device == "phone" else 30, fill=160)
+                                                 60 if shown.device == "phone" else 30, fill=70)
             frame.paste((0, 0, 0, 255), mask=sh.filter(ImageFilter.GaussianBlur(36)))
         frame.alpha_composite(layer, (zx0, zy0))
         aimed = self.aimed_at(i, t)
@@ -1058,20 +1188,22 @@ class FocusReel(Hs.HostReel):
             if box:
                 x0, y0 = to_frame(box[0], box[1])
                 x1, y1 = to_frame(box[2], box[3])
-                ring_round(frame, (x0 - 10, y0 - 10, x1 + 10, y1 + 10), ring_in)
+                ring_round(frame, (x0 - 10, y0 - 10, x1 + 10, y1 + 10), ring_in, glass)
                 info["aimed"] = rid
                 if arrived:
                     info["text_px"] = 16.5 * scale_pt
         for kind, where, p, art, fade in cards:
             if kind == "ring":
                 x0, y0, x1, y1 = where
-                ImageDraw.Draw(frame).rounded_rectangle([x0 - 12, y0 - 12, x1 + 12, y1 + 12], 16, outline=LEMON,
-                                                        width=5)
+                ring_round(frame, (x0 - 12, y0 - 12, x1 + 12, y1 + 12), 1.0, glass)
                 continue
             lx, ly, aw, ah = where
             framed = Image.new("RGBA", (aw + 8, ah + 8), (0, 0, 0, 0))
+            fd = ImageDraw.Draw(framed)                    # white inside the edge: the part's own round corners
+            fd.rounded_rectangle([3, 3, aw + 4, ah + 4], 21, fill=WHITE + (255,))   # don't show the shadow
             framed.alpha_composite(art.resize((aw, ah), Image.LANCZOS), (4, 4))
-            ImageDraw.Draw(framed).rounded_rectangle([2, 2, aw + 5, ah + 5], 22, outline=LEMON + (255,), width=4)
+            fd.rounded_rectangle([1, 1, aw + 6, ah + 6], 23, outline=INK + (255,), width=3)
+            fd.rounded_rectangle([3, 3, aw + 4, ah + 4], 21, outline=LEMON + (255,), width=4)
             if fade < 1.0:                                 # the part going back fades as it goes
                 framed.putalpha(framed.getchannel("A").point(lambda v, f=fade: int(v * f)))
             s2 = Image.new("L", (W, H), 0)
@@ -1117,6 +1249,8 @@ class FocusReel(Hs.HostReel):
             box = boxes[target]
             (fx0, fy0), (fx1, fy1) = to_frame(box[0], box[1]), to_frame(box[2], box[3])
             zx0, zy0, zx1, zy1 = self.zone_for(i, t)       # a part wider than the view: where the view shows it
+            if laptop:                                     # on a MacBook, what its screen shows
+                zx0, zy0, zx1, zy1 = macbook_rect((zx0, zy0, zx1, zy1))[2]
             fx0, fx1 = max(fx0, zx0 + 20), min(fx1, min(zx1, SAFE_R) - 20)
             if fx1 <= fx0:
                 continue
@@ -1124,7 +1258,10 @@ class FocusReel(Hs.HostReel):
             info["pointers"].append((tx, ty))
             if t < a["t"]:
                 u = smooth((t - (a["t"] - lead)) / lead)
-                ox, oy = tx + (1 - u) * 150, ty + (1 - u) * 210
+                sx, sy = tx + 150, ty + 210                # it comes in from the lower right
+                if laptop:                                 # from inside the MacBook's screen
+                    sx, sy = min(sx, zx1 - 50), min(sy, zy1 - 74)
+                ox, oy = tx + (1 - u) * (sx - tx), ty + (1 - u) * (sy - ty)
             else:
                 ox, oy = tx, ty
             ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -1132,7 +1269,8 @@ class FocusReel(Hs.HostReel):
             if touch and t >= a["t"]:
                 u = (t - a["t"]) / 0.5
                 r = 28 + 72 * u
-                d.ellipse([ox - r, oy - r, ox + r, oy + r], outline=LEMON + (int(255 * (1 - u)),), width=5)
+                d.ellipse([ox - r, oy - r, ox + r, oy + r], outline=INK + (int(200 * (1 - u)),), width=4)
+                d.ellipse([ox - r * 0.6, oy - r * 0.6, ox + r * 0.6, oy + r * 0.6], fill=LEMON + (int(150 * (1 - u)),))
             if laptop:
                 k = 0.85 if touch and a["t"] <= t < a["t"] + 0.12 else 1.0
                 pts = [(0, 0), (0, 58), (15, 44), (26, 70), (37, 65), (26, 40), (46, 40)]
@@ -1141,8 +1279,12 @@ class FocusReel(Hs.HostReel):
                 d.line(poly + [poly[0]], fill=INK + (255,), width=4)
             else:
                 r = 30 if not (a["t"] <= t < a["t"] + 0.12) else 25
-                d.ellipse([ox - r, oy - r, ox + r, oy + r], fill=(255, 255, 255, 120), outline=(255, 255, 255, 235),
+                d.ellipse([ox - r, oy - r, ox + r, oy + r], fill=(26, 26, 28, 60), outline=(26, 26, 28, 170),
                           width=3)
+            if laptop:                                     # the cursor is on the page: the glass's edge cuts it
+                glass = Image.new("L", (W, H), 0)
+                ImageDraw.Draw(glass).rectangle([math.ceil(zx0), math.ceil(zy0), int(zx1) - 1, int(zy1) - 1], fill=255)
+                ov.putalpha(ImageChops.multiply(ov.getchannel("A"), glass))
             frame.alpha_composite(ov)
 
     # ---- the header: the logo, and the route on the same row
@@ -1187,7 +1329,7 @@ class FocusReel(Hs.HostReel):
             done, cur = k < now, k == now
             d.rounded_rectangle([x, y, x + w, y + 44], 22, fill=GREEN if done else (LEMON if cur else CHIP_OFF))
             B.draw_text(frame, x + (w - B.text_width(lab, "mono_bold", size, 0)) / 2, y + 30, lab, "mono_bold", size,
-                        INK if (done or cur) else (150, 158, 184), 0)
+                        WHITE if done else (INK if cur else CHIP_OFF_TEXT), 0)
             x += w + 10
 
     # ---- the words
@@ -1223,11 +1365,14 @@ class FocusReel(Hs.HostReel):
         while size > 30 and any(B.text_width(" ".join(ln), "caption", size, 0) > SAFE_R - SAFE_L for ln in lines):
             size -= 4
         ys = [CAP_Y] if len(lines) == 1 else [CAP_Y - 34, CAP_Y + 30]
+        d = ImageDraw.Draw(frame)
         for line, y in zip(lines, ys):
             x = (SAFE_L + SAFE_R - B.text_width(" ".join(line), "caption", size, 0)) / 2
             for w in line:
-                col = LEMON if B.norm_word(w) in highlights else WHITE
-                B.draw_text(frame, x, y, w, "caption", size, col, 0)
+                ww = B.text_width(w, "caption", size, 0)
+                if B.norm_word(w) in highlights:                  # a lemon marker behind the word
+                    d.rounded_rectangle([x - 6, y - size * 0.80, x + ww + 6, y + size * 0.18], 8, fill=LEMON)
+                B.draw_text(frame, x, y, w, "caption", size, TEXT, 0)
                 x += B.text_width(w + " ", "caption", size, 0)
 
     # ---- the frame
@@ -1289,11 +1434,21 @@ class FocusReel(Hs.HostReel):
             last = k == len(lines) - 1
             if last:
                 ImageDraw.Draw(frame).rectangle([(W - tw) / 2 - 20, y + 18 - size, (W + tw) / 2 + 20, y + 30], fill=LEMON)
-            B.draw_text(frame, (W - tw) / 2, y, line, "anton", size, INK if last else WHITE, 0)
+            B.draw_text(frame, (W - tw) / 2, y, line, "anton", size, INK if last else TEXT, 0)
             y += 30
         stamp_y = y + 10
-        if art is not None:
-            B.paste(frame, art, (W - art.width) / 2, y + 70)
+        if art is not None:                                # lifted out as in the reel: a soft shadow, an ink and lemon edge
+            ax, ay = int(round((W - art.width) / 2)), int(round(y + 70))
+            sh = Image.new("L", (W, H), 0)
+            ImageDraw.Draw(sh).rounded_rectangle([ax + 6, ay + 18, ax + art.width + 6, ay + art.height + 22], 26,
+                                                 fill=150)
+            frame.paste((0, 0, 0, 255), mask=sh.filter(ImageFilter.GaussianBlur(26)))
+            d = ImageDraw.Draw(frame)
+            d.rounded_rectangle([ax - 1, ay - 1, ax + art.width, ay + art.height], 21, fill=WHITE)
+            B.paste(frame, art, ax, ay)
+            d = ImageDraw.Draw(frame)
+            d.rounded_rectangle([ax - 3, ay - 3, ax + art.width + 2, ay + art.height + 2], 23, outline=INK, width=3)
+            d.rounded_rectangle([ax - 1, ay - 1, ax + art.width, ay + art.height], 21, outline=LEMON, width=4)
             stamp_y = y + 70
         if cover.get("stamp"):
             st = Hs.Sticker({"text": cover["stamp"], "x": 760, "y": stamp_y, "rot": -5, "size": 56},
@@ -1400,7 +1555,9 @@ class FocusReel(Hs.HostReel):
                 sid = self.E.shots[i]["id"]
                 if kind in ("part", "overlay", "aim") and self.screens[self.screen_name_at(self.track[i], t)].picture is None:
                     shown = self.screens[self.screen_name_at(self.track[i], t)]
-                    if ref not in shown.boxes(self.state_at(shown.name, t)):
+                    there = ref in (shown.spec.get("overlays") or {}) if kind == "overlay" else \
+                        ref in shown.boxes(self.state_at(shown.name, t))      # a menu or dialog is an overlay
+                    if not there:
                         out.append(("fix", sid, "\"{}\" isn't on the screen when its line uses it (it's in a dialog "
                                                 "that's closed, or on another page)".format(ref)))
                         continue
