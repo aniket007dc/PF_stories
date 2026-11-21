@@ -1,0 +1,75 @@
+{
+  "schema": "dc-episode/1",
+  "id": "ep00-taali-sample",
+  "slug": "tame-ame-mane-game",
+  "series": "Kem Cho Club",
+  "title": "Tame, Ame, Mane Game!",
+  "tag": "CLASS 01",
+  "created": "2026-11-21",
+  "style": "taali",
+  "client": "kem-cho-club",
+  "brief": {
+    "topic": "Six everyday Gujarati words in two rhymes: tame, ame, game (you, we, like) and maaru, taaru, saaru (mine, yours, good)",
+    "viewer": "Hindi and Hinglish speakers who want to speak a little Gujarati",
+    "hook": "Gujarati seekho, taal pe!"
+  },
+  "lesson": {
+    "bpm": 128,
+    "key": "D",
+    "hook": "Gujarati seekho, taal pe!",
+    "title_gu": "તમે, અમે, મને ગમે!",
+    "title": "Tame, ame, mane game!",
+    "rhymes": {
+      "a": {"tail": "ame", "tail_gu": "મે", "color": "teal"},
+      "b": {"tail": "aaru", "tail_gu": "રું", "color": "pink"}
+    },
+    "words": [
+      {"id": "W1", "gu": "તમે", "roman": "tame", "meaning": "aap", "en": "you", "rhyme": "a"},
+      {"id": "W2", "gu": "અમે", "roman": "ame", "meaning": "hum", "en": "we", "rhyme": "a"},
+      {"id": "W3", "gu": "ગમે", "roman": "game", "meaning": "pasand", "en": "like", "rhyme": "a"},
+      {"id": "W4", "gu": "મારું", "roman": "maaru", "meaning": "mera", "en": "mine", "rhyme": "b"},
+      {"id": "W5", "gu": "તારું", "roman": "taaru", "meaning": "tera", "en": "yours", "rhyme": "b"},
+      {"id": "W6", "gu": "સારું", "roman": "saaru", "meaning": "accha", "en": "good", "rhyme": "b"}
+    ],
+    "turn": {"gu": "હવે તમારો વારો!", "roman": "Have tamaro vaaro!", "meaning": "ab aapki baari", "label": "TAMARO VAARO!"},
+    "ask": {"gu": "તમને શું ગમે?", "roman": "Tamne shu game?", "meaning": "aapko kya pasand?", "label": "COMMENT KARO!"},
+    "bye": {"gu": "આવજો!", "roman": "Aavjo!", "meaning": "phir milenge"},
+    "lines": [
+      {"id": "L01", "part": "intro", "who": "sawaj", "bars": 2, "show": "title", "say": "Kem cho dosto! Gujarati seekho, taal pe, taali pe!", "on": [0, 0.5, 1, 4, 4.5, 5, 5.5, 6, 6.5]},
+
+      {"id": "L02", "part": "verse", "who": "sawaj", "show": "word", "word": "W1", "say": "Tame, tame, bolo TAME!", "on": [0, 1, 2, 3]},
+      {"id": "L03", "part": "verse", "who": "lali", "show": "meaning", "word": "W1", "say": "Tame matlab AAP!", "on": [0, 1, 2.5]},
+      {"id": "L04", "part": "verse", "who": "sawaj", "show": "word", "word": "W2", "say": "Ame, ame, bolo AME!", "on": [0, 1, 2, 3]},
+      {"id": "L05", "part": "verse", "who": "lali", "show": "meaning", "word": "W2", "say": "Ame matlab HUM!", "on": [0, 1, 2.5]},
+      {"id": "L06", "part": "verse", "who": "sawaj", "show": "word", "word": "W3", "say": "Mane game, mane GAME!", "on": [0, 1, 2, 3]},
+      {"id": "L07", "part": "verse", "who": "lali", "show": "meaning", "word": "W3", "say": "Matlab mujhe pasand hai!", "on": [0, 1, 2, 3]},
+      {"id": "L08", "part": "verse", "who": "both", "show": "rhyme", "rows": [["W1", "W2", "W3"]], "say": "Tame, ame, mane game!", "on": [0, 1, 2, 3]},
+      {"id": "L09", "part": "verse", "who": "lali", "show": "rhyme", "rows": [["W1", "W2", "W3"]], "say": "Aap, hum, sabko pasand!", "on": [0, 1, 2, 3]},
+
+      {"id": "L10", "part": "verse", "who": "sawaj", "show": "word", "word": "W4", "say": "Maaru, maaru, bolo MAARU!", "on": [0, 1, 2, 3]},
+      {"id": "L11", "part": "verse", "who": "lali", "show": "meaning", "word": "W4", "say": "Maaru matlab MERA!", "on": [0, 1, 2.5]},
+      {"id": "L12", "part": "verse", "who": "sawaj", "show": "word", "word": "W5", "say": "Taaru, taaru, bolo TAARU!", "on": [0, 1, 2, 3]},
+      {"id": "L13", "part": "verse", "who": "lali", "show": "meaning", "word": "W5", "say": "Taaru matlab TERA!", "on": [0, 1, 2.5]},
+      {"id": "L14", "part": "verse", "who": "sawaj", "show": "word", "word": "W6", "say": "Saaru, saaru, bolo SAARU!", "on": [0, 1, 2, 3]},
+      {"id": "L15", "part": "verse", "who": "lali", "show": "meaning", "word": "W6", "say": "Saaru matlab ACCHA!", "on": [0, 1, 2.5]},
+      {"id": "L16", "part": "verse", "who": "both", "show": "rhyme", "rows": [["W4", "W5", "W6"]], "say": "Maaru, taaru, badhu saaru!", "on": [0, 1, 2, 3]},
+      {"id": "L17", "part": "verse", "who": "lali", "show": "rhyme", "rows": [["W4", "W5", "W6"]], "say": "Mera, tera, sab accha!", "on": [0, 1, 2, 3]},
+
+      {"id": "L18", "part": "chorus", "who": "both", "show": "chorus", "rows": [["W4", "W5", "W6"], ["W1", "W2", "W3"]], "say": "Maaru, taaru, badhu saaru!", "on": [0, 1, 2, 3]},
+      {"id": "L19", "part": "chorus", "who": "both", "show": "chorus", "rows": [["W4", "W5", "W6"], ["W1", "W2", "W3"]], "say": "Tame, ame, mane game!", "on": [0, 1, 2, 3]},
+      {"id": "L20", "part": "chorus", "who": "both", "show": "chorus", "rows": [["W4", "W5", "W6"], ["W1", "W2", "W3"]], "say": "Maaru, taaru, badhu saaru!", "on": [0, 1, 2, 3]},
+      {"id": "L21", "part": "chorus", "who": "both", "show": "chorus", "rows": [["W4", "W5", "W6"], ["W1", "W2", "W3"]], "say": "Tame, ame, mane game!", "on": [0, 1, 2, 3]},
+
+      {"id": "L22", "part": "turn", "who": "sawaj", "show": "turn", "say": "Have tamaro vaaro! Ab aap gao!", "on": [0, 0.5, 1, 2, 2.5, 3]},
+      {"id": "L23", "part": "turn", "who": "both", "show": "blank", "rows": [["W4", "W5", "W6"]], "say": "Maaru, taaru, badhu ___", "on": [0, 1, 2, 3], "reveal": 3.5, "answer": "saaru"},
+      {"id": "L24", "part": "turn", "who": "both", "show": "blank", "rows": [["W1", "W2", "W3"]], "say": "Tame, ame, mane ___", "on": [0, 1, 2, 3], "reveal": 3.5, "answer": "game"},
+      {"id": "L25", "part": "turn", "who": "lali", "show": "ask", "say": "Comment karo: tamne shu game?", "on": [0, 1, 2, 2.5, 3]},
+
+      {"id": "L26", "part": "outro", "who": "both", "bars": 2, "show": "bye", "say": "Aavjo! Kal phir milenge, Kem Cho Club pe!", "on": [0, 2, 2.5, 3, 4, 4.5, 5, 5.5]}
+    ]
+  },
+  "post": {
+    "caption": "Tame, ame, mane game! 🦁🦩 Gujarati seekho, garba ke taal pe. 6 shabd, 2 rhyme, 1 gaana.\n\nતમે tame = aap\nઅમે ame = hum\nગમે game = pasand\nમારું maaru = mera\nતારું taaru = tera\nસારું saaru = accha\n\nComment karo: tamne shu game? 👇",
+    "hashtags": ["#learngujarati", "#gujarati", "#garba", "#kemcho", "#gujaratiwords", "#navratri", "#gujarat"]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "dc-client/1",
+  "slug": "kem-cho-club",
+  "brand": "Kem Cho Club",
+  "website": "",
+  "instagram": "@kemchoclub",
+  "youtube": "",
+  "city": "",
+  "about": "Learn Gujarati in rhyme, on a garba beat. Every reel teaches 4 to 8 everyday Gujarati words that rhyme with each other, sung by Sawaj the Gir lion and Lali the Kutch flamingo, so they stick like a song.",
+  "services": [],
+  "viewer": "Hindi and Hinglish speakers who live, work or have family in Gujarat, or just love Gujarati food, garba and people, and want to speak a little Gujarati",
+  "topics": "Gujarati words and phrases: greetings, family, food, numbers, colours, days, the market, the kitchen, festivals, feelings, Gujarati slang",
+  "persona": "Two friends at a garba night teaching you their language: Sawaj, a proud and cheerful Gir lion cub on the dhol, and Lali, a quick, graceful flamingo from the Rann of Kutch with her dandiya. Warm, playful, never a classroom. Every word comes with its rhyme and its meaning in Hinglish.",
+  "language": "Hinglish in Roman script, with the Gujarati words in Gujarati script on screen",
+  "series": "Kem Cho Club",
+  "tag": "CLASS 01",
+  "tagline": "Gujarati, taal pe.",
+  "signoff": "Aavjo! Kal phir milenge, Kem Cho Club pe.",
+  "logo_text": "KEM CHO CLUB",
+  "colors": {
+    "accent": "#FFB000",
+    "second": "#C8102E",
+    "ink": "#4A081E"
+  },
+  "voice": {
+    "voice_id": "",
+    "voice_name": "",
+    "speed": 1.0
+  },
+  "cast": {
+    "model": "eleven_v3",
+    "sawaj": {
+      "voice_id": "",
+      "voice_name": "",
+      "tags": "[cheerful] [sing-song, on the beat]",
+      "speed": 1.1,
+      "stability": 0.5
+    },
+    "lali": {
+      "voice_id": "",
+      "voice_name": "",
+      "tags": "[playful] [sing-song, bright]",
+      "speed": 1.1,
+      "stability": 0.5
+    }
+  },
+  "never_say": [
+    "Gujju log kanjoos",
+    "Gujaratis are stingy",
+    "dhokla face",
+    "only business"
+  ],
+  "cta": {
+    "ask": "Comment karo: tamne shu game? (aapko kya pasand?)",
+    "must": "",
+    "offers": []
+  },
+  "research": {
+    "keywords": [
+      "learn Gujarati",
+      "Gujarati words",
+      "Gujarati phrases for beginners",
+      "Gujarati slang",
+      "garba songs",
+      "Navratri Gujarat",
+      "Gujarati food"
+    ],
+    "competitors": [],
+    "regions": ["Gujarat", "Mumbai"],
+    "requested_on": ""
+  },
+  "approved_by": "",
+  "approved_on": ""
+}

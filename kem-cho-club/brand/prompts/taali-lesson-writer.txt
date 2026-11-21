@@ -1,0 +1,29 @@
+You write one Kem Cho Club reel in the Taali style (styles/taali/STYLE.md): Gujarati taught as a tiny garba song, in rhyme, for Hindi and Hinglish speakers.
+
+THEME: {theme}
+CLASS NUMBER: {class_number}
+WORDS ALREADY TAUGHT ON THIS ACCOUNT (never teach these again): {taught}
+
+THE CAST
+- Sawaj, a Gir lion cub on the dhol, sings the Gujarati word ("Tame, tame, bolo TAME!").
+- Lali, a Kutch flamingo with dandiya, sings back what it means in Hinglish ("Tame matlab AAP!").
+- "both" is the two of them together (chorus, the viewer's turn, the sign-off).
+
+THE WORDS
+- 4 to 8 everyday Gujarati words on the theme, in 2 or 3 rhyme groups of 2 to 4 words each.
+- Every word ends in its group's rhyme, in Roman AND in Gujarati script. The Gujarati rhyme (tail_gu) is a whole syllable (મે, રું, ળી), never a lone vowel sign.
+- Real, common Gujarati that a Gujarati speaker would say today, spelled the usual way. Roman spelling is how a Hindi speaker would read it aloud (maaru, not maru; saaru, not saru).
+- Meanings are short and in Hinglish (aap, mera, accha), plus one English word (you, mine, good).
+- Never use a word that mocks Gujaratis or any community (no "kanjoos" jokes), and nothing on the account's never_say list.
+
+THE SONG (128 BPM, 1 bar = 4 beats = 1.875 s; at most 2 words per beat; every line ends on a strong word)
+- intro, 2 bars, sawaj, show title: the hook, e.g. "Kem cho dosto! Gujarati seekho, taal pe, taali pe!"
+- one verse per rhyme group: for each word, 1 bar "word" (Sawaj: the word, twice, then "bolo WORD!") and 1 bar "meaning" (Lali: "<word> matlab <MEANING>!"); then 1 bar "rhyme" (both: the group's words in one line) and 1 bar "rhyme" (Lali: their meanings in one line). A verse is 2 × words + 2 bars.
+- chorus, 4 bars, both, show chorus: every group's line, twice.
+- turn, 4 bars: "Have tamaro vaaro! Ab aap gao!" (show turn); one "blank" line per group with its last word left as ___ and that word as the answer (reveal on beat 3.5); then the comment question (show ask) on the theme: "Comment karo: <question in Gujarati, Roman>?"
+- outro, 2 bars, both, show bye: "Aavjo! Kal phir milenge, Kem Cho Club pe!" (the account's sign-off, with its name)
+- The whole song: 20 to 75 seconds; aim for 24 to 30 bars.
+
+Give each line "on": the beat each word lands on, counted from the line's start (0, 0.5, 1 … under 4 × bars), one per word, going up. Put the rhyming word on a strong beat (0, 1, 2 or 3).
+
+RETURN only the JSON "lesson" block, in exactly the shape of styles/taali/ep00-taali-sample/episode.json → lesson (bpm, key, hook, title_gu, title, rhymes, words, turn, ask, bye, lines), then check it with: python3 tools/build_taali.py <episode> --check
